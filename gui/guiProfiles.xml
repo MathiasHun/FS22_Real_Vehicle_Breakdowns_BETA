@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+
+<GUIProfiles>
+	<Presets>
+		<Preset name="colorTransparent" value="0 0 0 0"/>
+		<Preset name="colorWhite" value="1 1 1 1"/>
+		<Preset name="colorDisabled" value="0.4 0.4 0.4 1"/>
+		<Preset name="colorGrayHeader" value="0.4 0.4 0.4 1"/>
+		<Preset name="colorListHeaderBackground" value="0 0 0 0.35" />
+		<Preset name="rvbcolorListRowBackground" value="0.3140 0.8069 1.0000 0.02"/>
+		<Preset name="rvbcolorFocusBackgroundGradient" value="0.0227 0.5346 0.8519 1"/>
+		<Preset name="rvbColorGreen" value="0.3763 0.6038 0.0782 1"/>
+		<Preset name="rvbColorRed" value="0.8069 0.0097 0.0097 1"/>
+		<Preset name="rvbColorYellow" value="1.0000 0.6592 0.0000 1"/>
+		<Preset name="colourMainUI"    value="0.0227 0.5346 0.8519 1.0"/>
+		<Preset name="colourMainUI_10" value="0.0227 0.5346 0.8519 0.1"/>
+		<Preset name="colourGlass" value="0.0036 0.0056 0.0065 0.5"/>
+		<Preset name="colourWhite" value="1 1 1 1"/>
+	</Presets>
+	<Profile name="RVB_frame" extends="emptyPanel" with="anchorMiddleCenter">
+		<Value name="size" value="1624px 776px"/>
+		<Value name="debugEnabled" value="false"/>
+	</Profile>
+	<Profile name="RVB_headerPanel" extends="emptyPanel" with="anchorTopCenter">
+		<Value name="size" value="1500px 64px"/>
+		<Value name="position" value="0px 64px"/>
+	</Profile>
+	<Profile name="RVB_headerText" extends="textDefault">
+		<Value name="size" value="1500px 64px"/>
+		<Value name="position" value="0px 0px"/>
+		<Value name="textSize" value="31px"/>
+		<Value name="textBold" value="false"/>
+		<Value name="textUpperCase" value="true"/>
+		<Value name="textDisabledColor" value="$preset_colorDisabled"/>
+	</Profile>
+	<Profile name="RVB_ingameMenuListBox" extends="emptyPanel" with="anchorTopCenter">
+		<Value name="size" value="1600px 400px"/>
+		<Value name="position" value="0" />
+	</Profile>
+	<Profile name="RVB_headerBox" extends="emptyPanel" with="anchorTopCenter">
+		<Value name="size" value="1500px 50px"/>
+	<Value name="alignmentX" value="left"/>
+		<Value name="alignmentY" value="middle"/>
+		<Value name="imageColor" value="$preset_colorListHeaderBackground"/>
+		<Value name="flowDirection" value="horizontal"/>
+		<Value name="wrapAround" value="true"/>
+		<Value name="lateralFlowSize" value="200px"/>
+		<Value name="fitToElements" value="false"/>
+		<Value name="autoValidateLayout" value="true"/>
+		<Value name="hasFrame" value="false"/>
+	</Profile>
+	<Profile name="RVB_headerCell" extends="ingameMenuFrameHeaderText" with="anchorMiddleLeft">
+		<Value name="textSize" value="20px"/>
+		<Value name="textBold" value="false"/>
+		<Value name="textUpperCase" value="false"/>
+		<Value name="textColor" value="$preset_colorGrayHeader"/>
+		<Value name="textAlignment" value="center"/>
+		<Value name="textVerticalAlignment" value="middle"/>
+	</Profile>
+	<Profile name="RVB_list" extends="ingameMenuContractsList" with="anchorTopCenter">
+		<Value name="size" value="1500px 350px"/>
+		<Value name="position" value="0px -60px"/>
+		<Value name="selectOnScroll" value="true"/>
+	</Profile>
+	<Profile name="RVB_listItem" extends="ingameMenuContractsListItem" with="anchorBottomLeft">
+		<Value name="size" value="1500px 50px"/>
+	</Profile>
+	<Profile name="RVB_rowCell" extends="baseReference">
+		<Value name="textSize" value="18px"/>
+		<Value name="textBold" value="false"/>
+		<Value name="textUpperCase" value="false"/>
+		<Value name="textColor" value="$preset_colorWhite"/>
+		<Value name="textAlignment" value="center"/>
+		<Value name="textVerticalAlignment" value="middle"/>
+	</Profile>
+	<Profile name="RVB_ingameMenuSlider" extends="verticalListSliderRightDocked">
+		<Value name="size" value="12px 350px"/>
+		<Value name="position" value="-30px -60px"/>
+	</Profile>
+	<Profile name="RVB_ingameMenuSliderBar" extends="verticalListSliderBar">
+		<Value name="size" value="6px 350px" />
+	</Profile>
+	<Profile name="rvbVehicleIcon" extends="baseReference" with="anchorBottomLeft">
+		<Value name="position" value="-150px -150px"/>
+		<Value name="size" value="290px 290px"/>
+		<Value name="imageFilename" value="dataS/menu/hud/weather_icons.png"/>
+		<Value name="imageUVs" value="0 0 1 1"/>
+		<Value name="imageSize" value="512 512"/>
+		<Value name="imageSdfWidth" value="0.025"/>
+	</Profile>
+	<Profile name="InfoRowBg" extends="emptyPanel" with="anchorBottomCenter">
+		<Value name="position" value="0px -40px"/>
+		<Value name="size" value="1500px 48px"/>
+		<Value name="imageColor" value="$preset_colourMainUI_10"/>
+		<Value name="imageDisabledColor" value="$preset_colourGlass"/>
+	</Profile>
+	<Profile name="InfoRowText" extends="shopListAttributeInfo">
+		<Value name="textColor" value="$preset_colourWhite"/>
+		<Value name="position" value="55px 0px"/>
+		<Value name="textWrapWidth" value="885px"/>
+	</Profile>
+	<Profile name="InfoRowIcon" extends="baseReference" with="anchorMiddleLeft">
+		<Value name="position" value="20px 0px"/>
+		<Value name="imageUVs" value="390px 294px 36px 36px"/>
+		<Value name="imageColor" value="$preset_colourMainUI"/>
+		<Value name="size" value="26px 26px"/>
+	</Profile>
+	<Profile name="rvbMenuSettingsBox" extends="emptyPanel" with="anchorMiddleCenter">
+		<Value name="size" value="800px 300px"/>
+	</Profile>
+	<Profile name="rvbMenuListLayout" extends="emptyPanel" with="anchorBottomLeft">
+		<Value name="size" value="300px 300px"/>
+		<Value name="imageFocusedColor" value="$preset_rvbColorRed"/>
+	</Profile>
+	<Profile name="rvbMenuButtonsLayout" extends="emptyPanel" with="anchorBottomRight">
+		<Value name="position" value="50px 0px"/>
+		<Value name="size" value="500px 300px"/>
+	</Profile>
+	<Profile name="rvbtSpaceBox" extends="ingameMenuSettingsLayout">
+		<Value name="size" value="1600px 140px"/>
+	</Profile>
+	<Profile name="VehicleDetailList" extends="list" with="anchorBottomRight">
+		<Value name="size" value="500px 300px"/>
+		<Value name="isHorizontalList" value="false"/>
+		<Value name="selectedWithoutFocus" value="false"/>
+		<Value name="handleFocus" value="false"/>
+		<Value name="position" value="0 -34px"/>
+	</Profile>
+	<Profile name="VehicleDetailListItem" extends="listItem" with="alternating">
+		<Value name="imageColor" value="$preset_rvbcolorListRowBackground"/>
+		<Value name="imageFocusedColor" value="$preset_rvbcolorFocusBackgroundGradient"/>
+		<Value name="imageSelectedColor" value="$preset_rvbcolorFocusBackgroundGradient"/>
+		<Value name="size" value="490px 50px"/>
+	</Profile>
+	<Profile name="VehicleDetailTitle" extends="textDefault" with="anchorTopLeft">
+		<Value name="size" value="170px 40px"/>
+		<Value name="textVerticalAlignment" value="middle"/>
+		<Value name="textAutoWidth" value="true"/>
+		<Value name="position" value="30px 0px"/>
+		<Value name="textUpperCase" value="true"/>
+		<Value name="textBold" value="true"/>
+	</Profile>
+	<Profile name="VehicleDetailLevel" extends="textDefault" with="anchorTopRight">
+		<Value name="size" value="170px 40px"/>
+		<Value name="textMaxWidth" value="150px"/>
+		<Value name="textVerticalAlignment" value="middle"/>
+		<Value name="textAutoWidth" value="true"/>
+		<Value name="position" value="-30px 0"/>
+	</Profile>
+	<Profile name="VehicleDetailTitleNoBar" extends="VehicleDetailTitle">
+		<Value name="position" value="25px -5px"/>
+	</Profile>
+	<Profile name="VehicleDetailLevelNoBar" extends="VehicleDetailLevel">
+		<Value name="position" value="-25px -5px"/>
+	</Profile>
+	<Profile name="VehicleDetailBarBackground" extends="ingameMenuAnimalsSmallStatusBarBackground" with="anchorTopRight">
+		<Value name="position" value="-25px -36px"/>
+		<Value name="size" value="445px 6px"/>
+	</Profile>
+	<Profile name="VehicleDetailBar" extends="ingameMenuAnimalsSmallStatusBarBackground" with="anchorTopLeft">
+		<Value name="size" value="445px 6px"/>
+		<Value name="imageColor" value="$preset_rvbColorGreen"/>
+		<Value name="startImageColor" value="$preset_rvbColorGreen"/>
+		<Value name="endImageColor" value="$preset_rvbColorGreen"/>
+	</Profile>
+	<Profile name="VehicleDetailBarDanger" extends="VehicleDetailBar">
+		<Value name="imageColor" value="$preset_rvbColorRed"/>
+		<Value name="startImageColor" value="$preset_rvbColorRed"/>
+		<Value name="endImageColor" value="$preset_rvbColorRed"/>
+	</Profile>
+	<Profile name="VehicleDetailBarWarning" extends="VehicleDetailBar">
+		<Value name="imageColor" value="$preset_rvbColorYellow"/>
+		<Value name="startImageColor" value="$preset_rvbColorYellow"/>
+		<Value name="endImageColor" value="$preset_rvbColorYellow"/>
+	</Profile>
+</GUIProfiles>

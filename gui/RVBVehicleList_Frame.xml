@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="newvehicleListFrame">
+
+	<GuiElement type="empty" profile="RVB_frame">
+		<GuiElement type="empty" profile="RVB_headerPanel">
+			<GuiElement type="text" profile="RVB_headerText" text="$l10n_ui_garageOverview"/>
+		</GuiElement>
+
+		<GuiElement type="empty" profile="RVB_ingameMenuListBox" id="mainBox">
+
+			<GuiElement type="bitmap" profile="RVB_headerBox" id="tableHeaderBox">
+				<GuiElement type="text" profile="RVB_headerCell" position="0px 0px"     size="400px 50px" text="$l10n_RVB_list_vehicleorimplement"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="400px 0px"   size="150px 50px" text="$l10n_RVB_list_hporle" onClick="onButtonHpAscSort"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="550px 0px"   size="200px 50px" text="$l10n_RVB_list_currentvalue"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="750px 0px"   size="150px 50px" text="$l10n_RVB_list_age"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="900px 0px"   size="150px 50px" text="$l10n_RVB_list_operatinghours"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="1050px 0px"  size="150px 50px" text="$l10n_RVB_list_realoperatinghours"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="1200px 0px"  size="200px 50px" text="$l10n_RVB_list_servicehours"/>
+				<GuiElement type="text" profile="RVB_headerCell" position="1400px 0px"  size="100px 50px" text="$l10n_RVB_list_lease"/>
+			</GuiElement>
+
+			<GuiElement type="smoothList" profile="RVB_list" id="vehicleList" focusInit="onOpen" onDoubleClick="onButtonEnterVehicle">
+				<GuiElement type="listItem" profile="RVB_listItem" name="fieldCalculatorRowTemplate">
+					<GuiElement type="bitmap" profile="emptyPanel">
+						<GuiElement type="text" profile="RVB_rowCell" position="20px 0px"    size="400px 50px" name="title" textAlignment="left" />
+						<GuiElement type="text" profile="RVB_rowCell" position="400px 0px"   size="150px 50px" name="power"/>
+						<GuiElement type="text" profile="RVB_rowCell" position="550px 0px"   size="200px 50px" name="price"/>
+						<GuiElement type="text" profile="RVB_rowCell" position="750px 0px"   size="150px 50px" name="age"/>
+						<GuiElement type="text" profile="RVB_rowCell" position="900px 0px"   size="150px 50px" name="operating_time"/>
+						<GuiElement type="text" profile="RVB_rowCell" position="1050px 0px"  size="150px 50px" name="real_operating_time"/>
+						<GuiElement type="text" profile="RVB_rowCell" position="1200px 0px"  size="200px 50px" name="service"/>
+						<GuiElement type="text" profile="RVB_rowCell" position="1400px 0px"  size="100px 50px" name="lease"/>
+					</GuiElement>
+				</GuiElement>
+			</GuiElement>
+
+			<GuiElement type="threePartBitmap" profile="RVB_ingameMenuSlider" >
+				<GuiElement type="slider" profile="RVB_ingameMenuSliderBar" dataElementId="vehicleList" handleFocus="true" focusInit="onOpen"/>
+			</GuiElement>
+
+		</GuiElement>
+
+		<GuiElement type="empty" profile="uiInGameMenuFrame" position="0px -220px">
+
+			<GuiElement type="empty" profile="rvbtSpaceBox" />
+
+			<GuiElement type="bitmap" profile="rvbMenuSettingsBox">
+
+				<GuiElement type="boxLayout" profile="rvbMenuListLayout">
+					<GuiElement type="bitmap" name="vehicleIcon" id="vehicleIcon" profile="rvbVehicleIcon"/>
+				</GuiElement>
+
+				<GuiElement type="boxLayout" profile="rvbMenuButtonsLayout" id="rvbMenuButtons">
+					<GuiElement type="smoothList" profile="VehicleDetailList" id="vehicleDetail">
+						<GuiElement type="listItem" profile="VehicleDetailListItem" name="vehicleDetailItem">
+							<GuiElement type="text" profile="VehicleDetailTitle" name="detailTitle" />
+							<GuiElement type="text" profile="VehicleDetailLevel" name="detailLevel" />
+							<GuiElement type="threePartBitmap" profile="VehicleDetailBarBackground" name="detailBarBG">
+								<GuiElement type="threePartBitmap" profile="VehicleDetailBar" name="detailBar"/>
+							</GuiElement>
+						</GuiElement>
+					</GuiElement>
+				</GuiElement>
+
+			</GuiElement>
+
+		</GuiElement>
+
+		<GuiElement type="bitmap" profile="InfoRowBg">
+			<GuiElement type="bitmap" profile="InfoRowIcon" id="infoBoxIcon"/>
+			<GuiElement type="text" profile="InfoRowText" id="infoBoxText" text=""/>
+		</GuiElement>
+
+	</GuiElement>
+</GUI>

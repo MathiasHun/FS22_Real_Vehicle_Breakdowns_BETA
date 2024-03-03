@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="79">
+	<author>MathiasHun</author>
+	<version>1.0.0.0</version>
+	<title>
+		<en>Real Vehicle Breakdowns</en>
+	</title>
+	<description>
+		<en><![CDATA[Thanks to this modification the vehicle's components will fail.
+Breakdowns occur randomly, the worse the condition of the vehicle, the older it is, and the more operating hours it has run, the more often breakdowns can occur.
+The system monitors the operating temperature of the vehicle, if the engine is still too cold, the vehicle may be damaged.
+After starting the vehicle, if the operating temperature of the engine has not yet reached a temperature above 30 °C, the vehicle will be damaged, this can be tracked on the damage info bar.
+At the moment, it is not yet specified whether in such a case only the motor or the parts belonging to the motor will be damaged.
+
+The mod is currently shared in Beta.
+
+To calculate vehicle service and repair costs, the purchase price and age of the vehicle are taken into account.
+I have to try it out so that I can make any fine adjustments.
+
+Opening Real Vehicle Breakdowns (RVB) - key combination "left Alt + v" (default)
+
+List of failures:
+Thermostat error, it can be two types
+1. Thermostat overheating, in this case the operating temperature is too high, the vehicle is damaged and fuel consumption increases.
+2. Thermostat overcooling, in this case the operating temperature fluctuates, fuel consumption increases.
+3. All front and rear lights are malfunctioning, this is how I currently  created the error generation. In the event of this error, the turn signals and hazard warning lights are functional.
+4. Spark plug, in this case, fuel consumption increases and the engine is more difficult to start.
+5. Windscreen wiper motor, in this case the wiper blades do not move. It is possible that it will cause other errors in the future.
+6. Generator, in this case the vehicle's battery is not recharged, so it may discharge and the engine cannot be started.
+7. Engine error, in this case the engine will not start.
+8. Self-starter, in this case the engine is more difficult to start or cannot be started at all.
+9. Battery, in this case the engine is more difficult to start or cannot be started at all.
+10. Service interval, in this case, if there is a value greater than the set service interval in the vehicle, the vehicle will be damaged.
+
+Causes of battery discharge: 
+a) you have turned off the vehicle's engine but not turned off the lights, the more lights are on, the faster the battery drains
+b) due to generator failure, the battery does not charge
+
+The battery can be charged in the workshop.
+When the engine is running and the generator is operational, the battery gradually charges.
+
+In the RVB menu, it is possible to select how often the vehicles must be serviced.
+The repair cost is calculated from the purchase value of the vehicle, later this may change to the extent that a minimum repair cost is determined. Because there are vehicles that the developers have priced very cheaply.
+The system does not yet include a hourly repair rates.
+
+Bug report, please visit https://github.com/MathiasHun/FS22_IndoorCamFirst/
+
+]]></en>
+
+	</description>
+	<iconFilename>icon_vehicleBreakdown.dds</iconFilename>
+	
+	<l10n filenamePrefix="translations/l10n"/>
+	
+	<multiplayer supported="true"/>
+	
+	<extraSourceFiles>
+		<sourceFile filename="scripts/RVBLoader.lua"/>
+	</extraSourceFiles>
+	
+	
+	<actions>
+		<action name="VEHICLE_BREAKDOWN_MENU" category="VEHICLE" axisType="HALF"/>
+	</actions>
+
+	<inputBinding>
+		<actionBinding action="VEHICLE_BREAKDOWN_MENU">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_v"/>
+		</actionBinding>
+	</inputBinding>
+
+</modDesc>

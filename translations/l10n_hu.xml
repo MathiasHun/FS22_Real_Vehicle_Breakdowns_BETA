@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l10n>
+	<texts>
+		<!-- inputs -->
+		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Valódi jármű meghibásodások(RVB)"/>
+
+		<!-- settings -->
+		<!-- tabbedMenu -->
+		<text name="ui_RVB_reset_msg" text="Biztos vagy ebben?"/>
+		<!-- gameplay settings -->
+		<text name="ui_RVB_sectionGamePlaySettings" text="Játékbeállítások"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Napi szerviz"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Milyen gyakran kell karbantartást végezni naponta. Ez a funkció jelenleg inaktív."/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Időszakos szerviz"/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeDesc" text="Jármű szervizintervalluma."/>	
+		<text name="ui_RVB_gameplaysetting_repaironlyTitle" text="Javítás csak jármű műhelyben"/>
+		<text name="ui_RVB_gameplaysetting_repaironlyDesc" text="A jármű javítása vagy szervizelése csak járműszervizben végezhető."/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenTitle" text="Jármű műhely nyitás"/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="A jármű műhely ekkor nyit."/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Jármű műhely zárás"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="A járműműhely ekkor zár."/>
+		<!-- general settings -->
+		<text name="ui_RVB_sectionGeneralSettings" text="Általános Beállítások"/>
+		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Figyelmeztető üzenet"/>
+		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Ha a járműved sérül, szervizelik, javítják, akkor megjelenik egy figyelmeztető üzenet a képernyő közepén, amennyiben a járműben tartózkodsz."/>
+		
+		<!-- vehicle list -->	
+		<text name="RVB_WorkShopClose" text="Jármű műhely zárva van, gyere vissza %s órakor." tag="format"/>
+		<text name="RVB_button_inspection" text="Átvizsgálás"/>
+		<text name="RVB_button_dailyservice" text="Napi Szerviz"/>
+		<text name="RVB_button_periodicservice" text="Időszakos Szerviz"/>
+		<text name="RVB_button_battery_ch" text="Akkumulátor töltés"/>
+		<text name="RVB_button_service" text="Szerviz"/>
+		<text name="RVB_button_vehicles" text="Járművek"/>
+		<text name="RVB_button_vehiclesandequipment" text="Járművek és munkaeszközök"/>
+		<text name="RVB_inspectionDialog" text="Biztosan megvizsgáltatod ezt a járművet %s áron?" tag="format"/>
+		<text name="RVB_inspectionTimeDialog" text="A jármű átvizsgálása %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_inspectionDayDialog" text="A jármű átvizsgálása holnap %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_faultText_thermostatoverHeating" text="Termosztát"/>
+		<text name="RVB_faultText_thermostatoverCooling" text="Termosztát"/>
+		<text name="RVB_faultText_lightings" text="Világítás"/>
+		<text name="RVB_faultText_spark_plug" text="Gyújtógyertya"/>
+		<text name="RVB_faultText_wipers" text="Ablaktörlők"/>
+		<text name="RVB_faultText_generator" text="Generátor"/>
+		<text name="RVB_faultText_engine" text="Motor"/>
+		<text name="RVB_faultText_self_starter" text="Önindító"/> 
+		<text name="RVB_faultText_batteryisDead" text="Akkumulátor"/>
+		<text name="RVB_repairTimeDialog" text="A jármű javítása %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_repairDayDialog" text="A jármű javítása holnap %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_ErrorList" text="Hiba lista:" />
+		<text name="RVB_periodicserviceDialog" text="Biztosan szervizeltetni akarod a járművet %s áron?" tag="format"/>
+		<text name="RVB_periodicserviceTimeDialog" text="A jármű szervizelése %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_periodicserviceDayDialog" text="A jármű szervizelése holnap %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_batteryChDialog" text="Biztosan felakarod tölteni a jármű akkumulátorát %s áron?" tag="format"/>
+		<text name="RVB_batteryChTimeDialog" text="A jármű akkumulátorának töltése %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_batteryChDayDialog" text="A jármű akkumulátorának töltése holnap %s órakor fejeződik be." tag="format"/>
+		<text name="RVB_occupied" text="Már használatban van a jármű!" />
+		<text name="RVB_shop_operatingTime" text="%02d.%2d óra" tag="format"/>
+		<text name="RVB_serviceHours" text="%01d/%01d óra" tag="format"/>
+		<text name="RVB_alertmessage_inspection" text="Jármű átvizsgálása folyamatban van."/>
+		<text name="RVB_alertmessage_inspection_hud" text="%s jármű átvizsgálása folyamatban van." tag="format"/>
+		<text name="RVB_alertmessage_repair" text="Jármű javítása folyamatban van."/>
+		<text name="RVB_alertmessage_repair_hud" text="%s jármű javítása folyamatban van." tag="format"/>
+		<text name="RVB_alertmessage_service" text="Jármű szervizelése folyamatban van."/>
+		<text name="RVB_alertmessage_service_hud" text="%s jármű szervizelése folyamatban van." tag="format"/>
+		<text name="RVB_alertmessage_batteryCh" text="Akkumulátor töltés folyamatban van."/>
+		<text name="RVB_alertmessage_batteryCh_hud" text="%s jármű akkumulátorának töltése folyamatban van." tag="format"/>
+		<!-- xml -->
+		<text name="RVB_list_vehicleorimplement" text="Jármű/Munkaeszközök"/>
+		<text name="RVB_list_hporle" text="Hp/LE"/>
+		<text name="RVB_list_currentvalue" text="Jelenlegi Ára"/>
+		<text name="RVB_list_age" text="Kor"/>
+		<text name="RVB_list_operatinghours" text="Üzemidő"/>
+		<text name="RVB_list_realoperatinghours" text="Valós Üzemidő"/>
+		<text name="RVB_list_servicehours" text="Szerviz"/>
+		<text name="RVB_list_lease" text="Bérelt"/>
+		<text name="RVB_list_battery" text="Akkumulátor"/>
+	
+		
+		<!-- spec -->
+		<text name="RVB_inspectionDialogFault" text="%s jármű átvizsgálva, javítás szükséges. %s"/>
+		<text name="RVB_inspectionDialogEnd" text="%s jármű átvizsgálva, nem szükséges a javítás."/>
+
+		
+		<text name="RVB_fault_" text="Ne vezessen túl gyorsan, a motor még hideg."/>
+		<text name="RVB_fault_hud" text="%s járművel túl gyorsan vezetnek, a motor még hideg." tag="format"/>
+		
+		<text name="RVB_fault_thermostat" text="Hűtőfolyadék túlmelegedik."/>
+		<text name="RVB_fault_thermostat_hud" text="%s jármű hűtőfolyadéka túlmelegedik." tag="format"/>
+
+		<text name="RVB_fault_thermostatC" text="A motor nem éri el az üzemi hőmérsékletet."/>
+		<text name="RVB_fault_thermostatC_hud" text="%s motorja nem éri el az üzemi hőmérsékletet." tag="format"/>
+		
+		<text name="RVB_fault_lights" text="Nem müködik a világítás." />
+		<text name="RVB_fault_lights_hud" text="%s járműnek nem müködik a világítása." tag="format"/>
+		
+		<text name="RVB_fault_sparkplug" text="Üzemanyag fogyasztás megnőtt." />
+		<text name="RVB_fault_sparkplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
+		
+		<text name="fault_battery" text="Merül az akkumulátor." />
+		<text name="fault_battery_hud" text="%s járműnek merül az akkumulátora." tag="format"/>
+		
+		<text name="RVB_fault_operatinghours" text="Felvillant a szerviz lámpa." />
+		<text name="RVB_fault_operatinghours_hud" text="%s járművet szervizeltetni kell." tag="format"/>
+		
+		
+		<text name="RVB_main_repair_fault" text="A szerelő nem tudja megjavítani ezt a járművet, keresd fel a &quot;RVB&quot; Szervizt" />
+		
+		
+
+		<text name="popupMessage_battery_timeScaleup" text="Szerelő: Ne kapcsolgasd ki-be az akkumulátor töltőt, mert tovább fog tartani a töltés."/> <!-- Ne sűrgess már, mert tovább fog tartani -->
+		<text name="popupMessage_battery_timeScaledown" text="Szerelő: Hagyd már békén a töltőt."/>
+		
+		
+
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motor meghibásodása." />
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="Motor nem indul, generátor meghibásodott." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Jármű nem indítható, átvizsgálása folyamatban van." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Jármű nem indítható, javítás folyamatban van." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Jármű nem indítható, szervizelés folyamatban van." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Jármű kulcsa a szerelőnél van, aki éppen pihen." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor nem indul, akkumulátor lemerült." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Jármű nem indítható, akkumulátor töltés folyamatban van." />
+
+
+
+		
+
+		<text name="infoDisplayExtension_currentPower" text="Power"/>
+		<text name="infoDisplayExtension_batteryCh" text="Akku töltés"/>
+		<text name="infoDisplayExtension_inspectionVheicle" text="Jármű átvizsgálás"/>
+		<text name="infoDisplayExtension_repairVheicle" text="Járműjavítás"/>
+		
+		<text name="infoDisplayExtension_serviceVheicle" text="Időszakos Szerviz"/>
+
+		<text name="RVB_operatingHours" text="Szerviz üzemóra"/>
+		
+		<text name="RVB_TotaloperatingHours" text="Összes üzemóra"/>
+		
+
+	
+		
+		
+		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+
+		
+        </texts>
+		
+		
+		
+		
+</l10n>

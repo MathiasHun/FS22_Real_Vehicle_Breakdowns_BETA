@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<rvbGamePlaySettings>
+    <dailyServiceInterval value="6"/>
+    <periodicServiceInterval value="40"/>
+    <repairshop value="true"/>
+    <workshopOpen value="7"/>
+    <workshopClose value="16"/>
+</rvbGamePlaySettings>

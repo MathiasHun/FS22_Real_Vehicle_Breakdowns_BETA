@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
 	<author>MathiasHun</author>
-	<version>1.0.0.0</version>
+	<version>0.8.0.0</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -17,7 +17,7 @@ The mod is currently shared in Beta.
 To calculate vehicle service and repair costs, the purchase price and age of the vehicle are taken into account.
 I have to try it out so that I can make any fine adjustments.
 
-Opening Real Vehicle Breakdowns (RVB) - key combination "left Alt + v" (default)
+Opening Real Vehicle Breakdowns (RVB) - key combination "left Alt + w" (default)
 
 List of failures:
 Thermostat error, it can be two types
@@ -45,6 +45,11 @@ The system does not yet include a hourly repair rates.
 
 Bug report, please visit https://github.com/MathiasHun/FS22_IndoorCamFirst/
 
+Changelog 0.8.1.0:
+- Change menu opening button combination "left Alt + w"
+- Spark plug delete, add Glow plug
+- Gear shifter problem, maybe fixed, I didn't experience a gear shifter problem before
+- Change in breakdowns generator. The vehicle breakdowns can only if it is at least 8 months old. The chance of vehicle breakdowns has been reduced
 ]]></en>
 
 	</description>
@@ -65,7 +70,7 @@ Bug report, please visit https://github.com/MathiasHun/FS22_IndoorCamFirst/
 
 	<inputBinding>
 		<actionBinding action="VEHICLE_BREAKDOWN_MENU">
-			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_v"/>
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_w"/>
 		</actionBinding>
 	</inputBinding>
 

@@ -39,7 +39,7 @@
 		<text name="RVB_faultText_thermostatoverHeating" text="Termosztát"/>
 		<text name="RVB_faultText_thermostatoverCooling" text="Termosztát"/>
 		<text name="RVB_faultText_lightings" text="Világítás"/>
-		<text name="RVB_faultText_spark_plug" text="Gyújtógyertya"/>
+		<text name="RVB_faultText_glow_plug" text="Izzítógyertya"/>
 		<text name="RVB_faultText_wipers" text="Ablaktörlők"/>
 		<text name="RVB_faultText_generator" text="Generátor"/>
 		<text name="RVB_faultText_engine" text="Motor"/>
@@ -94,8 +94,8 @@
 		<text name="RVB_fault_lights" text="Nem müködik a világítás." />
 		<text name="RVB_fault_lights_hud" text="%s járműnek nem müködik a világítása." tag="format"/>
 		
-		<text name="RVB_fault_sparkplug" text="Üzemanyag fogyasztás megnőtt." />
-		<text name="RVB_fault_sparkplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
+		<text name="RVB_fault_glowplug" text="Üzemanyag fogyasztás megnőtt." />
+		<text name="RVB_fault_glowplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
 		
 		<text name="fault_battery" text="Merül az akkumulátor." />
 		<text name="fault_battery_hud" text="%s járműnek merül az akkumulátora." tag="format"/>

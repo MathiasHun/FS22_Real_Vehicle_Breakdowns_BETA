@@ -39,7 +39,7 @@
 		<text name="RVB_faultText_thermostatoverHeating" text="Thermostat"/>
 		<text name="RVB_faultText_thermostatoverCooling" text="Thermostat"/>
 		<text name="RVB_faultText_lightings" text="Lighting"/>
-		<text name="RVB_faultText_spark_plug" text="Spark plug"/>
+		<text name="RVB_faultText_glow_plug" text="Glow plug"/>
 		<text name="RVB_faultText_wipers" text="Windshield wipers"/>
 		<text name="RVB_faultText_generator" text="Generator"/>
 		<text name="RVB_faultText_engine" text="Engine"/>
@@ -94,8 +94,8 @@
 		<text name="RVB_fault_lights" text="The lighting doesn't work." />
 		<text name="RVB_fault_lights_hud" text="%s járműnek nem müködik a világítása." tag="format"/>
 		
-		<text name="RVB_fault_sparkplug" text="Fuel consumption has increased." />
-		<text name="RVB_fault_sparkplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
+		<text name="RVB_fault_glowplug" text="Fuel consumption has increased." />
+		<text name="RVB_fault_glowplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
 		
 		<text name="fault_battery" text="Battery drains." />
 		<text name="fault_battery_hud" text="%s járműnek merül az akkumulátora." tag="format"/>

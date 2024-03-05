@@ -24,7 +24,7 @@ Thermostat error, it can be two types
 1. Thermostat overheating, in this case the operating temperature is too high, the vehicle is damaged and fuel consumption increases.
 2. Thermostat overcooling, in this case the operating temperature fluctuates, fuel consumption increases.
 3. All front and rear lights are malfunctioning, this is how I currently  created the error generation. In the event of this error, the turn signals and hazard warning lights are functional.
-4. Spark plug, in this case, fuel consumption increases and the engine is more difficult to start.
+4. Glow plug, in this case, fuel consumption increases and the engine is more difficult to start.
 5. Windscreen wiper motor, in this case the wiper blades do not move. It is possible that it will cause other errors in the future.
 6. Generator, in this case the vehicle's battery is not recharged, so it may discharge and the engine cannot be started.
 7. Engine error, in this case the engine will not start.
@@ -43,7 +43,7 @@ In the RVB menu, it is possible to select how often the vehicles must be service
 The repair cost is calculated from the purchase value of the vehicle, later this may change to the extent that a minimum repair cost is determined. Because there are vehicles that the developers have priced very cheaply.
 The system does not yet include a hourly repair rates.
 
-Bug report, please visit https://github.com/MathiasHun/FS22_IndoorCamFirst/
+Bug report, please visit https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/
 
 Changelog 0.8.1.0:
 - Change menu opening button combination "left Alt + w"

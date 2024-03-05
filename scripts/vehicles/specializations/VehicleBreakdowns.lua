@@ -9,7 +9,7 @@ VehicleBreakdowns.searchedForTriggers = false
 
 VehicleBreakdowns.repairCosts = { 0.0015, 0.0015, 0.0025, 0.001, 0.0007, 0.005, 0.02, 0.006, 0.0005, 0.005, 0.003 }
 VehicleBreakdowns.IRSBTimes = { 10800, 10800, 5400, 7200, 1800, 5400, 21600, 5400, 60, 600, 900 }
-VehicleBreakdowns.faultText = { "thermostatoverHeating", "thermostatoverCooling", "lightings", "spark_plug", "wipers", "generator", "engine", "self_starter", "batteryisDead" }
+VehicleBreakdowns.faultText = { "thermostatoverHeating", "thermostatoverCooling", "lightings", "glow_plug", "wipers", "generator", "engine", "self_starter", "batteryisDead" }
 
 VehicleBreakdowns.INGAME_NOTIFICATION = {
 	1, 0.27058823529412, 0,	1.0
@@ -67,7 +67,7 @@ function VehicleBreakdowns.registerFunctions(vehicleType)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultThermostatoverHeating", VehicleBreakdowns.getIsFaultThermostatoverHeating)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultThermostatoverCooling", VehicleBreakdowns.getIsFaultThermostatoverCooling)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultLightings", VehicleBreakdowns.getIsFaultLightings)
-	SpecializationUtil.registerFunction(vehicleType, "getIsFaultSparkPlug", VehicleBreakdowns.getIsFaultSparkPlug)
+	SpecializationUtil.registerFunction(vehicleType, "getIsFaultGlowPlug", VehicleBreakdowns.getIsFaultGlowPlug)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultWipers", VehicleBreakdowns.getIsFaultWipers)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultGenerator", VehicleBreakdowns.getIsFaultGenerator)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultEngine", VehicleBreakdowns.getIsFaultEngine)
@@ -106,12 +106,9 @@ function VehicleBreakdowns.registerFunctions(vehicleType)
 	SpecializationUtil.registerFunction(vehicleType, "setVehicleService", VehicleBreakdowns.setVehicleService)
 	SpecializationUtil.registerFunction(vehicleType, "setDamageService", VehicleBreakdowns.setDamageService)
 	SpecializationUtil.registerFunction(vehicleType, "setVehicleDamageThermostatoverHeatingFailure", VehicleBreakdowns.setVehicleDamageThermostatoverHeatingFailure)
-	SpecializationUtil.registerFunction(vehicleType, "setVehicleDamageSparkplugFailure", VehicleBreakdowns.setVehicleDamageSparkplugFailure)
+	SpecializationUtil.registerFunction(vehicleType, "setVehicleDamageGlowplugFailure", VehicleBreakdowns.setVehicleDamageGlowplugFailure)
 	SpecializationUtil.registerFunction(vehicleType, "displayMessage", VehicleBreakdowns.displayMessage)
-	SpecializationUtil.registerFunction(vehicleType, "actionEventToggleMotorState_Clone", VehicleBreakdowns.actionEventToggleMotorState_Clone)
 	SpecializationUtil.registerFunction(vehicleType, "getIsRVBMotorStarted", VehicleBreakdowns.getIsRVBMotorStarted)
-	SpecializationUtil.registerFunction(vehicleType, "startMotor_Clone", VehicleBreakdowns.startMotor_Clone)
-	SpecializationUtil.registerFunction(vehicleType, "stopMotor_Clone", VehicleBreakdowns.stopMotor_Clone)
 	SpecializationUtil.registerFunction(vehicleType, "RVBaddRemoveMoney", VehicleBreakdowns.RVBaddRemoveMoney)
 	
 	SpecializationUtil.registerFunction(vehicleType, "SyncClientServer_RVB", VehicleBreakdowns.SyncClientServer_RVB)
@@ -140,7 +137,7 @@ function VehicleBreakdowns.initSpecialization()
     schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#thermostatoverHeating", "Overheating is the most common symptom of a failing thermostat. The engine will overheat, causing severe damage.")
 	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#thermostatoverCooling", "Overcooling is the most common symptom of a failing thermostat. The engine will overcool, causing severe damage and the engine will run rich and consume more fuel.")
 	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#lightings", "lightings")
-	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#sparkPlug", "sparkPlug")
+	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#glowPlug", "glowPlug")
 	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#wipers", "wipers")
 	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#generator", "generator")
 	schemaSavegame:register(XMLValueType.BOOL, savegameKey .. "#engine", "engine")
@@ -248,18 +245,18 @@ function VehicleBreakdowns:onLoad(savegame)
     specM.motorFan.coolingPerMS = 3.0 / 1000
 
 	spec.DontStopMotor =	{}
-	spec.DontStopMotor.sparkPlug	= false
+	spec.DontStopMotor.glowPlug	= false
 	spec.DontStopMotor.self_starter	= false
 	spec.RandomNumber = {}
-	spec.RandomNumber.sparkPlug = 0
+	spec.RandomNumber.glowPlug = 0
 	spec.TimesSoundPlayed = {}
-	spec.TimesSoundPlayed.sparkPlug = 2
+	spec.TimesSoundPlayed.glowPlug = 2
 	spec.TimesSoundPlayed.self_starter = 2
 	spec.MotorTimer = {}
-	spec.MotorTimer.sparkPlug = -1
+	spec.MotorTimer.glowPlug = -1
 	spec.MotorTimer.self_starter = -1
 	spec.NumberMotorTimer = {}
-	spec.NumberMotorTimer.sparkPlug = 0
+	spec.NumberMotorTimer.glowPlug = 0
 	spec.NumberMotorTimer.self_starter = 0
 
 	spec.addDamage = {}
@@ -433,7 +430,7 @@ function VehicleBreakdowns:setVehicleDamageThermostatoverHeatingFailure()
 	
 end
 
-function VehicleBreakdowns:setVehicleDamageSparkplugFailure()
+function VehicleBreakdowns:setVehicleDamageGlowplugFailure()
 
 	local spec = self.spec_faultData
 	local RVBSET = g_currentMission.vehicleBreakdowns
@@ -448,9 +445,9 @@ function VehicleBreakdowns:setVehicleDamageSparkplugFailure()
 
 		if RVBSET:getIsAlertMessage() then
 			if self.getIsEntered ~= nil and self:getIsEntered() then
-			--	g_currentMission:showBlinkingWarning(g_i18n:getText("RVB_fault_sparkplug"), 2500)
+			--	g_currentMission:showBlinkingWarning(g_i18n:getText("RVB_fault_gloeplug"), 2500)
 			else
-			--	g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("RVB_fault_sparkplug_hud"), self:getFullName()), 5000)
+			--	g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("RVB_fault_glowplug_hud"), self:getFullName()), 5000)
 			end
 		end
 		
@@ -899,7 +896,7 @@ function VehicleBreakdowns:onPostLoad(savegame)
 	spec.faultStorage[1] = savegame.xmlFile:getValue(key .. "#thermostatoverHeating", false)
 	spec.faultStorage[2] = savegame.xmlFile:getValue(key .. "#thermostatoverCooling", false)
 	spec.faultStorage[3] = savegame.xmlFile:getValue(key .. "#lightings", false)
-	spec.faultStorage[4] = savegame.xmlFile:getValue(key .. "#sparkPlug", false)
+	spec.faultStorage[4] = savegame.xmlFile:getValue(key .. "#glowPlug", false)
 	spec.faultStorage[5] = savegame.xmlFile:getValue(key .. "#wipers", false)
 	spec.faultStorage[6] = savegame.xmlFile:getValue(key .. "#generator", false)
 	spec.faultStorage[7] = savegame.xmlFile:getValue(key .. "#engine", false)
@@ -1202,7 +1199,7 @@ function VehicleBreakdowns:saveToXMLFile(xmlFile, key, usedModNames)
     xmlFile:setValue(key .. ".faultStorage#thermostatoverHeating", self:getIsFaultThermostatoverHeating())
 	xmlFile:setValue(key .. ".faultStorage#thermostatoverCooling", self:getIsFaultThermostatoverCooling())
 	xmlFile:setValue(key .. ".faultStorage#lightings", self:getIsFaultLightings())
-	xmlFile:setValue(key .. ".faultStorage#sparkPlug", self:getIsFaultSparkPlug())
+	xmlFile:setValue(key .. ".faultStorage#glowPlug", self:getIsFaultGlowPlug())
 	xmlFile:setValue(key .. ".faultStorage#wipers", self:getIsFaultWipers())
 	xmlFile:setValue(key .. ".faultStorage#generator", self:getIsFaultGenerator())
 	xmlFile:setValue(key .. ".faultStorage#engine", self:getIsFaultEngine())
@@ -1320,86 +1317,6 @@ function VehicleBreakdowns.onRegisterActionEvents(self, isActiveForInput, isActi
 
 	end
 	
-
-	if self.isClient then
-	
-        local spec = self.spec_motorized
-		
-        self:clearActionEventsTable(spec.actionEvents)
-		
-		local rvbMotorState = Motorized.actionEventToggleMotorState
-		if rvb.faultStorage[8] or tonumber(rvb.faultStorage[9]) >= 0.75 then
-			rvbMotorState = VehicleBreakdowns.actionEventToggleMotorState_Clone
-		end
-		
-        if isActiveForInputIgnoreSelection then
-		
-            local _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.TOGGLE_MOTOR_STATE, self, rvbMotorState, false, true, false, true, nil)
-            g_inputBinding:setActionEventTextPriority(actionEventId, GS_PRIO_VERY_HIGH)
-            g_inputBinding:setActionEventText(actionEventId, spec.turnOnText)
-
-            if spec.motor.minForwardGearRatio == nil or spec.motor.minBackwardGearRatio == nil then
-                if self:getGearShiftMode() ~= VehicleMotor.SHIFT_MODE_AUTOMATIC or not GS_IS_CONSOLE_VERSION then
-                    if spec.motor.manualShiftGears then
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_UP, self, Motorized.actionEventShiftGear, false, true, false, true, nil)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_DOWN, self, Motorized.actionEventShiftGear, false, true, false, true, nil)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_1, self, Motorized.actionEventSelectGear, true, true, false, true, 1)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_2, self, Motorized.actionEventSelectGear, true, true, false, true, 2)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_3, self, Motorized.actionEventSelectGear, true, true, false, true, 3)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_4, self, Motorized.actionEventSelectGear, true, true, false, true, 4)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_5, self, Motorized.actionEventSelectGear, true, true, false, true, 5)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_6, self, Motorized.actionEventSelectGear, true, true, false, true, 6)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_7, self, Motorized.actionEventSelectGear, true, true, false, true, 7)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GEAR_SELECT_8, self, Motorized.actionEventSelectGear, true, true, false, true, 8)
-                        g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                    end
-
-                    if spec.motor.manualShiftGroups then
-                        if spec.motor.gearGroups ~= nil then
-                            _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GROUP_UP, self, Motorized.actionEventShiftGroup, false, true, false, true, nil)
-                            g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                            _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GROUP_DOWN, self, Motorized.actionEventShiftGroup, false, true, false, true, nil)
-                            g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-
-                            _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GROUP_SELECT_1, self, Motorized.actionEventSelectGroup, true, true, false, true, 1)
-                            g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                            _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GROUP_SELECT_2, self, Motorized.actionEventSelectGroup, true, true, false, true, 2)
-                            g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                            _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GROUP_SELECT_3, self, Motorized.actionEventSelectGroup, true, true, false, true, 3)
-                            g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                            _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.SHIFT_GROUP_SELECT_4, self, Motorized.actionEventSelectGroup, true, true, false, true, 4)
-                            g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                        end
-                    end
-
-                    _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.AXIS_CLUTCH_VEHICLE, self, Motorized.actionEventClutch, false, false, true, true, nil)
-                    g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                end
-            end
-
-            if self:getDirectionChangeMode() == VehicleMotor.DIRECTION_CHANGE_MODE_MANUAL or self:getGearShiftMode() ~= VehicleMotor.SHIFT_MODE_AUTOMATIC then
-                _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.DIRECTION_CHANGE, self, Motorized.actionEventDirectionChange, false, true, false, true, nil, nil, true)
-                g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.DIRECTION_CHANGE_POS, self, Motorized.actionEventDirectionChange, false, true, false, true, nil, nil, true)
-                g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-                _, actionEventId = self:addActionEvent(spec.actionEvents, InputAction.DIRECTION_CHANGE_NEG, self, Motorized.actionEventDirectionChange, false, true, false, true, nil, nil, true)
-                g_inputBinding:setActionEventTextVisibility(actionEventId, false)
-            end
-
-            Motorized.updateActionEvents(self)
-        end
-    end
-
 end
 	
 function VehicleBreakdowns:actionToggleLightsFault()
@@ -1435,42 +1352,42 @@ function VehicleBreakdowns:onUpdate(dt)
 	local motorized = self.spec_motorized
 
 	if not self:getIsEntered() then
-		self:raiseActive()
+		--self:raiseActive()
 	end
 
 	local GSET = g_currentMission.vehicleBreakdowns.generalSettings
 
 	if spec.faultStorage[4] then
 		local rnumsec = 2500
-		if spec.RandomNumber.sparkPlug == 0 then
-			spec.RandomNumber.sparkPlug = math.random(1, 3)
-			spec.TimesSoundPlayed.sparkPlug = spec.RandomNumber.sparkPlug
+		if spec.RandomNumber.glowPlug == 0 then
+			spec.RandomNumber.glowPlug = math.random(1, 3)
+			spec.TimesSoundPlayed.glowPlug = spec.RandomNumber.glowPlug
 		end
 
-		if not spec.DontStopMotor.sparkPlug then
+		if not spec.DontStopMotor.glowPlug then
 
 			if self:getIsMotorStarted() then
-				spec.MotorTimer.sparkPlug = spec.MotorTimer.sparkPlug - dt
-				spec.NumberMotorTimer.sparkPlug = math.min(-spec.MotorTimer.sparkPlug / rnumsec, 0.9) 
-				if spec.NumberMotorTimer.sparkPlug >= 0.243589 then -- 0.290789
+				spec.MotorTimer.glowPlug = spec.MotorTimer.glowPlug - dt
+				spec.NumberMotorTimer.glowPlug = math.min(-spec.MotorTimer.glowPlug / rnumsec, 0.9) 
+				if spec.NumberMotorTimer.glowPlug >= 0.243589 then -- 0.290789
 					self:stopMotor()
-					spec.MotorTimer.sparkPlug = -1
+					spec.MotorTimer.glowPlug = -1
 					self:startMotor()
-					spec.TimesSoundPlayed.sparkPlug = spec.TimesSoundPlayed.sparkPlug - 1
-					self:setVehicleDamageSparkplugFailure()
+					spec.TimesSoundPlayed.glowPlug = spec.TimesSoundPlayed.glowPlug - 1
+					self:setVehicleDamageGlowplugFailure()
 				end
 
-				if spec.NumberMotorTimer.sparkPlug >= 0.243589 and spec.TimesSoundPlayed.sparkPlug == 0 then
-					spec.DontStopMotor.sparkPlug = true
-					spec.TimesSoundPlayed.sparkPlug = 2
-					spec.RandomNumber.sparkPlug = 0
+				if spec.NumberMotorTimer.glowPlug >= 0.243589 and spec.TimesSoundPlayed.glowPlug == 0 then
+					spec.DontStopMotor.glowPlug = true
+					spec.TimesSoundPlayed.glowPlug = 2
+					spec.RandomNumber.glowPlug = 0
 				end
 			end
 		end
 		
 		if not self:getIsMotorStarted() then
-			if spec.DontStopMotor.sparkPlug then
-				spec.DontStopMotor.sparkPlug = false
+			if spec.DontStopMotor.glowPlug then
+				spec.DontStopMotor.glowPlug = false
 			end
 		end
 
@@ -1506,9 +1423,9 @@ function VehicleBreakdowns:onUpdate(dt)
 				spec.MotorTimer.self_starter = spec.MotorTimer.self_starter - dt
 				spec.NumberMotorTimer.self_starter = math.min(-spec.MotorTimer.self_starter / 2000, 0.9) 
 				if spec.NumberMotorTimer.self_starter >= 0.9 then
-					self:stopMotor_Clone()
+					self:stopMotor()
 					spec.MotorTimer.self_starter = -1
-					self:startMotor_Clone()
+					self:startMotore()
 					spec.TimesSoundPlayed.self_starter = spec.TimesSoundPlayed.self_starter - 1
 
 					local breakdownValue = 0.000005
@@ -1518,10 +1435,10 @@ function VehicleBreakdowns:onUpdate(dt)
 					end
 					if GSET.alertmessage then
 						if self.getIsEntered ~= nil and self:getIsEntered() then
-							--g_currentMission:showBlinkingWarning(g_i18n:getText("fault_sparkplug"), 2500)
-							--g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("fault_sparkplug_hud"), self:getFullName()), 5000)
+							--g_currentMission:showBlinkingWarning(g_i18n:getText("fault_glowplug"), 2500)
+							--g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("fault_glowplug_hud"), self:getFullName()), 5000)
 						else
-							--g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("fault_sparkplug_hud"), self:getFullName()), 5000)
+							--g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("fault_glowplug_hud"), self:getFullName()), 5000)
 						end
 					end
 					
@@ -1530,7 +1447,7 @@ function VehicleBreakdowns:onUpdate(dt)
 				if spec.NumberMotorTimer.self_starter >= 0.9 and spec.TimesSoundPlayed.self_starter == 0 then
 					spec.DontStopMotor.self_starter = true
 					spec.TimesSoundPlayed.self_starter = 2
-					self:stopMotor_Clone()
+					self:stopMotor()
 				end
 			end
 
@@ -1540,7 +1457,6 @@ function VehicleBreakdowns:onUpdate(dt)
 
 			if spec.DontStopMotor.self_starter then
 				spec.DontStopMotor.self_starter = false
-				
 			end
 
 		end
@@ -1565,7 +1481,7 @@ function VehicleBreakdowns:onUpdate(dt)
 	end
 
 	if motorized.isMotorStarted then
-		self:randomFaultsGenerator()
+		self:randomFaultsGenerator(self)
 	end
 
 	if spec.faultStorage[3] or spec.faultStorage[9] ~= nil and spec.faultStorage[9] ~= 0 then
@@ -1603,40 +1519,10 @@ end
 ---Start motor
 -- @param boolean noEventSend no event send
 function VehicleBreakdowns:startMotor(superFunc, noEventSend)
-    local spec = self.spec_motorized
-	
+	local spec = self.spec_motorized
 	local rvb = self.spec_faultData
-    if not rvb.isRVBMotorStarted then
-	end
-	
-    if not spec.isMotorStarted then
-		self:onStartOperatingHours()
-	end
-	superFunc(self, noEventSend)
-end
-
----Stop motor
--- @param boolean noEventSend no event send
-function VehicleBreakdowns:stopMotor(superFunc, noEventSend)
-    local spec = self.spec_motorized
-    if spec.isMotorStarted then
-		self:onStopOperatingHours()
-	end
-	superFunc(self, noEventSend)
-end
-
-
-function VehicleBreakdowns:getIsRVBMotorStarted(isRunning)
-    return self.spec_faultData.isRVBMotorStarted and (not isRunning or self.spec_faultData.rvbmotorStartTime < g_currentMission.time)
-end
-
-function VehicleBreakdowns:startMotor_Clone(noEventSend)
-
-    local spec = self.spec_faultData
-	
-    if not spec.isRVBMotorStarted then
-        spec.isRVBMotorStarted = true
-		
+	if rvb.faultStorage[8] or tonumber(rvb.faultStorage[9]) >= 0.75 then
+		rvb.isRVBMotorStarted = true
 		if self.isClient then
 			local rvbvolume = 0.550000
 			if g_soundManager:getIsIndoor() then
@@ -1644,44 +1530,43 @@ function VehicleBreakdowns:startMotor_Clone(noEventSend)
 			else
 				rvbvolume = 0.550000
 			end
-			playSample(VehicleBreakdowns.sounds["self_starter"], 1, rvbvolume, 0, 0, 0)
-		end
+				playSample(VehicleBreakdowns.sounds["self_starter"], 1, rvbvolume, 0, 0, 0)
+			end
 		
-		spec.rvbmotorStartTime = g_currentMission.time + self.spec_motorized.motorStartDuration
+			rvb.rvbmotorStartTime = g_currentMission.time + self.spec_motorized.motorStartDuration
+		end
+	else
+		if not spec.isMotorStarted then
+			self:onStartOperatingHours()
+		end
+		superFunc(self, noEventSend)
 	end
 end
 
-function VehicleBreakdowns:stopMotor_Clone(noEventSend)
-
-    local spec = self.spec_faultData
-    if spec.isRVBMotorStarted then
-        spec.isRVBMotorStarted = false
-		
-		if self.isClient then
-			stopSample(VehicleBreakdowns.sounds["self_starter"], 0 , 0)
+---Stop motor
+-- @param boolean noEventSend no event send
+function VehicleBreakdowns:stopMotor(superFunc, noEventSend)
+	local spec = self.spec_motorized
+	local rvb = self.spec_faultData
+	
+	if rvb.faultStorage[8] or tonumber(rvb.faultStorage[9]) >= 0.75 then
+		if rvb.isRVBMotorStarted then
+			rvb.isRVBMotorStarted = false
+			if self.isClient then
+				stopSample(VehicleBreakdowns.sounds["self_starter"], 0 , 0)
+			end
 		end
-
+	else
+		if spec.isMotorStarted then
+			self:onStopOperatingHours()
+		end
+		superFunc(self, noEventSend)
 	end
 end
 
-function VehicleBreakdowns.actionEventToggleMotorState_Clone(self, actionName, inputValue, callbackState, isAnalog)
 
-	local spec = self.spec_faultData
-    if not self:getIsAIActive() then
-
-        if spec.isRVBMotorStarted then
-            self:stopMotor_Clone()
-        else
-            if self:getCanMotorRun() then
-                self:startMotor_Clone()
-            else
-                local warning = self:getMotorNotAllowedWarning()
-                if warning ~= nil then
-                    g_currentMission:showBlinkingWarning(warning, 2000)
-                end
-            end
-        end
-    end
+function VehicleBreakdowns:getIsRVBMotorStarted(isRunning)
+    return self.spec_faultData.isRVBMotorStarted and (not isRunning or self.spec_faultData.rvbmotorStartTime < g_currentMission.time)
 end
 
 function VehicleBreakdowns:getIsActiveForWipers(superFunc)
@@ -1884,7 +1769,7 @@ function VehicleBreakdowns:addDamage()
 
 end
 
-function VehicleBreakdowns:randomFaultsGenerator()
+function VehicleBreakdowns:randomFaultsGenerator(self)
 
 	local spec = self.spec_faultData
     local VehicleOperatingTime = self:getOperatingTime()
@@ -1894,9 +1779,9 @@ function VehicleBreakdowns:randomFaultsGenerator()
 	local VehicleDamage = math.floor(self.spec_wearable.damage * 100) / 100
 
 	-- thermostatoverHeating or thermostatoverCooling
-	if VehicleDamage > 0.03 and not spec.faultStorage[1] and not spec.faultStorage[2] then
+	if ageFactor < 0.8 and VehicleDamage > 0.03 and not spec.faultStorage[1] and not spec.faultStorage[2] then
 	
-		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 350000) * ageFactor
+		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 3500000000) * ageFactor
         local RandomNumber1 = math.random(math.floor(Chance))
         local RandomNumber2 = math.random(math.floor(Chance))
 
@@ -1928,9 +1813,9 @@ function VehicleBreakdowns:randomFaultsGenerator()
     end
 		
 	-- lightings
-	if VehicleDamage > 0.01 and not spec.faultStorage[3] then
+	if ageFactor < 0.8 and VehicleDamage > 0.01 and not spec.faultStorage[3] then
 		
-		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 150000) * ageFactor
+		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 1500000000) * ageFactor
 
         local RandomNumber1 = math.random(math.floor(Chance))
         local RandomNumber2 = math.random(math.floor(Chance))
@@ -1958,10 +1843,10 @@ function VehicleBreakdowns:randomFaultsGenerator()
 		
     end
 	
-	-- spark_plug gyújtógyertya
-	if VehicleDamage > 0.06 and not spec.faultStorage[4] then
+	-- glow_plug
+	if ageFactor < 0.8 and VehicleDamage > 0.06 and not spec.faultStorage[4] then
 
-		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 450000) * ageFactor
+		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 4500000000) * ageFactor
         local RandomNumber1 = math.random(math.floor(Chance))
         local RandomNumber2 = math.random(math.floor(Chance))
 
@@ -1986,9 +1871,9 @@ function VehicleBreakdowns:randomFaultsGenerator()
     end
 	
 	-- wipers ablaktorlok
-	if VehicleDamage > 0.05 and not spec.faultStorage[5] then
+	if ageFactor < 0.8 and VehicleDamage > 0.05 and not spec.faultStorage[5] then
 
-		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 450000) * ageFactor
+		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 4500000000) * ageFactor
         local RandomNumber1 = math.random(math.floor(Chance))
         local RandomNumber2 = math.random(math.floor(Chance))
 
@@ -2013,9 +1898,9 @@ function VehicleBreakdowns:randomFaultsGenerator()
     end
 	
 	-- generator or self_starter generator v önindító
-	if VehicleDamage > 0.08 and not spec.faultStorage[6] and not spec.faultStorage[8] then
+	if ageFactor < 0.8 and VehicleDamage > 0.08 and not spec.faultStorage[6] and not spec.faultStorage[8] then
 
-		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 500000) * ageFactor
+		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 5000000000) * ageFactor
         local RandomNumber1 = math.random(math.floor(Chance))
         local RandomNumber2 = math.random(math.floor(Chance))
 
@@ -2047,9 +1932,9 @@ function VehicleBreakdowns:randomFaultsGenerator()
 	
 	
 	-- engine motor
-	if VehicleDamage > 0.15 and not spec.faultStorage[7] then
+	if ageFactor < 0.8 and VehicleDamage > 0.15 and not spec.faultStorage[7] then
 
-		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 900000) * ageFactor
+		Chance = 50000 / (VehicleDamage * VehicleOperatingTime / 9000000000) * ageFactor
         local RandomNumber1 = math.random(math.floor(Chance))
         local RandomNumber2 = math.random(math.floor(Chance))
 
@@ -2108,7 +1993,13 @@ end
 
 
 function VehicleBreakdowns:onLeaveVehicle()
-	self:stopMotor_Clone()
+	local spec = self.spec_faultData
+	if spec.isRVBMotorStarted then
+        	spec.isRVBMotorStarted = false
+		if self.isClient then
+			stopSample(VehicleBreakdowns.sounds["self_starter"], 0 , 0)
+		end
+	end
 end
 
 function VehicleBreakdowns:mouseEvent(posX, posY, isDown, isUp, button)
@@ -2445,7 +2336,7 @@ function VehicleBreakdowns:getIsFaultLightings()
 	return spec.faultStorage[3]
 end
 
-function VehicleBreakdowns:getIsFaultSparkPlug()
+function VehicleBreakdowns:getIsFaultGlowPlug()
 	local spec = self.spec_faultData
 	return spec.faultStorage[4]
 end

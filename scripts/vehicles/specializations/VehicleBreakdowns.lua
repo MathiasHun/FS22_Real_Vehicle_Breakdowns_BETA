@@ -1369,7 +1369,7 @@ function VehicleBreakdowns:onUpdate(dt)
 			if self:getIsMotorStarted() then
 				spec.MotorTimer.glowPlug = spec.MotorTimer.glowPlug - dt
 				spec.NumberMotorTimer.glowPlug = math.min(-spec.MotorTimer.glowPlug / rnumsec, 0.9) 
-				if spec.NumberMotorTimer.glowPlug >= 0.243589 then -- 0.290789
+				if spec.NumberMotorTimer.glowPlug >= 0.243589 then
 					self:stopMotor()
 					spec.MotorTimer.glowPlug = -1
 					self:startMotor()
@@ -1425,7 +1425,7 @@ function VehicleBreakdowns:onUpdate(dt)
 				if spec.NumberMotorTimer.self_starter >= 0.9 then
 					self:stopMotor()
 					spec.MotorTimer.self_starter = -1
-					self:startMotore()
+					self:startMotor()
 					spec.TimesSoundPlayed.self_starter = spec.TimesSoundPlayed.self_starter - 1
 
 					local breakdownValue = 0.000005
@@ -1519,17 +1519,21 @@ end
 ---Start motor
 -- @param boolean noEventSend no event send
 function VehicleBreakdowns:startMotor(superFunc, noEventSend)
+
 	local spec = self.spec_motorized
 	local rvb = self.spec_faultData
+	
 	if rvb.faultStorage[8] or tonumber(rvb.faultStorage[9]) >= 0.75 then
-		rvb.isRVBMotorStarted = true
-		if self.isClient then
-			local rvbvolume = 0.550000
-			if g_soundManager:getIsIndoor() then
-				rvbvolume = 0.250000
-			else
-				rvbvolume = 0.550000
-			end
+
+		if not rvb.isRVBMotorStarted then
+			rvb.isRVBMotorStarted = true
+			if self.isClient then
+				local rvbvolume = 0.550000
+				if g_soundManager:getIsIndoor() then
+					rvbvolume = 0.250000
+				else
+					rvbvolume = 0.550000
+				end
 				playSample(VehicleBreakdowns.sounds["self_starter"], 1, rvbvolume, 0, 0, 0)
 			end
 		
@@ -1541,6 +1545,7 @@ function VehicleBreakdowns:startMotor(superFunc, noEventSend)
 		end
 		superFunc(self, noEventSend)
 	end
+
 end
 
 ---Stop motor

@@ -445,7 +445,7 @@ function VehicleBreakdowns:setVehicleDamageGlowplugFailure()
 
 		if RVBSET:getIsAlertMessage() then
 			if self.getIsEntered ~= nil and self:getIsEntered() then
-			--	g_currentMission:showBlinkingWarning(g_i18n:getText("RVB_fault_gloeplug"), 2500)
+			--	g_currentMission:showBlinkingWarning(g_i18n:getText("RVB_fault_glowplug"), 2500)
 			else
 			--	g_currentMission.hud:addSideNotification(VehicleBreakdowns.INGAME_NOTIFICATION, string.format(g_i18n:getText("RVB_fault_glowplug_hud"), self:getFullName()), 5000)
 			end

@@ -125,7 +125,7 @@
 
 
 		
-
+		<text name="infoDisplayExtension_tomorrow" text="tomorrow "/>
 		<text name="infoDisplayExtension_currentPower" text="Power"/>
 		<text name="infoDisplayExtension_batteryCh" text="Battery charging"/>
 		<text name="infoDisplayExtension_inspectionVheicle" text="Vehicle inspection"/>

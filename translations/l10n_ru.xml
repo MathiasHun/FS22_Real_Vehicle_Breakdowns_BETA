@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l10n>
+    <translationContributors>nagor</translationContributors>
+	<texts>
+		<!-- inputs -->
+		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Real Vehicle Breakdowns(RVB)"/>
+
+		<!-- settings -->
+		<!-- tabbedMenu -->
+		<text name="ui_RVB_reset_msg" text="Вы уверены?"/>
+		<!-- gameplay settings -->
+		<text name="ui_RVB_sectionGamePlaySettings" text="Настройки игры"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Ежедневное ТО"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Как часто следует проводить ежедневное техническое обслуживание (ТО). В настоящее время эта функция неактивна."/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Периодическое ТО"/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeDesc" text="Интервал техобслуживания."/>	
+		<text name="ui_RVB_gameplaysetting_repaironlyTitle" text="Ремонт только в СТО"/>
+		<text name="ui_RVB_gameplaysetting_repaironlyDesc" text="Ремонтировать или обслуживать транспортное средство можно только в станции технического обслуживания (СТО)."/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenTitle" text="Открывается в"/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="В это время СТО открывается"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Закрывается в"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="В это время СТО закрывается"/>
+		<!-- general settings -->
+		<text name="ui_RVB_sectionGeneralSettings" text="Основные настройки"/>
+		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Предупреждающие сообщения"/>
+		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Если ваше ТС повреждено, прошло техобслуживание или ремонт, в центре экрана появится сообщение, если вы находитесь в ТС."/>
+		
+		<!-- vehicle list -->	
+		<text name="RVB_WorkShopClose" text="СТО закрыта, приходите в %s." tag="format"/>
+		<text name="RVB_button_inspection" text="Техосмотр"/>
+		<text name="RVB_button_dailyservice" text="Ежедневное ТО"/>
+		<text name="RVB_button_periodicservice" text="Периодическое ТО"/>
+		<text name="RVB_button_battery_ch" text="Зарядить аккумулятор"/>
+		<text name="RVB_button_service" text="ТО"/>
+		<text name="RVB_button_vehicles" text="ТС"/>
+		<text name="RVB_button_vehiclesandequipment" text="ТС и оборудование"/>
+		<text name="RVB_inspectionDialog" text="Вы уверены, что хотите отправить это транспортное средство на техосмотр до %s?" tag="format"/>
+		<text name="RVB_inspectionTimeDialog" text="Техосмотр транспортного средства будет завершён в %s." tag="format"/>
+		<text name="RVB_inspectionDayDialog" text="Техосмотр ТС будет завершён завтра в %s." tag="format"/>
+		<text name="RVB_faultText_thermostatoverHeating" text="Термостат"/>
+		<text name="RVB_faultText_thermostatoverCooling" text="Термостат"/>
+		<text name="RVB_faultText_lightings" text="Осветительные приборы"/>
+		<text name="RVB_faultText_glow_plug" text="Свеча накаливания"/>
+		<text name="RVB_faultText_wipers" text="Стеклоочистители"/>
+		<text name="RVB_faultText_generator" text="Генератор"/>
+		<text name="RVB_faultText_engine" text="Двигатель"/>
+		<text name="RVB_faultText_self_starter" text="Стартер"/> 
+		<text name="RVB_faultText_batteryisDead" text="Аккумулятор"/>
+		<text name="RVB_repairTimeDialog" text="Ремонт транспортного средства будет завершён в %s." tag="format"/>
+		<text name="RVB_repairDayDialog" text="Ремонт транспортного средства будет завершён завтра в %s." tag="format"/>
+		<text name="RVB_ErrorList" text="Список неисправностей:" />
+		<text name="RVB_periodicserviceDialog" text="Вы уверены, что хотите отремонтировать транспортное средство за %s?" tag="format"/>
+		<text name="RVB_periodicserviceTimeDialog" text="Техобслуживание транспортного средства будет завершено в %s." tag="format"/>
+		<text name="RVB_periodicserviceDayDialog" text="Техобслуживание транспортного средства будет завершено завтра в %s." tag="format"/>
+		<text name="RVB_batteryChDialog" text="Вы уверены, что хотите зарядить аккумулятор вашего транспортного средства за %s?" tag="format"/>
+		<text name="RVB_batteryChTimeDialog" text="Зарядка аккумулятора транспортного средства будет завершена через %s." tag="format"/>
+		<text name="RVB_batteryChDayDialog" text="Зарядка аккумулятора транспортного средства будет завершена завтра в %s." tag="format"/>
+		<text name="RVB_occupied" text="Транспортное средство уже проходит техобслуживание!" />
+		<text name="RVB_shop_operatingTime" text="С %02d до %2d" tag="format"/>
+		<text name="RVB_serviceHours" text="С %01d до %01d" tag="format"/>
+		<text name="RVB_alertmessage_inspection" text="Проводится техосмотр транспортного средства."/>
+		<text name="RVB_alertmessage_inspection_hud" text="Проводится техосмотр %s." tag="format"/>
+		<text name="RVB_alertmessage_repair" text="Ремонт транспортного средства продолжается."/>
+		<text name="RVB_alertmessage_repair_hud" text="Ремонт %s продолжается." tag="format"/>
+		<text name="RVB_alertmessage_service" text="Техобслуживание транспортного средства продолжается."/>
+		<text name="RVB_alertmessage_service_hud" text="Техобслуживание %s продолжается." tag="format"/>
+		<text name="RVB_alertmessage_batteryCh" text="Идёт зарядка аккумулятора."/>
+		<text name="RVB_alertmessage_batteryCh_hud" text="Зарядка аккумулятора %s продолжается." tag="format"/>
+		<!-- xml -->
+		<text name="RVB_list_vehicleorimplement" text="ТС/Оборудование"/>
+		<text name="RVB_list_hporle" text="л. с./LE"/>
+		<text name="RVB_list_currentvalue" text="Текущая цена"/>
+		<text name="RVB_list_age" text="Во владении"/>
+		<text name="RVB_list_operatinghours" text="Время раб."/>
+		<text name="RVB_list_realoperatinghours" text="Работа без ТО"/>
+		<text name="RVB_list_servicehours" text="ТО"/>
+		<text name="RVB_list_lease" text="В аренде"/>
+		<text name="RVB_list_battery" text="Аккумулятор"/>
+	
+		
+		<!-- spec -->
+		<text name="RVB_inspectionDialogFault" text="ТС %s осмотрено, требуется ремонт. %s"/>
+		<text name="RVB_inspectionDialogEnd" text="ТС %s осмотрено, ремонт не требуется."/>
+
+		
+		<text name="RVB_fault_" text="Не ездите слишком быстро, двигатель ещё холодный."/>
+		<text name="RVB_fault_hud" text="%s едет слишком быстро, двигатель ещё холодный." tag="format"/>
+		
+		<text name="RVB_fault_thermostat" text="Охлаждающая жидкость перегревается."/>
+		<text name="RVB_fault_thermostat_hud" text="Охлаждающая жидкость %s перегревается." tag="format"/>
+
+		<text name="RVB_fault_thermostatC" text="Двигатель не прогрелся до рабочей температуры."/>
+		<text name="RVB_fault_thermostatC_hud" text="Двигатель %s не прогрелся до рабочей температуры." tag="format"/>
+		
+		<text name="RVB_fault_lights" text="Освещение не работает." />
+		<text name="RVB_fault_lights_hud" text="Осветительные приборы %s не работают." tag="format"/>
+		
+		<text name="RVB_fault_glowplug" text="Расход топлива увеличился." />
+		<text name="RVB_fault_glowplug_hud" text="Расход топлива у %s увеличился." tag="format"/>
+		
+		<text name="fault_battery" text="Аккумулятор разряжен." />
+		<text name="fault_battery_hud" text="У %s разряжен аккумулятор." tag="format"/>
+		
+		<text name="RVB_fault_operatinghours" text="Загорелась сервисная лампочка." />
+		<text name="RVB_fault_operatinghours_hud" text="%s требует техобслуживания." tag="format"/>
+		
+		
+		<text name="RVB_main_repair_fault" text="Механик не может отремонтировать это транспортное средство, обратитесь в &quot;RVB&quot;." />
+		
+		
+
+		<text name="popupMessage_battery_timeScaleup" text="Механик: Не включайте и не выключайте зарядное устройство, иначе оно будет заряжаться дольше."/>
+		<text name="popupMessage_battery_timeScaledown" text="Механик: Не трогайте зарядное устройство."/>
+		
+		
+
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Отказ двигателя." />
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="Двигатель не запустится – вышел из строя генератор." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Двигатель не запустится – проводится техосмотр." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Двигатель не запустится – идёт ремонт." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Двигатель не запустится – идёт техобслуживание." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Ключ от ТС у механика, который сейчас отдыхает." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Двигатель не запустится – аккумулятор разряжен." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Двигатель не запустится – идёт зарядка аккумулятора." />
+
+
+
+		
+
+		<text name="infoDisplayExtension_currentPower" text="Мощность"/>
+		<text name="infoDisplayExtension_batteryCh" text="Заряд аккумулятора"/>
+		<text name="infoDisplayExtension_inspectionVheicle" text="Техосмотр"/>
+		<text name="infoDisplayExtension_repairVheicle" text="Ремонт"/>
+		
+		<text name="infoDisplayExtension_serviceVheicle" text="Периодическое ТО"/>
+
+		<text name="RVB_operatingHours" text="Часы работы"/>
+		
+		<text name="RVB_TotaloperatingHours" text="Общее время работы"/>
+		
+
+	
+		
+		
+		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+
+		
+        </texts>
+		
+		
+		
+		
+</l10n>

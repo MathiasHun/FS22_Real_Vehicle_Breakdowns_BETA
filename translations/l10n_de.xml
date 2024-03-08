@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <l10n>
+	<translationContributors>LSMT-elMatado</translationContributors>
 	<texts>
 	<!-- inputs -->
 	<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte Fahrzeugpannen(RVB)"/>

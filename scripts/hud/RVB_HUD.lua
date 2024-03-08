@@ -122,7 +122,7 @@ function RVB_HUD:drawHUD()
 		setTextAlignment(RenderText.ALIGN_RIGHT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
 		setTextBold(true)
-		renderText(baseX + posX + 0.02, baseY + posY, size, fuel_txt)
+		renderText(baseX + posX + 0.023, baseY + posY, size, fuel_txt)
 
 	end
 

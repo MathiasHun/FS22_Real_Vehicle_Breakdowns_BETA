@@ -1352,7 +1352,7 @@ function VehicleBreakdowns:onUpdate(dt)
 	local motorized = self.spec_motorized
 
 	if not self:getIsEntered() then
-		--self:raiseActive()
+		self:raiseActive()
 	end
 
 	local GSET = g_currentMission.vehicleBreakdowns.generalSettings

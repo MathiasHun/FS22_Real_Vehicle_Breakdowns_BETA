@@ -88,6 +88,7 @@ function VehicleBreakdowns.registerFunctions(vehicleType)
 	SpecializationUtil.registerFunction(vehicleType, "getIsRepairScaleService", VehicleBreakdowns.getIsRepairScaleService)
 	SpecializationUtil.registerFunction(vehicleType, "workshopTriggers", VehicleBreakdowns.workshopTriggers)
 	SpecializationUtil.registerFunction(vehicleType, "getRepairTriggers", VehicleBreakdowns.getRepairTriggers)
+	SpecializationUtil.registerFunction(vehicleType, "getShapesInRange", VehicleBreakdowns.getShapesInRange)
 	SpecializationUtil.registerFunction(vehicleType, "addWorkshop", VehicleBreakdowns.addWorkshop)
 	SpecializationUtil.registerFunction(vehicleType, "CalculateFinishTime", VehicleBreakdowns.CalculateFinishTime)
 	SpecializationUtil.registerFunction(vehicleType, "calculateBatteryChPrice", VehicleBreakdowns.calculateBatteryChPrice)
@@ -1644,7 +1645,7 @@ function VehicleBreakdowns:showInfo(superFunc, box)
 		if spec.battery[1] then	
 			local tomorrowText = ""
 			if spec.battery[3] > g_currentMission.environment.currentDay then
-				tomorrowText = "holnap "
+				tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
 			end
 			box:addLine(g_i18n:getText("infoDisplayExtension_batteryCh"), tomorrowText..string.format("%02d:%02d", spec.battery[4], spec.battery[5]))
 		else
@@ -1654,7 +1655,7 @@ function VehicleBreakdowns:showInfo(superFunc, box)
 		if spec.repair[1] and not spec.repair[10] and spec.repair[6] == 0 then
 			local tomorrowText = ""
 			if spec.repair[3] > g_currentMission.environment.currentDay then
-				tomorrowText = "holnap "
+				tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
 			end
 			box:addLine(g_i18n:getText("infoDisplayExtension_inspectionVheicle"), tomorrowText..string.format("%02d:%02d", spec.repair[4], spec.repair[5]))
 		end
@@ -1663,7 +1664,7 @@ function VehicleBreakdowns:showInfo(superFunc, box)
 		if spec.repair[1] and spec.repair[10] then
 			local tomorrowText = ""
 			if spec.repair[3] > g_currentMission.environment.currentDay then
-				tomorrowText = "holnap "
+				tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
 			end
 			box:addLine(g_i18n:getText("infoDisplayExtension_repairVheicle"), tomorrowText..string.format("%02d:%02d", spec.repair[4], spec.repair[5]))
 		end
@@ -1671,7 +1672,7 @@ function VehicleBreakdowns:showInfo(superFunc, box)
 		if self:getIsService() then
 			local tomorrowText = ""
 			if spec.service[3] > g_currentMission.environment.currentDay then
-				tomorrowText = "holnap "
+				tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
 			end
 			box:addLine(g_i18n:getText("infoDisplayExtension_serviceVheicle"), tomorrowText..string.format("%02d:%02d", spec.service[4], spec.service[5]))
 		end
@@ -2541,20 +2542,23 @@ end
 
 function VehicleBreakdowns.addWorkshop(items)
     if items == nil then
-        return
+	return
     end
     if table.count(items) > 0 then
         for _, item in pairs(items) do
-            if item.spec_workshop and item.spec_workshop.sellingPoint then
-                if item.spec_workshop.sellingPoint.sellTriggerNode then
-                    table.insert(VehicleBreakdowns.repairTriggers, {node=item.spec_workshop.sellingPoint.sellTriggerNode, owner=item.ownerFarmId })
-                end
-            end
-			if item.spec_serviceVehicle and item.spec_serviceVehicle.workshop then
-				if item.spec_serviceVehicle.workshop.vehicleTrigger then
-					table.insert(VehicleBreakdowns.repairTriggers, {node=item.spec_serviceVehicle.workshop.vehicleTrigger, owner=item.ownerFarmId })
-				end
+            	if item.spec_workshop and item.spec_workshop.sellingPoint then
+                	if item.spec_workshop.sellingPoint.sellTriggerNode then
+                    		--table.insert(VehicleBreakdowns.repairTriggers, {node=item.spec_workshop.sellingPoint.sellTriggerNode, owner=item.ownerFarmId })
+                	end
+			if item.spec_workshop.sellingPoint.vehicleShapesInRange then
+                    		table.insert(VehicleBreakdowns.ShapesInRange, {vehicleShapesInRange=item.spec_workshop.sellingPoint.vehicleShapesInRange, owner=item.ownerFarmId })
 			end
+		end
+		if item.spec_serviceVehicle and item.spec_serviceVehicle.workshop then
+			if item.spec_serviceVehicle.workshop.vehicleShapesInRange then
+				table.insert(VehicleBreakdowns.ShapesInRange, {vehicleShapesInRange=item.spec_serviceVehicle.workshop.vehicleShapesInRange, owner=item.ownerFarmId })
+			end
+		end
         end
     end
 end
@@ -2562,7 +2566,7 @@ end
 function VehicleBreakdowns.workshopTriggers()
     VehicleBreakdowns.searchedForTriggers = true
     VehicleBreakdowns.repairTriggers = {}
-
+	VehicleBreakdowns.ShapesInRange = {}
 	if g_currentMission.placeableSystem.placeables ~= nil then
         VehicleBreakdowns.addWorkshop(g_currentMission.placeableSystem.placeables)
     end
@@ -2584,4 +2588,9 @@ function VehicleBreakdowns.getRepairTriggers()
         VehicleBreakdowns.workshopTriggers()
     --end
     return VehicleBreakdowns.repairTriggers
+end
+
+function VehicleBreakdowns.getShapesInRange()
+	VehicleBreakdowns.workshopTriggers()
+	return VehicleBreakdowns.ShapesInRange
 end

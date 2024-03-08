@@ -110,7 +110,7 @@ function RVB_HUD:drawHUD()
 
 		local baseX, baseY = g_currentMission.inGameMenu.hud.speedMeter:getBasePosition()
 		local posX, posY = getNormalizedScreenValues(unpack(SpeedMeterDisplay.POSITION.FUEL_LEVEL_ICON))
-		local size = 0.012 * g_gameSettings.uiScale
+		local size = 0.013 * g_gameSettings.uiScale
 		local fuel_txt = string.format("%.1f l/h", 0.0)
 		
 		if self.vehicle.spec_motorized.isMotorStarted == true then
@@ -122,7 +122,7 @@ function RVB_HUD:drawHUD()
 		setTextAlignment(RenderText.ALIGN_RIGHT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
 		setTextBold(true)
-		renderText(baseX + posX, baseY + posY, size, fuel_txt)
+		renderText(baseX + posX + 0.02, baseY + posY, size, fuel_txt)
 
 	end
 

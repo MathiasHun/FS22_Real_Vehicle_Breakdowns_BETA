@@ -126,8 +126,8 @@
 
 
 	
-
-	<text name="infoDisplayExtension_currentPower" text="Power"/>
+	<text name="infoDisplayExtension_tomorrow" text="morgen "/>
+	<text name="infoDisplayExtension_currentPower" text="Kraft"/>
 	<text name="infoDisplayExtension_batteryCh" text="Aufladen der Batterie"/>
 	<text name="infoDisplayExtension_inspectionVheicle" text="Fahrzeuginspektion"/>
 	<text name="infoDisplayExtension_repairVheicle" text="Fahrzeugreparatur"/>

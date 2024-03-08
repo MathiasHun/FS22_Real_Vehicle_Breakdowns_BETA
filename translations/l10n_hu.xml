@@ -125,8 +125,8 @@
 
 
 		
-
-		<text name="infoDisplayExtension_currentPower" text="Power"/>
+		<text name="infoDisplayExtension_tomorrow" text="holnap "/>
+		<text name="infoDisplayExtension_currentPower" text="Teljesítmény"/>
 		<text name="infoDisplayExtension_batteryCh" text="Akku töltés"/>
 		<text name="infoDisplayExtension_inspectionVheicle" text="Jármű átvizsgálás"/>
 		<text name="infoDisplayExtension_repairVheicle" text="Járműjavítás"/>

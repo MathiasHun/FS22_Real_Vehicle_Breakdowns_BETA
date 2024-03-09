@@ -9,7 +9,7 @@
 		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Вы уверены?"/>
 		<!-- gameplay settings -->
-		<text name="ui_RVB_sectionGamePlaySettings" text="Настройки игры"/>
+		<text name="ui_RVB_sectionGamePlaySettings" text="Игровые настройки"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Ежедневное ТО"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Как часто следует проводить ежедневное техническое обслуживание (ТО). В настоящее время эта функция неактивна."/>
 		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Периодическое ТО"/>
@@ -34,7 +34,7 @@
 		<text name="RVB_button_service" text="ТО"/>
 		<text name="RVB_button_vehicles" text="ТС"/>
 		<text name="RVB_button_vehiclesandequipment" text="ТС и оборудование"/>
-		<text name="RVB_inspectionDialog" text="Вы уверены, что хотите отправить это транспортное средство на техосмотр до %s?" tag="format"/>
+		<text name="RVB_inspectionDialog" text="Вы уверены, что хотите отправить это транспортное средство на техосмотр за %s?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="Техосмотр транспортного средства будет завершён в %s." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="Техосмотр ТС будет завершён завтра в %s." tag="format"/>
 		<text name="RVB_faultText_thermostatoverHeating" text="Термостат"/>
@@ -53,11 +53,11 @@
 		<text name="RVB_periodicserviceTimeDialog" text="Техобслуживание транспортного средства будет завершено в %s." tag="format"/>
 		<text name="RVB_periodicserviceDayDialog" text="Техобслуживание транспортного средства будет завершено завтра в %s." tag="format"/>
 		<text name="RVB_batteryChDialog" text="Вы уверены, что хотите зарядить аккумулятор вашего транспортного средства за %s?" tag="format"/>
-		<text name="RVB_batteryChTimeDialog" text="Зарядка аккумулятора транспортного средства будет завершена через %s." tag="format"/>
+		<text name="RVB_batteryChTimeDialog" text="Зарядка аккумулятора транспортного средства будет завершена в %s." tag="format"/>
 		<text name="RVB_batteryChDayDialog" text="Зарядка аккумулятора транспортного средства будет завершена завтра в %s." tag="format"/>
 		<text name="RVB_occupied" text="Транспортное средство уже проходит техобслуживание!" />
-		<text name="RVB_shop_operatingTime" text="С %02d до %2d" tag="format"/>
-		<text name="RVB_serviceHours" text="С %01d до %01d" tag="format"/>
+		<text name="RVB_shop_operatingTime" text="%02d.%2d час." tag="format"/>
+		<text name="RVB_serviceHours" text="%01d/%01d час." tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Проводится техосмотр транспортного средства."/>
 		<text name="RVB_alertmessage_inspection_hud" text="Проводится техосмотр %s." tag="format"/>
 		<text name="RVB_alertmessage_repair" text="Ремонт транспортного средства продолжается."/>
@@ -68,10 +68,10 @@
 		<text name="RVB_alertmessage_batteryCh_hud" text="Зарядка аккумулятора %s продолжается." tag="format"/>
 		<!-- xml -->
 		<text name="RVB_list_vehicleorimplement" text="ТС/Оборудование"/>
-		<text name="RVB_list_hporle" text="л. с./LE"/>
+		<text name="RVB_list_hporle" text="Мощн. двиг."/>
 		<text name="RVB_list_currentvalue" text="Текущая цена"/>
 		<text name="RVB_list_age" text="Во владении"/>
-		<text name="RVB_list_operatinghours" text="Время раб."/>
+		<text name="RVB_list_operatinghours" text="Время работы"/>
 		<text name="RVB_list_realoperatinghours" text="Работа без ТО"/>
 		<text name="RVB_list_servicehours" text="ТО"/>
 		<text name="RVB_list_lease" text="В аренде"/>
@@ -126,7 +126,7 @@
 
 
 		
-		<text name="infoDisplayExtension_tomorrow" text="завтрашний "/>
+		<text name="infoDisplayExtension_tomorrow" text="завтра "/>
 		<text name="infoDisplayExtension_currentPower" text="Мощность"/>
 		<text name="infoDisplayExtension_batteryCh" text="Заряд аккумулятора"/>
 		<text name="infoDisplayExtension_inspectionVheicle" text="Техосмотр"/>

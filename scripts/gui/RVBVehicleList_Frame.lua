@@ -789,114 +789,158 @@ function RVBVehicleList_Frame:rebuildTableList()
 
 	if g_currentMission.player ~= nil then
 
-		for _, vehicle in ipairs(g_currentMission.vehicles) do
+		if self.rvbMain:getIsRepairShop() then
+		
+			for index, repairTrigger in pairs(VehicleBreakdowns.getShapesInRange()) do
 
-			if vehicle ~= nil and vehicle.typeName ~= "locomotive" and vehicle.typeName ~= "trainTrailer" and vehicle.typeName ~= "trainTimberTrailer" then 
-				local px, py, pz = getWorldTranslation(vehicle.components[1].node)
-				local distance = {}
-			
-				if px ~= nil then
+				local playerFarmId = g_currentMission:getFarmId()
+				if playerFarmId ~= FarmManager.SPECTATOR_FARM_ID then
 
-					for index, repairTrigger in pairs(VehicleBreakdowns.getRepairTriggers()) do
-						if repairTrigger ~= nil then
-							local triggerX, triggerY, triggerZ = getWorldTranslation(repairTrigger.node)
-							distance[index] = MathUtil.vector3Length(triggerX - px, triggerY - py, triggerZ - pz)
-						end
-					end
-					local _distance = false
-					for index, value in pairs(distance) do
-						if distance[index] <= 6.000000 then
-							_distance = true
-						end
-					end
+					-- Find first vehicle, then get its rood and all children
+					for shapeId, inRange in pairs(repairTrigger.vehicleShapesInRange) do
+						if inRange ~= nil and entityExists(shapeId) then
+							local vehicle = g_currentMission.nodeToObject[shapeId]
+							if vehicle ~= nil then
 
-					if _distance or not self.rvbMain:getIsRepairShop() then
+								local isRidable = SpecializationUtil.hasSpecialization(Rideable, vehicle.specializations)
 
-						local isSelling        = (vehicle.isDeleted ~= nil and vehicle.isDeleted) or (vehicle.isDeleting ~= nil and vehicle.isDeleting)
-						local hasAccess        = g_currentMission.accessHandler:canPlayerAccess(vehicle)
-						local isProperty       = vehicle.propertyState == Vehicle.PROPERTY_STATE_OWNED or vehicle.propertyState == Vehicle.PROPERTY_STATE_LEASED or vehicle.propertyState == Vehicle.PROPERTY_STATE_MISSION
-						local isPallet         = vehicle.typeName == "pallet"
-						local isTrain          = vehicle.typeName == "locomotive"
-						local isBelt           = vehicle.typeName == "conveyorBelt" or vehicle.typeName == "pickupConveyorBelt"
-						local isRidable        = SpecializationUtil.hasSpecialization(Rideable, vehicle.specializations)
-						local isSteerImplement = vehicle.spec_attachable ~= nil
-							
-						local skipable         = isTrain or isBelt or isRidable or isPallet
-						local hasConned        = vehicle.getIsControlled ~= nil
+								if not isRidable and not vehicle.isPallet and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and vehicle.typeName ~= "FS22_ToolBoxPack.service" then
 
-						if self.listVehicle == "vehicle" then
-							skipable = isTrain or isBelt or isRidable or isPallet or isSteerImplement
-						end
+									if self.listVehicle == "all" then
+										local items = vehicle.rootVehicle:getChildVehicles()
+										for _, item in ipairs(items) do
+											local ownerFarmId = item:getOwnerFarmId()
+											-- only show owned items
+											if ownerFarmId == playerFarmId then
+												-- uniqueness check builtin
+												table.addElement(self.vehicles, item)
+											end
+										end
+									end
+									
+									local isSteerImplement = vehicle.spec_attachable ~= nil
 
-						if self.listVehicle == "all" and not isSelling and not skipable and hasAccess and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and isProperty then
-							table.insert(self.vehicles, vehicle)
-						end
 
-						if self.listVehicle == "vehicle" and not isSelling and not skipable and hasAccess and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and isProperty and hasConned then
-							table.insert(self.vehicles, vehicle)
-						end
-						
-						for i = 1, #self.vehicles do
-							local self_vehicle = self.vehicles[i]
-							local spec = self_vehicle.spec_faultData
-							if spec ~= nil and self_vehicle.spec_motorized ~= nil and self_vehicle.getIsEntered ~= nil and self_vehicle:getIsEntered() then
-								self.vehicleList.selectedIndex = i
-								self.vehicleList.selectedSectionIndex = i
-								self.vehicleList.selectOnScroll = true
-								self.vehicleDetail.selectedIndex = i
-								self.vehicleDetail.selectedSectionIndex = i
+									local hasConned        = vehicle.getIsControlled ~= nil
+									if self.listVehicle == "vehicle" and not isSteerImplement and hasConned then
+										table.addElement(self.vehicles, vehicle)
+									end
+									
+								end
 							end
+						else
+							repairTrigger.vehicleShapesInRange[shapeId] = nil
 						end
+					end
 
+					-- Consistent order independent on which piece of the vehicle entered the trigger first
+					table.sort(self.vehicles, function(a, b)
+						return a.rootNode < b.rootNode
+					end)
+					
+					for i = 1, #self.vehicles do
+						local self_vehicle = self.vehicles[i]
+						local spec = self_vehicle.spec_faultData
+						if spec ~= nil and self_vehicle.spec_motorized ~= nil and self_vehicle.getIsEntered ~= nil and self_vehicle:getIsEntered() then
+							self.vehicleList.selectedIndex = i
+							self.vehicleList.selectedSectionIndex = i
+							self.vehicleList.selectOnScroll = true
+							self.vehicleDetail.selectedIndex = i
+							self.vehicleDetail.selectedSectionIndex = i
+						end
 					end
 					
 				end
 				
 			end
+			
+		else
+	
+			for _, vehicle in ipairs(g_currentMission.vehicles) do
 
-			if self.listSort == "base" then
-				table.sort(self.vehicles, function (a, b)
-					return a.rootNode < b.rootNode
-				end)
-			elseif self.listSort == "hpAsc" or self.listSort == "hpDesc" then
+				if vehicle ~= nil and vehicle.typeName ~= "locomotive" and vehicle.typeName ~= "trainTrailer" and vehicle.typeName ~= "trainTimberTrailer" and vehicle.typeName ~= "FS22_ToolBoxPack.service" then 
 
-				table.sort(self.vehicles, function (a, b)
+					local isSelling        = (vehicle.isDeleted ~= nil and vehicle.isDeleted) or (vehicle.isDeleting ~= nil and vehicle.isDeleting)
+					local hasAccess        = g_currentMission.accessHandler:canPlayerAccess(vehicle)
+					local isProperty       = vehicle.propertyState == Vehicle.PROPERTY_STATE_OWNED or vehicle.propertyState == Vehicle.PROPERTY_STATE_LEASED or vehicle.propertyState == Vehicle.PROPERTY_STATE_MISSION
+					local isPallet         = vehicle.typeName == "pallet"
+					local isTrain          = vehicle.typeName == "locomotive"
+					local isBelt           = vehicle.typeName == "conveyorBelt" or vehicle.typeName == "pickupConveyorBelt"
+					local isRidable        = SpecializationUtil.hasSpecialization(Rideable, vehicle.specializations)
+					local isSteerImplement = vehicle.spec_attachable ~= nil
+							
+					local skipable         = isTrain or isBelt or isRidable or isPallet
+					local hasConned        = vehicle.getIsControlled ~= nil
 
-					local powerConfig = Motorized.loadSpecValuePowerConfig(a.xmlFile)
-					a.ideHasPower = 0
-					if powerConfig ~= nil then
-						for configName, config in pairs(a.configurations) do
-							local configPower = powerConfig[configName][config]
-							if configPower ~= nil then
-								a.ideHasPower = configPower
-							end
+					if self.listVehicle == "vehicle" then
+						skipable = isTrain or isBelt or isRidable or isPallet or isSteerImplement
+					end
+
+					if self.listVehicle == "all" and not isSelling and not skipable and hasAccess and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and isProperty then
+						table.insert(self.vehicles, vehicle)
+					end
+
+					if self.listVehicle == "vehicle" and not isSelling and not skipable and hasAccess and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and isProperty and hasConned then
+						table.insert(self.vehicles, vehicle)
+					end
+						
+					for i = 1, #self.vehicles do
+						local self_vehicle = self.vehicles[i]
+						local spec = self_vehicle.spec_faultData
+						if spec ~= nil and self_vehicle.spec_motorized ~= nil and self_vehicle.getIsEntered ~= nil and self_vehicle:getIsEntered() then
+							self.vehicleList.selectedIndex = i
+							self.vehicleList.selectedSectionIndex = i
+							self.vehicleList.selectOnScroll = true
+							self.vehicleDetail.selectedIndex = i
+							self.vehicleDetail.selectedSectionIndex = i
 						end
 					end
-					local hp, kw = g_i18n:getPower(a.ideHasPower)
 
-					local powerConfig = Motorized.loadSpecValuePowerConfig(b.xmlFile)
-					b.ideHasPower = 0
-					if powerConfig ~= nil then
-						for configName, config in pairs(b.configurations) do
-							local configPower = powerConfig[configName][config]
-							if configPower ~= nil then
-								b.ideHasPower = configPower
+				end
+				
+				if self.listSort == "base" then
+					table.sort(self.vehicles, function (a, b)
+						return a.rootNode < b.rootNode
+					end)
+				elseif self.listSort == "hpAsc" or self.listSort == "hpDesc" then
+
+					table.sort(self.vehicles, function (a, b)
+
+						local powerConfig = Motorized.loadSpecValuePowerConfig(a.xmlFile)
+						a.ideHasPower = 0
+						if powerConfig ~= nil then
+							for configName, config in pairs(a.configurations) do
+								local configPower = powerConfig[configName][config]
+								if configPower ~= nil then
+									a.ideHasPower = configPower
+								end
 							end
 						end
-					end
-					local hpb, kwb = g_i18n:getPower(b.ideHasPower)
+						local hp, kw = g_i18n:getPower(a.ideHasPower)
 
-					if self.listSort == "hpAsc" then
-						return hp > hpb
-					elseif self.listSort == "hpDesc" then
-						return hp < hpb
-					end
+						local powerConfig = Motorized.loadSpecValuePowerConfig(b.xmlFile)
+						b.ideHasPower = 0
+						if powerConfig ~= nil then
+							for configName, config in pairs(b.configurations) do
+								local configPower = powerConfig[configName][config]
+								if configPower ~= nil then
+									b.ideHasPower = configPower
+								end
+							end
+						end
+						local hpb, kwb = g_i18n:getPower(b.ideHasPower)
 
-				end)
+						if self.listSort == "hpAsc" then
+							return hp > hpb
+						elseif self.listSort == "hpDesc" then
+							return hp < hpb
+						end
+
+					end)
+				end
+
 			end
-
 		end
-		
 	end
 
 	self.vehicleList:reloadData()

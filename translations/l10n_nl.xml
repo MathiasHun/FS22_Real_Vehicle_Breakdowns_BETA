@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l10n>
+	<translationContributors>Hilbert1982</translationContributors>
+	<texts>
+		<!-- inputs -->
+		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte voertuig pech(RVB)"/>
+		<!-- settings -->
+		<!-- tabbedMenu -->
+		<text name="ui_RVB_reset_msg" text="Weet je het zeker?"/>
+		<!-- gameplay settings -->
+		<text name="ui_RVB_sectionGamePlaySettings" text="Spelinstellingen"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Dagelijkse dienst"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Hoe vaak moet er onderhoud worden uitgevoerd per dag. Deze functie is momenteel inactief."/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Periodische dienst"/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeDesc" text="Voertuigonderhoudsinterval."/>
+		<text name="ui_RVB_gameplaysetting_repaironlyTitle" text="Reparatie alleen in voertuigwerkplaats"/>
+		<text name="ui_RVB_gameplaysetting_repaironlyDesc" text="Een voertuig kan alleen worden gerepareerd of onderhouden in een voertuigwerkplaats."/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenTitle" text="Opening voertuigwerkplaats"/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="De voertuigwerkplaats gaat dan open"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Voertuigwerkplaats sluit"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="De voertuigwerkplaats sluit op dat moment"/>
+		<!-- general settings -->
+		<text name="ui_RVB_sectionGeneralSettings" text="Algemene instellingen"/>
+		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Waarschuwingsbericht"/>
+		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Als uw voertuig beschadigd, onderhouden of gerepareerd is, verschijnt er een waarschuwingsbericht in het midden van het scherm als u zich in het voertuig bevindt."/>
+
+		<!-- vehicle list -->
+		<text name="RVB_WorkShopClose" text="Voertuigwerkplaats is gesloten, kom terug om %s uur." tag="format"/>
+		<text name="RVB_button_inspection" text="Inspectie"/>
+		<text name="RVB_button_dailyservice" text="Dagelijkse service"/>
+		<text name="RVB_button_periodicservice" text="Periodieke service"/>
+		<text name="RVB_button_battery_ch" text="Batterij wordt opgeladen"/>
+		<text name="RVB_button_service" text="Service"/>
+		<text name="RVB_button_vehicles" text="Voertuigen"/>
+		<text name="RVB_button_vehiclesandequipment" text="Voertuigen en werktuigen"/>
+		<text name="RVB_inspectionDialog" text="Weet u zeker dat u dit voertuig kunt inspecteren voor %s kosten?" tag="format"/>
+		<text name="RVB_inspectionTimeDialog" text="Voertuiginspectie zal voltooid zijn om %s." tag="format"/>
+		<text name="RVB_inspectionDayDialog" text="De voertuiginspectie wordt morgen om %s voltooid." tag="format"/>
+		<text name="RVB_faultText_thermostatoverHeating" text="Thermostaat word te warm"/>
+		<text name="RVB_faultText_thermostaatoverkoeling" text="Thermostaat blijft koud"/>
+		<text name="RVB_faultText_lightings" text="Verlichting"/>
+		<text name="RVB_faultText_glow_plug" text="Gloeispiraal"/>
+		<text name="RVB_faultText_wipers" text="Ruitenwissers"/>
+		<text name="RVB_faultText_generator" text="Dynamo"/>
+		<text name="RVB_faultText_engine" text="Motor"/>
+		<text name="RVB_faultText_self_starter" text="Zelfstarter"/>
+		<text name="RVB_faultText_batteryisDead" text="Batterij"/>
+		<text name="RVB_repairTimeDialog" text="De reparatie van het voertuig zal voltooid zijn om %s." tag="format"/>
+		<text name="RVB_repairDayDialog" text="De reparatie van het voertuig wordt morgen om %s voltooid." tag="format"/>
+		<text name="RVB_ErrorList" text="Foutenlijst:"/>
+		<text name="RVB_periodicserviceDialog" text="Weet u zeker dat u het voertuig wilt laten onderhouden voor %s kosten?" tag="format"/>
+		<text name="RVB_periodicserviceTimeDialog" text="Het voertuigonderhoud zal voltooid zijn om %s." tag="format"/>
+		<text name="RVB_periodicserviceDayDialog" text="Het voertuigonderhoud zal morgen om %s voltooid zijn." tag="format"/>
+		<text name="RVB_batteryChDialog" text="Weet u zeker dat u de accu van uw voertuig wilt opladen voor %s kosten?" tag="format"/>
+		<text name="RVB_batteryChTimeDialog" text="Het opladen van de accu van het voertuig zal voltooid zijn om %s." tag="format"/>
+		<text name="RVB_batteryChDayDialog" text="Het opladen van de accu van het voertuig zal morgen om %s voltooid zijn." tag="format"/>
+		<text name="RVB_occupied" text="Voertuig is al in gebruik!"/>
+		<text name="RVB_shop_operatingTime" text="%02d.%2d uur" tag="format"/>
+		<text name="RVB_serviceHours" text="%01d/%01d uur" tag="format"/>
+		<text name="RVB_alertmessage_inspection" text="Voertuiginspectie is bezig."/>
+		<text name="RVB_alertmessage_inspection_hud" text="%s voertuiginspectie is bezig."/>
+		<text name="RVB_alertmessage_repair" text="Het voertuig wordt gerepareerd."/>
+		<text name="RVB_alertmessage_repair_hud" text="%s voertuig wordt gerepareerd."/>
+		<text name="RVB_alertmessage_service" text="Het voertuigonderhoud wordt uitgevoerd."/>
+		<text name="RVB_alertmessage_service_hud" text="%s voertuigonderhoud is bezig."/>
+		<text name="RVB_alertmessage_batteryCh" text="Batterij wordt opgeladen."/>
+		<text name="RVB_alertmessage_batteryCh_hud" text="%s voertuigaccu wordt opgeladen."/>
+		<!-- xml -->
+		<text name="RVB_list_vehicleorimplement" text="Voertuigen/werktuigen"/>
+		<text name="RVB_list_hporle" text="Hp/LE"/>
+		<text name="RVB_list_currentvalue" text="Huidige prijs"/>
+		<text name="RVB_list_age" text="Leeftijd"/>
+		<text name="RVB_list_operatinghours" text="Bedrijfstijd"/>
+		<text name="RVB_list_realoperatinghours" text="Echte bedrijfstijd"/>
+		<text name="RVB_list_servicehours" text="Service"/>
+		<text name="RVB_list_lease" text="Verhuurd"/>
+		<text name="RVB_list_battery" text="Batterij"/>
+
+
+		<!-- spec -->
+		<text name="RVB_inspectionDialogFault" text="%s voertuig geïnspecteerd, reparatie vereist. %s"/>
+		<text name="RVB_inspectionDialogEnd" text="%s voertuig geïnspecteerd, geen reparaties vereist."/>
+
+
+		<text name="RVB_fault_" text="Rijd niet te snel, de motor is nog koud."/>
+		<text name="RVB_fault_hud" text="%s het voertuig rijdt te snel, de motor is nog koud." tag="format"/>
+
+		<text name="RVB_fault_thermostaat" text="Koelvloeistof raakt oververhit."/>
+		<text name="RVB_fault_thermostat_hud" text="%s voertuigkoelvloeistof raakt oververhit." tag="format"/>
+
+		<text name="RVB_fault_thermostatC" text="De motor bereikt de bedrijfstemperatuur niet."/>
+		<text name="RVB_fault_thermostatC_hud" text="%s motor bereikt de bedrijfstemperatuur niet." tag="format"/>
+
+		<text name="RVB_fault_lights" text="De verlichting werkt niet."/>
+		<text name="RVB_fault_lights_hud" text="%s de verlichting van het voertuig werkt niet." tag="format"/>
+
+		<text name="RVB_fault_glowplug" text="Brandstofverbruik is toegenomen."/>
+		<text name="RVB_fault_glowplug_hud" text="%s brandstofverbruik van voertuig verhoogd." tag="format"/>
+
+		<text name="fault_battery" text="Batterij loopt leeg."/>
+		<text name="fault_battery_hud" text="%s de accu van het voertuig is leeg." tag="format"/>
+
+		<text name="RVB_fault_operatinghours" text="Het servicelampje ging branden."/>
+		<text name="RVB_fault_operatinghours_hud" text="%s voertuig heeft onderhoud nodig." tag="format"/>
+
+
+		<text name="RVB_main_repair_fault" text="De monteur kan dit voertuig niet repareren, ga naar &quot;RVB&quot; Service."/>
+
+	
+		<text name="popupMessage_battery_timeScaleup" text="Mechanic: Schakel de batterijlader niet aan en uit, omdat het opladen dan langer duurt."/>
+		<text name="popupMessage_battery_timeScaledown" text="Monteur: laat de oplader met rust."/>
+
+	
+	
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motorstoring."/>
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="De motor start niet, de generator is defect."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Voertuig kan niet worden gestart, de inspectie is bezig."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Voertuig kan niet worden gestart, reparatie wordt uitgevoerd."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Het voertuig kan niet worden gestart, er wordt onderhoud uitgevoerd."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="De voertuigsleutel ligt bij de monteur, die momenteel rust."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor start niet, accu is leeg."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Voertuig kan niet worden gestart, de batterij wordt opgeladen."/>
+
+
+
+
+		<text name="infoDisplayExtension_tomorrow" text="morgen "/>
+		<text name="infoDisplayExtension_currentPower" text="Power"/>
+		<text name="infoDisplayExtension_batteryCh" text="Batterij wordt opgeladen"/>
+		<text name="infoDisplayExtension_inspectionVheicle" text="Voertuiginspectie"/>
+		<text name="infoDisplayExtension_repairVheicle" text="Voertuigreparatie"/>
+
+		<text name="infoDisplayExtension_serviceVheicle" text="Periodieke service"/>
+
+		<text name="RVB_operatingHours" text="Service-uren"/>
+
+		<text name="RVB_TotaloperatingHours" text="Totaal bedrijfsuren"/>
+
+
+
+
+
+		<text name="warning_multiplayerNotDetected" text="Een '%s'-modus....."/>
+
+
+	</texts>
+</l10n>

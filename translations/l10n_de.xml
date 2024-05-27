@@ -2,150 +2,155 @@
 <l10n>
 	<translationContributors>LSMT-elMatado</translationContributors>
 	<texts>
-	<!-- inputs -->
-	<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte Fahrzeugpannen(RVB)"/>
+		<!-- inputs -->
+		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte Fahrzeugpannen(RVB)"/>
 	
-	<!-- settings -->
-	<!-- tabbedMenu -->
-	<text name="ui_RVB_reset_msg" text="Sind Sie sicher?"/>
-	<!-- gameplay settings -->
-	<text name="ui_RVB_sectionGamePlaySettings" text="Game Settings"/>
-	<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Täglicher Service"/>
-	<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Wie oft soll die Wartung pro Tag durchgeführt werden. Diese Funktion ist derzeit inaktiv."/>
-	<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Regelmäßige Wartung"/>
-	<text name="ui_RVB_gameplaysetting_periodicOperatingTimeDesc" text="Wartungsintervall des Fahrzeugs."/>	
-	<text name="ui_RVB_gameplaysetting_repaironlyTitle" text="Reparatur nur in der Kfz-Werkstatt"/>
-	<text name="ui_RVB_gameplaysetting_repaironlyDesc" text="Ein Fahrzeug kann nur in einer Kfz-Werkstatt repariert oder gewartet werden."/>
-	<text name="ui_RVB_gameplaysetting_workshopOpenTitle" text="Öffnungszeiten der Fahrzeugwerkstatt"/>
-	<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="Die Fahrzeugwerkstatt öffnet dann"/>
-	<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Schließung der Kfz-Werkstatt"/>
-	<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="Die Fahrzeugwerkstatt schließt zu dieser Zeit"/>
-	<!-- general settings -->
-	<text name="ui_RVB_sectionGeneralSettings" text="Allgemeine Einstellungen"/>
-	<text name="ui_RVB_generalsetting_alertMessageTitle" text="Warnmeldung"/>
-	<text name="ui_RVB_generalsetting_alertMessageDesc" text="Wenn Ihr Fahrzeug beschädigt, gewartet oder repariert wird, erscheint eine Warnmeldung in der Mitte des Bildschirms, wenn Sie sich im Fahrzeug befinden."/>
+		<!-- settings -->
+		<!-- tabbedMenu -->
+		<text name="ui_RVB_reset_msg" text="Sind Sie sicher?"/>
+		<!-- gameplay settings -->
+		<text name="ui_RVB_sectionGamePlaySettings" text="Game Settings"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Täglicher Service"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Wie oft soll die Wartung pro Tag durchgeführt werden. Diese Funktion ist derzeit inaktiv."/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Regelmäßige Wartung"/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeDesc" text="Wartungsintervall des Fahrzeugs."/>	
+		<text name="ui_RVB_gameplaysetting_repaironlyTitle" text="Reparatur nur in der Kfz-Werkstatt"/>
+		<text name="ui_RVB_gameplaysetting_repaironlyDesc" text="Ein Fahrzeug kann nur in einer Kfz-Werkstatt repariert oder gewartet werden."/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenTitle" text="Öffnungszeiten der Fahrzeugwerkstatt"/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="Die Fahrzeugwerkstatt öffnet dann"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Schließung der Kfz-Werkstatt"/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="Die Fahrzeugwerkstatt schließt zu dieser Zeit"/>
+		<!-- general settings -->
+		<text name="ui_RVB_sectionGeneralSettings" text="Allgemeine Einstellungen"/>
+		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Warnmeldung"/>
+		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Wenn Ihr Fahrzeug beschädigt, gewartet oder repariert wird, erscheint eine Warnmeldung in der Mitte des Bildschirms, wenn Sie sich im Fahrzeug befinden."/>
 	
-	<!-- vehicle list -->	
-	<text name="RVB_WorkShopClose" text="Die Fahrzeugwerkstatt ist geschlossen, kommen Sie um %s Uhr wieder." tag="format"/>
-	<text name="RVB_button_inspection" text="Inspektion"/>
-	<text name="RVB_button_dailyservice" text="Täglicher Service"/>
-	<text name="RVB_button_periodicservice" text="Regelmäßiger Service"/>
-	<text name="RVB_button_battery_ch" text="Aufladen der Batterie"/>
-	<text name="RVB_button_service" text="Service"/>
-	<text name="RVB_button_vehicles" text="Fahrzeuge ."/>
-	<text name="RVB_button_vehiclesandequipment" text="Fahrzeuge und Anbaugeräte"/>
-	<text name="RVB_inspectionDialog" text="Sind Sie sicher, dass Sie dieses Fahrzeug für %s € überprüfen können?" tag="format"/>
-	<text name="RVB_inspectionTimeDialog" text="Die Fahrzeuginspektion wird um %s abgeschlossen." tag="format"/>
-	<text name="RVB_inspectionDayDialog" text="Die Fahrzeuginspektion wird morgen um %s abgeschlossen." tag="format"/>
-	<text name="RVB_faultText_thermostatoverHeating" text="Thermostat"/>
-	<text name="RVB_faultText_thermostatoverCooling" text="Thermostat"/>
-	<text name="RVB_faultText_lightings" text="Beleuchtung"/>
-	<text name="RVB_faultText_glow_plug" text="Glühkerzen"/>
-	<text name="RVB_faultText_wipers" text="Scheibenwischer"/>
-	<text name="RVB_faultText_generator" text="Lichtmaschine"/>
-	<text name="RVB_faultText_engine" text="Motor"/>
-	<text name="RVB_faultText_self_starter" text="Self-starter"/> 
-	<text name="RVB_faultText_batteryisDead" text="Batterie"/>
-	<text name="RVB_repairTimeDialog" text="Die Fahrzeugreparatur wird um %s abgeschlossen." tag="format"/>
-	<text name="RVB_repairDayDialog" text="Die Fahrzeugreparatur wird morgen um %s abgeschlossen." tag="format"/>
-	<text name="RVB_ErrorList" text="Fehlerliste:" />
-	<text name="RVB_periodicserviceDialog" text="Sind Sie sicher, dass Sie das Fahrzeug für %s € warten lassen wollen?" tag="format"/>
-	<text name="RVB_periodicserviceTimeDialog" text="Die Wartung des Fahrzeugs wird um %s abgeschlossen sein." tag="format"/>
-	<text name="RVB_periodicserviceDayDialog" text="Die Wartung des Fahrzeugs wird morgen um %s abgeschlossen sein." tag="format"/>
-	<text name="RVB_batteryChDialog" text="Sind Sie sicher, dass Sie Ihre Fahrzeugbatterie für %s € aufladen wollen?" tag="format"/>
-	<text name="RVB_batteryChTimeDialog" text="Der Ladevorgang der Fahrzeugbatterie wird um %s abgeschlossen." tag="format"/>
-	<text name="RVB_batteryChDayDialog" text="Der Ladevorgang der Fahrzeugbatterie wird morgen um %s abgeschlossen." tag="format"/>
-	<text name="RVB_occupied" text="Das Fahrzeug ist bereits im Einsatz!" />
-	<text name="RVB_shop_operatingTime" text="%02d.%2d Stunden" tag="format"/>
-	<text name="RVB_serviceHours" text="%01d/%01d Stunden" tag="format"/>
-	<text name="RVB_alertmessage_inspection" text="Die Fahrzeuginspektion ist im Gange."/>
-	<text name="RVB_alertmessage_inspection_hud" text="%s Fahrzeuginspektion ist im Gange." tag="format"/>
-	<text name="RVB_alertmessage_repair" text="Die Reparatur des Fahrzeugs ist im Gange."/>
-	<text name="RVB_alertmessage_repair_hud" text="%s der Reparatur des Fahrzeugs ist im Gange." tag="format"/>
-	<text name="RVB_alertmessage_service" text="Die Wartung des Fahrzeugs ist im Gange."/>
-	<text name="RVB_alertmessage_service_hud" text="%s Der Wartung des Fahrzeugs ist im Gange." tag="format"/>
-	<text name="RVB_alertmessage_batteryCh" text="Der Akku wird gerade geladen."/>
-	<text name="RVB_alertmessage_batteryCh_hud" text="%s des Akku´s wird gerade geladen." tag="format"/>
-	<!-- xml -->
-	<text name="RVB_list_vehicleorimplement" text="Fahrzeuge/Ersatzteile"/>
-	<text name="RVB_list_hporle" text="PS/LE"/>
-	<text name="RVB_list_currentvalue" text="Aktueller Preis"/>
-	<text name="RVB_list_age" text="Alter"/>
-	<text name="RVB_list_operatinghours" text="Betriebsdauer"/>
-	<text name="RVB_list_realoperatinghours" text="Reale Betriebsdauer"/>
-	<text name="RVB_list_servicehours" text="Service"/>
-	<text name="RVB_list_lease" text="geleased"/>
-	<text name="RVB_list_battery" text="Batterie"/>
+		<!-- vehicle list -->	
+		<text name="RVB_WorkShopClose" text="Die Fahrzeugwerkstatt ist geschlossen, kommen Sie um %s Uhr wieder." tag="format"/>
+		<text name="RVB_button_inspection" text="Inspektion"/>
+		<text name="RVB_button_dailyservice" text="Täglicher Service"/>
+		<text name="RVB_button_periodicservice" text="Regelmäßiger Service"/>
+		<text name="RVB_button_battery_ch" text="Aufladen der Batterie"/>
+		<text name="RVB_button_service" text="Service"/>
+		<text name="RVB_button_vehicles" text="Fahrzeuge ."/>
+		<text name="RVB_button_vehiclesandequipment" text="Fahrzeuge und Anbaugeräte"/>
+		<text name="RVB_inspectionDialog" text="Sind Sie sicher, dass Sie dieses Fahrzeug für %s € überprüfen können?" tag="format"/>
+		<text name="RVB_inspectionTimeDialog" text="Die Fahrzeuginspektion wird um %s abgeschlossen." tag="format"/>
+		<text name="RVB_inspectionDayDialog" text="Die Fahrzeuginspektion wird morgen um %s abgeschlossen." tag="format"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Thermostat"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Beleuchtung"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Glühkerzen"/>
+		<text name="RVB_faultText_WIPERS" text="Scheibenwischer"/>
+		<text name="RVB_faultText_GENERATOR" text="Lichtmaschine"/>
+		<text name="RVB_faultText_ENGINE" text="Motor"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Self-starter"/> 
+		<text name="RVB_faultText_BATTERY" text="Batterie"/>
+		<text name="RVB_repairTimeDialog" text="Die Fahrzeugreparatur wird um %s abgeschlossen." tag="format"/>
+		<text name="RVB_repairDayDialog" text="Die Fahrzeugreparatur wird morgen um %s abgeschlossen." tag="format"/>
+		<text name="RVB_ErrorList" text="Fehlerliste:" />
+		<text name="RVB_periodicserviceDialog" text="Sind Sie sicher, dass Sie das Fahrzeug für %s € warten lassen wollen?" tag="format"/>
+		<text name="RVB_periodicserviceTimeDialog" text="Die Wartung des Fahrzeugs wird um %s abgeschlossen sein." tag="format"/>
+		<text name="RVB_periodicserviceDayDialog" text="Die Wartung des Fahrzeugs wird morgen um %s abgeschlossen sein." tag="format"/>
+		<text name="RVB_batteryChDialog" text="Sind Sie sicher, dass Sie Ihre Fahrzeugbatterie für %s € aufladen wollen?" tag="format"/>
+		<text name="RVB_batteryChTimeDialog" text="Der Ladevorgang der Fahrzeugbatterie wird um %s abgeschlossen." tag="format"/>
+		<text name="RVB_batteryChDayDialog" text="Der Ladevorgang der Fahrzeugbatterie wird morgen um %s abgeschlossen." tag="format"/>
+		<text name="RVB_occupied" text="Das Fahrzeug ist bereits im Einsatz!" />
+		<text name="RVB_shop_operatingTime" text="%02d.%2d Stunden" tag="format"/>
+		<text name="RVB_serviceHours" text="%01d/%01d Stunden" tag="format"/>
+		<text name="RVB_alertmessage_inspection" text="Die Fahrzeuginspektion ist im Gange."/>
+		<text name="RVB_alertmessage_inspection_hud" text="%s Fahrzeuginspektion ist im Gange." tag="format"/>
+		<text name="RVB_alertmessage_repair" text="Die Reparatur des Fahrzeugs ist im Gange."/>
+		<text name="RVB_alertmessage_repair_hud" text="%s der Reparatur des Fahrzeugs ist im Gange." tag="format"/>
+		<text name="RVB_alertmessage_service" text="Die Wartung des Fahrzeugs ist im Gange."/>
+		<text name="RVB_alertmessage_service_hud" text="%s Der Wartung des Fahrzeugs ist im Gange." tag="format"/>
+		<text name="RVB_alertmessage_batteryCh" text="Der Akku wird gerade geladen."/>
+		<text name="RVB_alertmessage_batteryCh_hud" text="%s des Akku´s wird gerade geladen." tag="format"/>
+		<!-- xml -->
+		<text name="RVB_list_vehicleorimplement" text="Fahrzeuge/Ersatzteile"/>
+		<text name="RVB_list_hporle" text="PS/LE"/>
+		<text name="RVB_list_currentvalue" text="Aktueller Preis"/>
+		<text name="RVB_list_age" text="Alter"/>
+		<text name="RVB_list_operatinghours" text="Betriebsdauer"/>
+		<text name="RVB_list_realoperatinghours" text="Reale Betriebsdauer"/>
+		<text name="RVB_list_servicehours" text="Service"/>
+		<text name="RVB_list_lease" text="geleased"/>
+		<text name="RVB_list_battery" text="Batterie"/>
 
 	
-	<!-- spec -->
-	<text name="RVB_inspectionDialogFault" text="%s Fahrzeug inspiziert, Reparaturen erforderlich. %s"/>
-	<text name="RVB_inspectionDialogEnd" text="%s Fahrzeug inspiziert, keine Reparaturen erforderlich."/>
+		<!-- spec -->
+		<text name="RVB_inspectionDialogFault" text="%s Fahrzeug inspiziert, Reparaturen erforderlich. %s"/>
+		<text name="RVB_inspectionDialogEnd" text="%s Fahrzeug inspiziert, keine Reparaturen erforderlich."/>
 
 	
-	<text name="RVB_fault_" text="Fahren Sie nicht zu schnell, der Motor ist noch kalt."/>
-	<text name="RVB_fault_hud" text="%s das Fahrzeug zu schnell gefahren wird, der Motor noch kalt ist." tag="format"/>
+		<text name="RVB_fault_" text="Fahren Sie nicht zu schnell, der Motor ist noch kalt."/>
+		<text name="RVB_fault_hud" text="%s das Fahrzeug zu schnell gefahren wird, der Motor noch kalt ist." tag="format"/>
 	
-	<text name="RVB_fault_thermostat" text="Kühlmittel überhitzt."/>
-	<text name="RVB_fault_thermostat_hud" text="%s das Kühlmittel des Fahrzeugs überhitzt." tag="format"/>
+		<text name="RVB_fault_thermostat" text="Kühlmittel überhitzt."/>
+		<text name="RVB_fault_thermostat_hud" text="%s das Kühlmittel des Fahrzeugs überhitzt." tag="format"/>
 
-	<text name="RVB_fault_thermostatC" text="Der Motor erreicht nicht die Betriebstemperatur."/>
-	<text name="RVB_fault_thermostatC_hud" text="%s Ihr Motor erreicht nicht die Betriebstemperatur." tag="format"/>
+		<text name="RVB_fault_thermostatC" text="Der Motor erreicht nicht die Betriebstemperatur."/>
+		<text name="RVB_fault_thermostatC_hud" text="%s Ihr Motor erreicht nicht die Betriebstemperatur." tag="format"/>
 	
-	<text name="RVB_fault_lights" text="Die Beleuchtung funktioniert nicht." />
-	<text name="RVB_fault_lights_hud" text="%s die Lichter des Fahrzeugs nicht funktionieren." tag="format"/>
+		<text name="RVB_fault_lights" text="Die Beleuchtung funktioniert nicht." />
+		<text name="RVB_fault_lights_hud" text="%s die Lichter des Fahrzeugs nicht funktionieren." tag="format"/>
 	
-	<text name="RVB_fault_glowplug" text="Der Kraftstoffverbrauch ist gestiegen." />
-	<text name="RVB_fault_glowplug_hud" text="%s Der Kraftstoffverbrauch der Fahrzeuge ist gestiegen." tag="format"/>
+		<text name="RVB_fault_glowplug" text="Der Kraftstoffverbrauch ist gestiegen." />
+		<text name="RVB_fault_glowplug_hud" text="%s Der Kraftstoffverbrauch der Fahrzeuge ist gestiegen." tag="format"/>
 	
-	<text name="fault_battery" text="Die Batterie entleert sich." />
-	<text name="fault_battery_hud" text="%s die Fahrzeugbatterie ist entladen." tag="format"/>
+		<text name="fault_battery" text="Die Batterie entleert sich." />
+		<text name="fault_battery_hud" text="%s die Fahrzeugbatterie ist entladen." tag="format"/>
 	
-	<text name="RVB_fault_operatinghours" text="Die Wartungsleuchte leuchtete auf." />
-	<text name="RVB_fault_operatinghours_hud" text="%s das Fahrzeug gewartet werden muss." tag="format"/>
-	
-	
-	<text name="RVB_main_repair_fault" text="Der Mechaniker kann dieses Fahrzeug nicht reparieren, besuche &quot;RVB&quot; Service." />
+		<text name="RVB_fault_operatinghours" text="Die Wartungsleuchte leuchtete auf." />
+		<text name="RVB_fault_operatinghours_hud" text="%s das Fahrzeug gewartet werden muss." tag="format"/>
 	
 	
-
-	<text name="popupMessage_battery_timeScaleup" text="Monteur: Schalten Sie das Ladegerät nicht ein und aus, da der Ladevorgang sonst länger dauert."/>
-	<text name="popupMessage_battery_timeScaledown" text="Mechaniker: Lassen Sie das Ladegerät in Ruhe."/>
+		<text name="RVB_main_repair_fault" text="Der Mechaniker kann dieses Fahrzeug nicht reparieren, besuche &quot;RVB&quot; Service." />
 	
 	
 
-	<text name="VehicleBreakdown_DEAD_ENGINE" text="Motorschaden." />
-	<text name="VehicleBreakdown_DEAD_GENERATOR" text="Der Motor springt nicht an, die Lichtmaschine ist ausgefallen." />
-	<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Fahrzeug kann nicht gestartet werden, Inspektion wird durchgeführt." />
-	<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Das Fahrzeug kann nicht gestartet werden, die Reparatur ist im Gange." />
-	<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Das Fahrzeug kann nicht gestartet werden, die Wartung ist im Gange." />
-	<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Der Fahrzeugschlüssel befindet sich bei dem Mechaniker, der sich gerade ausruht." />
-	<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Der Motor springt nicht an, die Batterie ist leer." />
-	<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Das Fahrzeug kann nicht gestartet werden, die Batterie wird gerade geladen." />
+		<text name="popupMessage_battery_timeScaleup" text="Monteur: Schalten Sie das Ladegerät nicht ein und aus, da der Ladevorgang sonst länger dauert."/>
+		<text name="popupMessage_battery_timeScaledown" text="Mechaniker: Lassen Sie das Ladegerät in Ruhe."/>
+	
+	
+
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motorschaden." />
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="Der Motor springt nicht an, die Lichtmaschine ist ausgefallen." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Fahrzeug kann nicht gestartet werden, Inspektion wird durchgeführt." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Das Fahrzeug kann nicht gestartet werden, die Reparatur ist im Gange." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Das Fahrzeug kann nicht gestartet werden, die Wartung ist im Gange." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Der Fahrzeugschlüssel befindet sich bei dem Mechaniker, der sich gerade ausruht." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Der Motor springt nicht an, die Batterie ist leer." />
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Das Fahrzeug kann nicht gestartet werden, die Batterie wird gerade geladen." />
 
 
 
 	
-	<text name="infoDisplayExtension_tomorrow" text="morgen "/>
-	<text name="infoDisplayExtension_currentPower" text="Kraft"/>
-	<text name="infoDisplayExtension_batteryCh" text="Aufladen der Batterie"/>
-	<text name="infoDisplayExtension_inspectionVheicle" text="Fahrzeuginspektion"/>
-	<text name="infoDisplayExtension_repairVheicle" text="Fahrzeugreparatur"/>
+		<text name="infoDisplayExtension_tomorrow" text="morgen "/>
+		<text name="infoDisplayExtension_currentPower" text="Kraft"/>
+		<text name="infoDisplayExtension_batteryCh" text="Aufladen der Batterie"/>
+		<text name="infoDisplayExtension_inspectionVheicle" text="Fahrzeuginspektion"/>
+		<text name="infoDisplayExtension_repairVheicle" text="Fahrzeugreparatur"/>
 	
-	<text name="infoDisplayExtension_serviceVheicle" text="Regelmäßiger Service"/>
+		<text name="infoDisplayExtension_serviceVheicle" text="Regelmäßiger Service"/>
 
-	<text name="RVB_operatingHours" text="Service Stunden"/>
+		<text name="RVB_operatingHours" text="Service Stunden"/>
 	
-	<text name="RVB_TotaloperatingHours" text="Betriebsstunden insgesamt"/>
+		<text name="RVB_TotaloperatingHours" text="Betriebsstunden insgesamt"/>
 	
 
 
 	
 	
-	<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+		<text name="CP_Automatic_Repair_conflict_notice" text="Du verwendest den Mod &quot;Real Vehicle Pannen(RVB)&quot;, daher kann es zu Konflikten mit dem Mod &quot;Courseplay(CP)&quot; kommen.
+		Die Einstellung des Feldes &quot;Automatische Reparatur&quot; im CP-Menü entspricht nicht der fehlerfreien Nutzung des RVB-Modus. Daher deaktiviert RVB automatisch den CP &quot;Automatische Reparatur&quot; im Hintergrund.
+		
+		Danke für Ihr Verständnis.
+
+		Grüße MathiasHun" />
 
 		
-        </texts>
+	</texts>
 		
 		
 		

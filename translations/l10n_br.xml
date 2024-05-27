@@ -141,7 +141,7 @@
 		
 		
 		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
-        <text name="CP_Automatic_Repair_conflict_notice" text="Você está usando o mod &quot;Real Vehicle Breakdowns(RVB)&quot;, então pode haver conflitos com o mod &quot;Courseplay(CP)&quot;.
+        	<text name="CP_Automatic_Repair_conflict_notice" text="Você está usando o mod &quot;Real Vehicle Breakdowns(RVB)&quot;, então pode haver conflitos com o mod &quot;Courseplay(CP)&quot;.
 		A configuração do campo &quot;Reparo Automático&quot; no menu CP não corresponde à utilização sem erros do modo RVB. Portanto, o RVB desativa automaticamente o CP &quot;Reparo Automático&quot; em segundo plano.
 		
 		Obrigado pela sua compreensão.

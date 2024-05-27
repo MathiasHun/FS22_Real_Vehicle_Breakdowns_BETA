@@ -36,15 +36,14 @@
 		<text name="RVB_inspectionDialog" text="Tem certeza de que pode inspecionar este veículo pelo custo de %s?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="A inspeção do veículo será concluída em %s." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="A inspeção do veículo será concluída amanhã às %s." tag="format"/>
-		<text name="RVB_faultText_thermostatoverHeating" text="Termostato"/>
-		<text name="RVB_faultText_thermostatoverCooling" text="Termostato"/>
-		<text name="RVB_faultText_lightings" text="Iluminação"/>
-		<text name="RVB_faultText_glow_plug" text="Plugue de fulgor"/>
-		<text name="RVB_faultText_wipers" text="Limpadores de pára-brisa"/>
-		<text name="RVB_faultText_generator" text="Gerador"/>
-		<text name="RVB_faultText_engine" text="Motor"/>
-		<text name="RVB_faultText_self_starter" text="Auto-iniciador"/> 
-		<text name="RVB_faultText_batteryisDead" text="Bateria"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Termostato"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Iluminação"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Plugue de fulgor"/>
+		<text name="RVB_faultText_WIPERS" text="Limpadores de pára-brisa"/>
+		<text name="RVB_faultText_GENERATOR" text="Gerador"/>
+		<text name="RVB_faultText_ENGINE" text="Motor"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Auto-iniciador"/> 
+		<text name="RVB_faultText_BATTERY" text="Bateria"/>
 		<text name="RVB_repairTimeDialog" text="O reparo do veículo será concluído em %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="O reparo do veículo será concluído amanhã às %s." tag="format"/>
 		<text name="RVB_ErrorList" text="Lista de erros:" />
@@ -142,6 +141,12 @@
 		
 		
 		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+        <text name="CP_Automatic_Repair_conflict_notice" text="Você está usando o mod &quot;Real Vehicle Breakdowns(RVB)&quot;, então pode haver conflitos com o mod &quot;Courseplay(CP)&quot;.
+		A configuração do campo &quot;Reparo Automático&quot; no menu CP não corresponde à utilização sem erros do modo RVB. Portanto, o RVB desativa automaticamente o CP &quot;Reparo Automático&quot; em segundo plano.
+		
+		Obrigado pela sua compreensão.
+
+		Atenciosamente MathiasHun" />
 
 		
         </texts>

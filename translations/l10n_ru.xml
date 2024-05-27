@@ -37,15 +37,14 @@
 		<text name="RVB_inspectionDialog" text="Вы уверены, что хотите отправить это транспортное средство на техосмотр за %s?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="Техосмотр транспортного средства будет завершён в %s." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="Техосмотр ТС будет завершён завтра в %s." tag="format"/>
-		<text name="RVB_faultText_thermostatoverHeating" text="Термостат"/>
-		<text name="RVB_faultText_thermostatoverCooling" text="Термостат"/>
-		<text name="RVB_faultText_lightings" text="Осветительные приборы"/>
-		<text name="RVB_faultText_glow_plug" text="Свеча накаливания"/>
-		<text name="RVB_faultText_wipers" text="Стеклоочистители"/>
-		<text name="RVB_faultText_generator" text="Генератор"/>
-		<text name="RVB_faultText_engine" text="Двигатель"/>
-		<text name="RVB_faultText_self_starter" text="Стартер"/> 
-		<text name="RVB_faultText_batteryisDead" text="Аккумулятор"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Термостат"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Осветительные приборы"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Свеча накаливания"/>
+		<text name="RVB_faultText_WIPERS" text="Стеклоочистители"/>
+		<text name="RVB_faultText_GENERATOR" text="Генератор"/>
+		<text name="RVB_faultText_ENGINE" text="Двигатель"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Стартер"/> 
+		<text name="RVB_faultText_BATTERY" text="Аккумулятор"/>
 		<text name="RVB_repairTimeDialog" text="Ремонт транспортного средства будет завершён в %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="Ремонт транспортного средства будет завершён завтра в %s." tag="format"/>
 		<text name="RVB_ErrorList" text="Список неисправностей:" />
@@ -143,6 +142,12 @@
 		
 		
 		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+		<text name="CP_Automatic_Repair_conflict_notice" text="Вы используете мод &quot;Real Vehicle Breakdowns(RVB)&quot;, поэтому могут возникнуть конфликты с модом &quot;Courseplay(CP)&quot;.
+		Настройка поля &quot;Автоматическое восстановление&quot; в меню CP не соответствует безошибочному использованию режима RVB. Поэтому RVB автоматически деактивирует CP &quot;Автоматический ремонт&quot; в фоновом режиме.
+		
+		Спасибо за Ваше понимание.
+
+		С уважением Матиас Хун" />
 
 		
         </texts>

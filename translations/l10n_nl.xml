@@ -36,15 +36,14 @@
 		<text name="RVB_inspectionDialog" text="Weet u zeker dat u dit voertuig kunt inspecteren voor %s kosten?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="Voertuiginspectie zal voltooid zijn om %s." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="De voertuiginspectie wordt morgen om %s voltooid." tag="format"/>
-		<text name="RVB_faultText_thermostatoverHeating" text="Thermostaat word te warm"/>
-		<text name="RVB_faultText_thermostaatoverkoeling" text="Thermostaat blijft koud"/>
-		<text name="RVB_faultText_lightings" text="Verlichting"/>
-		<text name="RVB_faultText_glow_plug" text="Gloeispiraal"/>
-		<text name="RVB_faultText_wipers" text="Ruitenwissers"/>
-		<text name="RVB_faultText_generator" text="Dynamo"/>
-		<text name="RVB_faultText_engine" text="Motor"/>
-		<text name="RVB_faultText_self_starter" text="Zelfstarter"/>
-		<text name="RVB_faultText_batteryisDead" text="Batterij"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Thermostaat word te warm"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Verlichting"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Gloeispiraal"/>
+		<text name="RVB_faultText_WIPERS" text="Ruitenwissers"/>
+		<text name="RVB_faultText_GENERATOR" text="Dynamo"/>
+		<text name="RVB_faultText_ENGINE" text="Motor"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Zelfstarter"/>
+		<text name="RVB_faultText_BATTERY" text="Batterij"/>
 		<text name="RVB_repairTimeDialog" text="De reparatie van het voertuig zal voltooid zijn om %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="De reparatie van het voertuig wordt morgen om %s voltooid." tag="format"/>
 		<text name="RVB_ErrorList" text="Foutenlijst:"/>
@@ -141,6 +140,12 @@
 
 
 		<text name="warning_multiplayerNotDetected" text="Een '%s'-modus....."/>
+<text name="CP_Automatic_Repair_conflict_notice" text="Je gebruikt de mod &quot;Real Vehicle Breakdowns(RVB)&quot;, dus er kunnen conflicten zijn met de mod &quot;Courseplay(CP)&quot;.
+		De instelling van het veld &quot;Automatische Reparatie&quot; in het CP-menu komt niet overeen met het foutloos gebruik van de RVB-modus. Daarom deactiveert RVB automatisch de CP &quot;Automatische Reparatie&quot; op de achtergrond.
+		
+		Bedankt voor uw begrip.
+
+		Groeten MathiasHun" />
 
 
 	</texts>

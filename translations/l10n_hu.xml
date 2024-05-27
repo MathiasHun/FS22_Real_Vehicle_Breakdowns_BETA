@@ -36,15 +36,14 @@
 		<text name="RVB_inspectionDialog" text="Biztosan megvizsgáltatod ezt a járművet %s áron?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="A jármű átvizsgálása %s órakor fejeződik be." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="A jármű átvizsgálása holnap %s órakor fejeződik be." tag="format"/>
-		<text name="RVB_faultText_thermostatoverHeating" text="Termosztát"/>
-		<text name="RVB_faultText_thermostatoverCooling" text="Termosztát"/>
-		<text name="RVB_faultText_lightings" text="Világítás"/>
-		<text name="RVB_faultText_glow_plug" text="Izzítógyertya"/>
-		<text name="RVB_faultText_wipers" text="Ablaktörlők"/>
-		<text name="RVB_faultText_generator" text="Generátor"/>
-		<text name="RVB_faultText_engine" text="Motor"/>
-		<text name="RVB_faultText_self_starter" text="Önindító"/> 
-		<text name="RVB_faultText_batteryisDead" text="Akkumulátor"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Termosztát"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Világítás"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Izzítógyertya"/>
+		<text name="RVB_faultText_WIPERS" text="Ablaktörlők"/>
+		<text name="RVB_faultText_GENERATOR" text="Generátor"/>
+		<text name="RVB_faultText_ENGINE" text="Motor"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Önindító"/> 
+		<text name="RVB_faultText_BATTERY" text="Akkumulátor"/>
 		<text name="RVB_repairTimeDialog" text="A jármű javítása %s órakor fejeződik be." tag="format"/>
 		<text name="RVB_repairDayDialog" text="A jármű javítása holnap %s órakor fejeződik be." tag="format"/>
 		<text name="RVB_ErrorList" text="Hiba lista:" />
@@ -141,7 +140,14 @@
 	
 		
 		
-		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....."/>
+		<text name="CP_Automatic_Repair_conflict_notice" text="A &quot;Valódi jármű meghibásodások(RVB)&quot; modot használod, ezért a &quot;Courseplay(CP)&quot; móddal összeakadhat.
+		A CP menüjében az &quot;Automatikus javítást&quot; mező beállítása nem felel meg az RVB mód hiba nélküli használatához. Ezért az RVB a háttérben automatikusan letiltja a CP &quot;Automatikus javítást&quot;.
+		
+		Megértésedet köszönöm.
+
+		Üdvözlettel MathiasHun"/>
+
 
 		
         </texts>

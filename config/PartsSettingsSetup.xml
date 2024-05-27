@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+
+<Parts>
+	<Part name="THERMOSTAT" lifetime="5.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="LIGHTINGS" lifetime="10.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="GLOWPLUG" lifetime="6.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="WIPERS" lifetime="20.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="GENERATOR" lifetime="12.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="ENGINE" lifetime="100.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="SELFSTARTER" lifetime="8.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="BATTERY" lifetime="15.000000" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+</Parts>

@@ -23,7 +23,12 @@
 		<text name="ui_RVB_sectionGeneralSettings" text="Configurações Gerais"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Mensagem de alerta"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Se o seu veículo for danificado, reparado ou reparado, uma mensagem de aviso aparecerá no meio da tela se você estiver no veículo."/>
-		
+		<text name="ui_RVB_generalsetting_difficultyTitle" text="Avaria do veículo"/>
+		<text name="ui_RVB_generalsetting_difficultyDesc" text="Está em desenvolvimento, mas pronto para uso."/>
+		<text name="ui_RVB_difficulty1_subtitle" text="Lento"/>
+		<text name="ui_RVB_difficulty2_subtitle" text="Médio"/>
+		<text name="ui_RVB_difficulty3_subtitle" text="Rápido"/>
+
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="A oficina de veículos está fechada, volte às %s horas." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspeção"/>
@@ -74,43 +79,34 @@
 		<text name="RVB_list_servicehours" text="Serviço"/>
 		<text name="RVB_list_lease" text="Alugado"/>
 		<text name="RVB_list_battery" text="Bateria"/>
-	
-		
+		<text name="RVB_parts_repair" text="Peças a serem reparadas"/>
+
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s veículo inspecionado, reparos necessários. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s veículo inspecionado, sem necessidade de reparos."/>
 
-		
 		<text name="RVB_fault_" text="Não dirija muito rápido, o motor ainda está frio."/>
 		<text name="RVB_fault_hud" text="%s não dirija muito rápido, o motor ainda está frio" tag="format"/>
-		
+
 		<text name="RVB_fault_thermostat" text="Superaquecimento do refrigerantes."/>
 		<text name="RVB_fault_thermostat_hud" text="%s o líquido refrigerante do veículo está superaquecendo." tag="format"/>
 
 		<text name="RVB_fault_thermostatC" text="O motor não atinge a temperatura operacional."/>
 		<text name="RVB_fault_thermostatC_hud" text="O motor %s não atingiu a temperatura operacional." tag="format"/>
-		
+
 		<text name="RVB_fault_lights" text="A iluminação não funciona." />
 		<text name="RVB_fault_lights_hud" text="%s a iluminação do veículo não está funcionando." tag="format"/>
-		
+
 		<text name="RVB_fault_glowplug" text="O consumo de combustível aumentou." />
 		<text name="RVB_fault_glowplug_hud" text="%o consumo de combustível do veículo aumentou." tag="format"/>
-		
+
 		<text name="fault_battery" text="A bateria descarrega." />
 		<text name="fault_battery_hud" text="%s veículo está com bateria fraca." tag="format"/>
-		
+
 		<text name="RVB_fault_operatinghours" text="A luz de serviço acendeu." />
 		<text name="RVB_fault_operatinghours_hud" text="%s veículo precisa de manutenção." tag="format"/>
-		
-		
-		<text name="RVB_main_repair_fault" text="O mecânico não pode reparar este veículo, visite &quot;RVB&quot; Serviço." />
-		
-		
 
-		<text name="popupMessage_battery_timeScaleup" text="Szerelő: Ne kapcsolgasd ki-be az akkumulátor töltőt, mert tovább fog tartani a töltés."/>
-		<text name="popupMessage_battery_timeScaledown" text="Szerelő: Hagyd már békén a töltőt."/>
-		
-		
+		<text name="RVB_main_repair_fault" text="O mecânico não pode reparar este veículo, visite &quot;RVB&quot; Serviço." />
 
 		<text name="VehicleBreakdown_DEAD_ENGINE" text="Falha do motor." />
 		<text name="VehicleBreakdown_DEAD_GENERATOR" text="O motor não liga, o gerador falhou." />
@@ -121,37 +117,19 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="O motor não liga, a bateria acabou." />
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="O veículo não pode ser ligado, o carregamento da bateria está em andamento." />
 
-
-
-		
+		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="amanhã "/>
 		<text name="infoDisplayExtension_currentPower" text="Poder"/>
 		<text name="infoDisplayExtension_batteryCh" text="Carregamento da bateria"/>
 		<text name="infoDisplayExtension_inspectionVheicle" text="Inspeção veicular"/>
 		<text name="infoDisplayExtension_repairVheicle" text="Reparação de veículos"/>
-		
 		<text name="infoDisplayExtension_serviceVheicle" text="Serviço Periódico"/>
 
 		<text name="RVB_operatingHours" text="Serviço de horas"/>
-		
+
 		<text name="RVB_TotaloperatingHours" text="Total de horas de operação"/>
-		
 
-	
-		
-		
-		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
-        	<text name="CP_Automatic_Repair_conflict_notice" text="Você está usando o mod &quot;Real Vehicle Breakdowns(RVB)&quot;, então pode haver conflitos com o mod &quot;Courseplay(CP)&quot;.
-		A configuração do campo &quot;Reparo Automático&quot; no menu CP não corresponde à utilização sem erros do modo RVB. Portanto, o RVB desativa automaticamente o CP &quot;Reparo Automático&quot; em segundo plano.
-		
-		Obrigado pela sua compreensão.
+		<text name="CP_Automatic_Repair_conflict_notice" text="Você está usando o mod &quot;Real Vehicle Breakdowns(RVB)&quot;, então pode haver conflitos com o mod &quot;Courseplay(CP)&quot;.&#13;&#10;A configuração do campo &quot;Reparo Automático&quot; no menu CP não corresponde à utilização sem erros do modo RVB. Portanto, o RVB desativa automaticamente o CP &quot;Reparo Automático&quot; em segundo plano.&#13;&#10;Obrigado pela sua compreensão.&#13;&#10;&#13;&#10;Atenciosamente MathiasHun" />
 
-		Atenciosamente MathiasHun" />
-
-		
-        </texts>
-		
-		
-		
-		
+	</texts>
 </l10n>

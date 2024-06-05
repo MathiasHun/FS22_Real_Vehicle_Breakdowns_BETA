@@ -23,10 +23,12 @@
 		<text name="ui_RVB_sectionGeneralSettings" text="General settings"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Alert message"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="If your vehicle is damaged, serviced or repaired, a warning message will appear in the middle of the screen if you are in the vehicle."/>
-		<text name="ui_RVB_difficulty1_subtitle" text="Könnyű"/>
-		<text name="ui_RVB_difficulty2_subtitle" text="Közepes"/>
-		<text name="ui_RVB_difficulty3_subtitle" text="Nehéz"/>
-		
+		<text name="ui_RVB_generalsetting_difficultyTitle" text="Vehicle breakdown"/>
+		<text name="ui_RVB_generalsetting_difficultyDesc" text="It is under development but ready to use."/>
+		<text name="ui_RVB_difficulty1_subtitle" text="Slow"/>
+		<text name="ui_RVB_difficulty2_subtitle" text="Medium"/>
+		<text name="ui_RVB_difficulty3_subtitle" text="Fast"/>
+
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="Vehicle workshop is closed, come back at %s o'clock." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspection"/>
@@ -39,15 +41,14 @@
 		<text name="RVB_inspectionDialog" text="Are you sure you can inspect this vehicle for %s cost?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="Vehicle inspection will be completed at %s." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="Vehicle inspection will be completed tomorrow at %s." tag="format"/>
-		<text name="RVB_faultText_thermostatoverHeating" text="Thermostat"/>
-		<text name="RVB_faultText_thermostatoverCooling" text="Thermostat"/>
-		<text name="RVB_faultText_lightings" text="Lighting"/>
-		<text name="RVB_faultText_glow_plug" text="Glow plug"/>
-		<text name="RVB_faultText_wipers" text="Windshield wipers"/>
-		<text name="RVB_faultText_generator" text="Generator"/>
-		<text name="RVB_faultText_engine" text="Engine"/>
-		<text name="RVB_faultText_self_starter" text="Self-starter"/> 
-		<text name="RVB_faultText_batteryisDead" text="Battery"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Thermostat"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Lighting"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Glow plug"/>
+		<text name="RVB_faultText_WIPERS" text="Windshield wipers"/>
+		<text name="RVB_faultText_GENERATOR" text="Generator"/>
+		<text name="RVB_faultText_ENGINE" text="Engine"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Self-starter"/> 
+		<text name="RVB_faultText_BATTERY" text="Battery"/>
 		<text name="RVB_repairTimeDialog" text="Vehicle repair will be completed at %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="Vehicle repair will be completed tomorrow at %s." tag="format"/>
 		<text name="RVB_ErrorList" text="Error list:" />
@@ -78,43 +79,34 @@
 		<text name="RVB_list_servicehours" text="Service"/>
 		<text name="RVB_list_lease" text="Leased"/>
 		<text name="RVB_list_battery" text="Battery"/>
-	
-		
+		<text name="RVB_parts_repair" text="Parts to be repaired"/>
+
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s vehicle inspected, repairs required. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s vehicle inspected, no repairs required."/>
 
-		
 		<text name="RVB_fault_" text="Do not drive too fast, the engine is still cold."/>
 		<text name="RVB_fault_hud" text="%s the vehicle is driven too fast, the engine is still cold." tag="format"/>
-		
+
 		<text name="RVB_fault_thermostat" text="Coolant overheats."/>
-		<text name="RVB_fault_thermostat_hud" text="%s jármű hűtőfolyadéka túlmelegedik." tag="format"/>
+		<text name="RVB_fault_thermostat_hud" text="%s the vehicle coolant overheats." tag="format"/>
 
-		<text name="RVB_fault_thermostatC" text="A motor nem éri el az üzemi hőmérsékletet."/>
-		<text name="RVB_fault_thermostatC_hud" text="%s motorja nem éri el az üzemi hőmérsékletet." tag="format"/>
-		
+		<text name="RVB_fault_thermostatC" text="The engine does not reach operating temperature."/>
+		<text name="RVB_fault_thermostatC_hud" text="%s engine not reaching operating temperature." tag="format"/>
+
 		<text name="RVB_fault_lights" text="The lighting doesn't work." />
-		<text name="RVB_fault_lights_hud" text="%s járműnek nem müködik a világítása." tag="format"/>
-		
-		<text name="RVB_fault_glowplug" text="Fuel consumption has increased." />
-		<text name="RVB_fault_glowplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
-		
-		<text name="fault_battery" text="Battery drains." />
-		<text name="fault_battery_hud" text="%s járműnek merül az akkumulátora." tag="format"/>
-		
-		<text name="RVB_fault_operatinghours" text="The service light came on." />
-		<text name="RVB_fault_operatinghours_hud" text="%s járművet szervizeltetni kell." tag="format"/>
-		
-		
-		<text name="RVB_main_repair_fault" text="The mechanic cannot repair this vehicle, visit &quot;RVB&quot; Service." />
-		
-		
+		<text name="RVB_fault_lights_hud" text="%s vehicle's lights are not working." tag="format"/>
 
-		<text name="popupMessage_battery_timeScaleup" text="Szerelő: Ne kapcsolgasd ki-be az akkumulátor töltőt, mert tovább fog tartani a töltés."/>
-		<text name="popupMessage_battery_timeScaledown" text="Szerelő: Hagyd már békén a töltőt."/>
-		
-		
+		<text name="RVB_fault_glowplug" text="Fuel consumption has increased." />
+		<text name="RVB_fault_glowplug_hud" text="%s vehicle fuel consumption increased." tag="format"/>
+
+		<text name="fault_battery" text="Battery drains." />
+		<text name="fault_battery_hud" text="Battery of a %s vehicle is discharged." tag="format"/>
+
+		<text name="RVB_fault_operatinghours" text="The service light came on." />
+		<text name="RVB_fault_operatinghours_hud" text="%s vehicle needs to be serviced." tag="format"/>
+
+		<text name="RVB_main_repair_fault" text="The mechanic cannot repair this vehicle, visit &quot;RVB&quot; Service." />
 
 		<text name="VehicleBreakdown_DEAD_ENGINE" text="Engine failure." />
 		<text name="VehicleBreakdown_DEAD_GENERATOR" text="The engine does not start, the generator has failed." />
@@ -125,31 +117,19 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Engine does not start, battery is dead." />
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Vehicle cannot be started, battery charging is in progress." />
 
-
-
-		
+		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="tomorrow "/>
 		<text name="infoDisplayExtension_currentPower" text="Power"/>
 		<text name="infoDisplayExtension_batteryCh" text="Battery charging"/>
 		<text name="infoDisplayExtension_inspectionVheicle" text="Vehicle inspection"/>
 		<text name="infoDisplayExtension_repairVheicle" text="Vehicle repair"/>
-		
 		<text name="infoDisplayExtension_serviceVheicle" text="Periodic Service"/>
 
 		<text name="RVB_operatingHours" text="Service hours"/>
-		
+
 		<text name="RVB_TotaloperatingHours" text="Total operating hours"/>
-		
 
-	
-		
-		
-		<text name="warning_multiplayerNotDetected"  text="A '%s' modot....." />
+		<text name="CP_Automatic_Repair_conflict_notice" text="You are using the &quot;Real Vehicle Failures(RVB)&quot; mod, which is why you may get stuck with the &quot;Courseplay(CP)&quot; mode.&#13;&#10;The setting of the &quot;Automatic Repair&quot; field in the CP menu does not correspond to the error-free use of the RVB mode, so RVB automatically disables the CP &quot;Automatic Repair&quot; in the background.&#13;&#10;Thank you for your understanding.&#13;&#10;&#13;&#10;Best regards, MathiasHun"/>
 
-		
-        </texts>
-		
-		
-		
-		
+	</texts>
 </l10n>

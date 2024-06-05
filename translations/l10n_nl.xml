@@ -4,6 +4,7 @@
 	<texts>
 		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte voertuig pech(RVB)"/>
+
 		<!-- settings -->
 		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Weet je het zeker?"/>
@@ -23,6 +24,11 @@
 		<text name="ui_RVB_sectionGeneralSettings" text="Algemene instellingen"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Waarschuwingsbericht"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Als uw voertuig beschadigd, onderhouden of gerepareerd is, verschijnt er een waarschuwingsbericht in het midden van het scherm als u zich in het voertuig bevindt."/>
+		<text name="ui_RVB_generalsetting_difficultyTitle" text="Autopech"/>
+		<text name="ui_RVB_generalsetting_difficultyDesc" text="Het is in ontwikkeling, maar klaar voor gebruik."/>
+		<text name="ui_RVB_difficulty1_subtitle" text="Langzaam"/>
+		<text name="ui_RVB_difficulty2_subtitle" text="Medium"/>
+		<text name="ui_RVB_difficulty3_subtitle" text="Snel"/>
 
 		<!-- vehicle list -->
 		<text name="RVB_WorkShopClose" text="Voertuigwerkplaats is gesloten, kom terug om %s uur." tag="format"/>
@@ -74,12 +80,11 @@
 		<text name="RVB_list_servicehours" text="Service"/>
 		<text name="RVB_list_lease" text="Verhuurd"/>
 		<text name="RVB_list_battery" text="Batterij"/>
-
+		<text name="RVB_parts_repair" text="Te repareren onderdelen"/>
 
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s voertuig geïnspecteerd, reparatie vereist. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s voertuig geïnspecteerd, geen reparaties vereist."/>
-
 
 		<text name="RVB_fault_" text="Rijd niet te snel, de motor is nog koud."/>
 		<text name="RVB_fault_hud" text="%s het voertuig rijdt te snel, de motor is nog koud." tag="format"/>
@@ -102,15 +107,8 @@
 		<text name="RVB_fault_operatinghours" text="Het servicelampje ging branden."/>
 		<text name="RVB_fault_operatinghours_hud" text="%s voertuig heeft onderhoud nodig." tag="format"/>
 
-
 		<text name="RVB_main_repair_fault" text="De monteur kan dit voertuig niet repareren, ga naar &quot;RVB&quot; Service."/>
 
-	
-		<text name="popupMessage_battery_timeScaleup" text="Mechanic: Schakel de batterijlader niet aan en uit, omdat het opladen dan langer duurt."/>
-		<text name="popupMessage_battery_timeScaledown" text="Monteur: laat de oplader met rust."/>
-
-	
-	
 		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motorstoring."/>
 		<text name="VehicleBreakdown_DEAD_GENERATOR" text="De motor start niet, de generator is defect."/>
 		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Voertuig kan niet worden gestart, de inspectie is bezig."/>
@@ -120,33 +118,19 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor start niet, accu is leeg."/>
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Voertuig kan niet worden gestart, de batterij wordt opgeladen."/>
 
-
-
-
+		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="morgen "/>
 		<text name="infoDisplayExtension_currentPower" text="Power"/>
 		<text name="infoDisplayExtension_batteryCh" text="Batterij wordt opgeladen"/>
 		<text name="infoDisplayExtension_inspectionVheicle" text="Voertuiginspectie"/>
 		<text name="infoDisplayExtension_repairVheicle" text="Voertuigreparatie"/>
-
 		<text name="infoDisplayExtension_serviceVheicle" text="Periodieke service"/>
 
 		<text name="RVB_operatingHours" text="Service-uren"/>
 
 		<text name="RVB_TotaloperatingHours" text="Totaal bedrijfsuren"/>
 
-
-
-
-
-		<text name="warning_multiplayerNotDetected" text="Een '%s'-modus....."/>
-		<text name="CP_Automatic_Repair_conflict_notice" text="Je gebruikt de mod &quot;Real Vehicle Breakdowns(RVB)&quot;, dus er kunnen conflicten zijn met de mod &quot;Courseplay(CP)&quot;.
-		De instelling van het veld &quot;Automatische Reparatie&quot; in het CP-menu komt niet overeen met het foutloos gebruik van de RVB-modus. Daarom deactiveert RVB automatisch de CP &quot;Automatische Reparatie&quot; op de achtergrond.
-		
-		Bedankt voor uw begrip.
-
-		Groeten MathiasHun" />
-
+		<text name="CP_Automatic_Repair_conflict_notice" text="Je gebruikt de mod &quot;Real Vehicle Breakdowns(RVB)&quot;, dus er kunnen conflicten zijn met de mod &quot;Courseplay(CP)&quot;.&#13;&#10;De instelling van het veld &quot;Automatische Reparatie&quot; in het CP-menu komt niet overeen met het foutloos gebruik van de RVB-modus. Daarom deactiveert RVB automatisch de CP &quot;Automatische Reparatie&quot; op de achtergrond.&#13;&#10;Bedankt voor uw begrip.&#13;&#10;&#13;&#10;Groeten MathiasHun" />
 
 	</texts>
 </l10n>

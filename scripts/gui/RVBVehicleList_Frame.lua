@@ -2,7 +2,9 @@
 RVBVehicleList_Frame = {}
 local RVBVehicleList_Frame_mt = Class(RVBVehicleList_Frame, TabbedMenuFrameElement)
 
-RVBVehicleList_Frame.CONTROLS = {"vehicleList", "vehicleIcon", "vehicleDetail", "settingsContainer", "boxLayout", "infoBoxText" }
+RVBVehicleList_Frame.CONTROLS = {"vehicleList", "vehicleIcon", "vehicleDetail", "settingsContainer", "boxLayout", "infoBoxText", "partsListTitle", "partsListBox", "partsList",
+								"checkedThermostatPartToggle", "checkedLightingsPartToggle", "checkedGlowPlugPartToggle", "checkedWipersPartToggle", "checkedGeneratorPartToggle", "checkedEnginePartToggle", "checkedSelfstarterPartToggle", "checkedBatteryPartToggle",
+								"THERMOSTAT", "LIGHTINGS", "GLOWPLUG", "WIPERS", "GENERATOR", "ENGINE", "SELFSTARTER", "BATTERY" }
 
 function RVBVehicleList_Frame.new(rvbMain, modName)
 	local self = TabbedMenuFrameElement.new(nil, RVBVehicleList_Frame_mt)
@@ -87,6 +89,7 @@ end
 
 function RVBVehicleList_Frame:onFrameClose()
 	RVBVehicleList_Frame:superClass().onFrameClose(self)
+	self:onSave()
 	self.vehicles = {}
 	self.messageCenter:unsubscribeAll(self)
 end
@@ -171,6 +174,10 @@ function RVBVehicleList_Frame:initialize()
 			self:onButtonvehicleOnly()
 		end
 	}
+	
+	self.partsListTitle:setVisible(false)
+	self.partsListBox:setVisible(false)
+	--self.infoBoxText:setVisible(false)
 
 end
 
@@ -182,8 +189,8 @@ function RVBVehicleList_Frame:onButtonInspectionVehicle()
 
 	if self_vehicle ~= nil and spec ~= nil then
 
-		local AddHour = math.floor(VehicleBreakdowns.IRSBTimes[11] / 3600)
-		local AddMinute = math.floor(((VehicleBreakdowns.IRSBTimes[11] / 3600) - AddHour) * 60)
+		local AddHour = math.floor(VehicleBreakdowns.IRSBTimes[10] / 3600)
+		local AddMinute = math.floor(((VehicleBreakdowns.IRSBTimes[10] / 3600) - AddHour) * 60)
 		local FinishDay, FinishHour, FinishMinute = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
 		local timeText = string.format("%02d:%02d", FinishHour, FinishMinute)
 
@@ -216,10 +223,10 @@ function RVBVehicleList_Frame:onButtonRepairVehicle()
 
 		local faultListTime = 0
 		local faultListText = {}
-		for index, value in pairs(spec.faultStorage) do
-			if type(value) == "boolean" and value then
-				table.insert(faultListText, g_i18n:getText("RVB_faultText_"..VehicleBreakdowns.faultText[index]))
-				faultListTime = faultListTime + VehicleBreakdowns.IRSBTimes[index]
+		for i=1, #spec.parts do
+			if spec.parts[i].repairreq then
+				table.insert(faultListText, g_i18n:getText("RVB_faultText_"..VehicleBreakdowns.faultText[i]))
+				faultListTime = faultListTime + VehicleBreakdowns.IRSBTimes[i]
 			end
 		end
 
@@ -272,14 +279,14 @@ function RVBVehicleList_Frame:onButtonPeriodicService()
 	if self_vehicle ~= nil and not spec.service[1] then
 	
 		local moreservice = 1
-		local servicePeriodic = math.floor(spec.faultStorage[10])
+		local servicePeriodic = math.floor(spec.rvb[4])
 
 		if servicePeriodic > self.rvbMain:getIsIsPeriodicService() then
 			moreservice = math.ceil(servicePeriodic - self.rvbMain:getIsIsPeriodicService())
 		end
 		local alap = 5400
 
-		local serviceTime = alap + VehicleBreakdowns.IRSBTimes[10] * moreservice
+		local serviceTime = alap + VehicleBreakdowns.IRSBTimes[9] * moreservice
 
 		local AddHour = math.floor(serviceTime / 3600)
 		local AddMinute = math.floor(((serviceTime / 3600) - AddHour) * 60)
@@ -312,11 +319,11 @@ function RVBVehicleList_Frame:onButtonBatteryCharging()
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec			= self_vehicle.spec_faultData
 
-	if self_vehicle ~= nil and spec.faultStorage[9] >= 0.10 then
+	if self_vehicle ~= nil and spec.rvb[5] >= 0.10 then
 
-		local lackofcharge = math.floor(spec.faultStorage[9] * 100)
-		local AddHour = math.floor((VehicleBreakdowns.IRSBTimes[9] * lackofcharge) / 3600)
-		local AddMinute = math.floor((((VehicleBreakdowns.IRSBTimes[9] * lackofcharge) / 3600) - AddHour) * 60)
+		local lackofcharge = math.floor(spec.rvb[5] * 100)
+		local AddHour = math.floor((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600)
+		local AddMinute = math.floor((((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600) - AddHour) * 60)
 		local FinishDay, FinishHour, FinishMinute = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
 		local timeText = string.format("%02d:%02d", FinishHour, FinishMinute)
 
@@ -353,8 +360,8 @@ function RVBVehicleList_Frame:onYesNoInspectionDialog(yes)
 			})
 		else
 
-			local AddHour = math.floor(VehicleBreakdowns.IRSBTimes[11] / 3600)
-			local AddMinute = math.floor(((VehicleBreakdowns.IRSBTimes[11] / 3600) - AddHour) * 60)
+			local AddHour = math.floor(VehicleBreakdowns.IRSBTimes[10] / 3600)
+			local AddMinute = math.floor(((VehicleBreakdowns.IRSBTimes[10] / 3600) - AddHour) * 60)
 
 			spec.repair[8] = 0
 			spec.repair[1] = true
@@ -412,9 +419,9 @@ function RVBVehicleList_Frame:onYesNoRepairDialog(yes)
 
 			local faultListTime = 0
 			local fault = 0
-			for index, value in pairs(spec.faultStorage) do
-				if type(value) == "boolean" and value then
-					faultListTime = faultListTime + VehicleBreakdowns.IRSBTimes[index]
+			for i=1, #spec.parts do
+				if spec.parts[i].repairreq then
+					faultListTime = faultListTime + VehicleBreakdowns.IRSBTimes[i]
 					fault = fault + 1
 				end
 			end
@@ -491,7 +498,7 @@ function RVBVehicleList_Frame:onYesNoServiceDialog(yes)
 		else
 
 			local moreservice = 1
-			local servicePeriodic = math.floor(spec.faultStorage[10])
+			local servicePeriodic = math.floor(spec.rvb[4])
 
 			if servicePeriodic > self.rvbMain:getIsIsPeriodicService() then
 				moreservice = math.ceil(servicePeriodic - self.rvbMain:getIsIsPeriodicService())
@@ -545,14 +552,14 @@ function RVBVehicleList_Frame:onYesNoBatteryChDialog(yes)
 			})
 		else
 
-			local lackofcharge = math.floor(spec.faultStorage[9] * 100)
-			local AddHour = math.floor((VehicleBreakdowns.IRSBTimes[9] * lackofcharge) / 3600)
-			local AddMinute = math.floor((((VehicleBreakdowns.IRSBTimes[9] * lackofcharge) / 3600) - AddHour) * 60)
+			local lackofcharge = math.floor(spec.rvb[5] * 100)
+			local AddHour = math.floor((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600)
+			local AddMinute = math.floor((((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600) - AddHour) * 60)
 
 			spec.battery[1] = true
 			spec.battery[2] = false
 			spec.battery[3], spec.battery[4], spec.battery[5] = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
-			spec.battery[6] = spec.faultStorage[9] / (VehicleBreakdowns.IRSBTimes[9] * lackofcharge) * 60
+			spec.battery[6] = spec.rvb[5] / (VehicleBreakdowns.IRSBTimes[8] * lackofcharge) * 60
 			spec.battery[7] = self:getBatteryChPrice()
 
 			spec.rvb[1] = g_currentMission.missionInfo.timeScale
@@ -580,7 +587,7 @@ function RVBVehicleList_Frame:getBatteryChPrice()
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	return self.calculateBatteryChPrice(1000, spec.faultStorage[9])
+	return self.calculateBatteryChPrice(300, spec.rvb[5])
 end
 
 function RVBVehicleList_Frame.calculateBatteryChPrice(price, charge)
@@ -591,7 +598,7 @@ function RVBVehicleList_Frame:updateMenuButtons()
 
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
-
+	
 	self.menuButtonInfo = {
 		{ inputAction = InputAction.MENU_BACK }
 	}
@@ -609,7 +616,7 @@ function RVBVehicleList_Frame:updateMenuButtons()
 
 		local servicePrice = 0
 		if spec ~= nil then
-			servicePrice = math.floor(spec.faultStorage[10])
+			servicePrice = math.floor(spec.rvb[4])
 		end
 
 		local isBorrowed = self_vehicle.propertyState == Vehicle.PROPERTY_STATE_MISSION
@@ -617,7 +624,7 @@ function RVBVehicleList_Frame:updateMenuButtons()
 		--local isMPGame = g_currentMission.missionDynamicInfo.isMultiplayer
 		local batterycher = 0
 		if spec ~= nil then
-			batterycher = spec.faultStorage[9]
+			batterycher = spec.rvb[5]
 		end
 
 		if spec ~= nil and self_vehicle.spec_motorized ~= nil and self_vehicle.getIsEntered ~= nil and not self_vehicle:getIsEntered() then
@@ -1001,8 +1008,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 		--[[ service ]]
 		if spec ~= nil then
 			local periodicServiceInterval = self.rvbMain:getIsIsPeriodicService()
-			local ServiceAmount = math.floor(spec.faultStorage[10])
-			ServiceAmount = ServiceAmount.."."..math.floor((spec.faultStorage[10] - ServiceAmount) * 60)
+			local ServiceAmount = math.floor(spec.rvb[4])
+			ServiceAmount = ServiceAmount.."."..math.floor((spec.rvb[4] - ServiceAmount) * 60)
 			cell:getAttribute("service"):setText(string.format(g_i18n:getText("RVB_serviceHours"), ServiceAmount, periodicServiceInterval))
 		else
 			cell:getAttribute("service"):setText("-")
@@ -1029,7 +1036,120 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 
 			self.vehicleIcon:setVisible(true)
 			self.vehicleDetail:setVisible(true)
+			
+			--
+			
+			self.partsListTitle:setVisible(false)
+			self.partsListBox:setVisible(false)
 
+			if spec ~= nil and self_vehicle.spec_motorized ~= nil and self_vehicle.getIsEntered ~= nil then
+				if spec.repair[10] then
+				
+					self.partsListTitle:setVisible(true)
+					self.partsListBox:setVisible(true)
+
+					self.checkedThermostatPartToggle:setIsChecked(spec.parts[1].repairreq)
+					local thermostat_Pvalue = (spec.parts[1].lifetime * 80) / 100
+					local thermostat_Pfoot = 100 - ((spec.parts[1].operatingHours * 100) / spec.parts[1].lifetime)
+
+					print(self_vehicle:getFullName().." "..string.format("%.0f", thermostat_Pfoot).."%")
+					if thermostat_Pfoot < 0 then thermostat_Pfoot = 0 end
+					self.THERMOSTAT:setText(g_i18n:getText("RVB_faultText_THERMOSTAT"))
+					if spec.parts[1].operatingHours >= thermostat_Pvalue then
+						self.THERMOSTAT:setText(g_i18n:getText("RVB_faultText_THERMOSTAT").." ("..string.format("%.0f", thermostat_Pfoot).."%)")
+					end
+					if spec.parts[1].operatingHours < 95 then
+						self.checkedThermostatPartToggle:setDisabled(true)
+					end
+					
+					self.checkedLightingsPartToggle:setIsChecked(spec.parts[2].repairreq)
+					local lightings_Pvalue = (spec.parts[2].lifetime * 80) / 100
+					local lightings_Pfoot = 100 - ((spec.parts[2].operatingHours * 100) / spec.parts[2].lifetime)
+					print(string.format("%.0f", lightings_Pfoot).."%")
+					if lightings_Pfoot < 0 then lightings_Pfoot = 0 end
+					self.LIGHTINGS:setText(g_i18n:getText("RVB_faultText_LIGHTINGS"))
+					if spec.parts[2].operatingHours >= lightings_Pvalue then
+						self.LIGHTINGS:setText(g_i18n:getText("RVB_faultText_LIGHTINGS").." ("..string.format("%.0f", lightings_Pfoot).."%)")
+					end
+					if spec.parts[2].operatingHours < 95 then
+						self.checkedLightingsPartToggle:setDisabled(true)
+					end
+			
+					self.checkedGlowPlugPartToggle:setIsChecked(spec.parts[3].repairreq)
+					local glowPlug_Pvalue = (spec.parts[3].lifetime * 80) / 100
+					local glowPlug_Pfoot = 100 - ((spec.parts[3].operatingHours * 100) / spec.parts[3].lifetime)
+					print(string.format("%.0f", glowPlug_Pfoot).."%")
+					self.GLOWPLUG:setText(g_i18n:getText("RVB_faultText_GLOWPLUG"))
+					if spec.parts[3].operatingHours >= glowPlug_Pvalue then
+						self.GLOWPLUG:setText(g_i18n:getText("RVB_faultText_GLOWPLUG").." ("..string.format("%.0f", glowPlug_Pfoot).."%)")
+					end
+					if spec.parts[3].operatingHours < 95 then
+						self.checkedGlowPlugPartToggle:setDisabled(true)
+					end
+			
+					self.checkedWipersPartToggle:setIsChecked(spec.parts[4].repairreq)
+					local wipers_Pvalue = (spec.parts[4].lifetime * 80) / 100
+					local wipers_Pfoot = 100 - ((spec.parts[4].operatingHours * 100) / spec.parts[4].lifetime)
+					print(string.format("%.0f", wipers_Pfoot).."%")
+					self.WIPERS:setText(g_i18n:getText("RVB_faultText_WIPERS"))
+					if spec.parts[4].operatingHours >= wipers_Pvalue then
+						self.WIPERS:setText(g_i18n:getText("RVB_faultText_WIPERS").." ("..string.format("%.0f", wipers_Pfoot).."%)")
+					end
+					if spec.parts[4].operatingHours < 95 then
+						self.checkedWipersPartToggle:setDisabled(true)
+					end
+			
+					self.checkedGeneratorPartToggle:setIsChecked(spec.parts[5].repairreq)
+					local generator_Pvalue = (spec.parts[5].lifetime * 80) / 100
+					local generator_Pfoot = 100 - ((spec.parts[5].operatingHours * 100) / spec.parts[5].lifetime)
+					print(string.format("%.0f", generator_Pfoot).."%")
+					self.GENERATOR:setText(g_i18n:getText("RVB_faultText_GENERATOR"))
+					if spec.parts[5].operatingHours >= generator_Pvalue then
+						self.GENERATOR:setText(g_i18n:getText("RVB_faultText_GENERATOR").." ("..string.format("%.0f", generator_Pfoot).."%)")
+					end
+					if spec.parts[5].operatingHours < 95 then
+						self.checkedGeneratorPartToggle:setDisabled(true)
+					end
+			
+					self.checkedEnginePartToggle:setIsChecked(spec.parts[6].repairreq)
+					local engine_Pvalue = (spec.parts[6].lifetime * 80) / 100
+					local engine_Pfoot = 100 - ((spec.parts[6].operatingHours * 100) / spec.parts[6].lifetime)
+					print(string.format("%.0f", engine_Pfoot).."%")
+					self.ENGINE:setText(g_i18n:getText("RVB_faultText_ENGINE"))
+					if spec.parts[6].operatingHours >= engine_Pvalue then
+						self.ENGINE:setText(g_i18n:getText("RVB_faultText_ENGINE").." ("..string.format("%.0f", engine_Pfoot).."%)")
+					end
+					if spec.parts[6].operatingHours < 95 then
+						self.checkedEnginePartToggle:setDisabled(true)
+					end
+			
+					self.checkedSelfstarterPartToggle:setIsChecked(spec.parts[7].repairreq)
+					local selfstarter_Pvalue = (spec.parts[7].lifetime * 80) / 100
+					local selfstarter_Pfoot = 100 - ((spec.parts[7].operatingHours * 100) / spec.parts[7].lifetime)
+					print(string.format("%.0f", selfstarter_Pfoot).."%")
+					self.SELFSTARTER:setText(g_i18n:getText("RVB_faultText_SELFSTARTER"))
+					if spec.parts[7].operatingHours >= selfstarter_Pvalue then
+						self.SELFSTARTER:setText(g_i18n:getText("RVB_faultText_SELFSTARTER").." ("..string.format("%.0f", selfstarter_Pfoot).."%)")
+					end
+					if spec.parts[7].operatingHours < 95 then
+						self.checkedSelfstarterPartToggle:setDisabled(true)
+					end
+			
+					self.checkedBatteryPartToggle:setIsChecked(spec.parts[8].repairreq)
+					local battery_Pvalue = (spec.parts[8].lifetime * 80) / 100
+					local battery_Pfoot = 100 - ((spec.parts[8].operatingHours * 100) / spec.parts[8].lifetime)
+					print(string.format("%.0f", battery_Pfoot).."%")
+					self.BATTERY:setText(g_i18n:getText("RVB_faultText_BATTERY"))
+					if spec.parts[8].operatingHours >= battery_Pvalue then
+						self.BATTERY:setText(g_i18n:getText("RVB_faultText_BATTERY").." ("..string.format("%.0f", battery_Pfoot).."%)")
+					end
+					if spec.parts[8].operatingHours < 95 then
+						self.checkedBatteryPartToggle:setDisabled(true)
+					end
+					
+				end
+			end
+			
 			if self_vehicle.getAttachedImplements ~= nil then
 				--attachedImplements = self_vehicle:getAttachedImplements()
 			end
@@ -1055,7 +1175,7 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 
 				cell:setVisible(false)
 				if spec ~= nil then
-					amount = spec.faultStorage[9]
+					amount = spec.rvb[5]
 					self:setStatusBarValue(cell:getAttribute("detailBar"), 1-amount, amount, 0.3, 0.7)
 					self:setDetailText(
 						cell, false,
@@ -1086,7 +1206,7 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					amount = self_vehicle:getDamageAmount()
 				end
 
-				self:setStatusBarValue(cell:getAttribute("detailBar"), 1-amount, amount, 0.1, 0.2)
+				self:setStatusBarValue(cell:getAttribute("detailBar"), 1-amount, amount, 0.1, 0.6)
 				self:setDetailText(
 					cell, false,
 					"ui_condition",
@@ -1273,6 +1393,14 @@ function RVBVehicleList_Frame:onListSelectionChanged(list, section, index)
 				end
 				self:setInfoText(infoText)
 			end
+			
+			local textsNoYes = { self.i18n:getText("ui_off"), self.i18n:getText("ui_on") }
+
+			self.checkedThermostatPartToggle:setTexts(textsNoYes)
+			self.checkedLightingsPartToggle:setTexts(textsNoYes)
+			self.checkedGlowPlugPartToggle:setTexts(textsNoYes)
+			self.checkedWipersPartToggle:setTexts(textsNoYes)
+			self.checkedGeneratorPartToggle:setTexts(textsNoYes)
 
 		else
 			self:setInfoText(infoText)
@@ -1283,4 +1411,117 @@ function RVBVehicleList_Frame:onListSelectionChanged(list, section, index)
 
 	self:updateMenuButtons()
 	
+end
+
+function RVBVehicleList_Frame:onSave()
+	
+	local alertmessage = self.alertMessageSetting:getIsChecked()
+	local rvbDifficulty = self.rvbDifficulty:getState()
+	
+	if g_server ~= nil then
+		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
+    else
+		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
+    end
+	
+end
+
+function RVBVehicleList_Frame:onSave()
+
+	local ThermostatPart = self.checkedThermostatPartToggle:getIsChecked()
+
+	if g_server ~= nil then
+		--g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
+    else
+		--g_client:getServerConnection():sendEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
+    end
+
+end
+
+function RVBVehicleList_Frame:onClickThermostatPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'ThermostatPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[1].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickLightingsPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'LightingsPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[2].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickGlowPlugPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'GlowPlugPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[3].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickWipersPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'WipersPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[4].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickGeneratorPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'GeneratorPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[5].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickEnginePart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'EnginePart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[6].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickSelfstarterPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'Self-StarterPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[7].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:onClickBatteryPart(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'BatteryPart': ".. tostring(_state))
+	local selectedIndex = self.vehicleList.selectedIndex
+	local self_vehicle  = self.vehicles[selectedIndex]
+	local spec          = self_vehicle.spec_faultData
+	spec.parts[8].repairreq = _state
+	self:updateMenuButtons()
+end
+
+function RVBVehicleList_Frame:updateMenuButtons_AFM()
+	self.extra1ButtonInfo.disabled = true
+end
+
+if FS22_AdvancedFarmManager ~= nil and FS22_AdvancedFarmManager.AIMGuiVehicleFrame ~= nil then
+	FS22_AdvancedFarmManager.AIMGuiVehicleFrame.updateMenuButtons = Utils.appendedFunction(FS22_AdvancedFarmManager.AIMGuiVehicleFrame.updateMenuButtons, RVBVehicleList_Frame.updateMenuButtons_AFM);
 end

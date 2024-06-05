@@ -127,7 +127,7 @@ function RVBGamePlaySettings_Frame:onSave()
 	local workshopClose = self.workshopCloseSet:getState()
 
 	if g_server ~= nil then
-		g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
+		g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose), nil, nil, self)
     else
 		g_client:getServerConnection():sendEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
     end
@@ -146,8 +146,9 @@ end
 
 function RVBGamePlaySettings_Frame:onClickRepair(state)
 	local _state = state == CheckedOptionElement.STATE_CHECKED
+	self:onSave()
 	self.rvbMain:setIsRepairShop(_state)
-	Logging.info("[RVB] Settings 'repairshop': ".. tostring(_state))
+	Logging.info("[RVB] Settings 'repairshop': ".. tostring(_state)..state)
 end
 
 function RVBGamePlaySettings_Frame:onClickWorkshopOpen(state)

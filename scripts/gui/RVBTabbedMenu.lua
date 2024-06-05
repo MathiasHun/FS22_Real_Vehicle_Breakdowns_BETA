@@ -22,7 +22,6 @@ function RVBTabbedMenu:new(messageCenter, i18n, inputManager, modDirectory)
 
     self.modDirectory = modDirectory
     self.selectedItem = nil
-    --self.i18n = i18n
     self.i18n = g_i18n.modEnvironments[g_vehicleBreakdownsModName]
 
     self.defaultMenuButtonInfo = {}
@@ -50,7 +49,7 @@ function RVBTabbedMenu:onGuiSetupFinished()
 	
 
 	if g_currentMission ~= nil and g_currentMission.connectedToDedicatedServer or self.isClient then
-		self:setPageEnabled(RVBGamePlaySettings_Frame, false)
+		--self:setPageEnabled(RVBGamePlaySettings_Frame, false)
     end	
 	self:setupMenuButtonInfo()
 	
@@ -202,11 +201,12 @@ function RVBTabbedMenu:setDedicatedMenuButtonInfo(info)
 
     self.gameplaySettingFrame:setMenuButtonInfo(info)
     self.generalSettingFrame:setMenuButtonInfo(info)
-
+	
+	self.newvehicleListFrame:setMenuButtonInfo(info)
 	if self.pageEnable then
-		self:setPageEnabled(RVBGamePlaySettings_Frame, true)
+		--self:setPageEnabled(RVBGamePlaySettings_Frame, true)
 	else
-		self:setPageEnabled(RVBGamePlaySettings_Frame, false)
+		--self:setPageEnabled(RVBGamePlaySettings_Frame, false)
     end	
 	
     if self.currentPage ~= nil then

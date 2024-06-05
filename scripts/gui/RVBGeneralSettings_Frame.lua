@@ -2,7 +2,7 @@
 RVBGeneralSettings_Frame = {}
 local RVBGeneralSettings_Frame_mt = Class(RVBGeneralSettings_Frame, TabbedMenuFrameElement)
 
-RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "settingsContainer", "boxLayout"}
+RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "rvbDifficulty", "settingsContainer", "boxLayout"}
 
 function RVBGeneralSettings_Frame.new(rvbMain, modName)
     local self = TabbedMenuFrameElement.new(nil, RVBGeneralSettings_Frame_mt)
@@ -13,7 +13,7 @@ function RVBGeneralSettings_Frame.new(rvbMain, modName)
     self.modName = modName
     self.selectedItem = nil
     self.i18n = g_i18n.modEnvironments[g_vehicleBreakdownsModName]
-
+	
     return self
 end
 
@@ -38,6 +38,12 @@ function RVBGeneralSettings_Frame:assignStaticTexts()
 
     self.alertMessageSetting:setTexts(textsNoYes)
 
+	local difficulty_values = stream(self.rvbMain.DIFFICULTY_A):map(function(difficulty_value)
+		return tostring(difficulty_value)
+    end)
+    self.difficulty_values = difficulty_values:toList()
+	self.rvbDifficulty:setTexts(self.difficulty_values)
+
 end
 
 function RVBGeneralSettings_Frame:onFrameOpen()
@@ -58,6 +64,12 @@ function RVBGeneralSettings_Frame:updateValues()
 
 	self.alertMessageSetting:setIsChecked(self.rvbMain:getIsAlertMessage())
 
+	for index, value in pairs(self.rvbMain.DIFFICULTY_A) do
+		if index == generalSettings.rvbDifficultyState then
+			generalSettings.rvbDifficulty = self.rvbMain.DIFFICULTY_A[index]
+		end
+	end
+	self.rvbDifficulty:setState(generalSettings.rvbDifficultyState)
 end
 
 function RVBGeneralSettings_Frame:onFrameClose()
@@ -68,10 +80,12 @@ end
 function RVBGeneralSettings_Frame:onSave()
 	
 	local alertmessage = self.alertMessageSetting:getIsChecked()
+	local rvbDifficulty = self.rvbDifficulty:getState()
+	
 	if g_server ~= nil then
-		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage))
+		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
     else
-		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage))
+		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
     end
 	
 end
@@ -85,4 +99,9 @@ function RVBGeneralSettings_Frame:onClickAlert(state)
 	local _state = state == CheckedOptionElement.STATE_CHECKED
 	self.rvbMain:setIsAlertMessage(_state)
 	Logging.info("[RVB] Settings 'alertmessage': ".. tostring(_state))
+end
+
+function RVBGeneralSettings_Frame:onClickrvbDifficulty(state)
+	self.rvbMain:setIsRVBDifficulty(state)
+	Logging.info("[RVB] Settings 'rvbDifficulty': "..self.rvbMain.DIFFICULTY_A[state])
 end

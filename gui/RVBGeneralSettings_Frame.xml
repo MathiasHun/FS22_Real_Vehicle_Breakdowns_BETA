@@ -21,6 +21,15 @@
 					<GuiElement type="text" profile="multiTextOptionSettingsTooltip" text="$l10n_ui_RVB_generalsetting_alertMessageDesc" />
                 </GuiElement>
 
+				<GuiElement type="multiTextOption" profile="multiTextOptionSettings" id="rvbDifficulty" onClick="onClickrvbDifficulty">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft"/>
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text" profile="multiTextOptionSettingsText"/>
+                    <GuiElement type="text" profile="multiTextOptionSettingsTitle" text="$l10n_ui_RVB_generalsetting_difficultyTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg"/>
+					<GuiElement type="text" profile="multiTextOptionSettingsTooltip" text="$l10n_ui_RVB_generalsetting_difficultyDesc" />
+                </GuiElement>
+				
             </GuiElement>
 			
 			<GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked">

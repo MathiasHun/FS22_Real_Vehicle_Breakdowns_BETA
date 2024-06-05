@@ -42,7 +42,7 @@
 
 		<GuiElement type="empty" profile="uiInGameMenuFrame" position="0px -220px">
 
-			<GuiElement type="empty" profile="rvbtSpaceBox" />
+			<GuiElement type="empty" profile="rvbtSpaceBox"/>
 
 			<GuiElement type="bitmap" profile="rvbMenuSettingsBox">
 
@@ -61,7 +61,88 @@
 						</GuiElement>
 					</GuiElement>
 				</GuiElement>
+				
+				
+				<GuiElement type="empty" profile="rvbMenuButtonsLayout3" id="partsListTitle">
+					<GuiElement type="text" profile="settingsMenuSubtitle" text="$l10n_RVB_parts_repair" with="anchorTopLeft"/>
+				</GuiElement>
+				
+				
+				<GuiElement type="empty" profile="rvbMenuButtonsLayout2" id="partsListBox">
+								
+					<!--<GuiElement type="bitmap" profile="topScrollClipper" name="topClipper"/>
+					<GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" />-->
 
+
+					<GuiElement type="scrollingLayout" profile="ContentBox" id="partsList" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedThermostatPartToggle" onClick="onClickThermostatPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_THERMOSTAT" id="THERMOSTAT"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedLightingsPartToggle" onClick="onClickLightingsPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_LIGHTINGS" id="LIGHTINGS"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedGlowPlugPartToggle" onClick="onClickGlowPlugPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_GLOWPLUG" id="GLOWPLUG"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedWipersPartToggle" onClick="onClickWipersPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_WIPERS" id="WIPERS"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedGeneratorPartToggle" onClick="onClickGeneratorPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_GENERATOR" id="GENERATOR"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedEnginePartToggle" onClick="onClickEnginePart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_ENGINE" id="ENGINE"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedSelfstarterPartToggle" onClick="onClickSelfstarterPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_SELFSTARTER" id="SELFSTARTER"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+						<GuiElement type="checkedOption" profile="MultiTextOption" id="checkedBatteryPartToggle" onClick="onClickBatteryPart">
+							<GuiElement type="button" profile="MultiTextOptionLeft"/>
+							<GuiElement type="button" profile="MultiTextOptionRight"/>
+							<GuiElement type="text" profile="MultiTextOptionText"/>
+							<GuiElement type="text" profile="MultiTextOptionTitle" text="$l10n_RVB_faultText_BATTERY" id="BATTERY"/>
+							<GuiElement type="bitmap" profile="MultiTextOptionBg"/>
+						</GuiElement>
+
+					</GuiElement>
+
+					<GuiElement type="threePartBitmap" profile="RVB_ingameMenuSlider2" >
+						<GuiElement type="slider" profile="RVB_ingameMenuSliderBar2" dataElementId="partsList" handleFocus="true" focusInit="onOpen"/>
+					</GuiElement>
+			
+
+				</GuiElement>
+
+				
 			</GuiElement>
 
 		</GuiElement>

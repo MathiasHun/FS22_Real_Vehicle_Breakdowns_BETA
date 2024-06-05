@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
 	<author>MathiasHun</author>
-	<version>0.8.2.0</version>
+	<version>0.8.5.0</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -55,7 +55,17 @@ Changelog 0.8.2.0:
 - github issues#1
 - github issues#5
 - github issues#7
-- Added Brazilian/Portuguese, German, Russian translations 
+- Added Brazilian/Portuguese, German, Russian translations
+
+Changelog 0.8.5.0:
+- Added vehicle HUD faults icon
+- github issues#10 - Window randomly pops up saying "The mechanic cannot repair this vehicle, visit RVB Service" - Courseplay conflicts
+- github issues#11 - Temperature indicator not working
+- github issues#13 - Many breakdowns
+- github issues#18 - HUD position fuel text wrong - I hope it's good now
+- Added Vehicle breakdown difficulty
+- Added Dutch, Polish translations
+- Many other things :)
 ]]></en>
 
 	</description>

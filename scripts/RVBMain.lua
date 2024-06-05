@@ -7,6 +7,9 @@ RVBMain.ONOFF = { 1, 2 }
 RVBMain.alertmessage = false
 RVBMain.alertmessageState = 2
 
+--RVBMain.difficulty = ""
+RVBMain.difficultyState = 1
+
 RVBMain.repairshop = true
 RVBMain.repairshopState = 1
 
@@ -29,6 +32,8 @@ RVBMain.workshopCloseState = 1
 RVBMain.DEFAULT_SETTINGS = {
 	alertmessage = RVBMain.alertmessage,
 	alertmessageState = RVBMain.alertmessageState,
+	--rvbDifficulty = RVBMain.difficulty,
+	rvbDifficultyState = RVBMain.difficultyState,
 	repairshop = RVBMain.repairshop,
 	repairshopState = RVBMain.repairshopState,
 	dailyServiceInterval = RVBMain.dailyServiceInterval,
@@ -47,6 +52,7 @@ RVBMain.actions = {{
 
 RVBMain.STARTMOTOR = false
 
+local popupMessage
 
 function RVBMain:new(modDirectory, modName)
     local self = {}
@@ -60,6 +66,9 @@ function RVBMain:new(modDirectory, modName)
 	self.gameplaySettings = {}
 	self.generalSettings = {}
 	self.actionEvents = {}
+	
+	--self.i18n =  g_i18n.modEnvironments[self.modName]
+	
 
 	--self:resetGamePlaySettings()
 	--self:resetGeneralSettings()
@@ -71,12 +80,20 @@ end
 function RVBMain:onMissionLoaded(mission)
 
     --self.ui:load()
+	
+	self.DIFFICULTY_A = {}
+	self.DIFFICULTY_A[1] = g_i18n:getText("ui_RVB_difficulty1_subtitle")
+	self.DIFFICULTY_A[2] = g_i18n:getText("ui_RVB_difficulty2_subtitle")
+	self.DIFFICULTY_A[3] = g_i18n:getText("ui_RVB_difficulty3_subtitle")
 
+	RVBMain.difficulty = self.DIFFICULTY_A[2]
+	RVBMain.DEFAULT_SETTINGS.rvbDifficulty = self.DIFFICULTY_A[2]
+	
 	self:registerGamePlaySettingsSchema()
 	self:registerGeneralSettingsSchema()
-	
-	self.mission = mission
 
+	self.mission = mission
+	
     local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_Real_Vehicle_Breakdown/"
     createFolder(VEHICLE_BREAKDOWN_FOLDER)
 
@@ -107,12 +124,12 @@ function RVBMain:onMissionLoaded(mission)
         copyFile(DEFAUL_GENERAL_SETTINGS_XML, GENERAL_SETTINGS_XML, false)
 		self:resetGeneralSettings()
     end
-	
+
 	-- hud
 	self.ui_hud = RVB_HUD:new(self.mission.hud.speedMeter, self.mission.hud.gameInfoDisplay, self.modDirectory)
 	self.ui_hud:load()
-	
-	
+
+
 	g_gui:loadProfiles(self.modDirectory .. "gui/guiProfiles.xml")
 
     -- menu
@@ -127,6 +144,8 @@ function RVBMain:onMissionLoaded(mission)
 
     self.menu = RVBTabbedMenu:new(g_messageCenter, g_i18n, g_inputBinding, self, self.modName)
     g_gui:loadGui(self.modDirectory .. "gui/RVBTabbedMenu.xml", "RVBTabbedMenu", self.menu)
+	
+	
 	
 end
 
@@ -172,6 +191,7 @@ function RVBMain:registerGeneralSettingsSchema()
 	local schemaKey = "rvbGeneralSettings"
 	
 	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".alertmessage#value", "Alert Message")
+	self.generalSettingSchema:register(XMLValueType.INT, schemaKey .. ".difficulty#value", "RVB difficulty")
 
 end
 
@@ -248,10 +268,50 @@ function RVBMain:loadGeneralSettingsFromXml(xmlPath)
 			end
 		end
 
+		
+		self.generalSettings.rvbDifficultyState = xmlFile:getValue(key .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
+		for index, value in pairs(self.DIFFICULTY_A) do
+			if index == self.generalSettings.rvbDifficultyState then
+				self.generalSettings.rvbDifficulty = self.DIFFICULTY_A[index]
+			end
+		end
+
         xmlFile:delete()
     end
 end
 
+-- Original CP WearableController:autoRepair()
+function RVBMain:autoRepair(superFunc)
+	--if self:isBrokenGreaterThan(100-self.autoRepairSetting:getValue()) then 
+	--	self.implement:repairVehicle()
+	--end
+end
+
+if g_modIsLoaded["FS22_Courseplay"] then
+	if FS22_Courseplay ~= nil and FS22_Courseplay.WearableController.autoRepair ~= nil then
+	
+		local autoRepairSetting = FS22_Courseplay.CpGlobalSettings().autoRepair:getValue()
+		if autoRepairSetting > 0 then
+			popupMessage = {
+				startUpdateTime = 5000,
+				update = function(self, dt)
+					self.startUpdateTime = self.startUpdateTime - dt
+					if self.startUpdateTime < 0 and not g_gui:getIsGuiVisible() then
+						if g_currentMission.hud ~= nil then
+							local message = g_i18n:getText("CP_Automatic_Repair_conflict_notice", g_currentModName)
+							g_currentMission.hud:showInGameMessage("", message or "", -1, nil, nil, nil)
+						end
+						removeModEventListener(self)
+						popupMessage = nil
+					end
+				end
+			}
+			addModEventListener(popupMessage)
+		end
+		
+		FS22_Courseplay.WearableController.autoRepair = Utils.overwrittenFunction(FS22_Courseplay.WearableController.autoRepair, RVBMain.autoRepair)
+	end
+end
 
 function RVBMain:registerActionEvents(inputManager)
     self:unregisterActionEvents()
@@ -318,7 +378,9 @@ end
 function RVBMain:resetGeneralSettings()
     self.generalSettings = {
 		alertmessage = RVBMain.DEFAULT_SETTINGS.alertmessage,
-		alertmessageState = RVBMain.DEFAULT_SETTINGS.alertmessageState
+		alertmessageState = RVBMain.DEFAULT_SETTINGS.alertmessageState,
+		rvbDifficulty = RVBMain.DEFAULT_SETTINGS.rvbDifficulty,
+		rvbDifficultyState = RVBMain.DEFAULT_SETTINGS.rvbDifficultyState
     }
 end
 
@@ -346,11 +408,11 @@ function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInter
 
 end
 
-function RVBMain:setCustomGeneralSet(alertmessage)
+function RVBMain:setCustomGeneralSet(alertmessage, difficulty)
 
     if g_server then
 
-        g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage))
+        g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty))
 
 		self.generalSettings.alertmessage = alertmessage
 		local onoff_r = 2
@@ -364,6 +426,8 @@ function RVBMain:setCustomGeneralSet(alertmessage)
 				self.generalSettings.alertmessageState = index
 			end
 		end
+		
+		self:setIsRVBDifficulty(difficulty)
 
     end
 
@@ -395,6 +459,7 @@ function RVBMain:rvbsaveToXMLFile(RVBXMLFile)
 
     if xmlFile_general ~= 0 then
 		xmlFile_general:setValue(schemaKey_general .. ".alertmessage#value", self.generalSettings.alertmessage)
+		xmlFile_general:setValue(schemaKey_general .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
 		
         xmlFile_general:save()
         xmlFile_general:delete()
@@ -435,6 +500,16 @@ function RVBMain:setIsAlertMessage(alertmessage)
 	else
 		self.generalSettings.alertmessageState = 1
 	end
+end
+
+function RVBMain:getIsRVBDifficulty()
+    return self.generalSettings.rvbDifficulty
+end
+
+function RVBMain:setIsRVBDifficulty(difficulty)
+	self.generalSettings.rvbDifficultyState = difficulty
+	self.generalSettings.rvbDifficulty = self.DIFFICULTY_A[difficulty]
+
 end
 
 --[[**************************************************]]
@@ -497,6 +572,7 @@ function RVBMain:onReadStream(streamId, connection)
 		self.gameplaySettings.workshopClose = streamReadInt32(streamId)
 		
 		self.generalSettings.alertmessage = streamReadBool(streamId)
+		self.generalSettings.rvbDifficultyState = streamReadInt32(streamId)
     end
 end
 
@@ -509,5 +585,6 @@ function RVBMain:onWriteStream(streamId, connection)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopClose)
 		
 		streamWriteBool(streamId, self.generalSettings.alertmessage)
+		streamWriteInt32(streamId, self.generalSettings.rvbDifficultyState)
     end
 end

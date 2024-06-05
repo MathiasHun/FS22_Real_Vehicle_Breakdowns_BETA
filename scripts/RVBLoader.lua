@@ -21,6 +21,7 @@ source(Utils.getFilename("scripts/events/RVBBattery_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBService_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBGamePSet_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBGeneralSet_Event.lua", directory))
+source(Utils.getFilename("scripts/events/RVBParts_Event.lua", directory))
 
 -- HUD
 source(Utils.getFilename("scripts/hud/RVB_HUD.lua", directory))
@@ -29,7 +30,7 @@ source(Utils.getFilename("scripts/hud/RVB_HUD.lua", directory))
 source(Utils.getFilename("scripts/utils/stream.lua", directory))
 
 local vehicleBreakdowns
-local popupMessage
+
 
 local function isEnabled()
     return vehicleBreakdowns ~= nil
@@ -54,26 +55,6 @@ function init()
     FSBaseMission.registerActionEvents = Utils.appendedFunction(FSBaseMission.registerActionEvents, registerActionEvents)
     BaseMission.unregisterActionEvents = Utils.appendedFunction(BaseMission.unregisterActionEvents, unregisterActionEvents)
 
-	popupMessage = {
-		startUpdateTime = 2000,
-
-		update = function(self, dt)
-			self.startUpdateTime = self.startUpdateTime - dt
-
-			if self.startUpdateTime < 0 and not g_gui:getIsGuiVisible() then
-				if g_currentMission.hud ~= nil then
-					local message = string.format(g_i18n:getText("warning_multiplayerNotDetected", modName), modName)
-
-					g_currentMission.hud:showInGameMessage("", message or "", -1, nil, nil, nil)
-				end
-
-				removeModEventListener(self)
-				popupMessage = nil
-			end
-		end
-	}
-
-	--addModEventListener(popupMessage)
 end
 
 function loadMission(mission)

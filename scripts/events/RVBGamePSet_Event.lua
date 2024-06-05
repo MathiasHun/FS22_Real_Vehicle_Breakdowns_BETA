@@ -18,7 +18,6 @@ function RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, re
 	self.repairshop = repairshop
 	self.workshopOpen = workshopOpen
 	self.workshopClose = workshopClose
-
     return self
 end
 
@@ -40,11 +39,9 @@ function RVBGamePSet_Event:writeStream(streamId, connection)
 end
 
 function RVBGamePSet_Event:run(connection)
-
-	local message = g_currentMission.vehicleBreakdowns:setCustomGamePlaySet(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose)
-
-	if g_dedicatedServer ~= nil and message ~= nil then
-		Logging.info(message)
-	end
+	if not connection:getIsServer() then print("RVBGamePSet_Event:run not connection:getIsServer")
+			g_server:broadcastEvent(RVBGamePSet_Event.new(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose), nil, connection, self);
+		end
+	g_currentMission.vehicleBreakdowns:setCustomGamePlaySet(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose)
 
 end

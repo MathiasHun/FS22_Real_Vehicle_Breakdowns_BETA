@@ -9,8 +9,8 @@ function RVBTotal_Event.emptyNew()
   return self
 end
 
-function RVBTotal_Event.new(vehicle, r1, r2, r3 )
-  local rvb = { r1, r2, r3 }
+function RVBTotal_Event.new(vehicle, r1, r2, r3, r4, r5 )
+  local rvb = { r1, r2, r3, r4, r5 }
   local self = RVBTotal_Event.emptyNew()
 
   self.vehicle = vehicle
@@ -26,6 +26,8 @@ function RVBTotal_Event:readStream(streamId, connection)
 	self.vehicle.spec_faultData.rvb[1] = streamReadInt16(streamId)
 	self.vehicle.spec_faultData.rvb[2] = streamReadFloat32(streamId)
 	self.vehicle.spec_faultData.rvb[3] = streamReadFloat32(streamId)
+	self.vehicle.spec_faultData.rvb[4] = streamReadFloat32(streamId)
+	self.vehicle.spec_faultData.rvb[5] = streamReadFloat32(streamId)
 
 	self:run(connection)
 end
@@ -37,6 +39,8 @@ function RVBTotal_Event:writeStream(streamId, connection)
 	streamWriteInt16(streamId, self.vehicle.spec_faultData.rvb[1])
 	streamWriteFloat32(streamId, self.vehicle.spec_faultData.rvb[2])
 	streamWriteFloat32(streamId, self.vehicle.spec_faultData.rvb[3])
+	streamWriteFloat32(streamId, self.vehicle.spec_faultData.rvb[4])
+	streamWriteFloat32(streamId, self.vehicle.spec_faultData.rvb[5])
 
 end
 
@@ -52,8 +56,8 @@ function RVBTotal_Event:run(connection)
   
 end
 
-function RVBTotal_Event.sendEvent( vehicle, r1, r2, r3 )
-  local rvb = { r1, r2, r3 }
+function RVBTotal_Event.sendEvent( vehicle, r1, r2, r3, r4, r5 )
+  local rvb = { r1, r2, r3, r4, r5 }
 
   if g_server ~= nil then
     g_server:broadcastEvent(RVBTotal_Event.new(vehicle, unpack(rvb)), nil, nil, vehicle)

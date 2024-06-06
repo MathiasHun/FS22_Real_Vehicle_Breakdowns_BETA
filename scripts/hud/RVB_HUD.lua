@@ -68,32 +68,33 @@ function RVB_HUD:createParkBox(baseX, baseY)
 
 	local iconWidth, iconHeight = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.SIZE.RVBICON)
 	 
+	
 	-- TEMPERATURE HUD ICON
-	local iconPosX, iconPosY = getNormalizedScreenValues(unpack(RVB_HUD.POSITION.ICON_TEMP))
+	local iconPosX, iconPosY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ICON_TEMP)
 	self.icons.temperature = self:createIcon(baseX + iconPosX, baseY + iconPosY, iconWidth, iconHeight, RVB_HUD.UV.ICON_TEMP)
 	self.icons.temperature:setVisible(false)
 	self.speedMeterDisplay.gaugeBackgroundElement:addChild(self.icons.temperature)
 		
 	-- BATTERY HUD ICON
-	local iconPosX, iconPosY = getNormalizedScreenValues(unpack(RVB_HUD.POSITION.ICON_BATTERY))
+	local iconPosX, iconPosY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ICON_BATTERY)
 	self.icons.battery = self:createIcon(baseX + iconPosX, baseY + iconPosY, iconWidth, iconHeight, RVB_HUD.UV.ICON_BATTERY)
 	self.icons.battery:setVisible(false)
 	self.speedMeterDisplay.gaugeBackgroundElement:addChild(self.icons.battery)
 	
 	-- ENGINE HUD ICON
-	local iconPosX, iconPosY = getNormalizedScreenValues(unpack(RVB_HUD.POSITION.ICON_ENGINE))
+	local iconPosX, iconPosY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ICON_ENGINE)
 	self.icons.engine = self:createIcon(baseX + iconPosX, baseY + iconPosY, iconWidth, iconHeight, RVB_HUD.UV.ICON_ENGINE)
 	self.icons.engine:setVisible(false)
 	self.speedMeterDisplay.gaugeBackgroundElement:addChild(self.icons.engine)
 	
 	-- LIGHTS HUD ICON
-	local iconPosX, iconPosY = getNormalizedScreenValues(unpack(RVB_HUD.POSITION.ICON_LIGHTS))
+	local iconPosX, iconPosY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ICON_LIGHTS)
 	self.icons.lights = self:createIcon(baseX + iconPosX, baseY + iconPosY, iconWidth, iconHeight, RVB_HUD.UV.ICON_LIGHTS)
 	self.icons.lights:setVisible(false)
 	self.speedMeterDisplay.gaugeBackgroundElement:addChild(self.icons.lights)
 	
 	-- SERVICE HUD ICON
-	local iconPosX, iconPosY = getNormalizedScreenValues(unpack(RVB_HUD.POSITION.ICON_SERVICE))
+	local iconPosX, iconPosY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ICON_SERVICE)
 	local iconWidth, iconHeight = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.SIZE.ICON_SERVICE)
 	self.icons.service = self:createIcon(baseX + iconPosX, baseY + iconPosY, iconWidth, iconHeight, RVB_HUD.UV.ICON_SERVICE)
 	self.icons.service:setVisible(false)

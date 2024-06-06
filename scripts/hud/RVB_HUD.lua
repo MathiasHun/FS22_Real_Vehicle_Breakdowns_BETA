@@ -40,11 +40,8 @@ function RVB_HUD:new(speedMeterDisplay, gameInfoDisplay, modDirectory)
 	self.gameInfoDisplay   = gameInfoDisplay
 	self.modDirectory      = modDirectory
 	self.vehicle           = nil
-	
 	self.uiFilename        = Utils.getFilename("icons/hud_icons.dds", modDirectory)
-
 	self.icons = {}
-
 	self.rpmText              = {}
 	self.tempText             = {}
 	self.fuelText             = {}

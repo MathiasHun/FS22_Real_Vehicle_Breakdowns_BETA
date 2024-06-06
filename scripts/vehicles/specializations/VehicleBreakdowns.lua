@@ -23,7 +23,6 @@ VehicleBreakdowns.ECONOMIZER = {
 
 VehicleBreakdowns.GSET_Change = 1
 
-
 function VehicleBreakdowns.prerequisitesPresent(specializations)
     return true
 end

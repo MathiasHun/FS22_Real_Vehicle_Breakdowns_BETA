@@ -24,11 +24,11 @@
 		<text name="ui_RVB_sectionGeneralSettings" text="Основные настройки"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Предупреждающие сообщения"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Если ваше ТС повреждено, прошло техобслуживание или ремонт, в центре экрана появится сообщение, если вы находитесь в ТС."/>
-		<text name="ui_RVB_generalsetting_difficultyTitle" text="Поломка автомобиля"/>
-		<text name="ui_RVB_generalsetting_difficultyDesc" text="Он находится в стадии разработки, но готов к использованию."/>
-		<text name="ui_RVB_difficulty1_subtitle" text="Медленный"/>
-		<text name="ui_RVB_difficulty2_subtitle" text="Середина"/>
-		<text name="ui_RVB_difficulty3_subtitle" text="Быстрый"/>
+		<text name="ui_RVB_generalsetting_difficultyTitle" text="Поломка ТС"/>
+		<text name="ui_RVB_generalsetting_difficultyDesc" text="ТС находится в ремонте, но уже готово к использованию."/>
+		<text name="ui_RVB_difficulty1_subtitle" text="Серьёзная"/>
+		<text name="ui_RVB_difficulty2_subtitle" text="Средняя"/>
+		<text name="ui_RVB_difficulty3_subtitle" text="Небольшая"/>
 
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="СТО закрыта, приходите в %s." tag="format"/>
@@ -80,7 +80,7 @@
 		<text name="RVB_list_servicehours" text="ТО"/>
 		<text name="RVB_list_lease" text="В аренде"/>
 		<text name="RVB_list_battery" text="Аккумулятор"/>
-		<text name="RVB_parts_repair" text="Детали, подлежащие ремонту"/>
+		<text name="RVB_parts_repair" text="Детали, требующие ремонта"/>
 
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="ТС %s осмотрено, требуется ремонт. %s"/>

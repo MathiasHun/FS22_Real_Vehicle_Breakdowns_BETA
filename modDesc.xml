@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
 	<author>MathiasHun</author>
-	<version>0.8.5.0</version>
+	<version>0.8.6.0</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
 	<description>
 		<en><![CDATA[Thanks to this modification the vehicle's components will fail.
-Breakdowns occur randomly, the worse the condition of the vehicle, the older it is, and the more operating hours it has run, the more often breakdowns can occur.
+The parts have been set to operating hours, for example, the thermostat breaks down after 150 hours.
 The system monitors the operating temperature of the vehicle, if the engine is still too cold, the vehicle may be damaged.
 After starting the vehicle, if the operating temperature of the engine has not yet reached a temperature above 30 °C, the vehicle will be damaged, this can be tracked on the damage info bar.
 At the moment, it is not yet specified whether in such a case only the motor or the parts belonging to the motor will be damaged.
@@ -27,7 +27,7 @@ Thermostat error, it can be two types
 4. Glow plug, in this case, fuel consumption increases and the engine is more difficult to start.
 5. Windscreen wiper motor, in this case the wiper blades do not move. It is possible that it will cause other errors in the future.
 6. Generator, in this case the vehicle's battery is not recharged, so it may discharge and the engine cannot be started.
-7. Engine error, in this case the engine will not start.
+7. Engine error, in this case the engine can be started and the max. speed 7 km/h.
 8. Self-starter, in this case the engine is more difficult to start or cannot be started at all.
 9. Battery, in this case the engine is more difficult to start or cannot be started at all.
 10. Service interval, in this case, if there is a value greater than the set service interval in the vehicle, the vehicle will be damaged.
@@ -65,6 +65,17 @@ Changelog 0.8.5.0:
 - github issues#18 - HUD position fuel text wrong - I hope it's good now
 - Added Vehicle breakdown difficulty
 - Added Dutch, Polish translations
+- Many other things :)
+
+Changelog 0.8.6.0:
+- github issues#21 - HUD icons scaling
+- github issues#22 - Error on dedicated multiplayer server
+- github issues#27 - Informational message now only appears once (to conflicts mods)
+- github issues#31 - Courseplay, AutoDrive conflicts
+- Added French translations
+- Added Damage bar selection
+- Added FS22 basic damage overwrite, inactive
+- Fixed, if the vehicle damage bar below 10%, no breakdowns when inspecting vehicle, resets vehicle damage bar to 100%. FS22 basic repair cost + inspection cost
 - Many other things :)
 ]]></en>
 

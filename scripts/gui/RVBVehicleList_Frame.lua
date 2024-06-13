@@ -1049,8 +1049,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					self.partsListBox:setVisible(true)
 
 					self.checkedThermostatPartToggle:setIsChecked(spec.parts[1].repairreq)
-					local thermostat_Pvalue = (spec.parts[1].lifetime * 80) / 100
-					local thermostat_Pfoot = 100 - ((spec.parts[1].operatingHours * 100) / spec.parts[1].lifetime)
+					local thermostat_Pvalue = (spec.parts[1].tmp_lifetime * 80) / 100
+					local thermostat_Pfoot = 100 - ((spec.parts[1].operatingHours * 100) / spec.parts[1].tmp_lifetime)
 
 					print(self_vehicle:getFullName().." "..string.format("%.0f", thermostat_Pfoot).."%")
 					if thermostat_Pfoot < 0 then thermostat_Pfoot = 0 end
@@ -1063,8 +1063,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 					
 					self.checkedLightingsPartToggle:setIsChecked(spec.parts[2].repairreq)
-					local lightings_Pvalue = (spec.parts[2].lifetime * 80) / 100
-					local lightings_Pfoot = 100 - ((spec.parts[2].operatingHours * 100) / spec.parts[2].lifetime)
+					local lightings_Pvalue = (spec.parts[2].tmp_lifetime * 80) / 100
+					local lightings_Pfoot = 100 - ((spec.parts[2].operatingHours * 100) / spec.parts[2].tmp_lifetime)
 					print(string.format("%.0f", lightings_Pfoot).."%")
 					if lightings_Pfoot < 0 then lightings_Pfoot = 0 end
 					self.LIGHTINGS:setText(g_i18n:getText("RVB_faultText_LIGHTINGS"))
@@ -1076,8 +1076,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 			
 					self.checkedGlowPlugPartToggle:setIsChecked(spec.parts[3].repairreq)
-					local glowPlug_Pvalue = (spec.parts[3].lifetime * 80) / 100
-					local glowPlug_Pfoot = 100 - ((spec.parts[3].operatingHours * 100) / spec.parts[3].lifetime)
+					local glowPlug_Pvalue = (spec.parts[3].tmp_lifetime * 80) / 100
+					local glowPlug_Pfoot = 100 - ((spec.parts[3].operatingHours * 100) / spec.parts[3].tmp_lifetime)
 					print(string.format("%.0f", glowPlug_Pfoot).."%")
 					self.GLOWPLUG:setText(g_i18n:getText("RVB_faultText_GLOWPLUG"))
 					if spec.parts[3].operatingHours >= glowPlug_Pvalue then
@@ -1088,8 +1088,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 			
 					self.checkedWipersPartToggle:setIsChecked(spec.parts[4].repairreq)
-					local wipers_Pvalue = (spec.parts[4].lifetime * 80) / 100
-					local wipers_Pfoot = 100 - ((spec.parts[4].operatingHours * 100) / spec.parts[4].lifetime)
+					local wipers_Pvalue = (spec.parts[4].tmp_lifetime * 80) / 100
+					local wipers_Pfoot = 100 - ((spec.parts[4].operatingHours * 100) / spec.parts[4].tmp_lifetime)
 					print(string.format("%.0f", wipers_Pfoot).."%")
 					self.WIPERS:setText(g_i18n:getText("RVB_faultText_WIPERS"))
 					if spec.parts[4].operatingHours >= wipers_Pvalue then
@@ -1100,8 +1100,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 			
 					self.checkedGeneratorPartToggle:setIsChecked(spec.parts[5].repairreq)
-					local generator_Pvalue = (spec.parts[5].lifetime * 80) / 100
-					local generator_Pfoot = 100 - ((spec.parts[5].operatingHours * 100) / spec.parts[5].lifetime)
+					local generator_Pvalue = (spec.parts[5].tmp_lifetime * 80) / 100
+					local generator_Pfoot = 100 - ((spec.parts[5].operatingHours * 100) / spec.parts[5].tmp_lifetime)
 					print(string.format("%.0f", generator_Pfoot).."%")
 					self.GENERATOR:setText(g_i18n:getText("RVB_faultText_GENERATOR"))
 					if spec.parts[5].operatingHours >= generator_Pvalue then
@@ -1112,8 +1112,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 			
 					self.checkedEnginePartToggle:setIsChecked(spec.parts[6].repairreq)
-					local engine_Pvalue = (spec.parts[6].lifetime * 80) / 100
-					local engine_Pfoot = 100 - ((spec.parts[6].operatingHours * 100) / spec.parts[6].lifetime)
+					local engine_Pvalue = (spec.parts[6].tmp_lifetime * 80) / 100
+					local engine_Pfoot = 100 - ((spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime)
 					print(string.format("%.0f", engine_Pfoot).."%")
 					self.ENGINE:setText(g_i18n:getText("RVB_faultText_ENGINE"))
 					if spec.parts[6].operatingHours >= engine_Pvalue then
@@ -1124,8 +1124,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 			
 					self.checkedSelfstarterPartToggle:setIsChecked(spec.parts[7].repairreq)
-					local selfstarter_Pvalue = (spec.parts[7].lifetime * 80) / 100
-					local selfstarter_Pfoot = 100 - ((spec.parts[7].operatingHours * 100) / spec.parts[7].lifetime)
+					local selfstarter_Pvalue = (spec.parts[7].tmp_lifetime * 80) / 100
+					local selfstarter_Pfoot = 100 - ((spec.parts[7].operatingHours * 100) / spec.parts[7].tmp_lifetime)
 					print(string.format("%.0f", selfstarter_Pfoot).."%")
 					self.SELFSTARTER:setText(g_i18n:getText("RVB_faultText_SELFSTARTER"))
 					if spec.parts[7].operatingHours >= selfstarter_Pvalue then
@@ -1136,8 +1136,8 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					end
 			
 					self.checkedBatteryPartToggle:setIsChecked(spec.parts[8].repairreq)
-					local battery_Pvalue = (spec.parts[8].lifetime * 80) / 100
-					local battery_Pfoot = 100 - ((spec.parts[8].operatingHours * 100) / spec.parts[8].lifetime)
+					local battery_Pvalue = (spec.parts[8].tmp_lifetime * 80) / 100
+					local battery_Pfoot = 100 - ((spec.parts[8].operatingHours * 100) / spec.parts[8].tmp_lifetime)
 					print(string.format("%.0f", battery_Pfoot).."%")
 					self.BATTERY:setText(g_i18n:getText("RVB_faultText_BATTERY"))
 					if spec.parts[8].operatingHours >= battery_Pvalue then
@@ -1523,5 +1523,5 @@ function RVBVehicleList_Frame:updateMenuButtons_AFM()
 end
 
 if FS22_AdvancedFarmManager ~= nil and FS22_AdvancedFarmManager.AIMGuiVehicleFrame ~= nil then
-	FS22_AdvancedFarmManager.AIMGuiVehicleFrame.updateMenuButtons = Utils.appendedFunction(FS22_AdvancedFarmManager.AIMGuiVehicleFrame.updateMenuButtons, RVBVehicleList_Frame.updateMenuButtons_AFM);
+	FS22_AdvancedFarmManager.AIMGuiVehicleFrame.updateMenuButtons = Utils.appendedFunction(FS22_AdvancedFarmManager.AIMGuiVehicleFrame.updateMenuButtons, RVBVehicleList_Frame.updateMenuButtons_AFM)
 end

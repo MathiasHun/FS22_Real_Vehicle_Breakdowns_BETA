@@ -85,6 +85,7 @@
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="Pojazd %s skontrolowany, wymagane naprawy. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="Pojazd %s skontrolowany, naprawy nie są wymagane."/>
+		<text name="RVB_inspectionDialogEnd_other" text="Pojazd %s został skontrolowany i naprawiony. Twój mechanik miał dużo pracy, więc początkujący mechanik naprawił Twój pojazd. Jednak ten początkujący mechanik nie jest w stanie wypisać tego, co naprawił w Twoim pojeździe."/>
 
 		<text name="RVB_fault_" text="Nie jedź zbyt szybko, silnik jest jeszcze zimny."/>
 		<text name="RVB_fault_hud" text="%s pojazd jedzie zbyt szybko, silnik jest jeszcze zimny." tag="format"/>
@@ -118,6 +119,8 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Silnik nie uruchamia się, akumulator jest rozładowany." />
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Pojazd nie może być uruchomiony, trwa ładowanie akumulatora." />
 
+		<text name="RVB_ErrorNotifi" text="Awaria(e): "/>
+
 		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="jutro "/>
 		<text name="infoDisplayExtension_currentPower" text="Moc"/>
@@ -130,7 +133,12 @@
 
 		<text name="RVB_TotaloperatingHours" text="Całkowity czas pracy"/>
 
+		<!--
 		<text name="CP_Automatic_Repair_conflict_notice" text="&quot;Prawdziwe awarie pojazdów (RVB)&quot; mod, więc opcja &quot;Courseplay(CP)&quot; tryb może się zawiesić.&#13;&#10;W menu CP wybierz opcję &quot;Naprawa automatyczna&quot;. Ustawienie pola nie odpowiada bezbłędnemu korzystaniu z trybu RVB, dlatego RVB automatycznie wyłącza w tle CP &quot;Autokorekta&quot;.&#13;&#10;Dziękuję za Twoje zrozumienie.&#13;&#10;&#13;&#10;Pozdrawiam, MathiasHun" />
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="Istnieją modyfikacje, które automatycznie naprawiają pojazd, ale możesz skorzystać z funkcji &quot;Real Vehicle Breakdowns(RVB)&quot;. używasz również modyfikacji, więc może ona kolidować z innymi modyfikacjami. W przypadku modyfikacji wymienionych na poniższej liście konieczne jest pominięcie automatycznej naprawy, to obejście zostało już wykonane przez modyfikację RVB."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Nadpisane modyfikacje: "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Dziękuję za zrozumienie.&#13;&#10;&#13;&#10;Wszystkiego najlepszego,&#13;&#10;MathiasHun"/>
 
 	</texts>
 </l10n>

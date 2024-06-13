@@ -85,6 +85,7 @@
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s Fahrzeug inspiziert, Reparaturen erforderlich. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s Fahrzeug inspiziert, keine Reparaturen erforderlich."/>
+		<text name="RVB_inspectionDialogEnd_other" text="%s fahrzeug wurde überprüft und repariert. Ihr Mechaniker hatte viel Arbeit, also hat ein unerfahrener Mechaniker Ihr Fahrzeug repariert. Dieser unerfahrene Mechaniker kann jedoch nicht auflisten, was er an Ihrem Fahrzeug repariert hat."/>
 
 		<text name="RVB_fault_" text="Fahren Sie nicht zu schnell, der Motor ist noch kalt."/>
 		<text name="RVB_fault_hud" text="%s das Fahrzeug zu schnell gefahren wird, der Motor noch kalt ist." tag="format"/>
@@ -118,6 +119,8 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Der Motor springt nicht an, die Batterie ist leer." />
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Das Fahrzeug kann nicht gestartet werden, die Batterie wird gerade geladen." />
 
+		<text name="RVB_ErrorNotifi" text="Aufschlüsselung(en): "/>
+
 		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="morgen "/>
 		<text name="infoDisplayExtension_currentPower" text="Kraft"/>
@@ -130,7 +133,12 @@
 
 		<text name="RVB_TotaloperatingHours" text="Betriebsstunden insgesamt"/>
 
+		<!--
 		<text name="CP_Automatic_Repair_conflict_notice" text="Du verwendest den Mod &quot;Real Vehicle Pannen(RVB)&quot;, daher kann es zu Konflikten mit dem Mod &quot;Courseplay(CP)&quot; kommen.&#13;&#10;Die Einstellung des Feldes &quot;Automatische Reparatur&quot; im CP-Menü entspricht nicht der fehlerfreien Nutzung des RVB-Modus. Daher deaktiviert RVB automatisch den CP &quot;Automatische Reparatur&quot; im Hintergrund.&#13;&#10;Danke für Ihr Verständnis.&#13;&#10;&#13;&#10;Grüße MathiasHun" />
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="Es gibt Modifikationen, die das Fahrzeug automatisch reparieren, aber Sie können die &quot;Real Vehicle Breakdowns(RVB)&quot; verwenden. Sie verwenden auch eine Modifikation, daher kann es zu Konflikten mit anderen Modifikationen kommen. Bei den Modifikationen in der folgenden Liste ist es notwendig, die automatische Reparatur zu überschreiben. Diese Überschreibung wurde bereits durch die RVB-Modifikation durchgeführt.."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Überschriebene modifizierung(en): "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Danke für Ihr Verständnisg.&#13;&#10;&#13;&#10;Alles Gute,&#13;&#10;MathiasHun"/>
 
 	</texts>
 </l10n>

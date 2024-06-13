@@ -84,7 +84,8 @@
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s vehicle inspected, repairs required. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s vehicle inspected, no repairs required."/>
-
+		<text name="RVB_inspectionDialogEnd_other" text="%s vehicle has been inspected and repaired. Your mechanic had a lot of work, so a novice mechanic fixed your vehicle. However, this novice mechanic cannot list what he has repaired on your vehicle."/>
+.
 		<text name="RVB_fault_" text="Do not drive too fast, the engine is still cold."/>
 		<text name="RVB_fault_hud" text="%s the vehicle is driven too fast, the engine is still cold." tag="format"/>
 
@@ -106,16 +107,18 @@
 		<text name="RVB_fault_operatinghours" text="The service light came on." />
 		<text name="RVB_fault_operatinghours_hud" text="%s vehicle needs to be serviced." tag="format"/>
 
-		<text name="RVB_main_repair_fault" text="The mechanic cannot repair this vehicle, visit &quot;RVB&quot; Service." />
+		<text name="RVB_main_repair_fault" text="The mechanic cannot repair this vehicle, visit &quot;RVB&quot; Service."/>
 
-		<text name="VehicleBreakdown_DEAD_ENGINE" text="Engine failure." />
-		<text name="VehicleBreakdown_DEAD_GENERATOR" text="The engine does not start, the generator has failed." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Vehicle cannot be started, inspected is in progress." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Vehicle cannot be started, repaired is in progress." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Vehicle cannot be started, serviced is in progress." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="The vehicle key is with the mechanic, who is currently resting." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Engine does not start, battery is dead." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Vehicle cannot be started, battery charging is in progress." />
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Engine failure."/>
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="The engine does not start, the generator has failed."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Vehicle cannot be started, inspected is in progress."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Vehicle cannot be started, repaired is in progress."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Vehicle cannot be started, serviced is in progress."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="The vehicle key is with the mechanic, who is currently resting."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Engine does not start, battery is dead."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Vehicle cannot be started, battery charging is in progress."/>
+
+		<text name="RVB_ErrorNotifi" text="Breakdown(s): "/>
 
 		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="tomorrow "/>
@@ -129,7 +132,12 @@
 
 		<text name="RVB_TotaloperatingHours" text="Total operating hours"/>
 
+		<!--
 		<text name="CP_Automatic_Repair_conflict_notice" text="You are using the &quot;Real Vehicle Failures(RVB)&quot; mod, which is why you may get stuck with the &quot;Courseplay(CP)&quot; mode.&#13;&#10;The setting of the &quot;Automatic Repair&quot; field in the CP menu does not correspond to the error-free use of the RVB mode, so RVB automatically disables the CP &quot;Automatic Repair&quot; in the background.&#13;&#10;Thank you for your understanding.&#13;&#10;&#13;&#10;Best regards, MathiasHun"/>
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="There are modifications that automatically repair the vehicle, but you can use the &quot;Real Vehicle Breakdowns(RVB)&quot; you are also using a modification, so it may conflict with other modifications. In the modification(s) in the list below, it is necessary to override the automatic repair, this override was already done by the RVB modification."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Overwritten modification(s): "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Thank you for your understanding.&#13;&#10;&#13;&#10;All the best,&#13;&#10;MathiasHun"/>
 
 	</texts>
 </l10n>

@@ -84,6 +84,7 @@
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s jármű átvizsgálva, javítás szükséges. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s jármű átvizsgálva, nem szükséges a javítás."/>
+		<text name="RVB_inspectionDialogEnd_other" text="%s járművet átvizsgálták és megjavították. Szerelőjének sok munkája volt, ezért egy kezdő szerelő javította meg a járművedet. Ez a kezdő szerelő azonban nem tudja felsorolni, hogy mit javított meg a járműveden."/>
 
 		<text name="RVB_fault_" text="Ne vezessen túl gyorsan, a motor még hideg."/>
 		<text name="RVB_fault_hud" text="%s járművel túl gyorsan vezetnek, a motor még hideg." tag="format"/>
@@ -106,16 +107,18 @@
 		<text name="RVB_fault_operatinghours" text="Felvillant a szerviz lámpa." />
 		<text name="RVB_fault_operatinghours_hud" text="%s járművet szervizeltetni kell." tag="format"/>
 
-		<text name="RVB_main_repair_fault" text="A szerelő nem tudja megjavítani ezt a járművet, keresd fel a &quot;RVB&quot; Szervizt" />
+		<text name="RVB_main_repair_fault" text="A szerelő nem tudja megjavítani ezt a járművet, keresd fel a &quot;RVB&quot; Szervizt"/>
 
-		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motor meghibásodása." />
-		<text name="VehicleBreakdown_DEAD_GENERATOR" text="Motor nem indul, generátor meghibásodott." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Jármű nem indítható, átvizsgálása folyamatban van." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Jármű nem indítható, javítás folyamatban van." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Jármű nem indítható, szervizelés folyamatban van." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Jármű kulcsa a szerelőnél van, aki éppen pihen." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor nem indul, akkumulátor lemerült." />
-		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Jármű nem indítható, akkumulátor töltés folyamatban van." />
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motor meghibásodása."/>
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="Motor nem indul, generátor meghibásodott."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Jármű nem indítható, átvizsgálása folyamatban van."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Jármű nem indítható, javítás folyamatban van."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Jármű nem indítható, szervizelés folyamatban van."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Jármű kulcsa a szerelőnél van, aki éppen pihen."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor nem indul, akkumulátor lemerült."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Jármű nem indítható, akkumulátor töltés folyamatban van."/>
+
+		<text name="RVB_ErrorNotifi" text="Meghibásodás(ok): "/>
 
 		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="holnap "/>
@@ -129,7 +132,12 @@
 
 		<text name="RVB_TotaloperatingHours" text="Összes üzemóra"/>
 
+		<!--
 		<text name="CP_Automatic_Repair_conflict_notice" text="A &quot;Valódi jármű meghibásodások(RVB)&quot; modot használod, ezért a &quot;Courseplay(CP)&quot; móddal összeakadhat.&#13;&#10;A CP menüjében az &quot;Automatikus javítást&quot; mező beállítása nem felel meg az RVB mód hiba nélküli használatához, ezért az RVB a háttérben automatikusan letiltja a CP &quot;Automatikus javítást&quot;.&#13;&#10;Megértésedet köszönöm.&#13;&#10;&#13;&#10;Üdvözlettel MathiasHun"/>
-
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="Vannak olyan módosítások, amelyek automatikusan megjavítják a járművet, de te a &quot;Valódi jármű meghibásodások(RVB)&quot; módosítást is használod, ezért ütközhet más módosításokkal. Az alábbi listában található módosítás(ok)ban szükséges az automatikus javítást felülírni, ezt a felülírást már meg is tette az RVB módosítás."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Felülírt módosítás(ok): "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Megértésedet köszönöm.&#13;&#10;&#13;&#10;Minden jót,&#13;&#10;MathiasHun"/>
+		
 	</texts>
 </l10n>

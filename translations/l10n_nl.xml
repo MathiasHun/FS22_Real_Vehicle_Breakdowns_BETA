@@ -85,6 +85,7 @@
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s voertuig geïnspecteerd, reparatie vereist. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s voertuig geïnspecteerd, geen reparaties vereist."/>
+		<text name="RVB_inspectionDialogEnd_other" text="%s voertuig is geïnspecteerd en gerepareerd. Uw monteur had veel werk, dus een beginnende monteur heeft uw voertuig gerepareerd. Deze beginnende monteur kan echter niet opsommen wat hij aan uw voertuig heeft gerepareerd."/>
 
 		<text name="RVB_fault_" text="Rijd niet te snel, de motor is nog koud."/>
 		<text name="RVB_fault_hud" text="%s het voertuig rijdt te snel, de motor is nog koud." tag="format"/>
@@ -118,6 +119,8 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor start niet, accu is leeg."/>
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Voertuig kan niet worden gestart, de batterij wordt opgeladen."/>
 
+		<text name="RVB_ErrorNotifi" text="Uitsplitsing(en): "/>
+
 		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="morgen "/>
 		<text name="infoDisplayExtension_currentPower" text="Power"/>
@@ -130,7 +133,12 @@
 
 		<text name="RVB_TotaloperatingHours" text="Totaal bedrijfsuren"/>
 
+		<!--
 		<text name="CP_Automatic_Repair_conflict_notice" text="Je gebruikt de mod &quot;Real Vehicle Breakdowns(RVB)&quot;, dus er kunnen conflicten zijn met de mod &quot;Courseplay(CP)&quot;.&#13;&#10;De instelling van het veld &quot;Automatische Reparatie&quot; in het CP-menu komt niet overeen met het foutloos gebruik van de RVB-modus. Daarom deactiveert RVB automatisch de CP &quot;Automatische Reparatie&quot; op de achtergrond.&#13;&#10;Bedankt voor uw begrip.&#13;&#10;&#13;&#10;Groeten MathiasHun" />
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="Er zijn aanpassingen die het voertuig automatisch repareren, maar u kunt de optie &quot;Real Vehicle Breakdowns(RVB)&quot; u gebruikt ook een wijziging, dus deze kan conflicteren met andere wijzigingen. Bij de wijziging(en) in onderstaande lijst is het noodzakelijk om de automatische reparatie te overschrijven, deze overschrijving is al gedaan door de RVB wijziging."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Overschreven wijziging(en): "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Bedankt voor uw begrip.&#13;&#10;&#13;&#10;Al het beste,&#13;&#10;MathiasHun"/>
 
 	</texts>
 </l10n>

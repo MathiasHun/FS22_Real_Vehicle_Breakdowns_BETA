@@ -2,7 +2,7 @@
 <l10n>
 	<texts>
 		<!-- inputs -->
-		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Avarias reais de veículos(RVB)"/>
+		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Real Vehicle Breakdowns(RVB)"/>
 
 		<!-- settings -->
 		<!-- tabbedMenu -->
@@ -84,6 +84,7 @@
 		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s veículo inspecionado, reparos necessários. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s veículo inspecionado, sem necessidade de reparos."/>
+		<text name="RVB_inspectionDialogEnd_other" text="%s veículo foi inspecionado e reparado. Seu mecânico teve muito trabalho, então um mecânico novato consertou seu veículo. No entanto, este mecânico novato não consegue listar o que consertou no seu veículo."/>
 
 		<text name="RVB_fault_" text="Não dirija muito rápido, o motor ainda está frio."/>
 		<text name="RVB_fault_hud" text="%s não dirija muito rápido, o motor ainda está frio" tag="format"/>
@@ -117,6 +118,8 @@
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="O motor não liga, a bateria acabou." />
 		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="O veículo não pode ser ligado, o carregamento da bateria está em andamento." />
 
+		<text name="RVB_ErrorNotifi" text="Avaria(s): "/>
+
 		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="amanhã "/>
 		<text name="infoDisplayExtension_currentPower" text="Poder"/>
@@ -129,7 +132,12 @@
 
 		<text name="RVB_TotaloperatingHours" text="Total de horas de operação"/>
 
+		<!--
 		<text name="CP_Automatic_Repair_conflict_notice" text="Você está usando o mod &quot;Real Vehicle Breakdowns(RVB)&quot;, então pode haver conflitos com o mod &quot;Courseplay(CP)&quot;.&#13;&#10;A configuração do campo &quot;Reparo Automático&quot; no menu CP não corresponde à utilização sem erros do modo RVB. Portanto, o RVB desativa automaticamente o CP &quot;Reparo Automático&quot; em segundo plano.&#13;&#10;Obrigado pela sua compreensão.&#13;&#10;&#13;&#10;Atenciosamente MathiasHun" />
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="Existem modificações que reparam automaticamente o veículo, mas você pode usar a opção &quot;Real Vehicle Breakdowns(RVB)&quot; você também está usando uma modificação, portanto ela pode entrar em conflito com outras modificações. Na(s) modificação(ões) da lista abaixo é necessário anular o reparo automático, esta anulação já foi feita pela modificação RVB."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Modificaçõe(s) substituídas: "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Obrigado pela sua compreensão.&#13;&#10;&#13;&#10;Tudo de bom,&#13;&#10;MathiasHun"/>
 
 	</texts>
 </l10n>

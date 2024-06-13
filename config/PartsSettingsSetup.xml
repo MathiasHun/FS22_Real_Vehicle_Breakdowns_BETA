@@ -9,4 +9,8 @@
 	<Part name="ENGINE" lifetime="210" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
 	<Part name="SELFSTARTER" lifetime="3" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
 	<Part name="BATTERY" lifetime="140" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="LFWHEEL" lifetime="130" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="RFWHEEL" lifetime="130" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="LRWHEEL" lifetime="130" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
+	<Part name="RRWHEEL" lifetime="130" operatingHours="0.000000" repairreq="false" amount="0" cost="0"/>
 </Parts>

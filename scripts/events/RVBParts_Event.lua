@@ -51,23 +51,23 @@ function RVBParts_Event:writeStream(streamId, connection)
 end
 
 function RVBParts_Event:run(connection)
-
-  if g_server == nil then
-	self.vehicle.spec_faultData.parts = { unpack(self.vehicle.spec_faultData.parts) }
-  end
-
-  if not connection:getIsServer() then
-    g_server:broadcastEvent(RVBParts_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.parts)), nil, connection, self.vehicle)
-  end
-  
+    if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
+        VehicleBreakdowns.SyncClientServer_RVBParts(self.vehicle, unpack(self.vehicle.spec_faultData.parts))
+		self.vehicle.spec_faultData.parts = { unpack(self.vehicle.spec_faultData.parts) }
+	end
+	if not connection:getIsServer() then
+		g_server:broadcastEvent(RVBParts_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.parts)), nil, connection, self.vehicle)
+    end
+	
 end
 
-function RVBParts_Event.sendEvent( vehicle, p1, p2, p3, p4, p5, p6, p7, p8 )
-  local parts = { p1, p2, p3, p4, p5, p6, p7, p8 }
-
-  if g_server ~= nil then
-    g_server:broadcastEvent(RVBParts_Event.new(vehicle, unpack(parts)), nil, nil, vehicle)
-  else
-    g_client:getServerConnection():sendEvent(RVBParts_Event.new(vehicle, unpack(parts)))
-  end
+function RVBParts_Event.sendEvent( vehicle, p1, p2, p3, p4, p5, p6, p7, p8, noEventSend )
+	local parts = { p1, p2, p3, p4, p5, p6, p7, p8 }
+	if noEventSend == nil or noEventSend == false then
+		if g_server ~= nil then
+			g_server:broadcastEvent(RVBParts_Event.new(vehicle, unpack(parts)), nil, nil, vehicle)
+		else
+			g_client:getServerConnection():sendEvent(RVBParts_Event.new(vehicle, unpack(parts)))
+		end
+	end
 end

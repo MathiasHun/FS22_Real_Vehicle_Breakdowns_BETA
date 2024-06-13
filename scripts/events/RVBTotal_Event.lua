@@ -45,23 +45,23 @@ function RVBTotal_Event:writeStream(streamId, connection)
 end
 
 function RVBTotal_Event:run(connection)
-
-  if g_server == nil then
-	self.vehicle.spec_faultData.rvb = { unpack(self.vehicle.spec_faultData.rvb) }
-  end
-
-  if not connection:getIsServer() then
-    g_server:broadcastEvent(RVBTotal_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.rvb)), nil, connection, self.vehicle)
-  end
-  
+    if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
+        VehicleBreakdowns.SyncClientServer_RVB(self.vehicle, unpack(self.vehicle.spec_faultData.rvb))
+		self.vehicle.spec_faultData.rvb = { unpack(self.vehicle.spec_faultData.rvb) }
+	end
+	if not connection:getIsServer() then
+		g_server:broadcastEvent(RVBTotal_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.rvb)), nil, connection, self.vehicle)
+    end
+	
 end
 
-function RVBTotal_Event.sendEvent( vehicle, r1, r2, r3, r4, r5 )
-  local rvb = { r1, r2, r3, r4, r5 }
-
-  if g_server ~= nil then
-    g_server:broadcastEvent(RVBTotal_Event.new(vehicle, unpack(rvb)), nil, nil, vehicle)
-  else
-    g_client:getServerConnection():sendEvent(RVBTotal_Event.new(vehicle, unpack(rvb)))
-  end
+function RVBTotal_Event.sendEvent( vehicle, r1, r2, r3, r4, r5, noEventSend )
+	local rvb = { r1, r2, r3, r4, r5 }
+	if noEventSend == nil or noEventSend == false then
+		if g_server ~= nil then
+			g_server:broadcastEvent(RVBTotal_Event.new(vehicle, unpack(rvb)), nil, nil, vehicle)
+		else
+			g_client:getServerConnection():sendEvent(RVBTotal_Event.new(vehicle, unpack(rvb)))
+		end
+	end
 end

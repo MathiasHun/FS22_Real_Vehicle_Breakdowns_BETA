@@ -28,11 +28,8 @@ function RVBGeneralSet_Event:writeStream(streamId, connection)
 end
 
 function RVBGeneralSet_Event:run(connection)
-
-	local message = g_currentMission.vehicleBreakdowns:setCustomGeneralSet(self.alertmessage, self.rvbDifficulty)
-
-	if g_dedicatedServer ~= nil and message ~= nil then
-		Logging.info(message)
+	if not connection:getIsServer() then
+		g_server:broadcastEvent(RVBGeneralSet_Event.new(self.alertmessage, self.rvbDifficulty), nil, connection, self)
 	end
-
+	g_currentMission.vehicleBreakdowns:setCustomGeneralSet(self.alertmessage, self.rvbDifficulty)
 end

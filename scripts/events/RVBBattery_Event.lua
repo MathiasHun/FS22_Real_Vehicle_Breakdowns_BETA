@@ -49,23 +49,23 @@ function RVBBattery_Event:writeStream(streamId, connection)
 end
 
 function RVBBattery_Event:run(connection)
-
-  if g_server == nil then
-	self.vehicle.spec_faultData.battery = { unpack(self.vehicle.spec_faultData.battery) }
-  end
-
-  if not connection:getIsServer() then
-    g_server:broadcastEvent(RVBBattery_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.battery)), nil, connection, self.vehicle)
-  end
-  
+    if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
+        VehicleBreakdowns.SyncClientServer_RVBBattery(self.vehicle, unpack(self.vehicle.spec_faultData.battery))
+		self.vehicle.spec_faultData.battery = { unpack(self.vehicle.spec_faultData.battery) }
+	end
+	if not connection:getIsServer() then
+		g_server:broadcastEvent(RVBBattery_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.battery)), nil, connection, self.vehicle)
+    end
+	
 end
 
-function RVBBattery_Event.sendEvent( vehicle, b1, b2, b3, b4, b5, b6, b7 )
-  local battery = { b1, b2, b3, b4, b5, b6, b7 }
-
-  if g_server ~= nil then
-    g_server:broadcastEvent(RVBBattery_Event.new(vehicle, unpack(battery)), nil, nil, vehicle)
-  else
-    g_client:getServerConnection():sendEvent(RVBBattery_Event.new(vehicle, unpack(battery)))
-  end
+function RVBBattery_Event.sendEvent( vehicle, b1, b2, b3, b4, b5, b6, b7, noEventSend )
+	local battery = { b1, b2, b3, b4, b5, b6, b7 }
+	if noEventSend == nil or noEventSend == false then
+		if g_server ~= nil then
+			g_server:broadcastEvent(RVBBattery_Event.new(vehicle, unpack(battery)), nil, nil, vehicle)
+		else
+			g_client:getServerConnection():sendEvent(RVBBattery_Event.new(vehicle, unpack(battery)))
+		end
+	end
 end

@@ -7,8 +7,8 @@ RVBMain.ONOFF = { 1, 2 }
 RVBMain.alertmessage = false
 RVBMain.alertmessageState = 2
 
---RVBMain.difficulty = ""
-RVBMain.difficultyState = 1
+RVBMain.difficulty = ""
+RVBMain.difficultyState = 2
 
 RVBMain.repairshop = true
 RVBMain.repairshopState = 1
@@ -29,10 +29,12 @@ RVBMain.HOURS_workshopClose = { 16, 17, 18, 19, 20 }
 RVBMain.workshopClose = 16
 RVBMain.workshopCloseState = 1
 
+RVBMain.cp_notice = false
+
 RVBMain.DEFAULT_SETTINGS = {
 	alertmessage = RVBMain.alertmessage,
 	alertmessageState = RVBMain.alertmessageState,
-	--rvbDifficulty = RVBMain.difficulty,
+	rvbDifficulty = RVBMain.difficulty,
 	rvbDifficultyState = RVBMain.difficultyState,
 	repairshop = RVBMain.repairshop,
 	repairshopState = RVBMain.repairshopState,
@@ -43,7 +45,8 @@ RVBMain.DEFAULT_SETTINGS = {
 	workshopOpen = RVBMain.workshopOpen,
 	workshopOpenState = RVBMain.workshopOpenState,
 	workshopClose = RVBMain.workshopClose,
-	workshopCloseState = RVBMain.workshopCloseState
+	workshopCloseState = RVBMain.workshopCloseState,
+	cp_notice = RVBMain.cp_notice
 }
 RVBMain.actions = {{
     name = InputAction.VEHICLE_BREAKDOWN_MENU,
@@ -59,28 +62,19 @@ function RVBMain:new(modDirectory, modName)
 
     setmetatable(self, RVBMain_mt)
 
-    
     self.modDirectory = modDirectory
     self.modName = modName
     
 	self.gameplaySettings = {}
 	self.generalSettings = {}
 	self.actionEvents = {}
-	
-	--self.i18n =  g_i18n.modEnvironments[self.modName]
-	
 
-	--self:resetGamePlaySettings()
-	--self:resetGeneralSettings()
-	
     return self
 end
 
 
 function RVBMain:onMissionLoaded(mission)
 
-    --self.ui:load()
-	
 	self.DIFFICULTY_A = {}
 	self.DIFFICULTY_A[1] = g_i18n:getText("ui_RVB_difficulty1_subtitle")
 	self.DIFFICULTY_A[2] = g_i18n:getText("ui_RVB_difficulty2_subtitle")
@@ -94,7 +88,7 @@ function RVBMain:onMissionLoaded(mission)
 
 	self.mission = mission
 	
-    local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_Real_Vehicle_Breakdown/"
+    local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
     createFolder(VEHICLE_BREAKDOWN_FOLDER)
 
     -- game play settings
@@ -144,9 +138,59 @@ function RVBMain:onMissionLoaded(mission)
 
     self.menu = RVBTabbedMenu:new(g_messageCenter, g_i18n, g_inputBinding, self, self.modName)
     g_gui:loadGui(self.modDirectory .. "gui/RVBTabbedMenu.xml", "RVBTabbedMenu", self.menu)
-	
-	
-	
+
+	local conflictList = {}
+	if g_modIsLoaded["FS22_Courseplay"] then
+		if FS22_Courseplay ~= nil and FS22_Courseplay.WearableController.autoRepair ~= nil then
+			table.insert(conflictList, "CoursePlay")
+			FS22_Courseplay.WearableController.autoRepair = Utils.overwrittenFunction(FS22_Courseplay.WearableController.autoRepair, RVBMain.autoRepair)
+		end
+	end
+
+	if g_modIsLoaded["FS22_AutoDrive"] then
+		if FS22_AutoDrive ~= nil and FS22_AutoDrive.ADDrivePathModule.isTargetReached ~= nil then
+			table.insert(conflictList, "AutoDrive")
+			FS22_AutoDrive.ADDrivePathModule.isTargetReached = Utils.overwrittenFunction(FS22_AutoDrive.ADDrivePathModule.isTargetReached, RVBMain.isTargetReached)
+		end
+	end
+
+	if table.maxn(conflictList) > 0 then
+		popupMessage = {
+			startUpdateTime = 4000,
+			update = function(self, dt)
+				self.startUpdateTime = self.startUpdateTime - dt
+				if self.startUpdateTime < 0 and not g_gui:getIsGuiVisible() then
+					if g_currentMission.hud ~= nil then
+						local message = g_i18n:getText("Automatic_Repair_conflict_notice").."\n"..g_i18n:getText("Automatic_Repair_conflict_list")..table.concat(conflictList,", ").."\n"..g_i18n:getText("Automatic_Repair_conflict_signature")
+						g_currentMission.hud:showInGameMessage("", message or "", -1, nil, nil, nil)
+					end
+					removeModEventListener(self)
+					popupMessage = nil
+				end
+			end
+		}
+		if not self.gameplaySettings.cp_notice then
+			addModEventListener(popupMessage)
+			self.gameplaySettings.cp_notice = true
+		end
+	end
+
+end
+
+-- Original CP WearableController:autoRepair()
+function RVBMain:autoRepair(superFunc)
+	--if self:isBrokenGreaterThan(100-self.autoRepairSetting:getValue()) then 
+	--	self.implement:repairVehicle()
+	--end
+end
+-- Original AD ADDrivePathModule:isTargetReached()
+function RVBMain:isTargetReached(superFunc)
+    --if self.vehicle.spec_locomotive and self.vehicle.ad and self.vehicle.ad.trainModule then
+        -- train
+    --    return self.vehicle.ad.trainModule:isTargetReached()
+    --end
+    --return self.atTarget
+	return false
 end
 
 function RVBMain.installSpecializations(vehicleTypeManager, specializationManager, modDirectory, modName)
@@ -182,6 +226,7 @@ function RVBMain:registerGamePlaySettingsSchema()
 	self.gameplaySettingSchema:register(XMLValueType.BOOL, schemaKey .. ".repairshop#value", "Repair only in vehicle workshop")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".workshopOpen#value", "Workshop opening")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".workshopClose#value", "Workshop closing")
+	self.gameplaySettingSchema:register(XMLValueType.BOOL, schemaKey .. ".cp_notice#value", "CP")
 
 end
 
@@ -243,6 +288,8 @@ function RVBMain:loadGamePlaySettingsFromXml(xmlPath)
 				self.gameplaySettings.workshopCloseState = index
 			end
 		end
+		
+		self.gameplaySettings.cp_notice = xmlFile:getValue(key .. ".cp_notice#value", self.gameplaySettings.cp_notice)
 
         xmlFile:delete()
     end
@@ -278,39 +325,6 @@ function RVBMain:loadGeneralSettingsFromXml(xmlPath)
 
         xmlFile:delete()
     end
-end
-
--- Original CP WearableController:autoRepair()
-function RVBMain:autoRepair(superFunc)
-	--if self:isBrokenGreaterThan(100-self.autoRepairSetting:getValue()) then 
-	--	self.implement:repairVehicle()
-	--end
-end
-
-if g_modIsLoaded["FS22_Courseplay"] then
-	if FS22_Courseplay ~= nil and FS22_Courseplay.WearableController.autoRepair ~= nil then
-	
-		local autoRepairSetting = FS22_Courseplay.CpGlobalSettings().autoRepair:getValue()
-		if autoRepairSetting > 0 then
-			popupMessage = {
-				startUpdateTime = 5000,
-				update = function(self, dt)
-					self.startUpdateTime = self.startUpdateTime - dt
-					if self.startUpdateTime < 0 and not g_gui:getIsGuiVisible() then
-						if g_currentMission.hud ~= nil then
-							local message = g_i18n:getText("CP_Automatic_Repair_conflict_notice", g_currentModName)
-							g_currentMission.hud:showInGameMessage("", message or "", -1, nil, nil, nil)
-						end
-						removeModEventListener(self)
-						popupMessage = nil
-					end
-				end
-			}
-			addModEventListener(popupMessage)
-		end
-		
-		FS22_Courseplay.WearableController.autoRepair = Utils.overwrittenFunction(FS22_Courseplay.WearableController.autoRepair, RVBMain.autoRepair)
-	end
 end
 
 function RVBMain:registerActionEvents(inputManager)
@@ -371,7 +385,8 @@ function RVBMain:resetGamePlaySettings()
 		workshopOpen = RVBMain.DEFAULT_SETTINGS.workshopOpen,
 		workshopOpenState = RVBMain.DEFAULT_SETTINGS.workshopOpenState,
 		workshopClose = RVBMain.DEFAULT_SETTINGS.workshopClose,
-		workshopCloseState = RVBMain.DEFAULT_SETTINGS.workshopCloseState
+		workshopCloseState = RVBMain.DEFAULT_SETTINGS.workshopCloseState,
+		cp_notice = RVBMain.DEFAULT_SETTINGS.cp_notice
     }
 end
 
@@ -392,17 +407,18 @@ function RVBMain:onActionCall(actionName, keyStatus, callbackStatus, isAnalog, a
 
 end
 
-function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose)
+function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, cp_notice)
 
     if g_server then
 
-        g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
+        g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, cp_notice))
 
 		self:setIsDailyServiceInterval(dailyServiceInterval)
 		self:setIsPeriodicServiceInterval(periodicServiceInterval)
 		self:setIsRepairShop(repairshop)
 		self:setIsWorkshopOpen(workshopOpen)
 		self:setIsWorkshopClose(workshopClose)
+		self:setIsCPNotice(cp_notice)
 
     end
 
@@ -447,12 +463,13 @@ function RVBMain:rvbsaveToXMLFile(RVBXMLFile)
 		xmlFile:setValue(schemaKey .. ".repairshop#value", self.gameplaySettings.repairshop)
 		xmlFile:setValue(schemaKey .. ".workshopOpen#value", self.gameplaySettings.workshopOpen)
 		xmlFile:setValue(schemaKey .. ".workshopClose#value", self.gameplaySettings.workshopClose)
+		xmlFile:setValue(schemaKey .. ".cp_notice#value", self.gameplaySettings.cp_notice)
 
         xmlFile:save()
         xmlFile:delete()
     end
 	
-	local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_Real_Vehicle_Breakdown/"
+	local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
     local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
     local schemaKey_general = "rvbGeneralSettings"
     local xmlFile_general = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
@@ -465,19 +482,6 @@ function RVBMain:rvbsaveToXMLFile(RVBXMLFile)
         xmlFile_general:delete()
     end
 	
-end
-
-function RVBMain:saveGeneralettingsToXML()
-    local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_Real_Vehicle_Breakdown/"
-    local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
-    local schemaKey = "rvbGeneralSettings"
-    local xmlFile = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
-
-    if xmlFile ~= 0 then
-		xmlFile:setValue(schemaKey .. ".alertmessage#value", self.generalSettings.alertmessage)
-        xmlFile:save()
-        xmlFile:delete()
-    end
 end
 
 function RVBMain:update()
@@ -563,6 +567,10 @@ function RVBMain:setIsWorkshopClose(workshopClose)
 	self.gameplaySettings.workshopClose = RVBMain.HOURS_workshopClose[workshopClose]
 end
 
+function RVBMain:setIsCPNotice(cpnotice)
+	self.gameplaySettings.cp_notice = cpnotice
+end
+
 function RVBMain:onReadStream(streamId, connection)
     if connection:getIsServer() then
         self.gameplaySettings.dailyServiceInterval = streamReadInt32(streamId)
@@ -570,6 +578,7 @@ function RVBMain:onReadStream(streamId, connection)
 		self.gameplaySettings.repairshop = streamReadBool(streamId)
 		self.gameplaySettings.workshopOpen = streamReadInt32(streamId)
 		self.gameplaySettings.workshopClose = streamReadInt32(streamId)
+		self.gameplaySettings.cp_notice = streamReadBool(streamId)
 		
 		self.generalSettings.alertmessage = streamReadBool(streamId)
 		self.generalSettings.rvbDifficultyState = streamReadInt32(streamId)
@@ -583,6 +592,7 @@ function RVBMain:onWriteStream(streamId, connection)
 		streamWriteBool(streamId, self.gameplaySettings.repairshop)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopOpen)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopClose)
+		streamWriteBool(streamId, self.gameplaySettings.cp_notice)
 		
 		streamWriteBool(streamId, self.generalSettings.alertmessage)
 		streamWriteInt32(streamId, self.generalSettings.rvbDifficultyState)

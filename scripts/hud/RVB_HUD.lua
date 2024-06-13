@@ -5,8 +5,8 @@ local RVB_HUD_mt = Class(RVB_HUD)
 RVB_HUD.POSITION = {
 	RPM			 = { -42, 0 },
 	TEMP		 = { 42, 0 },
-	FUEL		 = { 123, -117 },
-	ICON_TEMP = { 165, 130 },
+	FUEL		 = { 122, -117 },
+	ICON_TEMP = { 171, 130 },
 	ICON_BATTERY = { 70, 130 },
 	ICON_ENGINE = { 75, 150 },
 	ICON_LIGHTS = { 163, 150 },
@@ -64,8 +64,7 @@ end
 function RVB_HUD:createParkBox(baseX, baseY)
 
 	local iconWidth, iconHeight = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.SIZE.RVBICON)
-	 
-	
+
 	-- TEMPERATURE HUD ICON
 	local iconPosX, iconPosY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ICON_TEMP)
 	self.icons.temperature = self:createIcon(baseX + iconPosX, baseY + iconPosY, iconWidth, iconHeight, RVB_HUD.UV.ICON_TEMP)
@@ -237,25 +236,37 @@ function RVB_HUD:drawHUD()
 			RVB.COLOR.DEFAULT = {1, 1, 1, 0.2}
 			RVB.COLOR.YELLOWFAULT = {1.0000, 0.6592, 0.0000, 1}
 			RVB.COLOR.REDFAULT = {0.8069, 0.0097, 0.0097, 0.5}
-
+			RVB.COLOR.BLUEFAULT = SpeedMeterDisplay.COLOR.CRUISE_CONTROL_ON
+			
 			local spec = self.vehicle.spec_faultData
 
 			local temperature_percent = (spec.parts[1].operatingHours * 100) / spec.parts[1].tmp_lifetime
 			if temperature_percent < 95 then
 				self.icons.temperature:setColor(unpack(RVB.COLOR.DEFAULT))
-			elseif temperature_percent >= 95 and temperature_percent < 99 then
-				self.icons.temperature:setColor(unpack(RVB.COLOR.YELLOWFAULT))
+			--elseif temperature_percent >= 95 and temperature_percent < 99 then
+				--self.icons.temperature:setColor(unpack(RVB.COLOR.YELLOWFAULT))
 			else
+				if self.vehicle.spec_motorized.motorTemperature.value > 96 then
+					self.icons.temperature:setColor(unpack(RVB.COLOR.REDFAULT))
+				end
+			end
+			
+			if spec.faultStorage[1] and self.vehicle.spec_motorized.motorTemperature.value > 96 then
 				self.icons.temperature:setColor(unpack(RVB.COLOR.REDFAULT))
+			end
+
+			if spec.faultStorage[2] and self.vehicle.spec_motorized.motorTemperature.value < 46 and self.vehicle.spec_motorized.motorTemperature.value > 24 then
+				self.icons.temperature:setColor(unpack(RVB.COLOR.BLUEFAULT))
 			end
 
 			local lights_percent = (spec.parts[2].operatingHours * 100) / spec.parts[2].tmp_lifetime
 			if lights_percent < 95 then
 				self.icons.lights:setColor(unpack(RVB.COLOR.DEFAULT))
-			elseif lights_percent >= 95 and lights_percent < 99 then
-				self.icons.lights:setColor(unpack(RVB.COLOR.YELLOWFAULT))
+			--elseif lights_percent >= 95 and lights_percent < 99 then
 			else
-				self.icons.lights:setColor(unpack(RVB.COLOR.REDFAULT))
+				self.icons.lights:setColor(unpack(RVB.COLOR.YELLOWFAULT))
+			--else
+				--self.icons.lights:setColor(unpack(RVB.COLOR.REDFAULT))
 			end
 
 			local engine_percent = (spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime
@@ -267,11 +278,11 @@ function RVB_HUD:drawHUD()
 				self.icons.engine:setColor(unpack(RVB.COLOR.REDFAULT))
 			end
 
-			local battery_percent = (spec.parts[8].operatingHours * 100) / spec.parts[8].tmp_lifetime
-			if battery_percent < 95 then
+			local generator_percent = (spec.parts[5].operatingHours * 100) / spec.parts[5].tmp_lifetime
+			if generator_percent < 95 then
 				self.icons.battery:setColor(unpack(RVB.COLOR.DEFAULT))
-			elseif battery_percent >= 95 and battery_percent < 99 then
-				self.icons.battery:setColor(unpack(RVB.COLOR.YELLOWFAULT))
+			--elseif generator_percent >= 95 and generator_percent < 99 then
+				--self.icons.battery:setColor(unpack(RVB.COLOR.YELLOWFAULT))
 			else
 				self.icons.battery:setColor(unpack(RVB.COLOR.REDFAULT))
 			end

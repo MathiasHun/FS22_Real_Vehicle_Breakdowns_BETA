@@ -149,8 +149,12 @@ function RVBMain:onMissionLoaded(mission)
 
 	if g_modIsLoaded["FS22_AutoDrive"] then
 		if FS22_AutoDrive ~= nil and FS22_AutoDrive.ADDrivePathModule.isTargetReached ~= nil then
+			--table.insert(conflictList, "AutoDrive")
+			--FS22_AutoDrive.ADDrivePathModule.isTargetReached = Utils.overwrittenFunction(FS22_AutoDrive.ADDrivePathModule.isTargetReached, RVBMain.isTargetReached)
+		end
+		if FS22_AutoDrive ~= nil and FS22_AutoDrive.ADTaskModule.hasToRepair ~= nil then
 			table.insert(conflictList, "AutoDrive")
-			FS22_AutoDrive.ADDrivePathModule.isTargetReached = Utils.overwrittenFunction(FS22_AutoDrive.ADDrivePathModule.isTargetReached, RVBMain.isTargetReached)
+			FS22_AutoDrive.ADTaskModule.hasToRepair = Utils.overwrittenFunction(FS22_AutoDrive.ADTaskModule.hasToRepair, RVBMain.hasToRepair)
 		end
 	end
 
@@ -191,6 +195,22 @@ function RVBMain:isTargetReached(superFunc)
     --end
     --return self.atTarget
 	return false
+end
+
+-- Original AD ADTaskModule hasToRepair()
+function RVBMain:hasToRepair()
+    local repairNeeded = false
+--    if self.vehicle.ad.onRouteToRepair then
+        -- repair is forced by user or CP, so send vehicle to workshop independent of damage level
+--        return true
+--    end
+--    if AutoDrive.getSetting("autoRepair", self.vehicle) then
+--        local attachedObjects = AutoDrive.getAllImplements(self.vehicle, true)
+--        for _, attachedObject in pairs(attachedObjects) do
+--            repairNeeded = repairNeeded or (attachedObject.spec_wearable ~= nil and attachedObject.spec_wearable.damage > 0.6)
+--        end
+--    end
+    return repairNeeded
 end
 
 function RVBMain.installSpecializations(vehicleTypeManager, specializationManager, modDirectory, modName)

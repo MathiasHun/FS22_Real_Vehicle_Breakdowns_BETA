@@ -657,7 +657,7 @@ function VehicleBreakdowns:setBatteryDrainIfGeneratorFailure()
 	local RVBSET = g_currentMission.vehicleBreakdowns
 
 	if self.spec_motorized.isMotorStarted and self.spec_lights.currentLightState > 0 and not spec.parts[2].repairreq and self:getIsFaultBattery() <= 0.75 then
-		if self:getIsFaultBattery() <= 0.75 and self.spec_motorized.isMotorStarted then
+		if spec.parts[5].repairreq and self:getIsFaultBattery() <= 0.75 and self.spec_motorized.isMotorStarted then
 
 			local drainValue = 0.01
 			local spec = self.spec_faultData

@@ -658,7 +658,6 @@ function VehicleBreakdowns:setBatteryDrainIfGeneratorFailure()
 
 	if self.spec_motorized.isMotorStarted and self.spec_lights.currentLightState > 0 and not spec.parts[2].repairreq and self:getIsFaultBattery() <= 0.75 then
 		if spec.parts[5].repairreq and self:getIsFaultBattery() <= 0.75 then
-
 			local drainValue = 0.01
 			local spec = self.spec_faultData
 			local drainValue = 0.005
@@ -676,10 +675,6 @@ function VehicleBreakdowns:setBatteryDrainIfGeneratorFailure()
 			
 			RVBTotal_Event.sendEvent(self, unpack(spec.rvb))
 			self:raiseDirtyFlags(spec.dirtyFlag)
-
-		else
-			local spec = self.spec_lights
-			spec:deactivateLights(true)
 		end
 	end
 	
@@ -2299,7 +2294,7 @@ end
 function VehicleBreakdowns:onEnterVehicle()
 
 	local spec = self.spec_faultData
-
+	--DebugUtil.printTableRecursively(g_currentMission.hud.vehicleSchema,"_",0,2)
 end
 
 
@@ -2333,7 +2328,7 @@ function VehicleBreakdowns:getCanMotorRun(superFunc)
 	if self.spec_faultData ~= nil then
 		local spec = self.spec_faultData
 		local engine_percent = (spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime
-		if not spec.parts[5].repairreq and engine_percent < 99 and not spec.battery[1] and not spec.service[1] and not spec.repair[1] then -- not spec.parts[6].repairreq and
+		if engine_percent < 99 and not spec.battery[1] and not spec.service[1] and not spec.repair[1] then -- not spec.parts[5].repairreq and not spec.parts[6].repairreq and
 			return superFunc(self)
 		end
 	end
@@ -2353,7 +2348,7 @@ function VehicleBreakdowns:getMotorNotAllowedWarning()
 	local specf = self.spec_faultData
 	
 	if self:getIsFaultGenerator()and not specf.repair[1] then
-        return g_i18n.modEnvironments[g_vehicleBreakdownsModName].texts.VehicleBreakdown_DEAD_GENERATOR
+        --return g_i18n.modEnvironments[g_vehicleBreakdownsModName].texts.VehicleBreakdown_DEAD_GENERATOR
     end
 
 	local engine_percent = (specf.parts[6].operatingHours * 100) / specf.parts[6].tmp_lifetime

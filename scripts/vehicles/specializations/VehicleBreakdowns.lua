@@ -66,6 +66,7 @@ function VehicleBreakdowns.registerFunctions(vehicleType)
 	SpecializationUtil.registerFunction(vehicleType, "lightingsFault", VehicleBreakdowns.lightingsFault)
 	SpecializationUtil.registerFunction(vehicleType, "setBatteryDrain", VehicleBreakdowns.setBatteryDrain)
 	SpecializationUtil.registerFunction(vehicleType, "setBatteryDrainIfGeneratorFailure", VehicleBreakdowns.setBatteryDrainIfGeneratorFailure)
+	SpecializationUtil.registerFunction(vehicleType, "setBatteryDrainIfStartMotor", VehicleBreakdowns.setBatteryDrainIfStartMotor)
 	SpecializationUtil.registerFunction(vehicleType, "StopAI", VehicleBreakdowns.StopAI)
 	SpecializationUtil.registerFunction(vehicleType, "DebugFaultPrint", VehicleBreakdowns.DebugFaultPrint)
 	SpecializationUtil.registerFunction(vehicleType, "getIsFaultThermostat", VehicleBreakdowns.getIsFaultThermostat)
@@ -678,6 +679,19 @@ function VehicleBreakdowns:setBatteryDrainIfGeneratorFailure()
 		end
 	end
 	
+end
+
+function VehicleBreakdowns:setBatteryDrainIfStartMotor()
+
+	local spec = self.spec_faultData
+	if self:getIsFaultBattery() <= 0.95 then
+		local drainValue = 0.05
+		self:setIsFaultBattery(self:getIsFaultBattery() + drainValue)
+			
+		RVBTotal_Event.sendEvent(self, unpack(spec.rvb))
+		self:raiseDirtyFlags(spec.dirtyFlag)
+	end
+
 end
 
 function VehicleBreakdowns:setBatteryCharging()
@@ -1882,7 +1896,7 @@ function VehicleBreakdowns:onUpdate(dt)
 	end
 
 
-	if self:getIsFaultGenerator() or self:getIsFaultEngine() then
+	if self:getIsFaultEngine() then -- self:getIsFaultGenerator() or
 		self:StopAI(self)
 	end
 
@@ -2005,6 +2019,7 @@ function VehicleBreakdowns:startMotor(superFunc, noEventSend)
 	RVBParts_Event.sendEvent(self, unpack(rvbs.parts))
 	self:raiseDirtyFlags(rvbs.dirtyFlag)
 	
+	self:setBatteryDrainIfStartMotor()
 
 	if self:getIsFaultSelfStarter() or tonumber(self:getIsFaultBattery()) >= 0.75 then
 
@@ -2041,14 +2056,22 @@ function VehicleBreakdowns:stopMotor(superFunc, noEventSend)
 	rvbs.dashboard_check_updateDelta = 0
 	rvbs.dashboard_check = false
 	rvbs.dashboard_check_ok = false
-	
-	if self:getIsFaultSelfStarter() or tonumber(self:getIsFaultBattery()) >= 0.75 then
+
+	if self:getIsFaultSelfStarter() or tonumber(self:getIsFaultBattery()) >= 0.75 and not self:getIsFaultGenerator() then
 		if rvbs.isRVBMotorStarted then
 			rvbs.isRVBMotorStarted = false
 			if self.isClient then
 				stopSample(VehicleBreakdowns.sounds["self_starter"], 0 , 0)
 			end
 		end
+	elseif self:getIsFaultGenerator() and tonumber(self:getIsFaultBattery()) >= 0.75 then
+		if rvbs.isRVBMotorStarted then
+			rvbs.isRVBMotorStarted = false
+			if self.isClient then
+				stopSample(VehicleBreakdowns.sounds["self_starter"], 0 , 0)
+			end
+		end
+		superFunc(self, noEventSend)
 	else
 		if spec.isMotorStarted then
 			--self:onStopOperatingHours()
@@ -2320,6 +2343,7 @@ function VehicleBreakdowns:lightingsFault()
 
 	if self:getIsFaultLightings() or self:getIsFaultBattery() >= 0.75 then
 		self:setLightsTypesMask(0, true, true)
+		self:setBeaconLightsVisibility(false, true, true)
 	end
 
 end
@@ -2328,7 +2352,7 @@ function VehicleBreakdowns:getCanMotorRun(superFunc)
 	if self.spec_faultData ~= nil then
 		local spec = self.spec_faultData
 		local engine_percent = (spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime
-		if engine_percent < 99 and not spec.battery[1] and not spec.service[1] and not spec.repair[1] then -- not spec.parts[5].repairreq and not spec.parts[6].repairreq and
+		if engine_percent < 99 and not spec.battery[1] and not spec.service[1] and not spec.repair[1] then -- not spec.parts[5].repairreq and  not spec.parts[6].repairreq and
 			return superFunc(self)
 		end
 	end

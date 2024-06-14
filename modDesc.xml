@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
 	<author>MathiasHun</author>
-	<version>0.8.6.0</version>
+	<version>0.8.6.1</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -77,6 +77,9 @@ Changelog 0.8.6.0:
 - Added FS22 basic damage overwrite, inactive
 - Fixed, if the vehicle damage bar below 10%, no breakdowns when inspecting vehicle, resets vehicle damage bar to 100%. FS22 basic repair cost + inspection cost
 - Many other things :)
+
+Changelog 0.8.6.1:
+- github issues#35 - Battery dropped at 25% while engine was running
 ]]></en>
 
 	</description>

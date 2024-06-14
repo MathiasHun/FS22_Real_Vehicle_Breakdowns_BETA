@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
 	<author>MathiasHun</author>
-	<version>0.8.6.1</version>
+	<version>0.8.6.2</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -80,6 +80,12 @@ Changelog 0.8.6.0:
 
 Changelog 0.8.6.1:
 - github issues#35 - Battery dropped at 25% while engine was running
+
+Changelog 0.8.6.2:
+- github issues#36 - AutoDrive problem
+- github issues#37 - Beacons should turn off too when there is no battery (This is subject to change)
+- Fixed, If the battery was discharged due to a generator failure, it was not possible to stop the engine.
+- Added new function - Each engine start reduces the battery charge level by 5%. Of course, if the generator is good, the battery will be charged
 ]]></en>
 
 	</description>

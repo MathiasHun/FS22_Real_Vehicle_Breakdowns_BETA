@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
 	<author>MathiasHun</author>
-	<version>0.8.6.2</version>
+	<version>0.8.6.3</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -86,6 +86,10 @@ Changelog 0.8.6.2:
 - github issues#37 - Beacons should turn off too when there is no battery (This is subject to change)
 - Fixed, If the battery was discharged due to a generator failure, it was not possible to stop the engine.
 - Added new function - Each engine start reduces the battery charge level by 5%. Of course, if the generator is good, the battery will be charged
+
+Changelog 0.8.6.3:
+- github issues#40 - After AI finish the work battery continue drops until goes empty
+- Added Spanish translation
 ]]></en>
 
 	</description>

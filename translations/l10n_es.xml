@@ -87,8 +87,8 @@
 		<text name="RVB_inspectionDialogEnd" text="%s vehículo inspeccionado, no se requieren reparaciones."/>
 		<text name="RVB_inspectionDialogEnd_other" text="%s vehículo ha sido inspeccionado y reparado. Su mecánico tenía mucho trabajo, por lo que un mecánico novato arregló su vehículo. Sin embargo, este mecánico novato no puede enumerar lo que ha reparado en su vehículo."/>
 		
-		<text name="RVB_fault_" text="Do not drive too fast, the engine is still cold."/>
-		<text name="RVB_fault_hud" text="%s the vehicle is driven too fast, the engine is still cold." tag="format"/>
+		<text name="RVB_fault_" text="No conduzca demasiado rápido, el motor todavía está frío."/>
+		<text name="RVB_fault_hud" text="%s el vehículo se conduce demasiado rápido y el motor aún está frío." tag="format"/>
 
 		<text name="RVB_fault_thermostat" text="El refrigerante se sobrecalienta."/>
 		<text name="RVB_fault_thermostat_hud" text="%es el refrigerante del vehículo se sobrecalienta." tag="format"/>

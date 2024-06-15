@@ -388,7 +388,7 @@ function VehicleBreakdowns:minuteChanged()
 		Lighting is working
 		The battery is working and the charge level is adequate
 	]]
-	if self.spec_lights.currentLightState > 0 and not spec.parts[2].repairreq and not spec.parts[8].repairreq and self:getIsFaultBattery() <= 0.75 then
+	if self:getLightsTypesMask() > 0 and not spec.parts[2].repairreq and not spec.parts[8].repairreq and self:getIsFaultBattery() <= 0.75 then
 		local oneGameMinute = 60 * 1000 / 3600000
 		spec.parts[2].operatingHours = spec.parts[2].operatingHours + oneGameMinute
 		RVBParts_Event.sendEvent(self, unpack(spec.parts))
@@ -602,20 +602,20 @@ function VehicleBreakdowns:setBatteryDrain()
 
 	local spec = self.spec_faultData
 	local RVBSET = g_currentMission.vehicleBreakdowns
-
-	if not self.spec_motorized.isMotorStarted and self.spec_lights.currentLightState > 0 and not spec.parts[2].repairreq and self:getIsFaultBattery() <= 0.75 then
+	
+	if not self.spec_motorized.isMotorStarted and self:getLightsTypesMask() > 0 and not spec.parts[2].repairreq and self:getIsFaultBattery() <= 0.75 then
 		if self:getIsFaultBattery() <= 0.75 and not self.spec_motorized.isMotorStarted then
 
 			local drainValue = 0.01
 			local spec = self.spec_faultData
 			local drainValue = 0.005
-			if self.spec_lights.currentLightState == 1 then
+			if self:getLightsTypesMask() == 1 then
 				drainValue = 0.005
-			elseif self.spec_lights.currentLightState == 2 then
+			elseif self:getLightsTypesMask() == 2 then
 				drainValue = 0.01
-			elseif self.spec_lights.currentLightState == 3 then
+			elseif self:getLightsTypesMask() == 3 then
 				drainValue = 0.015
-			elseif self.spec_lights.currentLightState == 4 then
+			elseif self:getLightsTypesMask() == 4 then
 				drainValue = 0.018
 			end
 
@@ -633,7 +633,7 @@ function VehicleBreakdowns:setBatteryDrain()
 			else
 				--g_client:getServerConnection():sendEvent(RVB_Event.new(self, unpack(spec.faultStorage)))
 			end
-
+				
 			if RVBSET:getIsAlertMessage() then
 				if self.getIsEntered ~= nil and self:getIsEntered() then
 				--	g_currentMission:showBlinkingWarning(g_i18n:getText("fault_operatinghours"), 2500)
@@ -657,23 +657,23 @@ function VehicleBreakdowns:setBatteryDrainIfGeneratorFailure()
 	local spec = self.spec_faultData
 	local RVBSET = g_currentMission.vehicleBreakdowns
 
-	if self.spec_motorized.isMotorStarted and self.spec_lights.currentLightState > 0 and not spec.parts[2].repairreq and self:getIsFaultBattery() <= 0.75 then
+	if self.spec_motorized.isMotorStarted and self:getLightsTypesMask() > 0 and not spec.parts[2].repairreq and self:getIsFaultBattery() <= 0.75 then
 		if spec.parts[5].repairreq and self:getIsFaultBattery() <= 0.75 then
 			local drainValue = 0.01
 			local spec = self.spec_faultData
 			local drainValue = 0.005
-			if self.spec_lights.currentLightState == 1 then
+			if self:getLightsTypesMask() == 1 then
 				drainValue = 0.005
-			elseif self.spec_lights.currentLightState == 2 then
+			elseif self:getLightsTypesMask() == 2 then
 				drainValue = 0.01
-			elseif self.spec_lights.currentLightState == 3 then
+			elseif self:getLightsTypesMask() == 3 then
 				drainValue = 0.015
-			elseif self.spec_lights.currentLightState == 4 then
+			elseif self:getLightsTypesMask() == 4 then
 				drainValue = 0.018
 			end
 
 			self:setIsFaultBattery(self:getIsFaultBattery() + drainValue)
-			
+
 			RVBTotal_Event.sendEvent(self, unpack(spec.rvb))
 			self:raiseDirtyFlags(spec.dirtyFlag)
 		end
@@ -769,7 +769,6 @@ function VehicleBreakdowns:setGeneratorBatteryCharging()
 
 			self:setIsFaultBattery(self:getIsFaultBattery() - 0.005)
 			if self:getIsFaultBattery() < 0 then
-
 				self:setIsFaultBattery(0)
 			end
 			--if self.isServer then

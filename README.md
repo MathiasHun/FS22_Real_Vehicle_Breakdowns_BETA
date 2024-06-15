@@ -1,6 +1,6 @@
 # FS22_Real_Vehicle_Breakdowns_BETA
 
-<p dir="auto"><strong><a href="https://sharemods.com/5kvntmc3tnjj/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
+<p dir="auto"><strong><a href="https://sharemods.com/jqyaviwgygao/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
 
 Changelog 0.8.6.3:
 - github issues#40 - After AI finish the work battery continue drops until goes empty

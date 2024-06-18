@@ -2957,29 +2957,30 @@ end
 -- original SpeedMeterDisplay
 ---Update the damage gauge state.
 function VehicleBreakdowns:updateDamageGauge(superFunc, dt)
-    if not self.fadeDamageGaugeAnimation:getFinished() then
-        self.fadeDamageGaugeAnimation:update(dt)
-    end
+	if not self.fadeDamageGaugeAnimation:getFinished() then
+		self.fadeDamageGaugeAnimation:update(dt)
+	end
 
-    if self.damageGaugeActive then
-        local gaugeValue = 1
+	if self.damageGaugeActive then
+		local gaugeValue = 1
 
-        -- Show the most damage any item in the vehicle has
-        local vehicles = self.vehicle.rootVehicle.childVehicles
-        for i = 1, #vehicles do
-            local vehicle = vehicles[i]
-            --if vehicle.getDamageShowOnHud ~= nil and vehicle:getDamageShowOnHud() then
-			if vehicle.getIsSelected ~= nil and vehicle:getIsSelected() then
-                gaugeValue = math.min(gaugeValue, 1 - vehicle:getDamageAmount())
-            end
-        end
-        self.damageBarElement:setValue(gaugeValue, "DAMAGE")
+		-- Show the most damage any item in the vehicle has
+		local vehicles = self.vehicle.rootVehicle.childVehicles
+		for i = 1, #vehicles do
+			local vehicle = vehicles[i]
+			if vehicle.getDamageShowOnHud ~= nil and vehicle:getDamageShowOnHud() and vehicle.getIsSelected ~= nil and vehicle:getIsSelected() then
+				--if vehicle.getDamageAmount ~= nil then
+				gaugeValue = math.min(gaugeValue, 1 - vehicle:getDamageAmount())
+				--end
+			end
+		end
+		self.damageBarElement:setValue(gaugeValue, "DAMAGE")
 
-        local neededColor = SpeedMeterDisplay.COLOR.DAMAGE_GAUGE
-        if gaugeValue < 0.2 then
-            neededColor = SpeedMeterDisplay.COLOR.DAMAGE_GAUGE_LOW
-        end
-        self.damageBarElement:setBarColor(neededColor[1], neededColor[2], neededColor[3])
-    end
+		local neededColor = SpeedMeterDisplay.COLOR.DAMAGE_GAUGE
+		if gaugeValue < 0.2 then
+			neededColor = SpeedMeterDisplay.COLOR.DAMAGE_GAUGE_LOW
+		end
+		self.damageBarElement:setBarColor(neededColor[1], neededColor[2], neededColor[3])
+	end
 end
 SpeedMeterDisplay.updateDamageGauge = Utils.overwrittenFunction(SpeedMeterDisplay.updateDamageGauge, VehicleBreakdowns.updateDamageGauge)

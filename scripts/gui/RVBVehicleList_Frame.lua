@@ -865,7 +865,8 @@ function RVBVehicleList_Frame:rebuildTableList()
 	
 			for _, vehicle in ipairs(g_currentMission.vehicles) do
 
-				if vehicle ~= nil and vehicle.typeName ~= "locomotive" and vehicle.typeName ~= "trainTrailer" and vehicle.typeName ~= "trainTimberTrailer" and vehicle.typeName ~= "FS22_ToolBoxPack.service" then 
+				if vehicle ~= nil and vehicle.typeName ~= "locomotive" and vehicle.typeName ~= "trainTrailer" and vehicle.typeName ~= "trainTimberTrailer" and vehicle.typeName ~= "FS22_ToolBoxPack.service" 
+					and vehicle.typeName ~= "FS22_twine_addon.palletAttachable" and vehicle.typeName ~= "FS22_netWrap_addon_modland.palletAttachable" then
 
 					local isSelling        = (vehicle.isDeleted ~= nil and vehicle.isDeleted) or (vehicle.isDeleting ~= nil and vehicle.isDeleting)
 					local hasAccess        = g_currentMission.accessHandler:canPlayerAccess(vehicle)

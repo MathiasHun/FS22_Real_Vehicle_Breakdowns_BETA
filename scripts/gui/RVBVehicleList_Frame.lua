@@ -811,8 +811,8 @@ function RVBVehicleList_Frame:rebuildTableList()
 
 								local isRidable = SpecializationUtil.hasSpecialization(Rideable, vehicle.specializations)
 
-								if not isRidable and not vehicle.isPallet and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and vehicle.typeName ~= "FS22_ToolBoxPack.service" then
-
+								if not isRidable and not vehicle.isPallet and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and vehicle.typeName ~= "FS22_ToolBoxPack.service"
+									and vehicle.typeName ~= "FS22_twine_addon.palletAttachable" and vehicle.typeName ~= "FS22_netWrap_addon_modland.palletAttachable" then
 									if self.listVehicle == "all" then
 										local items = vehicle.rootVehicle:getChildVehicles()
 										for _, item in ipairs(items) do

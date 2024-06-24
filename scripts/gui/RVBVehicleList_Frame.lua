@@ -378,9 +378,12 @@ function RVBVehicleList_Frame:onYesNoInspectionDialog(yes)
 				RVBTotal_Event.sendEvent(self_vehicle, unpack(spec.rvb))
 				self_vehicle:raiseDirtyFlags(spec.dirtyFlag)
 			--end
-
-			self_vehicle:stopMotor(true)
+			
 			self_vehicle:StopAI(self_vehicle)
+			self_vehicle:stopMotor()
+			if self_vehicle.deactivateLights ~= nil then
+				self_vehicle:deactivateLights()
+			end
 			local specm = self_vehicle.spec_motorized
 			if specm.motor ~= nil then
 				specm.motor:setGearShiftMode(specm.gearShiftMode)
@@ -471,8 +474,11 @@ function RVBVehicleList_Frame:onYesNoRepairDialog(yes)
 				self_vehicle:raiseDirtyFlags(spec.dirtyFlag)
 			--end
 
-			self_vehicle:stopMotor(true)
 			self_vehicle:StopAI(self_vehicle)
+			self_vehicle:stopMotor()
+			if self_vehicle.deactivateLights ~= nil then
+				self_vehicle:deactivateLights()
+			end
 			local specm = self_vehicle.spec_motorized
 			if specm.motor ~= nil then
 				specm.motor:setGearShiftMode(specm.gearShiftMode)
@@ -526,8 +532,11 @@ function RVBVehicleList_Frame:onYesNoServiceDialog(yes)
 				self_vehicle:raiseDirtyFlags(spec.dirtyFlag)
 			--end
 
-			self_vehicle:stopMotor(true)
 			self_vehicle:StopAI(self_vehicle)
+			self_vehicle:stopMotor()
+			if self_vehicle.deactivateLights ~= nil then
+				self_vehicle:deactivateLights()
+			end
 			local specm = self_vehicle.spec_motorized
 			if specm.motor ~= nil then
 				specm.motor:setGearShiftMode(specm.gearShiftMode)
@@ -571,8 +580,11 @@ function RVBVehicleList_Frame:onYesNoBatteryChDialog(yes)
 				self_vehicle:raiseDirtyFlags(spec.dirtyFlag)
 			--end
 
-			self_vehicle:stopMotor(true)
 			self_vehicle:StopAI(self_vehicle)
+			self_vehicle:stopMotor()
+			if self_vehicle.deactivateLights ~= nil then
+				self_vehicle:deactivateLights()
+			end
 			local specm = self_vehicle.spec_motorized
 			if specm.motor ~= nil then
 				specm.motor:setGearShiftMode(specm.gearShiftMode)
@@ -1059,7 +1071,7 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					if spec.parts[1].operatingHours >= thermostat_Pvalue then
 						self.THERMOSTAT:setText(g_i18n:getText("RVB_faultText_THERMOSTAT").." ("..string.format("%.0f", thermostat_Pfoot).."%)")
 					end
-					if spec.parts[1].operatingHours < 95 then
+					if spec.parts[1].operatingHours >= (spec.parts[1].tmp_lifetime * 99) / 100 then
 						self.checkedThermostatPartToggle:setDisabled(true)
 					end
 					
@@ -1072,7 +1084,7 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					if spec.parts[2].operatingHours >= lightings_Pvalue then
 						self.LIGHTINGS:setText(g_i18n:getText("RVB_faultText_LIGHTINGS").." ("..string.format("%.0f", lightings_Pfoot).."%)")
 					end
-					if spec.parts[2].operatingHours < 95 then
+					if spec.parts[2].operatingHours >= (spec.parts[2].tmp_lifetime * 99) / 100 then
 						self.checkedLightingsPartToggle:setDisabled(true)
 					end
 			
@@ -1080,11 +1092,12 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					local glowPlug_Pvalue = (spec.parts[3].tmp_lifetime * 80) / 100
 					local glowPlug_Pfoot = 100 - ((spec.parts[3].operatingHours * 100) / spec.parts[3].tmp_lifetime)
 					print(string.format("%.0f", glowPlug_Pfoot).."%")
+					if glowPlug_Pfoot < 0 then glowPlug_Pfoot = 0 end
 					self.GLOWPLUG:setText(g_i18n:getText("RVB_faultText_GLOWPLUG"))
 					if spec.parts[3].operatingHours >= glowPlug_Pvalue then
 						self.GLOWPLUG:setText(g_i18n:getText("RVB_faultText_GLOWPLUG").." ("..string.format("%.0f", glowPlug_Pfoot).."%)")
 					end
-					if spec.parts[3].operatingHours < 95 then
+					if spec.parts[3].operatingHours >= (spec.parts[3].tmp_lifetime * 99) / 100 then
 						self.checkedGlowPlugPartToggle:setDisabled(true)
 					end
 			
@@ -1092,11 +1105,12 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					local wipers_Pvalue = (spec.parts[4].tmp_lifetime * 80) / 100
 					local wipers_Pfoot = 100 - ((spec.parts[4].operatingHours * 100) / spec.parts[4].tmp_lifetime)
 					print(string.format("%.0f", wipers_Pfoot).."%")
+					if wipers_Pfoot < 0 then wipers_Pfoot = 0 end
 					self.WIPERS:setText(g_i18n:getText("RVB_faultText_WIPERS"))
 					if spec.parts[4].operatingHours >= wipers_Pvalue then
 						self.WIPERS:setText(g_i18n:getText("RVB_faultText_WIPERS").." ("..string.format("%.0f", wipers_Pfoot).."%)")
 					end
-					if spec.parts[4].operatingHours < 95 then
+					if spec.parts[4].operatingHours >= (spec.parts[4].tmp_lifetime * 99) / 100 then
 						self.checkedWipersPartToggle:setDisabled(true)
 					end
 			
@@ -1104,11 +1118,12 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					local generator_Pvalue = (spec.parts[5].tmp_lifetime * 80) / 100
 					local generator_Pfoot = 100 - ((spec.parts[5].operatingHours * 100) / spec.parts[5].tmp_lifetime)
 					print(string.format("%.0f", generator_Pfoot).."%")
+					if generator_Pfoot < 0 then generator_Pfoot = 0 end
 					self.GENERATOR:setText(g_i18n:getText("RVB_faultText_GENERATOR"))
 					if spec.parts[5].operatingHours >= generator_Pvalue then
 						self.GENERATOR:setText(g_i18n:getText("RVB_faultText_GENERATOR").." ("..string.format("%.0f", generator_Pfoot).."%)")
 					end
-					if spec.parts[5].operatingHours < 95 then
+					if spec.parts[5].operatingHours >= (spec.parts[5].tmp_lifetime * 99) / 100 then
 						self.checkedGeneratorPartToggle:setDisabled(true)
 					end
 			
@@ -1116,11 +1131,12 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					local engine_Pvalue = (spec.parts[6].tmp_lifetime * 80) / 100
 					local engine_Pfoot = 100 - ((spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime)
 					print(string.format("%.0f", engine_Pfoot).."%")
+					if engine_Pfoot < 0 then engine_Pfoot = 0 end
 					self.ENGINE:setText(g_i18n:getText("RVB_faultText_ENGINE"))
 					if spec.parts[6].operatingHours >= engine_Pvalue then
 						self.ENGINE:setText(g_i18n:getText("RVB_faultText_ENGINE").." ("..string.format("%.0f", engine_Pfoot).."%)")
 					end
-					if spec.parts[6].operatingHours < 95 then
+					if spec.parts[6].operatingHours >= (spec.parts[6].tmp_lifetime * 99) / 100 then
 						self.checkedEnginePartToggle:setDisabled(true)
 					end
 			
@@ -1128,11 +1144,12 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					local selfstarter_Pvalue = (spec.parts[7].tmp_lifetime * 80) / 100
 					local selfstarter_Pfoot = 100 - ((spec.parts[7].operatingHours * 100) / spec.parts[7].tmp_lifetime)
 					print(string.format("%.0f", selfstarter_Pfoot).."%")
+					if selfstarter_Pfoot < 0 then selfstarter_Pfoot = 0 end
 					self.SELFSTARTER:setText(g_i18n:getText("RVB_faultText_SELFSTARTER"))
 					if spec.parts[7].operatingHours >= selfstarter_Pvalue then
 						self.SELFSTARTER:setText(g_i18n:getText("RVB_faultText_SELFSTARTER").." ("..string.format("%.0f", selfstarter_Pfoot).."%)")
 					end
-					if spec.parts[7].operatingHours < 95 then
+					if spec.parts[7].operatingHours >= (spec.parts[7].tmp_lifetime * 99) / 100 then
 						self.checkedSelfstarterPartToggle:setDisabled(true)
 					end
 			
@@ -1140,12 +1157,16 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 					local battery_Pvalue = (spec.parts[8].tmp_lifetime * 80) / 100
 					local battery_Pfoot = 100 - ((spec.parts[8].operatingHours * 100) / spec.parts[8].tmp_lifetime)
 					print(string.format("%.0f", battery_Pfoot).."%")
+					if battery_Pfoot < 0 then battery_Pfoot = 0 end
 					self.BATTERY:setText(g_i18n:getText("RVB_faultText_BATTERY"))
 					if spec.parts[8].operatingHours >= battery_Pvalue then
 						self.BATTERY:setText(g_i18n:getText("RVB_faultText_BATTERY").." ("..string.format("%.0f", battery_Pfoot).."%)")
 					end
-					if spec.parts[8].operatingHours < 95 then
+					if spec.parts[8].operatingHours >= (spec.parts[8].tmp_lifetime * 99) / 100 then
 						self.checkedBatteryPartToggle:setDisabled(true)
+					end
+					if spec.parts[8].operatingHours <= (spec.parts[8].tmp_lifetime * 95) / 100 and spec.parts[8].operatingHours >= battery_Pvalue then
+						self.checkedBatteryPartToggle:setDisabled(false)
 					end
 					
 				end
@@ -1422,7 +1443,7 @@ function RVBVehicleList_Frame:onSave()
 	if g_server ~= nil then
 		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
     else
-		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
+		--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
     end
 	
 end

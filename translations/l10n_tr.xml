@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <l10n>
-<translationContributors>DoxoMatixo</translationContributors>
+	<translationContributors>DoxoMatixo</translationContributors>
 	<texts>
 		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Real Vehicle Breakdowns(RVB)"/>
 
-			<!-- settings -->
+		<!-- settings -->
 		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Emin misiniz?"/>
 		<!-- gameplay settings -->
@@ -29,7 +29,7 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Yavaş"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Orta"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Hızlı"/>
-<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Alap jármű műhely trigger ponton is meg tudod nyitni a Valódi jármű meghibásodások(RVB) menüt."/>
 
 		<!-- vehicle list -->	
@@ -92,7 +92,7 @@
 		<text name="RVB_fault_" text="Ne vezessen túl gyorsan, a motor még hideg."/>
 		<text name="RVB_fault_hud" text="%s járművel túl gyorsan vezetnek, a motor még hideg." tag="format"/>
 
-<text name="RVB_fault_thermostat" text="Antifriz aşırı ısınıyor."/>
+		<text name="RVB_fault_thermostat" text="Antifriz aşırı ısınıyor."/>
 		<text name="RVB_fault_thermostat_hud" text="%s aracın antifrizi aşırı ısınıyor." tag="format"/>
 
 		<text name="RVB_fault_thermostatC" text="Motor çalışma sıcaklığına ulaşmıyor."/>

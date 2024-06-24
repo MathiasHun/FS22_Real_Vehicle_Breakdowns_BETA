@@ -5,5 +5,4 @@
 	<repairshop value="true"/>
 	<workshopOpen value="7"/>
 	<workshopClose value="16"/>
-	<cp_notice value="false"/>
 </rvbGamePlaySettings>

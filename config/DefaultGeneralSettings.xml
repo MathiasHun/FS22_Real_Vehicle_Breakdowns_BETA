@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <rvbGeneralSettings>
-    <alertmessage value="true"/>
-	<difficulty value="1"/> <!-- Easy Medium Hard-->
+	<alertmessage value="true"/>
+	<difficulty value="1"/>
+	<basicrepairtrigger value="true"/>
+	<cp_notice value="false"/>
 </rvbGeneralSettings>

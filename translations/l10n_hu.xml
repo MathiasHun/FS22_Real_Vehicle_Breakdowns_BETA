@@ -28,6 +28,8 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Lassú"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Közepes"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Gyors"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Alap jármű műhely trigger ponton is meg tudod nyitni a Valódi jármű meghibásodások(RVB) menüt."/>
 
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="Jármű műhely zárva van, gyere vissza %s órakor." tag="format"/>
@@ -97,6 +99,9 @@
 
 		<text name="RVB_fault_lights" text="Nem müködik a világítás." />
 		<text name="RVB_fault_lights_hud" text="%s járműnek nem müködik a világítása." tag="format"/>
+		
+		<text name="RVB_fault_BHlights" text="Az akkumulátor töltöttségi szintje túl alacsony." />
+		<text name="RVB_fault_BHlights_hud" text="%s járműnek az akkumulátorának töltöttségi szintje túl alacsony." tag="format"/>
 
 		<text name="RVB_fault_glowplug" text="Üzemanyag fogyasztás megnőtt." />
 		<text name="RVB_fault_glowplug_hud" text="%s jármű üzemanyag fogyasztása megnőtt." tag="format"/>
@@ -138,6 +143,9 @@
 		<text name="Automatic_Repair_conflict_notice" text="Vannak olyan módosítások, amelyek automatikusan megjavítják a járművet, de te a &quot;Valódi jármű meghibásodások(RVB)&quot; módosítást is használod, ezért ütközhet más módosításokkal. Az alábbi listában található módosítás(ok)ban szükséges az automatikus javítást felülírni, ezt a felülírást már meg is tette az RVB módosítás."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Felülírt módosítás(ok): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Megértésedet köszönöm.&#13;&#10;&#13;&#10;Minden jót,&#13;&#10;MathiasHun"/>
+		
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s gépi segítő váratlanul abbahagyta a munkát – a jármű akkumulátora lemerült!"/>
 		
 	</texts>
 </l10n>

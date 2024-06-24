@@ -127,9 +127,9 @@ function RVBGamePlaySettings_Frame:onSave()
 	local workshopClose = self.workshopCloseSet:getState()
 
 	if g_server ~= nil then
-		g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, self.rvbMain.gameplaySettings.cp_notice), nil, nil, self)
+		g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose), nil, nil, self)
     else
-		g_client:getServerConnection():sendEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, self.rvbMain.gameplaySettings.cp_notice))
+		g_client:getServerConnection():sendEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
     end
 
 end

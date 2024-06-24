@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l10n>
+<translationContributors>DoxoMatixo</translationContributors>
+	<texts>
+		<!-- inputs -->
+		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Real Vehicle Breakdowns(RVB)"/>
+
+			<!-- settings -->
+		<!-- tabbedMenu -->
+		<text name="ui_RVB_reset_msg" text="Emin misiniz?"/>
+		<!-- gameplay settings -->
+		<text name="ui_RVB_sectionGamePlaySettings" text="Oyun Ayarları"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Günlük hizmet"/>
+		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Bakım günde ne sıklıkla yapılmalı? Bu özellik şu anda aktif değil."/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeTitle" text="Periyodik bakım"/>
+		<text name="ui_RVB_gameplaysetting_periodicOperatingTimeDesc" text="Araç bakım aralığı."/>	
+		<text name="ui_RVB_gameplaysetting_repaironlyTitle" text="Sadece araç tamirhanesinde tamir edin."/>
+		<text name="ui_RVB_gameplaysetting_repaironlyDesc" text="Bir araç sadece araç tamirhanesinde tamir edilebilir veya bakımı yapılabilir."/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenTitle" text="Araç tamirhanesi açılış saati"/>
+		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="Araç tamirhanesin açılış saati. Sadece ayarladığınız saatte açılır."/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Araç tamirhanesi kapanı saati."/>
+		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="Araç tamirhanesin kapanış saati. Sadece ayarladığınız saatte kapanır."/>
+		<!-- general settings -->
+		<text name="ui_RVB_sectionGeneralSettings" text="Genel Ayarlar"/>
+		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Uyarı mesajı"/>
+		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Araç hasar gördüğünde, servise götürüldüğünde veya tamir edildiğinde araç içindeyseniz ekranın ortasında bir uyarı mesajı görünecektir."/>
+		<text name="ui_RVB_generalsetting_difficultyTitle" text="Araç arızası"/>
+		<text name="ui_RVB_generalsetting_difficultyDesc" text="Geliştirme aşamasında ama kullanıma hazır."/>
+		<text name="ui_RVB_difficulty1_subtitle" text="Yavaş"/>
+		<text name="ui_RVB_difficulty2_subtitle" text="Orta"/>
+		<text name="ui_RVB_difficulty3_subtitle" text="Hızlı"/>
+<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Alap jármű műhely trigger ponton is meg tudod nyitni a Valódi jármű meghibásodások(RVB) menüt."/>
+
+		<!-- vehicle list -->	
+		<text name="RVB_WorkShopClose" text="Araç tamirhanesi kapalı, Saat %s geri gelin." tag="format"/>
+		<text name="RVB_button_inspection" text="İnceleme"/>
+		<text name="RVB_button_dailyservice" text="DGünlük servis"/>
+		<text name="RVB_button_periodicservice" text="Periyodik bakım"/>
+		<text name="RVB_button_battery_ch" text="Akü şarjı"/>
+		<text name="RVB_button_service" text="Bakım"/>
+		<text name="RVB_button_vehicles" text="Araçlar"/>
+		<text name="RVB_button_vehiclesandequipment" text="Araçlar ve uygulamalar"/>
+		<text name="RVB_inspectionDialog" text="Bu aracı %s maliyetle incelemek istediğine emin misin?" tag="format"/>
+		<text name="RVB_inspectionTimeDialog" text="Araç incelemesi %s saatinde tamamlanacaktır." tag="format"/>
+		<text name="RVB_inspectionDayDialog" text="Araç incelemesi yarın %s saatinde tamamlanacak." tag="format"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Termostat"/>
+		<text name="RVB_faultText_LIGHTINGS" text="Aydınlatma"/>
+		<text name="RVB_faultText_GLOWPLUG" text="Buji"/>
+		<text name="RVB_faultText_WIPERS" text="Silecekler"/>
+		<text name="RVB_faultText_GENERATOR" text="Şarj Dinamosu"/>
+		<text name="RVB_faultText_ENGINE" text="Motor"/>
+		<text name="RVB_faultText_SELFSTARTER" text="Marş Dinamosu"/> 
+		<text name="RVB_faultText_BATTERY" text="Akü"/>
+		<text name="RVB_repairTimeDialog" text="Araç tamiri %s saatinde tamamlanacak." tag="format"/>
+		<text name="RVB_repairDayDialog" text="Araç tamiri yarın saat %s'te tamamlanacak." tag="format"/>
+		<text name="RVB_ErrorList" text="Hata listesi:" />
+		<text name="RVB_periodicserviceDialog" text="%s maliyetle aracı servise bırakmak istediğinizden emin misiniz?" tag="format"/>
+		<text name="RVB_periodicserviceTimeDialog" text="Araç servisi %s saatinde tamamlanacak." tag="format"/>
+		<text name="RVB_periodicserviceDayDialog" text="Araç servisi yarın %s saatinde tamamlanacak." tag="format"/>
+		<text name="RVB_batteryChDialog" text="%s maliyetle araç aküsünü şarj etmek istediğinizden emin misiniz?" tag="format"/>
+		<text name="RVB_batteryChTimeDialog" text="Araç akü şarjı %s saatinde tamamlanacak." tag="format"/>
+		<text name="RVB_batteryChDayDialog" text="Araç akü şarjı yarın %s saatinde tamamlanacak." tag="format"/>
+		<text name="RVB_occupied" text="Araç zaten kullanımda!" />
+		<text name="RVB_shop_operatingTime" text="%02d.%2d saat" tag="format"/>
+		<text name="RVB_serviceHours" text="%01d/%01d saat" tag="format"/>
+		<text name="RVB_alertmessage_inspection" text="Araç incelemesi devam ediyor."/>
+		<text name="RVB_alertmessage_inspection_hud" text="%s araç incelemesi devam ediyor." tag="format"/>
+		<text name="RVB_alertmessage_repair" text="Araç tamiri devam ediyor."/>
+		<text name="RVB_alertmessage_repair_hud" text="%s araç tamiri devam ediyor." tag="format"/>
+		<text name="RVB_alertmessage_service" text="Araç servisi devam ediyor."/>
+		<text name="RVB_alertmessage_service_hud" text="%s araç servisi devam ediyor." tag="format"/>
+		<text name="RVB_alertmessage_batteryCh" text="Akü şarjı devam ediyor."/>
+		<text name="RVB_alertmessage_batteryCh_hud" text="%s araç akü şarjı devam ediyor." tag="format"/>
+		<!-- xml -->
+		<text name="RVB_list_vehicleorimplement" text="Araçlar/Ekipmanlar"/>
+		<text name="RVB_list_hporle" text="Hp/LE"/>
+		<text name="RVB_list_currentvalue" text="Güncel fiyat"/>
+		<text name="RVB_list_age" text="Yaş"/>
+		<text name="RVB_list_operatinghours" text="Çalışma süresi"/>
+		<text name="RVB_list_realoperatinghours" text="Gerçek Çalışma Süresi"/>
+		<text name="RVB_list_servicehours" text="Servis"/>
+		<text name="RVB_list_lease" text="Kiralandı"/>
+		<text name="RVB_list_battery" text="Akü"/>
+		<text name="RVB_parts_repair" text="Onarılacak parçalar"/>
+
+		<!-- spec -->
+		<text name="RVB_inspectionDialogFault" text="Araç %s incelendi, onarım gerekiyor. %s"/>
+		<text name="RVB_inspectionDialogEnd" text="Araç %s incelendi, onarım gerektirmiyor."/>
+		<text name="RVB_inspectionDialogEnd_other" text="%s araç incelendi ve tamir edildi. Tamircinizin çok işi olduğu için çırak aracınızı tamir etti. Ancak çırak ustası olmadan tamir ettiği şeyleri listeleyemez."/>
+		
+		<text name="RVB_fault_" text="Ne vezessen túl gyorsan, a motor még hideg."/>
+		<text name="RVB_fault_hud" text="%s járművel túl gyorsan vezetnek, a motor még hideg." tag="format"/>
+
+<text name="RVB_fault_thermostat" text="Antifriz aşırı ısınıyor."/>
+		<text name="RVB_fault_thermostat_hud" text="%s aracın antifrizi aşırı ısınıyor." tag="format"/>
+
+		<text name="RVB_fault_thermostatC" text="Motor çalışma sıcaklığına ulaşmıyor."/>
+		<text name="RVB_fault_thermostatC_hud" text="Motor %s çalışma sıcaklığına ulaşmıyor." tag="format"/>
+
+		<text name="RVB_fault_lights" text="Aydınlatma çalışmıyor." />
+		<text name="RVB_fault_lights_hud" text="Aracın ışıkları %s çalışmıyor." tag="format"/>
+
+		<text name="RVB_fault_BHlights" text="Az akkumulátor töltöttségi szintje túl alacsony." />
+		<text name="RVB_fault_BHlights_hud" text="%s járműnek az akkumulátorának töltöttségi szintje túl alacsony." tag="format"/>
+
+		<text name="RVB_fault_glowplug" text="Yakıt tüketimi arttı." />
+		<text name="RVB_fault_glowplug_hud" text="Aracın yakıt tüketimi %s arttı." tag="format"/>
+
+		<text name="fault_battery" text="Akü bitiyor." />
+		<text name="fault_battery_hud" text="Aracının pili %s boşaldı." tag="format"/>
+
+		<text name="RVB_fault_operatinghours" text="Servis ışığı yandı." />
+		<text name="RVB_fault_operatinghours_hud" text="Aracının %s oranında servise ihtiyacı var." tag="format"/>
+
+		<text name="RVB_main_repair_fault" text="Tamirci bu aracı tamir edemez, &quot;RVB&quot; servisine gidin."/>
+
+		<text name="VehicleBreakdown_DEAD_ENGINE" text="Motor arızası."/>
+		<text name="VehicleBreakdown_DEAD_GENERATOR" text="Motor çalışmıyor. Marş dinamosu arızalandı."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_INSPECTION" text="Araç çalıştırılamıyor, inceleme devam ediyor."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_REPAIR" text="Araç çalıştırılamıyor, tamirat devam ediyor."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SERVICE" text="Araç çalıştırılamıyor, servis bakım işlemi devam ediyor."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_SUSPENSION" text="Araç anahtarı tamircide ve o şu anda meşgul."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY" text="Motor çalışmıyor, akü tamamen bitti."/>
+		<text name="VehicleBreakdown_DEAD_ENGINE_BATTERY_CHARGING" text="Araç çalıştırılamıyor, akü şarjı devam ediyor."/>
+
+		<text name="RVB_ErrorNotifi" text="Arıza(lar): "/>
+
+		<!-- showInfo -->
+		<text name="infoDisplayExtension_tomorrow" text="Yarın "/>
+		<text name="infoDisplayExtension_currentPower" text="Güç"/>
+		<text name="infoDisplayExtension_batteryCh" text="Akü şarjı"/>
+		<text name="infoDisplayExtension_inspectionVheicle" text="Araç muayenesi"/>
+		<text name="infoDisplayExtension_repairVheicle" text="Araç tamiri"/>
+		<text name="infoDisplayExtension_serviceVheicle" text="Periyodik bakım"/>
+
+		<text name="RVB_operatingHours" text="Servis saati"/>
+
+		<text name="RVB_TotaloperatingHours" text="Toplam çalışma saati"/>
+
+		<!--
+		<text name="CP_Automatic_Repair_conflict_notice" text="You are using the &quot;Real Vehicle Failures(RVB)&quot; mod, which is why you may get stuck with the &quot;Courseplay(CP)&quot; mode.&#13;&#10;The setting of the &quot;Automatic Repair&quot; field in the CP menu does not correspond to the error-free use of the RVB mode, so RVB automatically disables the CP &quot;Automatic Repair&quot; in the background.&#13;&#10;Thank you for your understanding.&#13;&#10;&#13;&#10;Best regards, MathiasHun"/>
+		-->
+		<text name="Automatic_Repair_conflict_notice" text="Araçları otomatik olarak tamir eden modifikasyonlar var, ama siz &quot;Real Vehicle Breakdowns(RVB)&quot; kullanıyorsunuz, bu da diğer modifikasyonlarla çakışabilir. Aşağıdaki listedeki modifikasyon(lar) otomatik tamiri geçersiz kılmak gerekiyor, bu geçersiz kılma zaten RVB modifikasyonu tarafından yapıldı."/>
+		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Üzerine yazılmış modifikasyon(lar): "/>
+		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Anlayışınız için teşekkür ederim.&#13;&#10;&#13;&#10;En iyi dileklerimle,&#13;&#10;MathiasHun"/>
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s gépi segítő váratlanul abbahagyta a munkát – a jármű akkumulátora lemerült!"/>
+
+	</texts>
+</l10n>

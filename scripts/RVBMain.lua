@@ -10,6 +10,9 @@ RVBMain.alertmessageState = 2
 RVBMain.difficulty = ""
 RVBMain.difficultyState = 2
 
+RVBMain.basicrepairtrigger = true
+RVBMain.basicrepairtriggerState = 1
+
 RVBMain.repairshop = true
 RVBMain.repairshopState = 1
 
@@ -36,6 +39,8 @@ RVBMain.DEFAULT_SETTINGS = {
 	alertmessageState = RVBMain.alertmessageState,
 	rvbDifficulty = RVBMain.difficulty,
 	rvbDifficultyState = RVBMain.difficultyState,
+	basicrepairtrigger = RVBMain.basicrepairtrigger,
+	basicrepairtriggerState = RVBMain.basicrepairtriggerState,
 	repairshop = RVBMain.repairshop,
 	repairshopState = RVBMain.repairshopState,
 	dailyServiceInterval = RVBMain.dailyServiceInterval,
@@ -72,7 +77,6 @@ function RVBMain:new(modDirectory, modName)
     return self
 end
 
-
 function RVBMain:onMissionLoaded(mission)
 
 	self.DIFFICULTY_A = {}
@@ -87,38 +91,38 @@ function RVBMain:onMissionLoaded(mission)
 	self:registerGeneralSettingsSchema()
 
 	self.mission = mission
-	
-    local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
-    createFolder(VEHICLE_BREAKDOWN_FOLDER)
 
-    -- game play settings
-    local DEFAUL_GAMEPLAY_SETTINGS_XML = Utils.getFilename("config/DefaultGamePlaySettings.xml", self.modDirectory)
+	-- game play settings
+	local DEFAUL_GAMEPLAY_SETTINGS_XML = Utils.getFilename("config/DefaultGamePlaySettings.xml", self.modDirectory)
 	
 	local savegameFolderPath = self.mission.missionInfo.savegameDirectory
 	if savegameFolderPath == nil then
 		savegameFolderPath = ('%ssavegame%d'):format(getUserProfileAppPath(), math.floor(self.mission.missionInfo.savegameIndex))
 	end
 	
-    local GAMEPLAY_SETTINGS_XML = Utils.getFilename("/RVBGamePlaySettings.xml", savegameFolderPath)
+	local GAMEPLAY_SETTINGS_XML = Utils.getFilename("/RVBGamePlaySettings.xml", savegameFolderPath)
 
-    if fileExists(GAMEPLAY_SETTINGS_XML) then
-        self:loadGamePlaySettingsFromXml(GAMEPLAY_SETTINGS_XML)
-    else
-        copyFile(DEFAUL_GAMEPLAY_SETTINGS_XML, GAMEPLAY_SETTINGS_XML, false)
+	if fileExists(GAMEPLAY_SETTINGS_XML) then
+		self:loadGamePlaySettingsFromXml(GAMEPLAY_SETTINGS_XML)
+	else
+		copyFile(DEFAUL_GAMEPLAY_SETTINGS_XML, GAMEPLAY_SETTINGS_XML, false)
 		self:resetGamePlaySettings()
-    end
+	end
 	
 	-- general settings
-    local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
-    local DEFAUL_GENERAL_SETTINGS_XML = Utils.getFilename("config/DefaultGeneralSettings.xml", self.modDirectory)
+	local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
+	createFolder(VEHICLE_BREAKDOWN_FOLDER)
+	
+	local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
+	local DEFAUL_GENERAL_SETTINGS_XML = Utils.getFilename("config/DefaultGeneralSettings.xml", self.modDirectory)
 
-    if fileExists(GENERAL_SETTINGS_XML) then
-        self:loadGeneralSettingsFromXml(GENERAL_SETTINGS_XML)
-    else
-        copyFile(DEFAUL_GENERAL_SETTINGS_XML, GENERAL_SETTINGS_XML, false)
+	if fileExists(GENERAL_SETTINGS_XML) then
+		self:loadGeneralSettingsFromXml(GENERAL_SETTINGS_XML)
+	else
+		copyFile(DEFAUL_GENERAL_SETTINGS_XML, GENERAL_SETTINGS_XML, false)
 		self:resetGeneralSettings()
-    end
-
+	end
+	
 	-- hud
 	self.ui_hud = RVB_HUD:new(self.mission.hud.speedMeter, self.mission.hud.gameInfoDisplay, self.modDirectory)
 	self.ui_hud:load()
@@ -148,10 +152,6 @@ function RVBMain:onMissionLoaded(mission)
 	end
 
 	if g_modIsLoaded["FS22_AutoDrive"] then
-		if FS22_AutoDrive ~= nil and FS22_AutoDrive.ADDrivePathModule.isTargetReached ~= nil then
-			--table.insert(conflictList, "AutoDrive")
-			--FS22_AutoDrive.ADDrivePathModule.isTargetReached = Utils.overwrittenFunction(FS22_AutoDrive.ADDrivePathModule.isTargetReached, RVBMain.isTargetReached)
-		end
 		if FS22_AutoDrive ~= nil and FS22_AutoDrive.ADTaskModule.hasToRepair ~= nil then
 			table.insert(conflictList, "AutoDrive")
 			FS22_AutoDrive.ADTaskModule.hasToRepair = Utils.overwrittenFunction(FS22_AutoDrive.ADTaskModule.hasToRepair, RVBMain.hasToRepair)
@@ -173,9 +173,14 @@ function RVBMain:onMissionLoaded(mission)
 				end
 			end
 		}
-		if not self.gameplaySettings.cp_notice then
+		if not self.generalSettings.cp_notice then
 			addModEventListener(popupMessage)
-			self.gameplaySettings.cp_notice = true
+			self.generalSettings.cp_notice = true
+			if g_server ~= nil then
+				g_server:broadcastEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.rvbDifficultyState, self.generalSettings.basicrepairtrigger, self.generalSettings.cp_notice))
+			else
+				--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.rvbDifficultyState, self.generalSettings.cp_notice))
+			end
 		end
 	end
 
@@ -186,15 +191,6 @@ function RVBMain:autoRepair(superFunc)
 	--if self:isBrokenGreaterThan(100-self.autoRepairSetting:getValue()) then 
 	--	self.implement:repairVehicle()
 	--end
-end
--- Original AD ADDrivePathModule:isTargetReached()
-function RVBMain:isTargetReached(superFunc)
-    --if self.vehicle.spec_locomotive and self.vehicle.ad and self.vehicle.ad.trainModule then
-        -- train
-    --    return self.vehicle.ad.trainModule:isTargetReached()
-    --end
-    --return self.atTarget
-	return false
 end
 
 -- Original AD ADTaskModule hasToRepair()
@@ -246,7 +242,6 @@ function RVBMain:registerGamePlaySettingsSchema()
 	self.gameplaySettingSchema:register(XMLValueType.BOOL, schemaKey .. ".repairshop#value", "Repair only in vehicle workshop")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".workshopOpen#value", "Workshop opening")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".workshopClose#value", "Workshop closing")
-	self.gameplaySettingSchema:register(XMLValueType.BOOL, schemaKey .. ".cp_notice#value", "CP")
 
 end
 
@@ -257,6 +252,8 @@ function RVBMain:registerGeneralSettingsSchema()
 	
 	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".alertmessage#value", "Alert Message")
 	self.generalSettingSchema:register(XMLValueType.INT, schemaKey .. ".difficulty#value", "RVB difficulty")
+	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".basicrepairtrigger#value", "")
+	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".cp_notice#value", "CP")
 
 end
 
@@ -308,8 +305,6 @@ function RVBMain:loadGamePlaySettingsFromXml(xmlPath)
 				self.gameplaySettings.workshopCloseState = index
 			end
 		end
-		
-		self.gameplaySettings.cp_notice = xmlFile:getValue(key .. ".cp_notice#value", self.gameplaySettings.cp_notice)
 
         xmlFile:delete()
     end
@@ -334,7 +329,6 @@ function RVBMain:loadGeneralSettingsFromXml(xmlPath)
 				self.generalSettings.alertmessageState = index
 			end
 		end
-
 		
 		self.generalSettings.rvbDifficultyState = xmlFile:getValue(key .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
 		for index, value in pairs(self.DIFFICULTY_A) do
@@ -342,7 +336,22 @@ function RVBMain:loadGeneralSettingsFromXml(xmlPath)
 				self.generalSettings.rvbDifficulty = self.DIFFICULTY_A[index]
 			end
 		end
-
+		
+		self.generalSettings.basicrepairtrigger = xmlFile:getValue(key .. ".basicrepairtrigger#value", self.generalSettings.basicrepairtrigger)
+		local onoff = 2
+		if self.generalSettings.basicrepairtrigger then
+			onoff = 2
+		else
+			onoff = 1
+		end
+		for index, value in pairs(RVBMain.ONOFF) do
+			if value == onoff then
+				self.generalSettings.basicrepairtriggerState = index
+			end
+		end
+		
+		self.generalSettings.cp_notice = xmlFile:getValue(key .. ".cp_notice#value", self.generalSettings.cp_notice)
+		
         xmlFile:delete()
     end
 end
@@ -405,8 +414,7 @@ function RVBMain:resetGamePlaySettings()
 		workshopOpen = RVBMain.DEFAULT_SETTINGS.workshopOpen,
 		workshopOpenState = RVBMain.DEFAULT_SETTINGS.workshopOpenState,
 		workshopClose = RVBMain.DEFAULT_SETTINGS.workshopClose,
-		workshopCloseState = RVBMain.DEFAULT_SETTINGS.workshopCloseState,
-		cp_notice = RVBMain.DEFAULT_SETTINGS.cp_notice
+		workshopCloseState = RVBMain.DEFAULT_SETTINGS.workshopCloseState
     }
 end
 
@@ -415,7 +423,10 @@ function RVBMain:resetGeneralSettings()
 		alertmessage = RVBMain.DEFAULT_SETTINGS.alertmessage,
 		alertmessageState = RVBMain.DEFAULT_SETTINGS.alertmessageState,
 		rvbDifficulty = RVBMain.DEFAULT_SETTINGS.rvbDifficulty,
-		rvbDifficultyState = RVBMain.DEFAULT_SETTINGS.rvbDifficultyState
+		rvbDifficultyState = RVBMain.DEFAULT_SETTINGS.rvbDifficultyState,
+		basicrepairtrigger = RVBMain.DEFAULT_SETTINGS.basicrepairtrigger,
+		basicrepairtriggerState = RVBMain.DEFAULT_SETTINGS.basicrepairtriggerState,
+		cp_notice = RVBMain.DEFAULT_SETTINGS.cp_notice
     }
 end
 
@@ -427,28 +438,38 @@ function RVBMain:onActionCall(actionName, keyStatus, callbackStatus, isAnalog, a
 
 end
 
-function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, cp_notice)
+function RVBMain:RVBopenMenu(superFunc)
+
+	if g_currentMission.vehicleBreakdowns.generalSettings.basicrepairtrigger then
+		g_gui:showDialog("RVBTabbedMenu")
+	else
+		superFunc(self)
+	end
+	
+end
+VehicleSellingPoint.openMenu = Utils.overwrittenFunction(VehicleSellingPoint.openMenu, RVBMain.RVBopenMenu)
+
+function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose)
 
     if g_server then
 
-        g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, cp_notice))
+        g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
 
 		self:setIsDailyServiceInterval(dailyServiceInterval)
 		self:setIsPeriodicServiceInterval(periodicServiceInterval)
 		self:setIsRepairShop(repairshop)
 		self:setIsWorkshopOpen(workshopOpen)
 		self:setIsWorkshopClose(workshopClose)
-		self:setIsCPNotice(cp_notice)
 
     end
 
 end
 
-function RVBMain:setCustomGeneralSet(alertmessage, difficulty)
+function RVBMain:setCustomGeneralSet(alertmessage, difficulty, basicrepairtrigger, cp_notice)
 
     if g_server then
 
-        g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty))
+        g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, cp_notice))
 
 		self.generalSettings.alertmessage = alertmessage
 		local onoff_r = 2
@@ -464,6 +485,21 @@ function RVBMain:setCustomGeneralSet(alertmessage, difficulty)
 		end
 		
 		self:setIsRVBDifficulty(difficulty)
+		
+		self.generalSettings.basicrepairtrigger = basicrepairtrigger
+		local onoff_brt = 2
+		if self.generalSettings.basicrepairtrigger then
+			onoff_brt = 2
+		else
+			onoff_brt = 1
+		end
+		for index, value in pairs(RVBMain.ONOFF) do
+			if value == onoff_brt then
+				self.generalSettings.basicrepairtriggerState = index
+			end
+		end
+		
+		self:setIsCPNotice(cp_notice)
 
     end
 
@@ -472,34 +508,32 @@ end
 function RVBMain:rvbsaveToXMLFile(RVBXMLFile)
 
     local schemaKey = "rvbGamePlaySettings"
-
-    local xmlFile = XMLFile.create("RBVGamePlaySettingsXML", RVBXMLFile, "rvbGamePlaySettings",
-        self.gameplaySettingSchema)
-
+    local xmlFile = XMLFile.create("RBVGamePlaySettingsXML", RVBXMLFile, "rvbGamePlaySettings", self.gameplaySettingSchema)
     if xmlFile ~= 0 then
-
 		xmlFile:setValue(schemaKey .. ".dailyServiceInterval#value", self.gameplaySettings.dailyServiceInterval)
 		xmlFile:setValue(schemaKey .. ".periodicServiceInterval#value", self.gameplaySettings.periodicServiceInterval)
 		xmlFile:setValue(schemaKey .. ".repairshop#value", self.gameplaySettings.repairshop)
 		xmlFile:setValue(schemaKey .. ".workshopOpen#value", self.gameplaySettings.workshopOpen)
 		xmlFile:setValue(schemaKey .. ".workshopClose#value", self.gameplaySettings.workshopClose)
-		xmlFile:setValue(schemaKey .. ".cp_notice#value", self.gameplaySettings.cp_notice)
-
         xmlFile:save()
         xmlFile:delete()
     end
-	
-	local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
-    local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
-    local schemaKey_general = "rvbGeneralSettings"
-    local xmlFile_general = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
-
-    if xmlFile_general ~= 0 then
-		xmlFile_general:setValue(schemaKey_general .. ".alertmessage#value", self.generalSettings.alertmessage)
-		xmlFile_general:setValue(schemaKey_general .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
 		
-        xmlFile_general:save()
-        xmlFile_general:delete()
+end
+
+function RVBMain:saveGeneralettingsToXML()
+
+    local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
+    local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
+    local schemaKey = "rvbGeneralSettings"
+    local xmlFile = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
+    if xmlFile ~= 0 then
+		xmlFile:setValue(schemaKey .. ".alertmessage#value", self.generalSettings.alertmessage)
+		xmlFile:setValue(schemaKey .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
+		xmlFile:setValue(schemaKey .. ".basicrepairtrigger#value", self.generalSettings.basicrepairtrigger)
+		xmlFile:setValue(schemaKey .. ".cp_notice#value", self.generalSettings.cp_notice)
+        xmlFile:save()
+        xmlFile:delete()
     end
 	
 end
@@ -534,6 +568,23 @@ function RVBMain:setIsRVBDifficulty(difficulty)
 	self.generalSettings.rvbDifficultyState = difficulty
 	self.generalSettings.rvbDifficulty = self.DIFFICULTY_A[difficulty]
 
+end
+
+function RVBMain:getIsBasicRepairTrigger()
+    return self.generalSettings.basicrepairtrigger
+end
+
+function RVBMain:setIsBasicRepairTrigger(basicrepairtrigger)
+	self.generalSettings.basicrepairtrigger = basicrepairtrigger
+	if basicrepairtrigger then
+		self.generalSettings.basicrepairtriggerState = 2
+	else
+		self.generalSettings.basicrepairtriggerState = 1
+	end
+end
+
+function RVBMain:setIsCPNotice(cpnotice)
+	self.generalSettings.cp_notice = cpnotice
 end
 
 --[[**************************************************]]
@@ -587,10 +638,6 @@ function RVBMain:setIsWorkshopClose(workshopClose)
 	self.gameplaySettings.workshopClose = RVBMain.HOURS_workshopClose[workshopClose]
 end
 
-function RVBMain:setIsCPNotice(cpnotice)
-	self.gameplaySettings.cp_notice = cpnotice
-end
-
 function RVBMain:onReadStream(streamId, connection)
     if connection:getIsServer() then
         self.gameplaySettings.dailyServiceInterval = streamReadInt32(streamId)
@@ -598,10 +645,10 @@ function RVBMain:onReadStream(streamId, connection)
 		self.gameplaySettings.repairshop = streamReadBool(streamId)
 		self.gameplaySettings.workshopOpen = streamReadInt32(streamId)
 		self.gameplaySettings.workshopClose = streamReadInt32(streamId)
-		self.gameplaySettings.cp_notice = streamReadBool(streamId)
 		
-		self.generalSettings.alertmessage = streamReadBool(streamId)
-		self.generalSettings.rvbDifficultyState = streamReadInt32(streamId)
+		--self.generalSettings.alertmessage = streamReadBool(streamId)
+		--self.generalSettings.rvbDifficultyState = streamReadInt32(streamId)
+		--self.generalSettings.cp_notice = streamReadBool(streamId)
     end
 end
 
@@ -612,9 +659,9 @@ function RVBMain:onWriteStream(streamId, connection)
 		streamWriteBool(streamId, self.gameplaySettings.repairshop)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopOpen)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopClose)
-		streamWriteBool(streamId, self.gameplaySettings.cp_notice)
 		
-		streamWriteBool(streamId, self.generalSettings.alertmessage)
-		streamWriteInt32(streamId, self.generalSettings.rvbDifficultyState)
+		--streamWriteBool(streamId, self.generalSettings.alertmessage)
+		--streamWriteInt32(streamId, self.generalSettings.rvbDifficultyState)
+		--streamWriteBool(streamId, self.generalSettings.cp_notice)
     end
 end

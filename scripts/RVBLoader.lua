@@ -29,6 +29,9 @@ source(Utils.getFilename("scripts/hud/RVB_HUD.lua", directory))
 -- UTILS
 source(Utils.getFilename("scripts/utils/stream.lua", directory))
 
+-- AIMessage
+source(Utils.getFilename("scripts/ai/errors/AIMessageErrorBatteryDischarged.lua", directory))
+
 local vehicleBreakdowns
 
 
@@ -54,7 +57,7 @@ function init()
 	
     FSBaseMission.registerActionEvents = Utils.appendedFunction(FSBaseMission.registerActionEvents, registerActionEvents)
     BaseMission.unregisterActionEvents = Utils.appendedFunction(BaseMission.unregisterActionEvents, unregisterActionEvents)
-
+	
 end
 
 function loadMission(mission)

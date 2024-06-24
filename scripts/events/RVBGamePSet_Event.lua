@@ -10,7 +10,7 @@ function RVBGamePSet_Event.emptyNew()
     return self
 end
 
-function RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, cp_notice)
+function RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose)
     local self = RVBGamePSet_Event.emptyNew()
 
 	self.dailyServiceInterval = dailyServiceInterval
@@ -18,7 +18,6 @@ function RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, re
 	self.repairshop = repairshop
 	self.workshopOpen = workshopOpen
 	self.workshopClose = workshopClose
-	self.cp_notice = cp_notice
     return self
 end
 
@@ -28,7 +27,6 @@ function RVBGamePSet_Event:readStream(streamId, connection)
 	self.repairshop = streamReadBool(streamId)
 	self.workshopOpen = streamReadInt32(streamId)
 	self.workshopClose = streamReadInt32(streamId)
-	self.cp_notice = streamReadBool(streamId)
     self:run(connection)
 end
 
@@ -38,12 +36,11 @@ function RVBGamePSet_Event:writeStream(streamId, connection)
 	streamWriteBool(streamId, self.repairshop)
 	streamWriteInt32(streamId, self.workshopOpen)
 	streamWriteInt32(streamId, self.workshopClose)
-	streamWriteBool(streamId, self.cp_notice)
 end
 
 function RVBGamePSet_Event:run(connection)
 	if not connection:getIsServer() then
-		g_server:broadcastEvent(RVBGamePSet_Event.new(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose, self.cp_notice), nil, connection, self)
+		g_server:broadcastEvent(RVBGamePSet_Event.new(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose), nil, connection, self)
 	end
-	g_currentMission.vehicleBreakdowns:setCustomGamePlaySet(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose, self.cp_notice)
+	g_currentMission.vehicleBreakdowns:setCustomGamePlaySet(self.dailyServiceInterval, self.periodicServiceInterval, self.repairshop, self.workshopOpen, self.workshopClose)
 end

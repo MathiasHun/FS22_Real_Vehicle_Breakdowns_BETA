@@ -2,7 +2,7 @@
 RVBGeneralSettings_Frame = {}
 local RVBGeneralSettings_Frame_mt = Class(RVBGeneralSettings_Frame, TabbedMenuFrameElement)
 
-RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "rvbDifficulty", "settingsContainer", "boxLayout"}
+RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "rvbDifficulty", "basicrepairtriggerSetting", "settingsContainer", "boxLayout"}
 
 function RVBGeneralSettings_Frame.new(rvbMain, modName)
     local self = TabbedMenuFrameElement.new(nil, RVBGeneralSettings_Frame_mt)
@@ -43,6 +43,8 @@ function RVBGeneralSettings_Frame:assignStaticTexts()
     end)
     self.difficulty_values = difficulty_values:toList()
 	self.rvbDifficulty:setTexts(self.difficulty_values)
+	
+	self.basicrepairtriggerSetting:setTexts(textsNoYes)
 
 end
 
@@ -70,6 +72,9 @@ function RVBGeneralSettings_Frame:updateValues()
 		end
 	end
 	self.rvbDifficulty:setState(generalSettings.rvbDifficultyState)
+	
+	self.basicrepairtriggerSetting:setIsChecked(self.rvbMain:getIsBasicRepairTrigger())
+	
 end
 
 function RVBGeneralSettings_Frame:onFrameClose()
@@ -81,12 +86,15 @@ function RVBGeneralSettings_Frame:onSave()
 	
 	local alertmessage = self.alertMessageSetting:getIsChecked()
 	local rvbDifficulty = self.rvbDifficulty:getState()
-	
+	local basicrepairtrigger = self.basicrepairtriggerSetting:getIsChecked()
+
 	if g_server ~= nil then
-		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
+		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice))
     else
-		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty))
+		--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty, self.rvbMain.generalSettings.cp_notice))
     end
+	
+	self.rvbMain:saveGeneralettingsToXML()
 	
 end
 
@@ -104,4 +112,10 @@ end
 function RVBGeneralSettings_Frame:onClickrvbDifficulty(state)
 	self.rvbMain:setIsRVBDifficulty(state)
 	Logging.info("[RVB] Settings 'rvbDifficulty': "..self.rvbMain.DIFFICULTY_A[state])
+end
+
+function RVBGeneralSettings_Frame:onClickBasicRepairTrigger(state)
+	local _state = state == CheckedOptionElement.STATE_CHECKED
+	self.rvbMain:setIsBasicRepairTrigger(_state)
+	Logging.info("[RVB] Settings 'basicrepairtrigger': ".. tostring(_state))
 end

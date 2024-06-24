@@ -30,6 +30,15 @@
 					<GuiElement type="text" profile="multiTextOptionSettingsTooltip" text="$l10n_ui_RVB_generalsetting_difficultyDesc" />
                 </GuiElement>
 				
+				<GuiElement type="checkedOption" profile="multiTextOptionSettings" id="basicrepairtriggerSetting" onClick="onClickBasicRepairTrigger">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft"/>
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text" profile="multiTextOptionSettingsText"/>
+                    <GuiElement type="text" profile="multiTextOptionSettingsTitle" text="$l10n_ui_RVB_generalsetting_basicrepairtriggerTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg"/>
+					<GuiElement type="text" profile="multiTextOptionSettingsTooltip" text="$l10n_ui_RVB_generalsetting_basicrepairtriggerDesc" />
+                </GuiElement>
+				
             </GuiElement>
 			
 			<GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked">

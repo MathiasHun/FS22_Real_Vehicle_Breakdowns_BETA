@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="79">
+<modDesc descVersion="80">
 	<author>MathiasHun</author>
-	<version>0.8.6.3</version>
+	<version>0.8.7.0</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -88,9 +88,21 @@ Changelog 0.8.6.2:
 - Added new function - Each engine start reduces the battery charge level by 5%. Of course, if the generator is good, the battery will be charged
 
 Changelog 0.8.6.3:
+- github issues#29
 - github issues#40 - After AI finish the work battery continue drops until goes empty
-- github issues#47 - Twine Addon, Net Wrap Addon conflicts
 - Added Spanish translation
+
+Changelog 0.8.7.0:
+- Added opening new RVB menu. You can also open the RVB menu at the basic vehicle workshop trigger point. You can turn this off in the settings.
+- github issues#25
+- github issues#39 - the operating hours of Glow Plug and Starter its to low
+- github issues#40 
+- github issues#47
+- github issues#49
+- github issues#51
+- github issues#52
+- github issues#53
+- Added Turkish translation
 ]]></en>
 
 	</description>

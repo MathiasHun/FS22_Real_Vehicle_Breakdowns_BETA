@@ -28,6 +28,8 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Slow"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Medium"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Fast"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menu"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="The basic vehicle workshop trigger point, you can open the Real vehicle breakdowns (RVB) menu."/>
 
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="Vehicle workshop is closed, come back at %s o'clock." tag="format"/>
@@ -98,6 +100,9 @@
 		<text name="RVB_fault_lights" text="The lighting doesn't work." />
 		<text name="RVB_fault_lights_hud" text="%s vehicle's lights are not working." tag="format"/>
 
+		<text name="RVB_fault_BHlights" text="The battery charge level is too low." />
+		<text name="RVB_fault_BHlights_hud" text="It is for %s vehicle battery level is too low." tag="format"/>
+
 		<text name="RVB_fault_glowplug" text="Fuel consumption has increased." />
 		<text name="RVB_fault_glowplug_hud" text="%s vehicle fuel consumption increased." tag="format"/>
 
@@ -138,6 +143,8 @@
 		<text name="Automatic_Repair_conflict_notice" text="There are modifications that automatically repair the vehicle, but you can use the &quot;Real Vehicle Breakdowns(RVB)&quot; you are also using a modification, so it may conflict with other modifications. In the modification(s) in the list below, it is necessary to override the automatic repair, this override was already done by the RVB modification."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Overwritten modification(s): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Thank you for your understanding.&#13;&#10;&#13;&#10;All the best,&#13;&#10;MathiasHun"/>
-
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s AI worker has stopped work unexpectedly, the vehicle's battery is discharged!"/>
+		
 	</texts>
 </l10n>

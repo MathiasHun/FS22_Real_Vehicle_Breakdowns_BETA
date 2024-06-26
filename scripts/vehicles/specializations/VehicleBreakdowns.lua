@@ -111,7 +111,7 @@ function VehicleBreakdowns.registerFunctions(vehicleType)
 	SpecializationUtil.registerFunction(vehicleType, "getServicePrice", VehicleBreakdowns.getServicePrice)
 	SpecializationUtil.registerFunction(vehicleType, "getInspectionPrice", VehicleBreakdowns.getInspectionPrice)
 	SpecializationUtil.registerFunction(vehicleType, "getSellPrice_RVBClone", VehicleBreakdowns.getSellPrice_RVBClone)
-	SpecializationUtil.registerFunction(vehicleType, "onStartOperatingHours", VehicleBreakdowns.onStartOperatingHours)
+	--SpecializationUtil.registerFunction(vehicleType, "onStartOperatingHours", VehicleBreakdowns.onStartOperatingHours)
 	SpecializationUtil.registerFunction(vehicleType, "onStopOperatingHours", VehicleBreakdowns.onStopOperatingHours)
 	SpecializationUtil.registerFunction(vehicleType, "minuteChanged", VehicleBreakdowns.minuteChanged)
 	SpecializationUtil.registerFunction(vehicleType, "RVBhourChanged", VehicleBreakdowns.RVBhourChanged)
@@ -635,13 +635,17 @@ function VehicleBreakdowns:setBatteryDrain()
 					elseif self.spec_lights.currentLightState == 4 then
 						drainValue = 0.018
 					end
-					if self.spec_lights.beaconLightsActive then
-						drainValue = drainValue + 0.003
-					end
-					if self.spec_lights.brakeLightsVisibility then
-						drainValue = drainValue + 0.002
-					end
 
+				end
+
+				if self.spec_lights.beaconLightsActive then
+					drainValue = drainValue + 0.003
+				end
+				if self.spec_lights.brakeLightsVisibility then
+					drainValue = drainValue + 0.002
+				end
+
+				if drainValue > 0 then
 					self:setIsFaultBattery(self:getIsFaultBattery() + drainValue)
 					g_server:broadcastEvent(RVBTotal_Event.new(self, unpack(spec.rvb)), nil, nil, self)
 				end
@@ -670,10 +674,19 @@ function VehicleBreakdowns:setBatteryDrain()
 					if self.spec_lights.brakeLightsVisibility then
 						drainValue = drainValue + 0.002
 					end
-					
+
+				end
+				
+				if self.spec_lights.beaconLightsActive then
+					drainValue = drainValue + 0.003
+				end
+				if self.spec_lights.brakeLightsVisibility then
+					drainValue = drainValue + 0.002
+				end
+
+				if drainValue > 0 then
 					self:setIsFaultBattery(self:getIsFaultBattery() + drainValue)
 					g_client:getServerConnection():sendEvent(RVBTotal_Event.new(self, unpack(spec.rvb)))
-
 				end
 
 			end

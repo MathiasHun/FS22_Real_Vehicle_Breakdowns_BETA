@@ -28,6 +28,8 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Lento"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Médio"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Rápido"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB cardápio"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="O acionador básico da oficina de veículos neste ponto, você pode abrir o menu Avarias reais de veículos (RVB)."/>
 
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="A oficina de veículos está fechada, volte às %s horas." tag="format"/>
@@ -98,6 +100,9 @@
 		<text name="RVB_fault_lights" text="A iluminação não funciona." />
 		<text name="RVB_fault_lights_hud" text="%s a iluminação do veículo não está funcionando." tag="format"/>
 
+		<text name="RVB_fault_BHlights" text="O nível de carga da bateria está muito baixo." />
+		<text name="RVB_fault_BHlights_hud" text="O nível da bateria do veículo de %s está muito baixo." tag="format"/>
+
 		<text name="RVB_fault_glowplug" text="O consumo de combustível aumentou." />
 		<text name="RVB_fault_glowplug_hud" text="%o consumo de combustível do veículo aumentou." tag="format"/>
 
@@ -138,6 +143,9 @@
 		<text name="Automatic_Repair_conflict_notice" text="Existem modificações que reparam automaticamente o veículo, mas você pode usar a opção &quot;Real Vehicle Breakdowns(RVB)&quot; você também está usando uma modificação, portanto ela pode entrar em conflito com outras modificações. Na(s) modificação(ões) da lista abaixo é necessário anular o reparo automático, esta anulação já foi feita pela modificação RVB."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Modificaçõe(s) substituídas: "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Obrigado pela sua compreensão.&#13;&#10;&#13;&#10;Tudo de bom,&#13;&#10;MathiasHun"/>
+
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s trabalhador de IA parou de trabalhar inesperadamente, a bateria do veículo está descarregada!"/>
 
 	</texts>
 </l10n>

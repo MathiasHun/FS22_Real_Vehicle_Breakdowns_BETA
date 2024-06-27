@@ -145,7 +145,7 @@
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Megértésedet köszönöm.&#13;&#10;&#13;&#10;Minden jót,&#13;&#10;MathiasHun"/>
 		
 		<!-- AIMessage -->
-		<text name="RVB_aimessage_batterydischarged" text="%s gépi segítő váratlanul abbahagyta a munkát – a jármű akkumulátora lemerült!"/>
+		<text name="RVB_aimessage_batterydischarged" text="%s gépi segítő váratlanul abbahagyta a munkát, a jármű akkumulátora lemerült!"/>
 		
 	</texts>
 </l10n>

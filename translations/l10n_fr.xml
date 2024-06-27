@@ -28,7 +28,9 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Lent"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Moyen"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Rapide"/>
-
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menu"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Le déclencheur de base de l'atelier véhicule au point, vous pouvez ouvrir le menu Pannes réelles du véhicule (RVB)."/>
+		
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="L'atelier automobile est fermé, revenez à %s heures." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspection"/>
@@ -97,6 +99,9 @@
 
 		<text name="RVB_fault_lights" text="L'éclairage ne fonctionne pas." />
 		<text name="RVB_fault_lights_hud" text="Les phares du véhicule %s ne fonctionnent pas." tag="format"/>
+		
+		<text name="RVB_fault_BHlights" text="Le niveau de charge de la batterie est trop faible." />
+		<text name="RVB_fault_BHlights_hud" text="%s le niveau de la batterie du véhicule est trop faible." tag="format"/>
 
 		<text name="RVB_fault_glowplug" text="La consommation de carburant a augmenté." />
 		<text name="RVB_fault_glowplug_hud" text="La consommation de carburant du véhicule %s a augmenté." tag="format"/>
@@ -138,6 +143,9 @@
 		<text name="Automatic_Repair_conflict_notice" text="Il existe des modifications qui réparent automatiquement le véhicule, mais vous pouvez utiliser l'outil &quot;Real Vehicle Breakdowns(RVB)&quot; pour réparer le véhicule. vous utilisez également une modification, elle peut donc entrer en conflit avec d'autres modifications. Dans la ou les modifications de la liste ci-dessous, il est nécessaire de remplacer la réparation automatique, cette dérogation a déjà été effectuée par la modification RVB."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Modification(s) écrasée: "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Merci pour votre compréhension.&#13;&#10;&#13;&#10;Tous mes vœux,&#13;&#10;MathiasHun"/>
+
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="Le travailleur IA de %s a arrêté son travail de manière inattendue, la batterie du véhicule est déchargée !"/>
 
 	</texts>
 </l10n>

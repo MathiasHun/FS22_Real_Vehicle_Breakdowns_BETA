@@ -29,6 +29,8 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Lenta"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Media"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Rápida"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="Menú RVB"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="En el punto de activación del taller básico del vehículo se puede abrir el menú de Averías reales del vehículo (RVB)."/>
 
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="El taller de vehículos está cerrado, vuelva a las %s." tag="format"/>
@@ -99,6 +101,9 @@
 		<text name="RVB_fault_lights" text="La iluminación no funciona." />
 		<text name="RVB_fault_lights_hud" text="Las luces del vehículo de %s no funcionan." tag="format"/>
 
+		<text name="RVB_fault_BHlights" text="El nivel de carga de la batería es demasiado bajo." />
+		<text name="RVB_fault_BHlights_hud" text="Para %s el nivel de batería del vehículo es demasiado bajo." tag="format"/>
+
 		<text name="RVB_fault_glowplug" text="El consumo de combustible ha aumentado." />
 		<text name="RVB_fault_glowplug_hud" text="%s el consumo de combustible del vehículo aumentó." tag="format"/>
 
@@ -139,6 +144,9 @@
 		<text name="Automatic_Repair_conflict_notice" text="Hay modificaciones que reparan automáticamente el vehículo, pero puedes utilizar la función &quot;Averías reales del vehículos(RVB)&quot;. también está utilizando una modificación, por lo que puede entrar en conflicto con otras modificaciones. En las modificaciones en la lista a continuación, es necesario anular la reparación automática, esta anulación ya fue realizada por la modificación RVB."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Modificaciones sobrescritas:"/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Gracias por su comprensión.&#13;&#10;&#13;&#10;Saludos,&#13;&#10;MathiasHun"/>
+		
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s trabajador de IA dejó de trabajar inesperadamente, ¡la batería del vehículo está descargada!"/>
 
 	</texts>
 </l10n>

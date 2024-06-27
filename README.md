@@ -4,14 +4,14 @@
 
 Changelog 0.8.7.0:
 - Added opening new RVB menu. You can also open the RVB menu at the basic vehicle workshop trigger point. You can turn this off in the settings.
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/25">issues#25</a
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/39">issues#39</a - the operating hours of Glow Plug and Starter its to low
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/40">issues#40</a 
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/47">issues#47</a
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/49">issues#49</a
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/51">issues#51</a
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/52">issues#52</a
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/53">issues#53</a
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/25">issues#25</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/39">issues#39</a> - the operating hours of Glow Plug and Starter its to low
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/40">issues#40</a> 
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/47">issues#47</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/49">issues#49</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/51">issues#51</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/52">issues#52</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/53">issues#53</a>
 - Added Turkish translation
   
 Changelog 0.8.6.3:

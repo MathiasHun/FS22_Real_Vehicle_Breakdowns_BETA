@@ -29,7 +29,9 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Langzaam"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Medium"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Snel"/>
-
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menu"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Wanneer u de basis voertuigwerkplaats activeert, kunt u het menu Echte voertuigstoringen (RVB) openen."/>
+		
 		<!-- vehicle list -->
 		<text name="RVB_WorkShopClose" text="Voertuigwerkplaats is gesloten, kom terug om %s uur." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspectie"/>
@@ -98,6 +100,9 @@
 
 		<text name="RVB_fault_lights" text="De verlichting werkt niet."/>
 		<text name="RVB_fault_lights_hud" text="%s de verlichting van het voertuig werkt niet." tag="format"/>
+		
+		<text name="RVB_fault_BHlights" text="Het laadniveau van de batterij is te laag." />
+		<text name="RVB_fault_BHlights_hud" text="Het batterijniveau van %s is te laag." tag="format"/>
 
 		<text name="RVB_fault_glowplug" text="Brandstofverbruik is toegenomen."/>
 		<text name="RVB_fault_glowplug_hud" text="%s brandstofverbruik van voertuig verhoogd." tag="format"/>
@@ -140,5 +145,8 @@
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Overschreven wijziging(en): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Bedankt voor uw begrip.&#13;&#10;&#13;&#10;Al het beste,&#13;&#10;MathiasHun"/>
 
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s AI-werknemer is onverwacht gestopt met werken, de accu van het voertuig is leeg!"/>
+		
 	</texts>
 </l10n>

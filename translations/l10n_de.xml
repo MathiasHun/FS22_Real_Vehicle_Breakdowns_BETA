@@ -29,7 +29,9 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Langsam"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Mittel"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Schnell"/>
-
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Der grundlegende Fahrzeugwerkstatt-Trigger an Punkt, Sie können das Menü Real Vehicle Breakdowns (RVB) öffnen."/>
+		
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="Die Fahrzeugwerkstatt ist geschlossen, kommen Sie um %s Uhr wieder." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspektion"/>
@@ -99,6 +101,9 @@
 		<text name="RVB_fault_lights" text="Die Beleuchtung funktioniert nicht." />
 		<text name="RVB_fault_lights_hud" text="%s die Lichter des Fahrzeugs nicht funktionieren." tag="format"/>
 
+		<text name="RVB_fault_BHlights" text="Der Ladezustand der Batterie ist zu niedrig." />
+		<text name="RVB_fault_BHlights_hud" text="Für %s ist der Fahrzeug Batteriestand zu niedrig." tag="format"/>
+
 		<text name="RVB_fault_glowplug" text="Der Kraftstoffverbrauch ist gestiegen." />
 		<text name="RVB_fault_glowplug_hud" text="%s Der Kraftstoffverbrauch der Fahrzeuge ist gestiegen." tag="format"/>
 
@@ -139,6 +144,9 @@
 		<text name="Automatic_Repair_conflict_notice" text="Es gibt Modifikationen, die das Fahrzeug automatisch reparieren, aber Sie können die &quot;Real Vehicle Breakdowns(RVB)&quot; verwenden. Sie verwenden auch eine Modifikation, daher kann es zu Konflikten mit anderen Modifikationen kommen. Bei den Modifikationen in der folgenden Liste ist es notwendig, die automatische Reparatur zu überschreiben. Diese Überschreibung wurde bereits durch die RVB-Modifikation durchgeführt.."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Überschriebene modifizierung(en): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Danke für Ihr Verständnisg.&#13;&#10;&#13;&#10;Alles Gute,&#13;&#10;MathiasHun"/>
-
+		
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s KI-Arbeiter hat unerwartet die Arbeit eingestellt, die Fahrzeugbatterie ist entladen!"/>
+		
 	</texts>
 </l10n>

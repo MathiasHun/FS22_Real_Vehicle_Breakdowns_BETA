@@ -29,8 +29,8 @@
 		<text name="ui_RVB_difficulty1_subtitle" text="Yavaş"/>
 		<text name="ui_RVB_difficulty2_subtitle" text="Orta"/>
 		<text name="ui_RVB_difficulty3_subtitle" text="Hızlı"/>
-		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
-		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Alap jármű műhely trigger ponton is meg tudod nyitni a Valódi jármű meghibásodások(RVB) menüt."/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menüsü"/>
+		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Temel araç atölyesi tetik noktasında, Gerçek araç arızaları (RVB) menüsünü açabilirsiniz."/>
 
 		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="Araç tamirhanesi kapalı, Saat %s geri gelin." tag="format"/>
@@ -89,8 +89,8 @@
 		<text name="RVB_inspectionDialogEnd" text="Araç %s incelendi, onarım gerektirmiyor."/>
 		<text name="RVB_inspectionDialogEnd_other" text="%s araç incelendi ve tamir edildi. Tamircinizin çok işi olduğu için çırak aracınızı tamir etti. Ancak çırak ustası olmadan tamir ettiği şeyleri listeleyemez."/>
 		
-		<text name="RVB_fault_" text="Ne vezessen túl gyorsan, a motor még hideg."/>
-		<text name="RVB_fault_hud" text="%s járművel túl gyorsan vezetnek, a motor még hideg." tag="format"/>
+		<text name="RVB_fault_" text="Çok hızlı sürmeyin, motor hâlâ soğuk."/>
+		<text name="RVB_fault_hud" text="%s araç çok hızlı sürülüyor, motor hâlâ soğuk." tag="format"/>
 
 		<text name="RVB_fault_thermostat" text="Antifriz aşırı ısınıyor."/>
 		<text name="RVB_fault_thermostat_hud" text="%s aracın antifrizi aşırı ısınıyor." tag="format"/>
@@ -101,8 +101,8 @@
 		<text name="RVB_fault_lights" text="Aydınlatma çalışmıyor." />
 		<text name="RVB_fault_lights_hud" text="Aracın ışıkları %s çalışmıyor." tag="format"/>
 
-		<text name="RVB_fault_BHlights" text="Az akkumulátor töltöttségi szintje túl alacsony." />
-		<text name="RVB_fault_BHlights_hud" text="%s járműnek az akkumulátorának töltöttségi szintje túl alacsony." tag="format"/>
+		<text name="RVB_fault_BHlights" text="Pilin şarj düzeyi çok düşük." />
+		<text name="RVB_fault_BHlights_hud" text="%s aracının akü seviyesi çok düşük." tag="format"/>
 
 		<text name="RVB_fault_glowplug" text="Yakıt tüketimi arttı." />
 		<text name="RVB_fault_glowplug_hud" text="Aracın yakıt tüketimi %s arttı." tag="format"/>
@@ -144,8 +144,9 @@
 		<text name="Automatic_Repair_conflict_notice" text="Araçları otomatik olarak tamir eden modifikasyonlar var, ama siz &quot;Real Vehicle Breakdowns(RVB)&quot; kullanıyorsunuz, bu da diğer modifikasyonlarla çakışabilir. Aşağıdaki listedeki modifikasyon(lar) otomatik tamiri geçersiz kılmak gerekiyor, bu geçersiz kılma zaten RVB modifikasyonu tarafından yapıldı."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Üzerine yazılmış modifikasyon(lar): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Anlayışınız için teşekkür ederim.&#13;&#10;&#13;&#10;En iyi dileklerimle,&#13;&#10;MathiasHun"/>
-		<!-- AIMessage -->
-		<text name="RVB_aimessage_batterydischarged" text="%s gépi segítő váratlanul abbahagyta a munkát – a jármű akkumulátora lemerült!"/>
 
+		<!-- AIMessage -->
+		<text name="RVB_aimessage_batterydischarged" text="%s AI çalışanı beklenmedik bir şekilde çalışmayı durdurdu, aracın aküsü boşaldı!"/>
+		
 	</texts>
 </l10n>

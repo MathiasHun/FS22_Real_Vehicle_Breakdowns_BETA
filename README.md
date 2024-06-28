@@ -1,6 +1,6 @@
 # FS22_Real_Vehicle_Breakdowns_BETA
 
-<p dir="auto"><strong><a href="https://sharemods.com/1ncbjnwtgv61/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
+<p dir="auto"><strong><a href="https://sharemods.com/8an984u87hw6/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
 
 Changelog 0.8.7.0:
 - Added opening new RVB menu. You can also open the RVB menu at the basic vehicle workshop trigger point. You can turn this off in the settings.

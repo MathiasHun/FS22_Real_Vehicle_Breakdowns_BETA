@@ -2,6 +2,8 @@
 
 <p dir="auto"><strong><a href="https://sharemods.com/177disientuu/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
 
+<b>THIS UPDATE CAUSES AN INVISIBLE ERROR ON DEDICATED SERVER.</b>
+
 Changelog 0.8.7.1:
 - Fixed 3 bugs
   

@@ -929,9 +929,9 @@ function VehicleBreakdowns:setVehicleInspection()
 					spec.parts[i].repairreq = true
 					table.insert(spec.faultListText, g_i18n:getText("RVB_faultText_"..VehicleBreakdowns.faultText[i]))
 				end
-				local faultListText = {}
+				local _faultListText = {}
 				if spec.parts[i].repairreq then
-					table.insert(faultListText, g_i18n:getText("RVB_faultText_"..VehicleBreakdowns.faultText[i]))
+					--table.insert(_faultListText, g_i18n:getText("RVB_faultText_"..VehicleBreakdowns.faultText[i]))
 				end
 
 			end
@@ -953,10 +953,10 @@ function VehicleBreakdowns:setVehicleInspection()
 				thermostatRandom = false
 			end
 		
-			if table.maxn(faultListText) > 0 then
+			if table.maxn(spec.faultListText) > 0 then
 				spec.repair[10] = true
 				g_gui:showInfoDialog({
-					text     = string.format(g_i18n:getText("RVB_inspectionDialogFault"), self:getFullName(), g_i18n:formatMoney(self:getRepairPrice_RVBClone(true))).."\n"..g_i18n:getText("RVB_ErrorList").."\n"..table.concat(faultListText,", "),
+					text     = string.format(g_i18n:getText("RVB_inspectionDialogFault"), self:getFullName(), g_i18n:formatMoney(self:getRepairPrice_RVBClone(true))).."\n"..g_i18n:getText("RVB_ErrorList").."\n"..table.concat(spec.faultListText,", "),
 					dialogType=DialogElement.TYPE_INFO
 				})
 			else
@@ -3078,26 +3078,26 @@ function table:contains(value)
 end
 
 function VehicleBreakdowns.addWorkshop(items)
-    if items == nil then
+	if items == nil then
 	return
-    end
-    if table.count(items) > 0 then
-        for _, item in pairs(items) do
-            	if item.spec_workshop and item.spec_workshop.sellingPoint then
-                	if item.spec_workshop.sellingPoint.sellTriggerNode then
-                    		--table.insert(VehicleBreakdowns.repairTriggers, {node=item.spec_workshop.sellingPoint.sellTriggerNode, owner=item.ownerFarmId })
-                	end
-			if item.spec_workshop.sellingPoint.vehicleShapesInRange then
-                    		table.insert(VehicleBreakdowns.ShapesInRange, {vehicleShapesInRange=item.spec_workshop.sellingPoint.vehicleShapesInRange, owner=item.ownerFarmId })
+	end
+	if table.count(items) > 0 then
+		for _, item in pairs(items) do
+			if item.spec_workshop and item.spec_workshop.sellingPoint then
+				if item.spec_workshop.sellingPoint.sellTriggerNode then
+					--table.insert(VehicleBreakdowns.repairTriggers, {node=item.spec_workshop.sellingPoint.sellTriggerNode, owner=item.ownerFarmId })
+				end
+				if item.spec_workshop.sellingPoint.vehicleShapesInRange then
+					table.insert(VehicleBreakdowns.ShapesInRange, {vehicleShapesInRange=item.spec_workshop.sellingPoint.vehicleShapesInRange, owner=item.ownerFarmId })
+				end
+			end
+			if item.spec_serviceVehicle and item.spec_serviceVehicle.workshop then
+				if item.spec_serviceVehicle.workshop.vehicleShapesInRange then
+					table.insert(VehicleBreakdowns.ShapesInRange, {vehicleShapesInRange=item.spec_serviceVehicle.workshop.vehicleShapesInRange, owner=item.ownerFarmId })
+				end
 			end
 		end
-		if item.spec_serviceVehicle and item.spec_serviceVehicle.workshop then
-			if item.spec_serviceVehicle.workshop.vehicleShapesInRange then
-				table.insert(VehicleBreakdowns.ShapesInRange, {vehicleShapesInRange=item.spec_serviceVehicle.workshop.vehicleShapesInRange, owner=item.ownerFarmId })
-			end
-		end
-        end
-    end
+	end
 end
 
 function VehicleBreakdowns.workshopTriggers()

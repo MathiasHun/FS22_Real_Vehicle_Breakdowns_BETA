@@ -24,11 +24,11 @@ RVBMain.PERIODIC_ServiceInterval = { 40, 60, 80, 100 }
 RVBMain.periodicServiceInterval = 40
 RVBMain.periodicServiceIntervalState = 1
 
-RVBMain.HOURS_workshopOpen = { 7, 8, 9 }
+RVBMain.HOURS_workshopOpen = { 5, 6, 7, 8, 9 }
 RVBMain.workshopOpen = 7
 RVBMain.workshopOpenState = 1
 
-RVBMain.HOURS_workshopClose = { 16, 17, 18, 19, 20 }
+RVBMain.HOURS_workshopClose = { 16, 17, 18, 19, 20, 21, 22, 23 }
 RVBMain.workshopClose = 16
 RVBMain.workshopCloseState = 1
 

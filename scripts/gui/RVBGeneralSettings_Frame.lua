@@ -2,7 +2,7 @@
 RVBGeneralSettings_Frame = {}
 local RVBGeneralSettings_Frame_mt = Class(RVBGeneralSettings_Frame, TabbedMenuFrameElement)
 
-RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "rvbDifficulty", "basicrepairtriggerSetting", "settingsContainer", "boxLayout"}
+RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "difficultySet", "basicrepairtriggerSetting", "settingsContainer", "boxLayout"}
 
 function RVBGeneralSettings_Frame.new(rvbMain, modName)
     local self = TabbedMenuFrameElement.new(nil, RVBGeneralSettings_Frame_mt)
@@ -42,7 +42,7 @@ function RVBGeneralSettings_Frame:assignStaticTexts()
 		return tostring(difficulty_value)
     end)
     self.difficulty_values = difficulty_values:toList()
-	self.rvbDifficulty:setTexts(self.difficulty_values)
+	self.difficultySet:setTexts(self.difficulty_values)
 	
 	self.basicrepairtriggerSetting:setTexts(textsNoYes)
 
@@ -67,11 +67,11 @@ function RVBGeneralSettings_Frame:updateValues()
 	self.alertMessageSetting:setIsChecked(self.rvbMain:getIsAlertMessage())
 
 	for index, value in pairs(self.rvbMain.DIFFICULTY_A) do
-		if index == generalSettings.rvbDifficultyState then
-			generalSettings.rvbDifficulty = self.rvbMain.DIFFICULTY_A[index]
+		if value == generalSettings.difficulty then
+			generalSettings.difficultyState = index
 		end
 	end
-	self.rvbDifficulty:setState(generalSettings.rvbDifficultyState)
+	self.difficultySet:setState(generalSettings.difficultyState)
 	
 	self.basicrepairtriggerSetting:setIsChecked(self.rvbMain:getIsBasicRepairTrigger())
 	
@@ -85,15 +85,18 @@ end
 function RVBGeneralSettings_Frame:onSave()
 	
 	local alertmessage = self.alertMessageSetting:getIsChecked()
-	local rvbDifficulty = self.rvbDifficulty:getState()
+	local difficulty = self.difficultySet:getState()
 	local basicrepairtrigger = self.basicrepairtriggerSetting:getIsChecked()
 
 	if g_server ~= nil then
-		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice))
+		--g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice), nil, nil, self)
     else
-		--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, rvbDifficulty, self.rvbMain.generalSettings.cp_notice))
+		--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice))
     end
 	
+	self.rvbMain:setIsAlertMessage(alertmessage)
+	self.rvbMain:setIsRVBDifficulty(difficulty)
+	self.rvbMain:setIsBasicRepairTrigger(basicrepairtrigger)
 	self.rvbMain:saveGeneralettingsToXML()
 	
 end

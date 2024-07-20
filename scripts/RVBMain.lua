@@ -37,8 +37,8 @@ RVBMain.cp_notice = false
 RVBMain.DEFAULT_SETTINGS = {
 	alertmessage = RVBMain.alertmessage,
 	alertmessageState = RVBMain.alertmessageState,
-	rvbDifficulty = RVBMain.difficulty,
-	rvbDifficultyState = RVBMain.difficultyState,
+	difficulty = RVBMain.difficulty,
+	difficultyState = RVBMain.difficultyState,
 	basicrepairtrigger = RVBMain.basicrepairtrigger,
 	basicrepairtriggerState = RVBMain.basicrepairtriggerState,
 	repairshop = RVBMain.repairshop,
@@ -85,7 +85,8 @@ function RVBMain:onMissionLoaded(mission)
 	self.DIFFICULTY_A[3] = g_i18n:getText("ui_RVB_difficulty3_subtitle")
 
 	RVBMain.difficulty = self.DIFFICULTY_A[2]
-	RVBMain.DEFAULT_SETTINGS.rvbDifficulty = self.DIFFICULTY_A[2]
+	RVBMain.DEFAULT_SETTINGS.difficulty = self.DIFFICULTY_A[2]
+	RVBMain.DEFAULT_SETTINGS.difficultyState = 2
 	
 	self:registerGamePlaySettingsSchema()
 	self:registerGeneralSettingsSchema()
@@ -177,10 +178,16 @@ function RVBMain:onMissionLoaded(mission)
 			addModEventListener(popupMessage)
 			self.generalSettings.cp_notice = true
 			if g_server ~= nil then
-				g_server:broadcastEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.rvbDifficultyState, self.generalSettings.basicrepairtrigger, self.generalSettings.cp_notice))
+				--g_server:broadcastEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.difficulty, self.generalSettings.basicrepairtrigger, self.generalSettings.cp_notice), nil, nil, self)
 			else
-				--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.rvbDifficultyState, self.generalSettings.cp_notice))
+				--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.difficulty, self.generalSettings.basicrepairtrigger, self.generalSettings.cp_notice))
 			end
+		end
+	end
+	
+	if g_modIsLoaded["FS22_ToolBoxPack"] then
+		if FS22_ToolBoxPack ~= nil and FS22_ToolBoxPack.ServiceVehicleWorkshop.openMenu ~= nil then
+			FS22_ToolBoxPack.ServiceVehicleWorkshop.openMenu = Utils.overwrittenFunction(FS22_ToolBoxPack.ServiceVehicleWorkshop.openMenu, RVBMain.RVBopenMenu)
 		end
 	end
 
@@ -208,7 +215,7 @@ function RVBMain:hasToRepair()
 --    end
     return repairNeeded
 end
-
+	
 function RVBMain.installSpecializations(vehicleTypeManager, specializationManager, modDirectory, modName)
     specializationManager:addSpecialization("vehicleBreakdowns", "VehicleBreakdowns", Utils.getFilename("scripts/vehicles/specializations/VehicleBreakdowns.lua", modDirectory), nil)
 
@@ -217,7 +224,9 @@ function RVBMain.installSpecializations(vehicleTypeManager, specializationManage
     else
         for typeName, typeEntry in pairs(vehicleTypeManager:getTypes()) do
 			
-			if typeEntry ~= nil and typeName ~= "locomotive" and typeName ~= "trainTrailer" and typeName ~= "trainTimberTrailer" then 
+			if typeEntry ~= nil and typeName ~= "locomotive" and typeName ~= "trainTrailer" and typeName ~= "trainTimberTrailer" and typeName ~= "conveyorBelt" and typeName ~= "pickupConveyorBelt" 
+			and typeName ~= "FS22_lsfmFarmEquipmentPack.wheelBarrow" and typeName ~= "FS22_lsfmFarmEquipmentPack.bicycle" and typeName ~= "FS22_lsfmFarmEquipmentPack.transportBarrow" and typeName ~= "FS22_lsfmFarmEquipmentPack.milkShuttle"
+			and typeName ~= "FS22_lsfmFarmEquipmentPack.transportBarrowBarrel" and typeName ~= "FS22_lsfmFarmEquipmentPack.transportBarrelModul" and typeName ~= "FS22_Wheelbarrow.handTool" then 
 				if SpecializationUtil.hasSpecialization(Drivable, typeEntry.specializations) and
 					SpecializationUtil.hasSpecialization(Enterable, typeEntry.specializations) and
 					SpecializationUtil.hasSpecialization(Motorized, typeEntry.specializations) then
@@ -330,10 +339,10 @@ function RVBMain:loadGeneralSettingsFromXml(xmlPath)
 			end
 		end
 		
-		self.generalSettings.rvbDifficultyState = xmlFile:getValue(key .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
+		self.generalSettings.difficultyState = xmlFile:getValue(key .. ".difficulty#value", self.generalSettings.difficultyState)
 		for index, value in pairs(self.DIFFICULTY_A) do
-			if index == self.generalSettings.rvbDifficultyState then
-				self.generalSettings.rvbDifficulty = self.DIFFICULTY_A[index]
+			if index == self.generalSettings.difficultyState then
+				self.generalSettings.difficulty = self.DIFFICULTY_A[index]
 			end
 		end
 		
@@ -422,8 +431,8 @@ function RVBMain:resetGeneralSettings()
     self.generalSettings = {
 		alertmessage = RVBMain.DEFAULT_SETTINGS.alertmessage,
 		alertmessageState = RVBMain.DEFAULT_SETTINGS.alertmessageState,
-		rvbDifficulty = RVBMain.DEFAULT_SETTINGS.rvbDifficulty,
-		rvbDifficultyState = RVBMain.DEFAULT_SETTINGS.rvbDifficultyState,
+		difficulty = RVBMain.DEFAULT_SETTINGS.difficulty,
+		difficultyState = RVBMain.DEFAULT_SETTINGS.difficultyState,
 		basicrepairtrigger = RVBMain.DEFAULT_SETTINGS.basicrepairtrigger,
 		basicrepairtriggerState = RVBMain.DEFAULT_SETTINGS.basicrepairtriggerState,
 		cp_notice = RVBMain.DEFAULT_SETTINGS.cp_notice
@@ -467,9 +476,9 @@ end
 
 function RVBMain:setCustomGeneralSet(alertmessage, difficulty, basicrepairtrigger, cp_notice)
 
-    if g_server then
+    --if g_server then
 
-        g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, cp_notice))
+        --g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, cp_notice), nil, nil, self)
 
 		self.generalSettings.alertmessage = alertmessage
 		local onoff_r = 2
@@ -501,7 +510,7 @@ function RVBMain:setCustomGeneralSet(alertmessage, difficulty, basicrepairtrigge
 		
 		self:setIsCPNotice(cp_notice)
 
-    end
+    --end
 
 end
 
@@ -529,7 +538,7 @@ function RVBMain:saveGeneralettingsToXML()
     local xmlFile = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
     if xmlFile ~= 0 then
 		xmlFile:setValue(schemaKey .. ".alertmessage#value", self.generalSettings.alertmessage)
-		xmlFile:setValue(schemaKey .. ".difficulty#value", self.generalSettings.rvbDifficultyState)
+		xmlFile:setValue(schemaKey .. ".difficulty#value", self.generalSettings.difficultyState)
 		xmlFile:setValue(schemaKey .. ".basicrepairtrigger#value", self.generalSettings.basicrepairtrigger)
 		xmlFile:setValue(schemaKey .. ".cp_notice#value", self.generalSettings.cp_notice)
         xmlFile:save()
@@ -561,12 +570,12 @@ function RVBMain:setIsAlertMessage(alertmessage)
 end
 
 function RVBMain:getIsRVBDifficulty()
-    return self.generalSettings.rvbDifficulty
+    return self.generalSettings.difficulty
 end
 
 function RVBMain:setIsRVBDifficulty(difficulty)
-	self.generalSettings.rvbDifficultyState = difficulty
-	self.generalSettings.rvbDifficulty = self.DIFFICULTY_A[difficulty]
+	self.generalSettings.difficultyState = difficulty
+	self.generalSettings.difficulty = self.DIFFICULTY_A[difficulty]
 
 end
 
@@ -647,7 +656,8 @@ function RVBMain:onReadStream(streamId, connection)
 		self.gameplaySettings.workshopClose = streamReadInt32(streamId)
 		
 		--self.generalSettings.alertmessage = streamReadBool(streamId)
-		--self.generalSettings.rvbDifficultyState = streamReadInt32(streamId)
+		--self.generalSettings.difficulty = streamReadInt32(streamId)
+		--self.generalSettings.basicrepairtrigger = streamReadBool(streamId)
 		--self.generalSettings.cp_notice = streamReadBool(streamId)
     end
 end
@@ -661,7 +671,8 @@ function RVBMain:onWriteStream(streamId, connection)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopClose)
 		
 		--streamWriteBool(streamId, self.generalSettings.alertmessage)
-		--streamWriteInt32(streamId, self.generalSettings.rvbDifficultyState)
+		--streamWriteInt32(streamId, self.generalSettings.difficulty)
+		--streamWriteBool(streamId, self.generalSettings.basicrepairtrigger)
 		--streamWriteBool(streamId, self.generalSettings.cp_notice)
     end
 end

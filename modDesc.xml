@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="80">
 	<author>MathiasHun</author>
-	<version>0.8.7.0</version>
+	<version>0.8.8.0</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -103,6 +103,19 @@ Changelog 0.8.7.0:
 - github issues#52
 - github issues#53
 - Added Turkish translation
+
+Changelog 0.8.7.1:
+- Fixed 3 bugs
+
+Changelog 0.8.8.0:
+- github issues#50
+- github issues#67
+- github issues#68
+- github issues#70
+- github issues#71
+- github issues#72
+Possibly even more :)
+
 ]]></en>
 
 	</description>
@@ -119,12 +132,16 @@ Changelog 0.8.7.0:
 	
 	<actions>
 		<action name="VEHICLE_BREAKDOWN_MENU" category="VEHICLE" axisType="HALF"/>
+		<action name="ACTIVATE_BATTERY" axisType="HALF"/>
 	</actions>
 
 	<inputBinding>
 		<actionBinding action="VEHICLE_BREAKDOWN_MENU">
 			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_w"/>
 		</actionBinding>
+		<actionBinding action="ACTIVATE_BATTERY">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_r"/>
+        </actionBinding>
 	</inputBinding>
 
 </modDesc>

@@ -44,6 +44,8 @@
 		<GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[4]"/>
 		<GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[5]"/>
 		<GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[6]"/>
+		<GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[7]"/>
+		<GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[8]"/>
     </GuiElement>
 
 </GUI>

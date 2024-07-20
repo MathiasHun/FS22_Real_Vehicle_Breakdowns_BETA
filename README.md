@@ -9,7 +9,7 @@ Changelog 0.8.8.0:
 - github issues#70
 - github issues#71
 - github issues#72
-  Possibly even more :)
+- Possibly even more :)
   
 Changelog 0.8.7.1:
 - Fixed 3 bugs

@@ -3,6 +3,7 @@
 	<texts>
 		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Valódi jármű meghibásodások(RVB)"/>
+		<text name="input_ACTIVATE_BATTERY" text="Akkumulátor töltés"/>
 
 		<!-- settings -->
 		<!-- tabbedMenu -->

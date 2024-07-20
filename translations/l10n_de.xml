@@ -4,6 +4,7 @@
 	<texts>
 		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte Fahrzeugpannen(RVB)"/>
+		<text name="input_ACTIVATE_BATTERY" text="Aufladen der Batterie"/>
 
 		<!-- settings -->
 		<!-- tabbedMenu -->

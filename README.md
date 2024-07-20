@@ -3,12 +3,12 @@
 <p dir="auto"><strong><a href="https://sharemods.com/hb2a7hbqd1w5/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
 
 Changelog 0.8.8.0:
-- github issues#50
-- github issues#67
-- github issues#68
-- github issues#70
-- github issues#71
-- github issues#72
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/50">issues#50</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/67">issues#67</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/68">issues#68</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/70">issues#70</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/71">issues#71</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/72">issues#72</a>
 - Possibly even more :)
   
 Changelog 0.8.7.1:

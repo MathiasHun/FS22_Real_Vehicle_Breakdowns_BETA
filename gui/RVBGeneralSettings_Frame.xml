@@ -21,7 +21,7 @@
 					<GuiElement type="text" profile="multiTextOptionSettingsTooltip" text="$l10n_ui_RVB_generalsetting_alertMessageDesc" />
                 </GuiElement>
 
-				<GuiElement type="multiTextOption" profile="multiTextOptionSettings" id="rvbDifficulty" onClick="onClickrvbDifficulty">
+				<GuiElement type="multiTextOption" profile="multiTextOptionSettings" id="difficultySet" onClick="onClickrvbDifficulty">
                     <GuiElement type="button" profile="multiTextOptionSettingsLeft"/>
                     <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
                     <GuiElement type="text" profile="multiTextOptionSettingsText"/>

@@ -108,6 +108,8 @@ Changelog 0.8.7.1:
 - Fixed 3 bugs
 
 Changelog 0.8.8.0:
+- Added Vehicle Configuration
+- Added Vehicle Repaint
 - github issues#50
 - github issues#67
 - github issues#68

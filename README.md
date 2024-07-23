@@ -1,6 +1,6 @@
 # FS22_Real_Vehicle_Breakdowns_BETA
 
-<p dir="auto"><strong><a href="https://sharemods.com/ux7ykntyjof7/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
+<p dir="auto"><strong><a href="https://sharemods.com/n76p6zalse34/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
 
 Changelog 0.8.8.0:
 - Added Vehicle Configuration

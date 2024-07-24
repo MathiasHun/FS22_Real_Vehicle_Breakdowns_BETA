@@ -330,7 +330,7 @@ function VehicleBreakdowns:onLoad(savegame)
 
 	VehicleBreakdowns.GSET_Change = g_currentMission.vehicleBreakdowns.generalSettings.difficultyState
 
-	self.speedLimit = 10
+	--self.speedLimit = 10
 
 	spec.dashboard_check = false
 	spec.dashboard_check_ok = false

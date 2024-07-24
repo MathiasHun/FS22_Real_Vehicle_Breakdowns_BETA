@@ -6,6 +6,7 @@ Changelog 0.8.8.0:
 - Added Vehicle Configuration
 - Added Vehicle Repaint
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/50">issues#50</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/55">issues#55</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/67">issues#67</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/68">issues#68</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/70">issues#70</a>

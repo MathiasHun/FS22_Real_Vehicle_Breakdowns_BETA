@@ -1954,7 +1954,7 @@ function VehicleBreakdowns:onUpdate(dt)
 			if self:getIsEntered() then
 				if not spec.lights_request then
 					spec.lights_request = true
-					self:requestActionEventUpdate()
+					--self:requestActionEventUpdate()
 				end
 			end
 		end
@@ -1966,7 +1966,7 @@ function VehicleBreakdowns:onUpdate(dt)
 			if self:getIsEntered() then
 				if not spec.lights_request then
 					spec.lights_request = true
-					self:requestActionEventUpdate()
+					--self:requestActionEventUpdate()
 				end
 			end
 		end

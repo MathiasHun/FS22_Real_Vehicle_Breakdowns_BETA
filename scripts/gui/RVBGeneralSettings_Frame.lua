@@ -94,9 +94,9 @@ function RVBGeneralSettings_Frame:onSave()
 		--g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice))
     end
 	
-	self.rvbMain:setIsAlertMessage(alertmessage)
-	self.rvbMain:setIsRVBDifficulty(difficulty)
-	self.rvbMain:setIsBasicRepairTrigger(basicrepairtrigger)
+	--self.rvbMain:setIsAlertMessage(alertmessage)
+	--self.rvbMain:setIsRVBDifficulty(difficulty)
+	--self.rvbMain:setIsBasicRepairTrigger(basicrepairtrigger)
 	self.rvbMain:saveGeneralettingsToXML()
 	
 end

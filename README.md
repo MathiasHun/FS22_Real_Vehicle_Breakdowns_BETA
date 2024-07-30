@@ -1,18 +1,21 @@
 # FS22_Real_Vehicle_Breakdowns_BETA
 
-<p dir="auto"><strong><a href="https://sharemods.com/8map7iztklqu/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
+<p dir="auto"><strong><a href="https://sharemods.com/tq3yqqb6pmxb/FS22_gameplay_Real_Vehicle_Breakdowns.zip.html">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
+
+Changelog 0.8.8.1:
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/27">issues#27</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/55">issues#55</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/75">issues#75</a>
 
 Changelog 0.8.8.0:
 - Added Vehicle Configuration
 - Added Vehicle Repaint
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/50">issues#50</a>
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/55">issues#55</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/67">issues#67</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/68">issues#68</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/70">issues#70</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/71">issues#71</a>
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/72">issues#72</a>
-- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/75">issues#75</a>
 - Possibly even more :)
   
 Changelog 0.8.7.1:

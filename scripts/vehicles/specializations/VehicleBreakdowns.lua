@@ -1820,7 +1820,7 @@ function VehicleBreakdowns:onYesNoBatteryChDialog(yes)
 			spec.battery[2] = false
 			spec.battery[3], spec.battery[4], spec.battery[5] = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
 			spec.battery[6] = spec.rvb[5] / (VehicleBreakdowns.IRSBTimes[8] * lackofcharge) * 60
-			spec.battery[7] = self:getBatteryChPrice() print("toltesi koltseg "..self:getBatteryChPrice())
+			spec.battery[7] = self:getBatteryChPrice()
 
 			spec.rvb[1] = g_currentMission.missionInfo.timeScale
 

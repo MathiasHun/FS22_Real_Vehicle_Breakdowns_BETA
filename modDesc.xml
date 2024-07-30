@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="80">
 	<author>MathiasHun</author>
-	<version>0.8.8.0</version>
+	<version>0.8.8.1</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -111,15 +111,17 @@ Changelog 0.8.8.0:
 - Added Vehicle Configuration
 - Added Vehicle Repaint
 - github issues#50
-- github issues#55
 - github issues#67
 - github issues#68
 - github issues#70
 - github issues#71
 - github issues#72
-- github issues#75
 Possibly even more :)
 
+Changelog 0.8.8.1:
+- github issues#27
+- github issues#55
+- github issues#75
 ]]></en>
 
 	</description>
@@ -144,7 +146,7 @@ Possibly even more :)
 			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_w"/>
 		</actionBinding>
 		<actionBinding action="ACTIVATE_BATTERY">
-            <binding device="KB_MOUSE_DEFAULT" input="KEY_r"/>
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_r"/>
         </actionBinding>
 	</inputBinding>
 

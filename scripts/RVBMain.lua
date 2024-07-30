@@ -177,6 +177,8 @@ function RVBMain:onMissionLoaded(mission)
 		if not self.generalSettings.cp_notice then
 			addModEventListener(popupMessage)
 			self.generalSettings.cp_notice = true
+			
+			self:saveGeneralettingsToXML()
 			if g_server ~= nil then
 				--g_server:broadcastEvent(RVBGeneralSet_Event.new(self.generalSettings.alertmessage, self.generalSettings.difficulty, self.generalSettings.basicrepairtrigger, self.generalSettings.cp_notice), nil, nil, self)
 			else

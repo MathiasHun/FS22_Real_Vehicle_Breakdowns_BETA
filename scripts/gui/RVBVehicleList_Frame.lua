@@ -407,7 +407,7 @@ function RVBVehicleList_Frame:onButtonPeriodicService()
 		if servicePeriodic > self.rvbMain:getIsIsPeriodicService() then
 			moreservice = math.ceil(servicePeriodic - self.rvbMain:getIsIsPeriodicService())
 		end
-		local alap = 5400
+		local alap = 10800
 
 		local serviceTime = alap + VehicleBreakdowns.IRSBTimes[9] * moreservice
 

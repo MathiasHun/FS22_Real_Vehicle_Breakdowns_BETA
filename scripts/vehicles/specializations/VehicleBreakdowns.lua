@@ -2752,6 +2752,8 @@ function VehicleBreakdowns:onUpdate(dt, isActiveForInput, isActiveForInputIgnore
 						vehicle.spec_faultData.parts[i].tmp_lifetime = vehicle.spec_faultData.parts[i].lifetime / 2 * g_currentMission.environment.plannedDaysPerPeriod
 					end
 				end
+				RVBParts_Event.sendEvent(vehicle, unpack(vehicle.spec_faultData.parts))
+				vehicle:raiseDirtyFlags(vehicle.spec_faultData.dirtyFlag)
 			end
 		end
 		VehicleBreakdowns.FSSET_Daysperiod = g_currentMission.environment.plannedDaysPerPeriod

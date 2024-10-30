@@ -5,4 +5,13 @@
 	<repairshop value="true"/>
 	<workshopOpen value="7"/>
 	<workshopClose value="16"/>
+	<thermostatLifetime>150</thermostatLifetime>
+	<lightingsLifetime>220</lightingsLifetime>
+	<glowplugLifetime>2</glowplugLifetime>
+	<wipersLifetime>80</wipersLifetime>
+	<generatorLifetime>180</generatorLifetime>
+	<engineLifetime>210</engineLifetime>
+	<selfstarterLifetime>3</selfstarterLifetime>
+	<batteryLifetime>140</batteryLifetime>
+	<tireLifetime>340</tireLifetime>
 </rvbGamePlaySettings>

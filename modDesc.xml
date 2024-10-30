@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="80">
 	<author>MathiasHun</author>
-	<version>0.8.8.1</version>
+	<version>0.9.0.0</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -45,52 +45,28 @@ The system does not yet include a hourly repair rates.
 
 Bug report, please visit https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/
 
-Changelog 0.8.1.0:
-- Change menu opening button combination "left Alt + w"
-- Spark plug delete, add Glow plug
-- Gear shifter problem, maybe fixed, I didn't experience a gear shifter problem before
-- Change in breakdowns generator. The vehicle breakdowns can only if it is at least 8 months old. The chance of vehicle breakdowns has been reduced
+Changelog 0.9.0.0:
+- Coming soon
+- I haven't had time for a 100% test yet
 
-Changelog 0.8.2.0:
-- github issues#1
-- github issues#5
-- github issues#7
-- Added Brazilian/Portuguese, German, Russian translations
+Changelog 0.8.8.1:
+- github issues#27
+- github issues#55
+- github issues#75
 
-Changelog 0.8.5.0:
-- Added vehicle HUD faults icon
-- github issues#10 - Window randomly pops up saying "The mechanic cannot repair this vehicle, visit RVB Service" - Courseplay conflicts
-- github issues#11 - Temperature indicator not working
-- github issues#13 - Many breakdowns
-- github issues#18 - HUD position fuel text wrong - I hope it's good now
-- Added Vehicle breakdown difficulty
-- Added Dutch, Polish translations
-- Many other things :)
+Changelog 0.8.8.0:
+- Added Vehicle Configuration
+- Added Vehicle Repaint
+- github issues#50
+- github issues#67
+- github issues#68
+- github issues#70
+- github issues#71
+- github issues#72
+Possibly even more :)
 
-Changelog 0.8.6.0:
-- github issues#21 - HUD icons scaling
-- github issues#22 - Error on dedicated multiplayer server
-- github issues#27 - Informational message now only appears once (to conflicts mods)
-- github issues#31 - Courseplay, AutoDrive conflicts
-- Added French translations
-- Added Damage bar selection
-- Added FS22 basic damage overwrite, inactive
-- Fixed, if the vehicle damage bar below 10%, no breakdowns when inspecting vehicle, resets vehicle damage bar to 100%. FS22 basic repair cost + inspection cost
-- Many other things :)
-
-Changelog 0.8.6.1:
-- github issues#35 - Battery dropped at 25% while engine was running
-
-Changelog 0.8.6.2:
-- github issues#36 - AutoDrive problem
-- github issues#37 - Beacons should turn off too when there is no battery (This is subject to change)
-- Fixed, If the battery was discharged due to a generator failure, it was not possible to stop the engine.
-- Added new function - Each engine start reduces the battery charge level by 5%. Of course, if the generator is good, the battery will be charged
-
-Changelog 0.8.6.3:
-- github issues#29
-- github issues#40 - After AI finish the work battery continue drops until goes empty
-- Added Spanish translation
+Changelog 0.8.7.1:
+- Fixed 3 bugs
 
 Changelog 0.8.7.0:
 - Added opening new RVB menu. You can also open the RVB menu at the basic vehicle workshop trigger point. You can turn this off in the settings.
@@ -104,30 +80,61 @@ Changelog 0.8.7.0:
 - github issues#53
 - Added Turkish translation
 
-Changelog 0.8.7.1:
-- Fixed 3 bugs
+Changelog 0.8.6.3:
+- github issues#29
+- github issues#40 - After AI finish the work battery continue drops until goes empty
+- Added Spanish translation
 
-Changelog 0.8.8.0:
-- Added Vehicle Configuration
-- Added Vehicle Repaint
-- github issues#50
-- github issues#67
-- github issues#68
-- github issues#70
-- github issues#71
-- github issues#72
-Possibly even more :)
+Changelog 0.8.6.2:
+- github issues#36 - AutoDrive problem
+- github issues#37 - Beacons should turn off too when there is no battery (This is subject to change)
+- Fixed, If the battery was discharged due to a generator failure, it was not possible to stop the engine.
+- Added new function - Each engine start reduces the battery charge level by 5%. Of course, if the generator is good, the battery will be charged
 
-Changelog 0.8.8.1:
-- github issues#27
-- github issues#55
-- github issues#75
+Changelog 0.8.6.1:
+- github issues#35 - Battery dropped at 25% while engine was running
+
+Changelog 0.8.6.0:
+- github issues#21 - HUD icons scaling
+- github issues#22 - Error on dedicated multiplayer server
+- github issues#27 - Informational message now only appears once (to conflicts mods)
+- github issues#31 - Courseplay, AutoDrive conflicts
+- Added French translations
+- Added Damage bar selection
+- Added FS22 basic damage overwrite, inactive
+- Fixed, if the vehicle damage bar below 10%, no breakdowns when inspecting vehicle, resets vehicle damage bar to 100%. FS22 basic repair cost + inspection cost
+- Many other things :)
+
+Changelog 0.8.5.0:
+- Added vehicle HUD faults icon
+- github issues#10 - Window randomly pops up saying "The mechanic cannot repair this vehicle, visit RVB Service" - Courseplay conflicts
+- github issues#11 - Temperature indicator not working
+- github issues#13 - Many breakdowns
+- github issues#18 - HUD position fuel text wrong - I hope it's good now
+- Added Vehicle breakdown difficulty
+- Added Dutch, Polish translations
+- Many other things :)
+
+Changelog 0.8.2.0:
+- github issues#1
+- github issues#5
+- github issues#7
+- Added Brazilian/Portuguese, German, Russian translations
+
+Changelog 0.8.1.0:
+- Change menu opening button combination "left Alt + w"
+- Spark plug delete, add Glow plug
+- Gear shifter problem, maybe fixed, I didn't experience a gear shifter problem before
+- Change in breakdowns generator. The vehicle breakdowns can only if it is at least 8 months old. The chance of vehicle breakdowns has been reduced
 ]]></en>
 
 	</description>
 	<iconFilename>icon_vehicleBreakdown.dds</iconFilename>
 	
 	<l10n filenamePrefix="translations/l10n"/>
+	
+	<fillTypes filename="config/battery_fillUnit.xml"/>
+	<fillTypes filename="config/battery_consumer.xml"/>
 	
 	<multiplayer supported="true"/>
 	

@@ -303,7 +303,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[1].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local thermostat_Text = "THERMOSTAT: "..string.format("%s:%s", hours, minutes).."/"..GPSET.thermostatLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local thermostat_Text = "THERMOSTAT: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[1].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -317,7 +317,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[2].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local lightings_Text = "LIGHTINGS: "..string.format("%s:%s", hours, minutes).."/"..GPSET.lightingsLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local lightings_Text = "LIGHTINGS: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[2].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -331,7 +331,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[3].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local glowplug_Text = "GLOWPLUG: "..string.format("%s:%s", hours, minutes).."/"..GPSET.glowplugLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local glowplug_Text = "GLOWPLUG: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[3].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -345,7 +345,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[4].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local wipers_Text = "WIPERS: "..string.format("%s:%s", hours, minutes).."/"..GPSET.wipersLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local wipers_Text = "WIPERS: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[4].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -359,7 +359,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[5].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local generator_Text = "GENERATOR: "..string.format("%s:%s", hours, minutes).."/"..GPSET.generatorLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local generator_Text = "GENERATOR: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[5].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -373,7 +373,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[6].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local engine_Text = "ENGINE: "..string.format("%s:%s", hours, minutes).."/"..GPSET.engineLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local engine_Text = "ENGINE: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[6].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -387,7 +387,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[7].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local selfstarter_Text = "SELFSTARTER: "..string.format("%s:%s", hours, minutes).."/"..GPSET.selfstarterLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local selfstarter_Text = "SELFSTARTER: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[7].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
@@ -401,7 +401,7 @@ function RVB_HUD:drawHUD()
 		local minutes = math.floor((specf.parts[8].operatingHours - hours) * 60)
 		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
 		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local battery_Text = "BATTERY: "..string.format("%s:%s", hours, minutes).."/"..GPSET.batteryLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		local battery_Text = "BATTERY: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[8].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
 		setTextColor(unpack(COLOR.YELLOW))
 		setTextAlignment(RenderText.ALIGN_LEFT)
 		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)

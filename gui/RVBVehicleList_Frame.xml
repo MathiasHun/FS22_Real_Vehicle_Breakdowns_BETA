@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<GUI name="newvehicleListFrame">
+<GUI name="vehicleListFrame">
 
 	<GuiElement type="empty" profile="RVB_frame">
 		<GuiElement type="empty" profile="RVB_headerPanel">

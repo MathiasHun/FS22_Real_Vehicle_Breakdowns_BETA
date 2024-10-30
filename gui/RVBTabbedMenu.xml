@@ -30,10 +30,9 @@
 
     <GuiElement type="bitmap" profile="uiElementContainerFullScreenSpanning">
         <GuiElement type="paging" profile="uiInGameMenuPaging" onPageChange="onPageChange" onPageUpdate="onPageUpdate" id="pagingElement">
-			<GuiElement type="frameReference" ref="newvehicleListFrame" name="newvehicleListFrame" id="newvehicleListFrame"/>
+			<GuiElement type="frameReference" ref="vehicleListFrame" name="vehicleListFrame" id="vehicleListFrame"/>
             <GuiElement type="frameReference" ref="gameplaySettingFrame" name="gameplaySettingFrame" id="gameplaySettingFrame"/>
 			<GuiElement type="frameReference" ref="generalSettingFrame" name="generalSettingFrame" id="generalSettingFrame"/>
-			<!-- <GuiElement type="frameReference" ref="vehicleListFrame" name="vehicleListFrame" id="vehicleListFrame"/> -->
         </GuiElement>
     </GuiElement>
 

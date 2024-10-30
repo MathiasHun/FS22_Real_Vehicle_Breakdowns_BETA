@@ -10,13 +10,23 @@ RVB_HUD.POSITION = {
 	ICON_BATTERY = { 70, 130 },
 	ICON_ENGINE = { 75, 150 },
 	ICON_LIGHTS = { 163, 150 },
-	ICON_SERVICE = { 113, 165 }
+	ICON_SERVICE = { 113, 165 },
+	DAMAGE = { -430, 160 },
+	THERMOSTAT = { -430, 140 },
+	LIGHTINGS = { -430, 120 },
+	GLOWPLUG = { -430, 100 },
+	WIPERS = { -430, 80 },
+	GENERATOR = { -430, 60 },
+	ENGINE = { -430, 40 },
+	SELFSTARTER = { -430, 20 },
+	BATTERY = { -430, 0 }
 }
 
 RVB_HUD.TEXT_SIZE = {
 	RPM			  = 10,
 	TEMP		  = 10,
-	FUEL		  = 12
+	FUEL		  = 12,
+	DEBUG		  = 14
 }
 
 RVB_HUD.SIZE = {
@@ -45,6 +55,16 @@ function RVB_HUD:new(speedMeterDisplay, gameInfoDisplay, modDirectory)
 	self.rpmText              = {}
 	self.tempText             = {}
 	self.fuelText             = {}
+	self.damageText = {}
+	self.thermostatText          = {}
+	self.lightingsText           = {}
+	self.glowplugText           = {}
+	self.wipersText           = {}
+	self.generatorText           = {}
+	self.engineText           = {}
+	self.selfstarterText           = {}
+	self.batteryText           = {}
+	
 	self.RVB_generalSET = g_currentMission.vehicleBreakdowns.generalSettings
 
 	return self
@@ -131,14 +151,65 @@ function RVB_HUD:storeScaledValuesHUD(baseX, baseY)
 	self.fuelText.posY = baseY + textY
 	self.fuelText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.FUEL)
 
+
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.DAMAGE)
+	self.damageText.posX = baseX + textX
+	self.damageText.posY = baseY + textY
+	self.damageText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.THERMOSTAT)
+	self.thermostatText.posX = baseX + textX
+	self.thermostatText.posY = baseY + textY
+	self.thermostatText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.LIGHTINGS)
+	self.lightingsText.posX = baseX + textX
+	self.lightingsText.posY = baseY + textY
+	self.lightingsText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.GLOWPLUG)
+	self.glowplugText.posX = baseX + textX
+	self.glowplugText.posY = baseY + textY
+	self.glowplugText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.WIPERS)
+	self.wipersText.posX = baseX + textX
+	self.wipersText.posY = baseY + textY
+	self.wipersText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.GENERATOR)
+	self.generatorText.posX = baseX + textX
+	self.generatorText.posY = baseY + textY
+	self.generatorText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.ENGINE)
+	self.engineText.posX = baseX + textX
+	self.engineText.posY = baseY + textY
+	self.engineText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.SELFSTARTER)
+	self.selfstarterText.posX = baseX + textX
+	self.selfstarterText.posY = baseY + textY
+	self.selfstarterText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+	
+	local textX, textY = self.speedMeterDisplay:scalePixelToScreenVector(RVB_HUD.POSITION.BATTERY)
+	self.batteryText.posX = baseX + textX
+	self.batteryText.posY = baseY + textY
+	self.batteryText.size = self.speedMeterDisplay:scalePixelToScreenHeight(RVB_HUD.TEXT_SIZE.DEBUG)
+
 end
 
 function RVB_HUD:setVehicle(vehicle)
 	self.vehicle = vehicle
 	
 	 if self.speedMeterDisplay ~= nil then
-		self.speedMeterDisplay.gaugeBackgroundElement:setVisible(vehicle ~= nil)
+		--self.speedMeterDisplay.gaugeBackgroundElement:setVisible(vehicle ~= nil)
 	end
+	--local specf = self.vehicle.spec_faultData
+	--if specf == nil then
+	--	self.speedMeterDisplay.gaugeBackgroundElement:setVisible(false)
+	--end
+	
 end
 
 function RVB_HUD:hideSomething(vehicle)
@@ -150,7 +221,8 @@ end
 
 function RVB_HUD:drawHUD()
 
-	local RVB_SETTINGS = g_currentMission.vehicleBreakdowns.generalSettings
+	local GSET = g_currentMission.vehicleBreakdowns.generalSettings
+	local GPSET = g_currentMission.vehicleBreakdowns.gameplaySettings
 
 	if self.vehicle.spec_motorized ~= nil then
 
@@ -166,7 +238,7 @@ function RVB_HUD:drawHUD()
 		renderText(self.rpmText.posX, self.rpmText.posY, self.rpmText.size, rpm_txt)
 	end
 
-	if self.vehicle.spec_motorized ~= nil then
+	if self.vehicle.spec_motorized ~= nil and self.vehicle.getConsumerFillUnitIndex ~= nil and self.vehicle:getConsumerFillUnitIndex(FillType.DIESEL) then
 
 		local _useF = g_gameSettings:getValue(GameSettings.SETTING.USE_FAHRENHEIT)
 		local _s = "C"
@@ -187,7 +259,7 @@ function RVB_HUD:drawHUD()
 
 	end
 
-	if self.vehicle.spec_motorized ~= nil then
+	if self.vehicle.spec_motorized ~= nil and self.vehicle.getConsumerFillUnitIndex ~= nil and self.vehicle:getConsumerFillUnitIndex(FillType.DIESEL) then
 
 		local fuel_txt = string.format("%.1f l/h", 0.0)
 		if self.vehicle.spec_motorized.isMotorStarted == true then
@@ -204,6 +276,141 @@ function RVB_HUD:drawHUD()
 
 	end
 
+
+	if self.vehicle.spec_motorized ~= nil and self.vehicle.getConsumerFillUnitIndex ~= nil and self.vehicle:getConsumerFillUnitIndex(FillType.DIESEL) then
+		local specf = self.vehicle.spec_faultData
+		local COLOR = {}
+		COLOR.DEFAULT = {1, 1, 1, 1}
+		COLOR.YELLOW = {1.0000, 0.6592, 0.0000, 1}
+		
+		local Partfoot = (self.vehicle:getDamageAmount() * 100) / 1
+		--local batteryFillUnitIndex = self.vehicle:getConsumerFillUnitIndex(FillType.ELECTRICCHARGE)
+		--local Partfoot = (self.vehicle:getFillUnitFillLevel(batteryFillUnitIndex) * 100) / 100
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local damage_Text = "DAMAGE: "..string.format("%.4f", self.vehicle:getDamageAmount()).." ("..string.format("%.0f", Partfoot).."%)"
+		--local damage_Text = "DAMAGE: "..string.format("%.4f", self.vehicle:getFillUnitFillLevel(batteryFillUnitIndex)).." ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.DEFAULT))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.damageText.posX, self.damageText.posY, self.damageText.size, damage_Text)
+		
+		local Partfoot = (specf.parts[1].operatingHours * 100) / specf.parts[1].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[1].operatingHours)
+		local minutes = math.floor((specf.parts[1].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local thermostat_Text = "THERMOSTAT: "..string.format("%s:%s", hours, minutes).."/"..GPSET.thermostatLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.thermostatText.posX, self.thermostatText.posY, self.thermostatText.size, thermostat_Text)
+
+		local Partfoot = (specf.parts[2].operatingHours * 100) / specf.parts[2].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[2].operatingHours)
+		local minutes = math.floor((specf.parts[2].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local lightings_Text = "LIGHTINGS: "..string.format("%s:%s", hours, minutes).."/"..GPSET.lightingsLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.lightingsText.posX, self.lightingsText.posY, self.lightingsText.size, lightings_Text)
+		
+		local Partfoot = (specf.parts[3].operatingHours * 100) / specf.parts[3].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[3].operatingHours)
+		local minutes = math.floor((specf.parts[3].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local glowplug_Text = "GLOWPLUG: "..string.format("%s:%s", hours, minutes).."/"..GPSET.glowplugLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.glowplugText.posX, self.glowplugText.posY, self.glowplugText.size, glowplug_Text)
+		
+		local Partfoot = (specf.parts[4].operatingHours * 100) / specf.parts[4].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[4].operatingHours)
+		local minutes = math.floor((specf.parts[4].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local wipers_Text = "WIPERS: "..string.format("%s:%s", hours, minutes).."/"..GPSET.wipersLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.wipersText.posX, self.wipersText.posY, self.wipersText.size, wipers_Text)
+		
+		local Partfoot = (specf.parts[5].operatingHours * 100) / specf.parts[5].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[5].operatingHours)
+		local minutes = math.floor((specf.parts[5].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local generator_Text = "GENERATOR: "..string.format("%s:%s", hours, minutes).."/"..GPSET.generatorLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.generatorText.posX, self.generatorText.posY, self.generatorText.size, generator_Text)
+		
+		local Partfoot = (specf.parts[6].operatingHours * 100) / specf.parts[6].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[6].operatingHours)
+		local minutes = math.floor((specf.parts[6].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local engine_Text = "ENGINE: "..string.format("%s:%s", hours, minutes).."/"..GPSET.engineLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.engineText.posX, self.engineText.posY, self.engineText.size, engine_Text)
+		
+		local Partfoot = (specf.parts[7].operatingHours * 100) / specf.parts[7].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[7].operatingHours)
+		local minutes = math.floor((specf.parts[7].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local selfstarter_Text = "SELFSTARTER: "..string.format("%s:%s", hours, minutes).."/"..GPSET.selfstarterLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.selfstarterText.posX, self.selfstarterText.posY, self.selfstarterText.size, selfstarter_Text)
+		
+		local Partfoot = (specf.parts[8].operatingHours * 100) / specf.parts[8].tmp_lifetime
+		Partfoot = MathUtil.round(Partfoot)
+		Partfoot = 100 - Partfoot
+		local hours = math.floor(specf.parts[8].operatingHours)
+		local minutes = math.floor((specf.parts[8].operatingHours - hours) * 60)
+		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+		local battery_Text = "BATTERY: "..string.format("%s:%s", hours, minutes).."/"..GPSET.batteryLifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+		setTextColor(unpack(COLOR.YELLOW))
+		setTextAlignment(RenderText.ALIGN_LEFT)
+		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+		setTextBold(true)
+		renderText(self.batteryText.posX, self.batteryText.posY, self.batteryText.size, battery_Text)
+	end
+	
+	
+	
 	setTextColor(1,1,1,1)
 	setTextAlignment(RenderText.ALIGN_LEFT)
 	setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_BASELINE)
@@ -211,11 +418,13 @@ function RVB_HUD:drawHUD()
 	
 
 	if self.vehicle.spec_motorized.isMotorStarted then
-		self.icons.temperature:setVisible(true)
-		self.icons.battery:setVisible(true)
-		self.icons.engine:setVisible(true)
-		self.icons.lights:setVisible(true)
-		self.icons.service:setVisible(true)
+		if self.vehicle.getConsumerFillUnitIndex ~= nil and self.vehicle:getConsumerFillUnitIndex(FillType.DIESEL) ~= nil then
+			self.icons.temperature:setVisible(true)
+			self.icons.battery:setVisible(true)
+			self.icons.engine:setVisible(true)
+			self.icons.lights:setVisible(true)
+			self.icons.service:setVisible(true)
+		end
 	else
 		self.icons.temperature:setVisible(false)
 		self.icons.battery:setVisible(false)
@@ -223,8 +432,6 @@ function RVB_HUD:drawHUD()
 		self.icons.lights:setVisible(false)
 		self.icons.service:setVisible(false)
 	end
-
-
 
 	if self.speedMeterDisplay:getVisible() then
 
@@ -241,17 +448,17 @@ function RVB_HUD:drawHUD()
 			local spec = self.vehicle.spec_faultData
 
 			local temperature_percent = (spec.parts[1].operatingHours * 100) / spec.parts[1].tmp_lifetime
-			if temperature_percent < 95 then
+			if temperature_percent <= 95 or not spec.parts[1].repairreq then
 				self.icons.temperature:setColor(unpack(RVB.COLOR.DEFAULT))
 			--elseif temperature_percent >= 95 and temperature_percent < 99 then
 				--self.icons.temperature:setColor(unpack(RVB.COLOR.YELLOWFAULT))
 			else
-				if self.vehicle.spec_motorized.motorTemperature.value > 96 then
+				if self.vehicle.spec_motorized.motorTemperature.value > 95 then
 					self.icons.temperature:setColor(unpack(RVB.COLOR.REDFAULT))
 				end
 			end
 			
-			if spec.faultStorage[1] and self.vehicle.spec_motorized.motorTemperature.value > 96 then
+			if spec.faultStorage[1] and self.vehicle.spec_motorized.motorTemperature.value > 95 then
 				self.icons.temperature:setColor(unpack(RVB.COLOR.REDFAULT))
 			end
 
@@ -260,7 +467,7 @@ function RVB_HUD:drawHUD()
 			end
 
 			local lights_percent = (spec.parts[2].operatingHours * 100) / spec.parts[2].tmp_lifetime
-			if lights_percent < 95 then
+			if lights_percent <= 99 or not spec.parts[2].repairreq then
 				self.icons.lights:setColor(unpack(RVB.COLOR.DEFAULT))
 			--elseif lights_percent >= 95 and lights_percent < 99 then
 			else
@@ -270,16 +477,16 @@ function RVB_HUD:drawHUD()
 			end
 
 			local engine_percent = (spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime
-			if engine_percent < 95 then
+			if engine_percent <= 95  or not spec.parts[6].repairreq then
 				self.icons.engine:setColor(unpack(RVB.COLOR.DEFAULT))
-			elseif engine_percent >= 95 and engine_percent < 99 then
+			elseif engine_percent > 95 and engine_percent < 99 then
 				self.icons.engine:setColor(unpack(RVB.COLOR.YELLOWFAULT))
 			else
 				self.icons.engine:setColor(unpack(RVB.COLOR.REDFAULT))
 			end
 
 			local generator_percent = (spec.parts[5].operatingHours * 100) / spec.parts[5].tmp_lifetime
-			if generator_percent < 95 then
+			if generator_percent <= 95  or not spec.parts[5].repairreq then
 				self.icons.battery:setColor(unpack(RVB.COLOR.DEFAULT))
 			--elseif generator_percent >= 95 and generator_percent < 99 then
 				--self.icons.battery:setColor(unpack(RVB.COLOR.YELLOWFAULT))
@@ -289,9 +496,9 @@ function RVB_HUD:drawHUD()
 
 			local RVBSET = g_currentMission.vehicleBreakdowns
 			local service_percent = (spec.rvb[4] * 100) / RVBSET:getIsIsPeriodicService()
-			if service_percent < 95 then
+			if service_percent <= 95  or not spec.parts[4].repairreq then
 				self.icons.service:setColor(unpack(RVB.COLOR.DEFAULT))
-			elseif service_percent >= 95 and service_percent < 99 then
+			elseif service_percent > 95 and service_percent < 99 then
 				self.icons.service:setColor(unpack(RVB.COLOR.YELLOWFAULT))
 			else
 				self.icons.service:setColor(unpack(RVB.COLOR.REDFAULT))

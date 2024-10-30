@@ -20,7 +20,7 @@ function RVBVehicleList_Frame.new(rvbMain, modName)
 	self.listSort        = "base"
 	self.listVehicle	 = "vehicle"
 	self.vehicle         = nil
-	
+
 	return self
 end
 
@@ -56,13 +56,12 @@ function RVBVehicleList_Frame:onFrameOpen()
 		self:setSoundSuppressed(false)
 	end
 
-
 	self.messageCenter:subscribe(SellVehicleEvent, self.onRefreshEvent, self)
 	self.messageCenter:subscribe(MessageType.VEHICLE_REPAIRED, self.onRefreshEvent, self)
 	self.messageCenter:subscribe(MessageType.VEHICLE_REPAINTED, self.onRefreshEvent, self)
 
 end
-
+	
 function RVBVehicleList_Frame:setInfoText(text)
 	if text ~= nil then
 		if self.infoBoxText.text ~= text then
@@ -97,6 +96,8 @@ function RVBVehicleList_Frame:onFrameClose()
 	self.vehicles = {}
 	self.vehicle = nil
 	self.messageCenter:unsubscribeAll(self)
+	--g_messageCenter:unsubscribeAll(self)
+	g_currentMission:showMoneyChange(MoneyType.SHOP_VEHICLE_SELL)
 end
 
 function RVBVehicleList_Frame:initialize()
@@ -114,7 +115,7 @@ function RVBVehicleList_Frame:initialize()
 	
 	self.repairButtonInfo = {
 		profile     = "buttonActivate",
-		inputAction = InputAction.ACTIVATE_OBJECT,
+		inputAction = InputAction.MENU_EXTRA_2,
 		text        = g_i18n:getText("button_repair"),
 		callback    = function ()
 			self:onButtonRepairVehicle()
@@ -132,7 +133,7 @@ function RVBVehicleList_Frame:initialize()
 
 	self.batteryChargingButton = {
 		profile     = "buttonActivate",
-		inputAction = InputAction.MENU_EXTRA_2,
+		inputAction = InputAction.MENU_CANCEL,
 		text        = g_i18n:getText("RVB_button_battery_ch"),
 		callback    = function ()
 			self:onButtonBatteryCharging()
@@ -266,8 +267,9 @@ function RVBVehicleList_Frame:onYesNoSellDialog(yes)
 		local selectedIndex = self.vehicleList.selectedIndex
 		local self_vehicle  = self.vehicles[selectedIndex]
 
-        g_client:getServerConnection():sendEvent(SellVehicleEvent.new(self_vehicle, EconomyManager.DIRECT_SELL_MULTIPLIER, true))
-		
+		--g_client:getServerConnection():sendEvent(SellVehicleEvent.new(self_vehicle, EconomyManager.DIRECT_SELL_MULTIPLIER, true))
+		g_client:getServerConnection():sendEvent(SellVehicleEvent.new(self_vehicle, 1, true))
+
     end
 end
 
@@ -352,7 +354,7 @@ function RVBVehicleList_Frame:onButtonRepairVehicle()
 				faultListTime = faultListTime + VehicleBreakdowns.IRSBTimes[i]
 			end
 		end
-
+			
 		local AddHour = math.floor(faultListTime / 3600)
 		local AddMinute = math.floor(((faultListTime / 3600) - AddHour) * 60)
 		local FinishDay, FinishHour, FinishMinute = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
@@ -440,24 +442,11 @@ function RVBVehicleList_Frame:onButtonBatteryCharging()
 
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
-	local spec			= self_vehicle.spec_faultData
 
-	if self_vehicle ~= nil and spec.rvb[5] >= 0.10 then
-
-		local lackofcharge = math.floor(spec.rvb[5] * 100)
-		local AddHour = math.floor((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600)
-		local AddMinute = math.floor((((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600) - AddHour) * 60)
-		local FinishDay, FinishHour, FinishMinute = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
-		local timeText = string.format("%02d:%02d", FinishHour, FinishMinute)
-
-		local DialogServiceText = "RVB_batteryChTimeDialog"
-		if FinishDay > g_currentMission.environment.currentDay then
-			DialogServiceText = "RVB_batteryChDayDialog"
-		end
+	if self_vehicle ~= nil and self_vehicle:getIsFaultBattery() <= 0.30 then
 
 		g_gui:showYesNoDialog({
-			text     = string.format(g_i18n:getText("RVB_batteryChDialog"), g_i18n:formatMoney(self:getBatteryChPrice(true))).."\n"..
-					   string.format(g_i18n:getText(DialogServiceText), timeText),
+			text     = string.format(g_i18n:getText("RVB_batteryChDialog"), g_i18n:formatMoney(5)),
 			callback = self.onYesNoBatteryChDialog,
 			target   = self,
 			yesSound = GuiSoundPlayer.SOUND_SAMPLES.CONFIG_WRENCH
@@ -486,18 +475,16 @@ function RVBVehicleList_Frame:onYesNoInspectionDialog(yes)
 			local AddHour = math.floor(VehicleBreakdowns.IRSBTimes[10] / 3600)
 			local AddMinute = math.floor(((VehicleBreakdowns.IRSBTimes[10] / 3600) - AddHour) * 60)
 
-			spec.repair[8] = 0
-			spec.repair[1] = true
-			spec.repair[2] = false
-			spec.repair[3], spec.repair[4], spec.repair[5] = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
-			spec.repair[6] = 0
-			spec.repair[7] = self_vehicle:getInspectionPrice()
+			spec.inspection[1] = true
+			spec.inspection[2] = false
+			spec.inspection[3], spec.inspection[4], spec.inspection[5] = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
+			spec.inspection[6] = self_vehicle:getInspectionPrice()
 
 			spec.rvb[1] = g_currentMission.missionInfo.timeScale
 
 			--if self_vehicle.isServer then
 			--elseif self_vehicle.isClient then
-				RVBRepair_Event.sendEvent(self_vehicle, unpack(spec.repair))
+				RVBInspection_Event.sendEvent(self_vehicle, unpack(spec.inspection))
 				RVBTotal_Event.sendEvent(self_vehicle, unpack(spec.rvb))
 				self_vehicle:raiseDirtyFlags(spec.dirtyFlag)
 			--end
@@ -671,6 +658,7 @@ function RVBVehicleList_Frame:onYesNoServiceDialog(yes)
 	end
 end
 
+
 function RVBVehicleList_Frame:onYesNoBatteryChDialog(yes)
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
@@ -684,24 +672,7 @@ function RVBVehicleList_Frame:onYesNoBatteryChDialog(yes)
 			})
 		else
 
-			local lackofcharge = math.floor(spec.rvb[5] * 100)
-			local AddHour = math.floor((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600)
-			local AddMinute = math.floor((((VehicleBreakdowns.IRSBTimes[8] * lackofcharge) / 3600) - AddHour) * 60)
-
-			spec.battery[1] = true
-			spec.battery[2] = false
-			spec.battery[3], spec.battery[4], spec.battery[5] = VehicleBreakdowns:CalculateFinishTime(AddHour, AddMinute)
-			spec.battery[6] = spec.rvb[5] / (VehicleBreakdowns.IRSBTimes[8] * lackofcharge) * 60
-			spec.battery[7] = self:getBatteryChPrice()
-
-			spec.rvb[1] = g_currentMission.missionInfo.timeScale
-
-			--if self_vehicle.isServer then
-			--elseif self_vehicle.isClient then
-				RVBBattery_Event.sendEvent(self_vehicle, unpack(spec.battery))
-				RVBTotal_Event.sendEvent(self_vehicle, unpack(spec.rvb))
-				self_vehicle:raiseDirtyFlags(spec.dirtyFlag)
-			--end
+			g_client:getServerConnection():sendEvent(BatteryFillUnitFillLevelEvent.new(self_vehicle, true))
 
 			self_vehicle:StopAI(self_vehicle)
 			self_vehicle:stopMotor()
@@ -712,11 +683,14 @@ function RVBVehicleList_Frame:onYesNoBatteryChDialog(yes)
 			if specm.motor ~= nil then
 				specm.motor:setGearShiftMode(specm.gearShiftMode)
 			end
-
-			self:rebuildTableList()
+	
 		end
+		
+		self:rebuildTableList()
+
 	end
 end
+
 
 function RVBVehicleList_Frame:getBatteryChPrice()
 	local selectedIndex = self.vehicleList.selectedIndex
@@ -783,9 +757,9 @@ function RVBVehicleList_Frame:updateMenuButtons()
 			if g_currentMission.environment.currentHour >= tonumber(self.rvbMain:getIsWorkshopOpen()) and g_currentMission.environment.currentHour < tonumber(self.rvbMain:getIsWorkshopClose()) then
 
 				if spec ~= nil then
-					if spec.repair ~= nil then
-						if not spec.repair[10] then
-							if spec.repair[7] == 0 then
+					--if spec.inspection ~= nil then
+						--if not spec.repair[10] then
+							if not spec.inspection[1] then
 								self.inspectionButtonInfo.text = g_i18n:getText("RVB_button_inspection").." ("..g_i18n:formatMoney(self_vehicle:getInspectionPrice(true))..")"
 								self.inspectionButtonInfo.disabled = false
 							else
@@ -793,9 +767,9 @@ function RVBVehicleList_Frame:updateMenuButtons()
 								self.inspectionButtonInfo.disabled = true
 							end
 							table.insert(self.menuButtonInfo, self.inspectionButtonInfo)
-						end
+						--end
 
-						if spec.repair[10] then 
+						if spec.inspection[8] then 
 							if not spec.repair[1] and repairPrice > 1 then
 								self.repairButtonInfo.text = g_i18n:getText("button_repair").." ("..g_i18n:formatMoney(self_vehicle:getRepairPrice_RVBClone(true))..")"
 								self.repairButtonInfo.disabled = false
@@ -805,7 +779,7 @@ function RVBVehicleList_Frame:updateMenuButtons()
 							end
 							table.insert(self.menuButtonInfo, self.repairButtonInfo)
 						end
-					end
+					--end
 
 				end
 
@@ -832,19 +806,19 @@ function RVBVehicleList_Frame:updateMenuButtons()
 					end
 				end
 
-				if spec ~= nil then
-					if spec.battery ~= nil then
-						if not spec.battery[1] and batterycher > 0.10 then
-							self.batteryChargingButton.text = g_i18n:getText("RVB_button_battery_ch").." ("..g_i18n:formatMoney(self:getBatteryChPrice(true))..")"
-							self.batteryChargingButton.disabled = false
-						else
-							self.batteryChargingButton.text = g_i18n:getText("RVB_button_battery_ch")
-							self.batteryChargingButton.disabled = true
-						end
-						table.insert(self.menuButtonInfo, self.batteryChargingButton)
+				if spec ~= nil and self_vehicle:getIsFaultBattery() ~= nil then
+					if self_vehicle:getIsFaultBattery() <= 0.30 then
+						self.batteryChargingButton.disabled = false
+					else
+						self.batteryChargingButton.disabled = true
 					end
+					self.batteryChargingButton.text = g_i18n:getText("RVB_button_battery_ch")
+					table.insert(self.menuButtonInfo, self.batteryChargingButton)
 				end
 
+			else
+				local timeText = string.format("%02d:%02d", self.rvbMain:getIsWorkshopOpen(), 0)
+				self:setInfoText(string.format(g_i18n:getText("RVB_WorkShopClose"), timeText))
 			end
 
             if not isLeased then
@@ -866,6 +840,9 @@ function RVBVehicleList_Frame:updateMenuButtons()
 
 		end
 
+		if g_workshopScreen.canBeConfigured then
+			self.configScreenButtonInfo.disabled = false
+		end
 		table.insert(self.menuButtonInfo, self.configScreenButtonInfo)
 		
 		local vehicle_text = ""
@@ -957,7 +934,7 @@ function RVBVehicleList_Frame:rebuildTableList()
 
 				local playerFarmId = g_currentMission:getFarmId()
 				if playerFarmId ~= FarmManager.SPECTATOR_FARM_ID then
-
+		
 					-- Find first vehicle, then get its rood and all children
 					for shapeId, inRange in pairs(repairTrigger.vehicleShapesInRange) do
 						if inRange ~= nil and entityExists(shapeId) then
@@ -967,16 +944,10 @@ function RVBVehicleList_Frame:rebuildTableList()
 								local isRidable = SpecializationUtil.hasSpecialization(Rideable, vehicle.specializations)
 
 								if not isRidable and not vehicle.isPallet and vehicle.getSellPrice ~= nil and vehicle.price ~= nil and vehicle.typeName ~= "FS22_ToolBoxPack.service"
-									and vehicle.typeName ~= "FS22_twine_addon.palletAttachable" and vehicle.typeName ~= "FS22_netWrap_addon_modland.palletAttachable" then
+									and vehicle.typeName ~= "FS22_twine_addon.palletAttachable" and vehicle.typeName ~= "FS22_netWrap_addon_modland.palletAttachable" and vehicle.typeName ~= "FS22_lsfmFarmEquipmentPack.portableToolbox" then
 									if self.listVehicle == "all" then
 										local items = vehicle.rootVehicle:getChildVehicles()
-										--for i = 1, #items do
-										--	local item = items[i]
-										--	if vehicle:getOwnerFarmId() == item:getOwnerFarmId() and g_currentMission.accessHandler:canPlayerAccess(item) then -- item ~= vehicle and 
 
-										--		table.addElement(self.vehicles, item)
-										--	end
-										--end
 										for _, item in ipairs(items) do
 											local ownerFarmId = item:getOwnerFarmId()
 											-- only show owned items
@@ -985,6 +956,7 @@ function RVBVehicleList_Frame:rebuildTableList()
 												table.addElement(self.vehicles, item)
 											end
 										end
+
 									end
 									
 									local isSteerImplement = vehicle.spec_attachable ~= nil
@@ -1026,7 +998,7 @@ function RVBVehicleList_Frame:rebuildTableList()
 			for _, vehicle in ipairs(g_currentMission.vehicles) do
 
 				if vehicle ~= nil and vehicle.typeName ~= "locomotive" and vehicle.typeName ~= "trainTrailer" and vehicle.typeName ~= "trainTimberTrailer" and vehicle.typeName ~= "FS22_ToolBoxPack.service" 
-					and vehicle.typeName ~= "FS22_twine_addon.palletAttachable" and vehicle.typeName ~= "FS22_netWrap_addon_modland.palletAttachable" then
+					and vehicle.typeName ~= "FS22_twine_addon.palletAttachable" and vehicle.typeName ~= "FS22_netWrap_addon_modland.palletAttachable" and vehicle.typeName ~= "FS22_lsfmFarmEquipmentPack.portableToolbox" then
 
 					local isSelling        = (vehicle.isDeleted ~= nil and vehicle.isDeleted) or (vehicle.isDeleting ~= nil and vehicle.isDeleting)
 					local hasAccess        = g_currentMission.accessHandler:canPlayerAccess(vehicle)
@@ -1141,9 +1113,11 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 		--[[ price ]]
 		local getsellprice = ""
 		if spec ~= nil then
-			getsellprice = g_i18n:formatMoney(math.min(math.floor(self_vehicle:getSellPrice_RVBClone() * EconomyManager.DIRECT_SELL_MULTIPLIER), self_vehicle:getPrice()))
+			--getsellprice = g_i18n:formatMoney(math.min(math.floor(self_vehicle:getSellPrice_RVBClone() * EconomyManager.DIRECT_SELL_MULTIPLIER), self_vehicle:getPrice()))
+			getsellprice = g_i18n:formatMoney(math.min(self_vehicle:getSellPrice_RVBClone(), self_vehicle:getPrice()))
 		else
-			getsellprice = g_i18n:formatMoney(math.min(math.floor(self_vehicle:getSellPrice() * EconomyManager.DIRECT_SELL_MULTIPLIER), self_vehicle:getPrice()))
+			--getsellprice = g_i18n:formatMoney(math.min(math.floor(self_vehicle:getSellPrice() * EconomyManager.DIRECT_SELL_MULTIPLIER), self_vehicle:getPrice()))
+			getsellprice = g_i18n:formatMoney(math.min(self_vehicle:getSellPrice(), self_vehicle:getPrice()))
 		end
 		cell:getAttribute("price"):setText(getsellprice)
 
@@ -1157,8 +1131,10 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 		if spec ~= nil then
 			hours = math.floor(spec.rvb[3])
 			minutes = math.floor((spec.rvb[3] - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
 		end
-		cell:getAttribute("operating_time"):setText(string.format(g_i18n:getText("RVB_shop_operatingTime"), hours, minutes))
+		cell:getAttribute("operating_time"):setText(string.format(g_i18n:getText("RVB_shop_operatingTimeG"), hours, minutes))
 
 		--[[ real_operating_time ]]
 		local minutes = self_vehicle:getOperatingTime() / (1000 * 60)
@@ -1204,7 +1180,7 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 			self.partsListBox:setVisible(false)
 
 			if spec ~= nil and self_vehicle.spec_motorized ~= nil and self_vehicle.getIsEntered ~= nil then
-				if spec.repair[10] then
+				if spec.inspection[8] then
 				
 					self.partsListTitle:setVisible(true)
 					self.partsListBox:setVisible(true)
@@ -1340,7 +1316,7 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 			elseif index == 2 then
 
 				cell:setVisible(false)
-				if spec ~= nil then
+				--[[if spec ~= nil then
 					amount = spec.rvb[5]
 					self:setStatusBarValue(cell:getAttribute("detailBar"), 1-amount, amount, 0.1, 0.4)
 					self:setDetailText(
@@ -1349,6 +1325,19 @@ function RVBVehicleList_Frame:populateCellForItemInSection(list, section, index,
 						RVBVehicleList_Frame:rawToPerc(amount, true)
 					)
 					cell:setVisible(true)
+				end]]
+				
+				if spec ~= nil then
+					local batteryLevel = self:getBATTERY(self_vehicle)
+					if batteryLevel ~= nil then
+						self:setStatusBarValue(cell:getAttribute("detailBar"), batteryLevel, 1-batteryLevel, 0.1, 0.4)
+						self:setDetailText(
+							cell, false,
+							"RVB_list_battery",
+							RVBVehicleList_Frame:rawToPerc(batteryLevel, false)
+						)
+						cell:setVisible(true)
+					end
 				end
 
 			elseif index == 3 then
@@ -1484,9 +1473,9 @@ end
 
 function RVBVehicleList_Frame:rawToPerc(value, invert)
 	if not invert then
-		return math.ceil((value)*100) .. " %"
+		return MathUtil.round((value)*100) .. " %"
 	end
-	return math.ceil((1 - value)*100) .. " %"
+	return MathUtil.round((1 - value)*100) .. " %"
 end
 
 function RVBVehicleList_Frame:getDEF(vehicle)
@@ -1497,6 +1486,22 @@ function RVBVehicleList_Frame:getDEF(vehicle)
 		local fillLevel = vehicle:getFillUnitFillLevel(defFillUnitIndex)
 		local capacity  = vehicle:getFillUnitCapacity(defFillUnitIndex)
 		return fillLevel / capacity
+	end
+	return nil
+
+end
+
+function RVBVehicleList_Frame:getBATTERY(vehicle)
+
+	local batteryFillUnitIndex = vehicle:getConsumerFillUnitIndex(FillType.ELECTRICCHARGE)
+	local dieselFillUnitIndex = vehicle:getConsumerFillUnitIndex(FillType.DIESEL)
+	
+	if batteryFillUnitIndex ~= nil and dieselFillUnitIndex ~= nil then
+		local fillLevel = vehicle:getFillUnitFillLevel(batteryFillUnitIndex)
+		local capacity  = vehicle:getFillUnitCapacity(batteryFillUnitIndex)
+		--return fillLevel / capacity
+		return vehicle:getFillUnitFillLevelPercentage(batteryFillUnitIndex)
+		--return MathUtil.round(vehicle:getFillUnitFillLevelPercentage(batteryFillUnitIndex))
 	end
 	return nil
 
@@ -1532,7 +1537,8 @@ function RVBVehicleList_Frame:onListSelectionChanged(list, section, index)
 		local spec         = self_vehicle.spec_faultData
 		local storeItem    = g_storeManager:getItemByXMLFilename(self_vehicle.configFileName)
 		local infoText     = ""
-
+		local tomorrowText = ""
+		
 		g_workshopScreen:setVehicle(self_vehicle)
 		
 		self.vehicleIcon:setImageFilename(storeItem.imageFilename)
@@ -1540,18 +1546,32 @@ function RVBVehicleList_Frame:onListSelectionChanged(list, section, index)
 		if spec ~= nil then
 
 			if spec.repair ~= nil then
-				if not spec.repair[10] and spec.repair[7] > 0 then
-					infoText = g_i18n:getText("RVB_alertmessage_inspection")
+				if spec.repair[1] and spec.inspection[8] then
+					if spec.repair[3] > g_currentMission.environment.currentDay then
+						tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
+					end
+					infoText = g_i18n:getText("RVB_alertmessage_repair").." "..tomorrowText..string.format("%02d:%02d", spec.repair[4], spec.repair[5])
 				end
-				if spec.repair[10] and spec.repair[1] then 
-					infoText = g_i18n:getText("RVB_alertmessage_repair")
+				self:setInfoText(infoText)
+			end
+			
+			if spec.inspection ~= nil then
+				if spec.inspection[1] then
+					local tomorrowText = ""
+					if spec.inspection[3] > g_currentMission.environment.currentDay then
+						tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
+					end
+					infoText = g_i18n:getText("RVB_alertmessage_inspection").." "..tomorrowText..string.format("%02d:%02d", spec.inspection[4], spec.inspection[5])
 				end
 				self:setInfoText(infoText)
 			end
 
 			if spec.service ~= nil then
 				if spec.service[1] then
-					infoText = g_i18n:getText("RVB_alertmessage_service")
+					if spec.service[3] > g_currentMission.environment.currentDay then
+						tomorrowText = g_i18n:getText("infoDisplayExtension_tomorrow")
+					end
+					infoText = g_i18n:getText("RVB_alertmessage_service").." "..tomorrowText..string.format("%02d:%02d", spec.service[4], spec.service[5])
 				end
 				self:setInfoText(infoText)
 			end
@@ -1582,95 +1602,83 @@ function RVBVehicleList_Frame:onListSelectionChanged(list, section, index)
 	
 end
 
-function RVBVehicleList_Frame:onSave()
-
-	local ThermostatPart = self.checkedThermostatPartToggle:getIsChecked()
-
-	if g_server ~= nil then
-		--g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
-    else
-		--g_client:getServerConnection():sendEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose))
-    end
-
-end
-
 function RVBVehicleList_Frame:onClickThermostatPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'ThermostatPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'ThermostatPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[1].repairreq = _state
+	spec.parts[1].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickLightingsPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'LightingsPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'LightingsPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[2].repairreq = _state
+	spec.parts[2].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickGlowPlugPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'GlowPlugPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'GlowPlugPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[3].repairreq = _state
+	spec.parts[3].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickWipersPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'WipersPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'WipersPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[4].repairreq = _state
+	spec.parts[4].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickGeneratorPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'GeneratorPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'GeneratorPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[5].repairreq = _state
+	spec.parts[5].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickEnginePart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'EnginePart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'EnginePart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[6].repairreq = _state
+	spec.parts[6].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickSelfstarterPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'Self-StarterPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'Self-StarterPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[7].repairreq = _state
+	spec.parts[7].repairreq = fault
 	self:updateMenuButtons()
 end
 
 function RVBVehicleList_Frame:onClickBatteryPart(state)
-	local _state = state == CheckedOptionElement.STATE_CHECKED
-	Logging.info("[RVB] Repair Part 'BatteryPart': ".. tostring(_state))
+	local fault = state == CheckedOptionElement.STATE_CHECKED
+	Logging.info("[RVB] Repair Part 'BatteryPart': ".. tostring(fault))
 	local selectedIndex = self.vehicleList.selectedIndex
 	local self_vehicle  = self.vehicles[selectedIndex]
 	local spec          = self_vehicle.spec_faultData
-	spec.parts[8].repairreq = _state
+	spec.parts[8].repairreq = fault
 	self:updateMenuButtons()
 end
 

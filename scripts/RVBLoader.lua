@@ -17,17 +17,24 @@ source(Utils.getFilename("scripts/gui/RVBVehicleList_Frame.lua", directory))
 source(Utils.getFilename("scripts/events/RVBTotal_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVB_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBRepair_Event.lua", directory))
+source(Utils.getFilename("scripts/events/RVBInspection_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBBattery_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBService_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBGamePSet_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBGeneralSet_Event.lua", directory))
 source(Utils.getFilename("scripts/events/RVBParts_Event.lua", directory))
 
+source(Utils.getFilename("scripts/events/BatteryFillUnitFillLevelEvent.lua", directory))
+source(Utils.getFilename("scripts/events/RVBLightingsStringsEvent.lua", directory))
+source(Utils.getFilename("scripts/events/RVBLightingsTypesMaskEvent.lua", directory))
+source(Utils.getFilename("scripts/events/SetRVBMotorTurnedOnEvent.lua", directory))
+
 -- HUD
 source(Utils.getFilename("scripts/hud/RVB_HUD.lua", directory))
 
 -- UTILS
 source(Utils.getFilename("scripts/utils/stream.lua", directory))
+source(Utils.getFilename("scripts/utils/rvb_Utils.lua", directory))
 
 -- AIMessage
 source(Utils.getFilename("scripts/ai/errors/AIMessageErrorBatteryDischarged.lua", directory))
@@ -82,7 +89,7 @@ function loadedMission(mission, node)
 end
 
 function rvbgamePlaySetsaveToXMLFile(missionInfo)
-    if isEnabled() then --and missionInfo.isValid then
+    if isEnabled() and missionInfo.isValid then
 		local savegameFolderPath = missionInfo.savegameDirectory
 		if savegameFolderPath == nil then
 			savegameFolderPath = ('%ssavegame%d'):format(getUserProfileAppPath(), missionInfo.savegameIndex)

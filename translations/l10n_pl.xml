@@ -21,6 +21,18 @@
 		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="Warsztat pojazdów otwiera się o"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Zamknięcie warsztatu pojazdów"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="Warsztat pojazdów zamyka się o"/>
+		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Lifetime of Parts"/>
+		<text name="ui_RVB_gameplaysetting_hour" text="%s hour" tag="format"/>
+		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="The smaller this number, the sooner it will fail."/>
+		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Thermostat"/>
+		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Lighting"/>
+		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Glow plug"/>
+		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Windshield wipers"/>
+		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Generator"/>
+		<text name="ui_RVB_gameplaysetting_engineTitle" text="Engine"/>
+		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Self-starter"/>
+		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Battery"/>
+		<text name="ui_RVB_gameplaysetting_tireTitle" text="Tire"/>
 		<!-- general settings -->
 		<text name="ui_RVB_sectionGeneralSettings" text="Ustawienia ogólne"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Komunikat ostrzegawczy"/>
@@ -53,6 +65,7 @@
 		<text name="RVB_faultText_ENGINE" text="Silnik"/>
 		<text name="RVB_faultText_SELFSTARTER" text="Rozrusznik"/> 
 		<text name="RVB_faultText_BATTERY" text="Akumulator"/>
+		<text name="RVB_faultText_TIRE" text="Tire"/>
 		<text name="RVB_repairTimeDialog" text="Naprawa pojazdu zostanie zakończona o %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="Naprawa pojazdu zostanie zakończona jutro o %s." tag="format"/>
 		<text name="RVB_ErrorList" text="Lista błędów:" />
@@ -64,6 +77,7 @@
 		<text name="RVB_batteryChDayDialog" text="Ładowanie akumulatora pojazdu zostanie zakończone jutro o %s." tag="format"/>
 		<text name="RVB_occupied" text="Pojazd jest już w użyciu!" />
 		<text name="RVB_shop_operatingTime" text="%02d.%2d godzina" tag="format"/>
+		<text name="RVB_shop_operatingTimeG" text="%s:%s hour" tag="format"/>
 		<text name="RVB_serviceHours" text="%01d/%01d godzina" tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Trwa inspekcja pojazdu."/>
 		<text name="RVB_alertmessage_inspection_hud" text="Trwa inspekcja pojazdu %s." tag="format"/>

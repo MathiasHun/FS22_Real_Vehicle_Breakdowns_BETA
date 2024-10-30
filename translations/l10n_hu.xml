@@ -20,6 +20,18 @@
 		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="A jármű műhely ekkor nyit."/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Jármű műhely zárás"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="A járműműhely ekkor zár."/>
+		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Alkatrészek élettartama"/>
+		<text name="ui_RVB_gameplaysetting_hour" text="%s óra" tag="format"/>
+		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="Minél kisebb ez a szám, annál hamarabb fog meghibásodni."/>
+		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Termosztát"/>
+		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Világítás"/>
+		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Izzítógyertya"/>
+		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Ablaktörlők"/>
+		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Generátor"/>
+		<text name="ui_RVB_gameplaysetting_engineTitle" text="Motor"/>
+		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Önindító"/>
+		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Akkumulátor"/>
+		<text name="ui_RVB_gameplaysetting_tireTitle" text="Gumi"/>
 		<!-- general settings -->
 		<text name="ui_RVB_sectionGeneralSettings" text="Általános Beállítások"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Figyelmeztető üzenet"/>
@@ -52,6 +64,7 @@
 		<text name="RVB_faultText_ENGINE" text="Motor"/>
 		<text name="RVB_faultText_SELFSTARTER" text="Önindító"/> 
 		<text name="RVB_faultText_BATTERY" text="Akkumulátor"/>
+		<text name="RVB_faultText_TIRE" text="Gumi"/>
 		<text name="RVB_repairTimeDialog" text="A jármű javítása %s órakor fejeződik be." tag="format"/>
 		<text name="RVB_repairDayDialog" text="A jármű javítása holnap %s órakor fejeződik be." tag="format"/>
 		<text name="RVB_ErrorList" text="Hiba lista:" />
@@ -63,6 +76,7 @@
 		<text name="RVB_batteryChDayDialog" text="A jármű akkumulátorának töltése holnap %s órakor fejeződik be." tag="format"/>
 		<text name="RVB_occupied" text="Már használatban van a jármű!" />
 		<text name="RVB_shop_operatingTime" text="%02d.%2d óra" tag="format"/>
+		<text name="RVB_shop_operatingTimeG" text="%s:%s óra" tag="format"/>
 		<text name="RVB_serviceHours" text="%01d/%01d óra" tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Jármű átvizsgálása folyamatban van."/>
 		<text name="RVB_alertmessage_inspection_hud" text="%s jármű átvizsgálása folyamatban van." tag="format"/>

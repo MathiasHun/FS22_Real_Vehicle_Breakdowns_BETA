@@ -5,18 +5,18 @@ local RVBTotal_Event_mt = Class(RVBTotal_Event, Event)
 InitEventClass(RVBTotal_Event, "RVBTotal_Event")
 
 function RVBTotal_Event.emptyNew()
-  local self = Event.new(RVBTotal_Event_mt)
-  return self
+	local self = Event.new(RVBTotal_Event_mt)
+	return self
 end
 
 function RVBTotal_Event.new(vehicle, r1, r2, r3, r4, r5 )
-  local rvb = { r1, r2, r3, r4, r5 }
-  local self = RVBTotal_Event.emptyNew()
+	local rvb = { r1, r2, r3, r4, r5 }
+	local self = RVBTotal_Event.emptyNew()
 
-  self.vehicle = vehicle
+	self.vehicle = vehicle
 	self.vehicle.spec_faultData.rvb = { unpack(rvb) }
 
-  return self
+	return self
 end
 
 function RVBTotal_Event:readStream(streamId, connection)
@@ -45,14 +45,14 @@ function RVBTotal_Event:writeStream(streamId, connection)
 end
 
 function RVBTotal_Event:run(connection)
-    if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
-        VehicleBreakdowns.SyncClientServer_RVB(self.vehicle, unpack(self.vehicle.spec_faultData.rvb))
+	if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
+		VehicleBreakdowns.SyncClientServer_RVB(self.vehicle, unpack(self.vehicle.spec_faultData.rvb))
 		self.vehicle.spec_faultData.rvb = { unpack(self.vehicle.spec_faultData.rvb) }
 	end
 	if not connection:getIsServer() then
 		g_server:broadcastEvent(RVBTotal_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.rvb)), nil, connection, self.vehicle)
-    end
-	
+	end
+
 end
 
 function RVBTotal_Event.sendEvent( vehicle, r1, r2, r3, r4, r5, noEventSend )

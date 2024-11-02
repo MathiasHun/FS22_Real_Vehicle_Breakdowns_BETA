@@ -21,18 +21,18 @@
 		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="Die Fahrzeugwerkstatt öffnet dann"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Schließung der Kfz-Werkstatt"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="Die Fahrzeugwerkstatt schließt zu dieser Zeit"/>
-		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Lifetime of Parts"/>
-		<text name="ui_RVB_gameplaysetting_hour" text="%s hour" tag="format"/>
-		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="The smaller this number, the sooner it will fail."/>
+		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Lebensdauer der Teile"/>
+		<text name="ui_RVB_gameplaysetting_hour" text="%s stunden" tag="format"/>
+		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="Je kleiner die Zahl, desto schneller wird sie ausfallen."/>
 		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Thermostat"/>
-		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Lighting"/>
-		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Glow plug"/>
-		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Windshield wipers"/>
-		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Generator"/>
-		<text name="ui_RVB_gameplaysetting_engineTitle" text="Engine"/>
+		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Beleuchtung"/>
+		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Glühkerzen"/>
+		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Scheibenwischer"/>
+		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Lichtmaschine"/>
+		<text name="ui_RVB_gameplaysetting_engineTitle" text="Motor"/>
 		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Self-starter"/>
-		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Battery"/>
-		<text name="ui_RVB_gameplaysetting_tireTitle" text="Tire"/>
+		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Batterie"/>
+		<text name="ui_RVB_gameplaysetting_tireTitle" text="Reifen"/>
 		<!-- general settings -->
 		<text name="ui_RVB_sectionGeneralSettings" text="Allgemeine Einstellungen"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Warnmeldung"/>
@@ -65,7 +65,7 @@
 		<text name="RVB_faultText_ENGINE" text="Motor"/>
 		<text name="RVB_faultText_SELFSTARTER" text="Self-starter"/> 
 		<text name="RVB_faultText_BATTERY" text="Batterie"/>
-		<text name="RVB_faultText_TIRE" text="Tire"/>
+		<text name="RVB_faultText_TIRE" text="Reifen"/>
 		<text name="RVB_repairTimeDialog" text="Die Fahrzeugreparatur wird um %s abgeschlossen." tag="format"/>
 		<text name="RVB_repairDayDialog" text="Die Fahrzeugreparatur wird morgen um %s abgeschlossen." tag="format"/>
 		<text name="RVB_ErrorList" text="Fehlerliste:" />
@@ -77,7 +77,7 @@
 		<text name="RVB_batteryChDayDialog" text="Der Ladevorgang der Fahrzeugbatterie wird morgen um %s abgeschlossen." tag="format"/>
 		<text name="RVB_occupied" text="Das Fahrzeug ist bereits im Einsatz!" />
 		<text name="RVB_shop_operatingTime" text="%02d.%2d Stunden" tag="format"/>
-		<text name="RVB_shop_operatingTimeG" text="%s:%s hour" tag="format"/>
+		<text name="RVB_shop_operatingTimeG" text="%s:%s stunden" tag="format"/>
 		<text name="RVB_serviceHours" text="%01d/%01d Stunden" tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Die Fahrzeuginspektion ist im Gange."/>
 		<text name="RVB_alertmessage_inspection_hud" text="%s Fahrzeuginspektion ist im Gange." tag="format"/>

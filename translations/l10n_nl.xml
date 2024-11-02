@@ -21,18 +21,18 @@
 		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="De voertuigwerkplaats gaat dan open"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Voertuigwerkplaats sluit"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="De voertuigwerkplaats sluit op dat moment"/>
-		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Lifetime of Parts"/>
-		<text name="ui_RVB_gameplaysetting_hour" text="%s hour" tag="format"/>
-		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="The smaller this number, the sooner it will fail."/>
-		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Thermostat"/>
-		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Lighting"/>
-		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Glow plug"/>
-		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Windshield wipers"/>
-		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Generator"/>
-		<text name="ui_RVB_gameplaysetting_engineTitle" text="Engine"/>
-		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Self-starter"/>
-		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Battery"/>
-		<text name="ui_RVB_gameplaysetting_tireTitle" text="Tire"/>
+		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Levensduur van onderdelen"/>
+		<text name="ui_RVB_gameplaysetting_hour" text="%s uur" tag="format"/>
+		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="Hoe kleiner dit getal, hoe sneller het defect raakt."/>
+		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Thermostaat"/>
+		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Verlichting"/>
+		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Gloeispiraal"/>
+		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Ruitenwissers"/>
+		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Dynamo"/>
+		<text name="ui_RVB_gameplaysetting_engineTitle" text="Motor"/>
+		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Zelfstarter"/>
+		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Batterij"/>
+		<text name="ui_RVB_gameplaysetting_tireTitle" text="Band"/>
 		<!-- general settings -->
 		<text name="ui_RVB_sectionGeneralSettings" text="Algemene instellingen"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Waarschuwingsbericht"/>
@@ -57,7 +57,7 @@
 		<text name="RVB_inspectionDialog" text="Weet u zeker dat u dit voertuig kunt inspecteren voor %s kosten?" tag="format"/>
 		<text name="RVB_inspectionTimeDialog" text="Voertuiginspectie zal voltooid zijn om %s." tag="format"/>
 		<text name="RVB_inspectionDayDialog" text="De voertuiginspectie wordt morgen om %s voltooid." tag="format"/>
-		<text name="RVB_faultText_THERMOSTAT" text="Thermostaat word te warm"/>
+		<text name="RVB_faultText_THERMOSTAT" text="Thermostaat"/>
 		<text name="RVB_faultText_LIGHTINGS" text="Verlichting"/>
 		<text name="RVB_faultText_GLOWPLUG" text="Gloeispiraal"/>
 		<text name="RVB_faultText_WIPERS" text="Ruitenwissers"/>
@@ -65,7 +65,7 @@
 		<text name="RVB_faultText_ENGINE" text="Motor"/>
 		<text name="RVB_faultText_SELFSTARTER" text="Zelfstarter"/>
 		<text name="RVB_faultText_BATTERY" text="Batterij"/>
-		<text name="RVB_faultText_TIRE" text="Tire"/>
+		<text name="RVB_faultText_TIRE" text="Band"/>
 		<text name="RVB_repairTimeDialog" text="De reparatie van het voertuig zal voltooid zijn om %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="De reparatie van het voertuig wordt morgen om %s voltooid." tag="format"/>
 		<text name="RVB_ErrorList" text="Foutenlijst:"/>
@@ -77,7 +77,7 @@
 		<text name="RVB_batteryChDayDialog" text="Het opladen van de accu van het voertuig zal morgen om %s voltooid zijn." tag="format"/>
 		<text name="RVB_occupied" text="Voertuig is al in gebruik!"/>
 		<text name="RVB_shop_operatingTime" text="%02d.%2d uur" tag="format"/>
-		<text name="RVB_shop_operatingTimeG" text="%s:%s hour" tag="format"/>
+		<text name="RVB_shop_operatingTimeG" text="%s:%s uur" tag="format"/>
 		<text name="RVB_serviceHours" text="%01d/%01d uur" tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Voertuiginspectie is bezig."/>
 		<text name="RVB_alertmessage_inspection_hud" text="%s voertuiginspectie is bezig."/>

@@ -21,18 +21,18 @@
 		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="Araç tamirhanesin açılış saati. Sadece ayarladığınız saatte açılır."/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Araç tamirhanesi kapanı saati."/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="Araç tamirhanesin kapanış saati. Sadece ayarladığınız saatte kapanır."/>
-		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Lifetime of Parts"/>
-		<text name="ui_RVB_gameplaysetting_hour" text="%s hour" tag="format"/>
-		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="The smaller this number, the sooner it will fail."/>
-		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Thermostat"/>
-		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Lighting"/>
-		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Glow plug"/>
-		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Windshield wipers"/>
-		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Generator"/>
-		<text name="ui_RVB_gameplaysetting_engineTitle" text="Engine"/>
-		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Self-starter"/>
-		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Battery"/>
-		<text name="ui_RVB_gameplaysetting_tireTitle" text="Tire"/>
+		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Parçaların Ömrü."/>
+		<text name="ui_RVB_gameplaysetting_hour" text="%s saat" tag="format"/>
+		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="Bu sayı ne kadar küçük, o kadar çabuk arızalanır."/>
+		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Termostat"/>
+		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Aydınlatma"/>
+		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Buji"/>
+		<text name="ui_RVB_gameplaysetting_wipersTitle" text="Silecekler"/>
+		<text name="ui_RVB_gameplaysetting_generatorTitle" text="Şarj Dinamosu"/>
+		<text name="ui_RVB_gameplaysetting_engineTitle" text="Motor"/>
+		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Marş Dinamosu"/>
+		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Akü"/>
+		<text name="ui_RVB_gameplaysetting_tireTitle" text="Lastik"/>
 		<!-- general settings -->
 		<text name="ui_RVB_sectionGeneralSettings" text="Genel Ayarlar"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Uyarı mesajı"/>
@@ -65,7 +65,7 @@
 		<text name="RVB_faultText_ENGINE" text="Motor"/>
 		<text name="RVB_faultText_SELFSTARTER" text="Marş Dinamosu"/> 
 		<text name="RVB_faultText_BATTERY" text="Akü"/>
-		<text name="RVB_faultText_TIRE" text="Tire"/>
+		<text name="RVB_faultText_TIRE" text="Lastik"/>
 		<text name="RVB_repairTimeDialog" text="Araç tamiri %s saatinde tamamlanacak." tag="format"/>
 		<text name="RVB_repairDayDialog" text="Araç tamiri yarın saat %s'te tamamlanacak." tag="format"/>
 		<text name="RVB_ErrorList" text="Hata listesi:" />
@@ -77,7 +77,7 @@
 		<text name="RVB_batteryChDayDialog" text="Araç akü şarjı yarın %s saatinde tamamlanacak." tag="format"/>
 		<text name="RVB_occupied" text="Araç zaten kullanımda!" />
 		<text name="RVB_shop_operatingTime" text="%02d.%2d saat" tag="format"/>
-		<text name="RVB_shop_operatingTimeG" text="%s:%s hour" tag="format"/>
+		<text name="RVB_shop_operatingTimeG" text="%s:%s saat" tag="format"/>
 		<text name="RVB_serviceHours" text="%01d/%01d saat" tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Araç incelemesi devam ediyor."/>
 		<text name="RVB_alertmessage_inspection_hud" text="%s araç incelemesi devam ediyor." tag="format"/>

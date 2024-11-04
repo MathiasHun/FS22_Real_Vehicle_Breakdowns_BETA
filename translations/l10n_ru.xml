@@ -21,9 +21,9 @@
 		<text name="ui_RVB_gameplaysetting_workshopOpenDesc" text="В это время СТО открывается"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseTitle" text="Закрывается в"/>
 		<text name="ui_RVB_gameplaysetting_workshopCloseDesc" text="В это время СТО закрывается"/>
-		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Срок службы деталей."/>
-		<text name="ui_RVB_gameplaysetting_hour" text="%s час" tag="format"/>
-		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="Чем меньше это число, тем скорее деталь выйдет из строя."/>
+		<text name="ui_RVB_gameplaysetting_LifetimeofPartsSubTitle" text="Срок службы частей ТС"/>
+		<text name="ui_RVB_gameplaysetting_hour" text="%s час." tag="format"/>
+		<text name="ui_RVB_gameplaysetting_lifetimePartsDesc" text="Чем меньше это значение, тем раньше произойдёт сбой."/>
 		<text name="ui_RVB_gameplaysetting_thermostatTitle" text="Термостат"/>
 		<text name="ui_RVB_gameplaysetting_lightingsTitle" text="Осветительные приборы"/>
 		<text name="ui_RVB_gameplaysetting_glowplugTitle" text="Свеча накаливания"/>
@@ -32,7 +32,7 @@
 		<text name="ui_RVB_gameplaysetting_engineTitle" text="Двигатель"/>
 		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Стартер"/>
 		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Аккумулятор"/>
-		<text name="ui_RVB_gameplaysetting_tireTitle" text="Шина"/>
+		<text name="ui_RVB_gameplaysetting_tireTitle" text="Шины/Гусеницы"/>
 		<!-- general settings -->
 		<text name="ui_RVB_sectionGeneralSettings" text="Основные настройки"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Предупреждающие сообщения"/>
@@ -65,7 +65,7 @@
 		<text name="RVB_faultText_ENGINE" text="Двигатель"/>
 		<text name="RVB_faultText_SELFSTARTER" text="Стартер"/> 
 		<text name="RVB_faultText_BATTERY" text="Аккумулятор"/>
-		<text name="RVB_faultText_TIRE" text="Шина"/>
+		<text name="RVB_faultText_TIRE" text="Шины/Гусеницы"/>
 		<text name="RVB_repairTimeDialog" text="Ремонт транспортного средства будет завершён в %s." tag="format"/>
 		<text name="RVB_repairDayDialog" text="Ремонт транспортного средства будет завершён завтра в %s." tag="format"/>
 		<text name="RVB_ErrorList" text="Список неисправностей:" />
@@ -77,7 +77,7 @@
 		<text name="RVB_batteryChDayDialog" text="Зарядка аккумулятора транспортного средства будет завершена завтра в %s." tag="format"/>
 		<text name="RVB_occupied" text="Транспортное средство уже проходит техобслуживание!" />
 		<text name="RVB_shop_operatingTime" text="%02d.%2d час." tag="format"/>
-		<text name="RVB_shop_operatingTimeG" text="%s:%s час" tag="format"/>
+		<text name="RVB_shop_operatingTimeG" text="%s:%s час." tag="format"/>
 		<text name="RVB_serviceHours" text="%01d/%01d час." tag="format"/>
 		<text name="RVB_alertmessage_inspection" text="Проводится техосмотр транспортного средства."/>
 		<text name="RVB_alertmessage_inspection_hud" text="Проводится техосмотр %s." tag="format"/>

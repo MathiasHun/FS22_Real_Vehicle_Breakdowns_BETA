@@ -2,14 +2,10 @@
 <l10n>
 	<translationContributors>Hilbert1982</translationContributors>
 	<texts>
-		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Echte voertuig pech(RVB)"/>
 		<text name="input_ACTIVATE_BATTERY" text="Batterij wordt opgeladen"/>
-		
-		<!-- settings -->
-		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Weet je het zeker?"/>
-		<!-- gameplay settings -->
+
 		<text name="ui_RVB_sectionGamePlaySettings" text="Spelinstellingen"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Dagelijkse dienst"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Hoe vaak moet er onderhoud worden uitgevoerd per dag. Deze functie is momenteel inactief."/>
@@ -33,7 +29,7 @@
 		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Zelfstarter"/>
 		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Batterij"/>
 		<text name="ui_RVB_gameplaysetting_tireTitle" text="Band"/>
-		<!-- general settings -->
+
 		<text name="ui_RVB_sectionGeneralSettings" text="Algemene instellingen"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Waarschuwingsbericht"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Als uw voertuig beschadigd, onderhouden of gerepareerd is, verschijnt er een waarschuwingsbericht in het midden van het scherm als u zich in het voertuig bevindt."/>
@@ -44,8 +40,9 @@
 		<text name="ui_RVB_difficulty3_subtitle" text="Snel"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menu"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Wanneer u de basis voertuigwerkplaats activeert, kunt u het menu Echte voertuigstoringen (RVB) openen."/>
-		
-		<!-- vehicle list -->
+		<text name="ui_RVB_generalsetting_debugDisplayTitle" text="RVB Debug"/>
+		<text name="ui_RVB_generalsetting_debugDisplayDesc" text="Toont de gebruikstijd van de onderdelen van het voertuig. Het is aan te raden dit tijdens de testen te gebruiken."/>
+
 		<text name="RVB_WorkShopClose" text="Voertuigwerkplaats is gesloten, kom terug om %s uur." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspectie"/>
 		<text name="RVB_button_dailyservice" text="Dagelijkse service"/>
@@ -87,7 +84,7 @@
 		<text name="RVB_alertmessage_service_hud" text="%s voertuigonderhoud is bezig."/>
 		<text name="RVB_alertmessage_batteryCh" text="Batterij wordt opgeladen."/>
 		<text name="RVB_alertmessage_batteryCh_hud" text="%s voertuigaccu wordt opgeladen."/>
-		<!-- xml -->
+
 		<text name="RVB_list_vehicleorimplement" text="Voertuigen/werktuigen"/>
 		<text name="RVB_list_hporle" text="Hp/LE"/>
 		<text name="RVB_list_currentvalue" text="Huidige prijs"/>
@@ -99,7 +96,6 @@
 		<text name="RVB_list_battery" text="Batterij"/>
 		<text name="RVB_parts_repair" text="Te repareren onderdelen"/>
 
-		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s voertuig geïnspecteerd, reparatie vereist. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s voertuig geïnspecteerd, geen reparaties vereist."/>
 		<text name="RVB_inspectionDialogEnd_other" text="%s voertuig is geïnspecteerd en gerepareerd. Uw monteur had veel werk, dus een beginnende monteur heeft uw voertuig gerepareerd. Deze beginnende monteur kan echter niet opsommen wat hij aan uw voertuig heeft gerepareerd."/>
@@ -141,7 +137,6 @@
 
 		<text name="RVB_ErrorNotifi" text="Uitsplitsing(en): "/>
 
-		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="morgen "/>
 		<text name="infoDisplayExtension_currentPower" text="Power"/>
 		<text name="infoDisplayExtension_batteryCh" text="Batterij wordt opgeladen"/>
@@ -153,14 +148,10 @@
 
 		<text name="RVB_TotaloperatingHours" text="Totaal bedrijfsuren"/>
 
-		<!--
-		<text name="CP_Automatic_Repair_conflict_notice" text="Je gebruikt de mod &quot;Real Vehicle Breakdowns(RVB)&quot;, dus er kunnen conflicten zijn met de mod &quot;Courseplay(CP)&quot;.&#13;&#10;De instelling van het veld &quot;Automatische Reparatie&quot; in het CP-menu komt niet overeen met het foutloos gebruik van de RVB-modus. Daarom deactiveert RVB automatisch de CP &quot;Automatische Reparatie&quot; op de achtergrond.&#13;&#10;Bedankt voor uw begrip.&#13;&#10;&#13;&#10;Groeten MathiasHun" />
-		-->
 		<text name="Automatic_Repair_conflict_notice" text="Er zijn aanpassingen die het voertuig automatisch repareren, maar u kunt de optie &quot;Real Vehicle Breakdowns(RVB)&quot; u gebruikt ook een wijziging, dus deze kan conflicteren met andere wijzigingen. Bij de wijziging(en) in onderstaande lijst is het noodzakelijk om de automatische reparatie te overschrijven, deze overschrijving is al gedaan door de RVB wijziging."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Overschreven wijziging(en): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Bedankt voor uw begrip.&#13;&#10;&#13;&#10;Al het beste,&#13;&#10;MathiasHun"/>
 
-		<!-- AIMessage -->
 		<text name="RVB_aimessage_batterydischarged" text="%s AI-werknemer is onverwacht gestopt met werken, de accu van het voertuig is leeg!"/>
 		
 	</texts>

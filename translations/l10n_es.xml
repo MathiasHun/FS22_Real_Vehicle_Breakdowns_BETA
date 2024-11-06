@@ -2,14 +2,10 @@
 <l10n>
 	<translationContributors>RoberT162v</translationContributors>
 	<texts>
-		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Averías reales del vehículos(RVB)"/>
 		<text name="input_ACTIVATE_BATTERY" text="Cargando batería"/>
-
-		<!-- settings -->
-		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Estas seguro?"/>
-		<!-- gameplay settings -->
+
 		<text name="ui_RVB_sectionGamePlaySettings" text="Configuraciones de juego"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Servicio diario"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="¿Con qué frecuencia se debe realizar el mantenimiento al día? Esta característica está actualmente inactiva."/>
@@ -33,7 +29,7 @@
 		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Motor de arranque"/>
 		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Bateria"/>
 		<text name="ui_RVB_gameplaysetting_tireTitle" text="Neumático"/>
-		<!-- general settings -->
+
 		<text name="ui_RVB_sectionGeneralSettings" text="Configuración general"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Mensaje de alerta"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Si su vehículo sufre daños, se le da servicio o se repara, aparecerá un mensaje de advertencia en el medio de la pantalla si se encuentra en el vehículo."/>
@@ -44,8 +40,9 @@
 		<text name="ui_RVB_difficulty3_subtitle" text="Rápida"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="Menú RVB"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="En el punto de activación del taller básico del vehículo se puede abrir el menú de Averías reales del vehículo (RVB)."/>
+		<text name="ui_RVB_generalsetting_debugDisplayTitle" text="RVB Debug"/>
+		<text name="ui_RVB_generalsetting_debugDisplayDesc" text="Muestra el tiempo de funcionamiento de las piezas del vehículo. Es recomendable usarlo durante las pruebas."/>
 
-		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="El taller de vehículos está cerrado, vuelva a las %s." tag="format"/>
 		<text name="RVB_button_inspection" text="Inspección"/>
 		<text name="RVB_button_dailyservice" text="Servicio diario"/>
@@ -87,7 +84,7 @@
 		<text name="RVB_alertmessage_service_hud" text="%s vehículo reparado está en progreso." tag="format"/>
 		<text name="RVB_alertmessage_batteryCh" text="La carga de la batería está en curso."/>
 		<text name="RVB_alertmessage_batteryCh_hud" text="La carga de la batería del vehículo de %s está en curso." tag="format"/>
-		<!-- xml -->
+
 		<text name="RVB_list_vehicleorimplement" text="Vehículos/Implementos"/>
 		<text name="RVB_list_hporle" text="CV/LE"/>
 		<text name="RVB_list_currentvalue" text="Precio actual"/>
@@ -99,7 +96,6 @@
 		<text name="RVB_list_battery" text="Bateria"/>
 		<text name="RVB_parts_repair" text="Piezas a reparar"/>
 
-		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s vehículo inspeccionado, se requieren reparaciones. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s vehículo inspeccionado, no se requieren reparaciones."/>
 		<text name="RVB_inspectionDialogEnd_other" text="%s vehículo ha sido inspeccionado y reparado. Su mecánico tenía mucho trabajo, por lo que un mecánico novato arregló su vehículo. Sin embargo, este mecánico novato no puede enumerar lo que ha reparado en su vehículo."/>
@@ -141,7 +137,6 @@
 
 		<text name="RVB_ErrorNotifi" text="Avería(s): "/>
 
-		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="Mañana "/>
 		<text name="infoDisplayExtension_currentPower" text="Potencia"/>
 		<text name="infoDisplayExtension_batteryCh" text="Cargando batería"/>
@@ -153,14 +148,10 @@
 
 		<text name="RVB_TotaloperatingHours" text="Horas totales de servicio"/>
 
-		<!--
-		<text name="CP_Automatic_Repair_conflict_notice" text="You are using the &quot;Real Vehicle Failures(RVB)&quot; mod, which is why you may get stuck with the &quot;Courseplay(CP)&quot; mode.&#13;&#10;The setting of the &quot;Automatic Repair&quot; field in the CP menu does not correspond to the error-free use of the RVB mode, so RVB automatically disables the CP &quot;Automatic Repair&quot; in the background.&#13;&#10;Thank you for your understanding.&#13;&#10;&#13;&#10;Best regards, MathiasHun"/>
-		-->
 		<text name="Automatic_Repair_conflict_notice" text="Hay modificaciones que reparan automáticamente el vehículo, pero puedes utilizar la función &quot;Averías reales del vehículos(RVB)&quot;. también está utilizando una modificación, por lo que puede entrar en conflicto con otras modificaciones. En las modificaciones en la lista a continuación, es necesario anular la reparación automática, esta anulación ya fue realizada por la modificación RVB."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Modificaciones sobrescritas:"/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Gracias por su comprensión.&#13;&#10;&#13;&#10;Saludos,&#13;&#10;MathiasHun"/>
-		
-		<!-- AIMessage -->
+
 		<text name="RVB_aimessage_batterydischarged" text="%s trabajador de IA dejó de trabajar inesperadamente, ¡la batería del vehículo está descargada!"/>
 
 	</texts>

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <l10n>
 	<texts>
-		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Valódi jármű meghibásodások(RVB)"/>
 		<text name="input_ACTIVATE_BATTERY" text="Akkumulátor töltés"/>
-
-		<!-- settings -->
-		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Biztos vagy ebben?"/>
-		<!-- gameplay settings -->
+
 		<text name="ui_RVB_sectionGamePlaySettings" text="Játékbeállítások"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Napi szerviz"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Milyen gyakran kell karbantartást végezni naponta. Ez a funkció jelenleg inaktív."/>
@@ -32,7 +28,7 @@
 		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Önindító"/>
 		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Akkumulátor"/>
 		<text name="ui_RVB_gameplaysetting_tireTitle" text="Gumi"/>
-		<!-- general settings -->
+
 		<text name="ui_RVB_sectionGeneralSettings" text="Általános Beállítások"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Figyelmeztető üzenet"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Ha a járműved sérül, szervizelik, javítják, akkor megjelenik egy figyelmeztető üzenet a képernyő közepén, amennyiben a járműben tartózkodsz."/>
@@ -43,8 +39,9 @@
 		<text name="ui_RVB_difficulty3_subtitle" text="Gyors"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="RVB menü"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Alap jármű műhely trigger ponton is meg tudod nyitni a Valódi jármű meghibásodások(RVB) menüt."/>
+		<text name="ui_RVB_generalsetting_debugDisplayTitle" text="RVB Debug"/>
+		<text name="ui_RVB_generalsetting_debugDisplayDesc" text="Megjeleníti a jármű alaktrészeinek üzemidejét. Tesztelés során érdemes használni."/>
 
-		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="Jármű műhely zárva van, gyere vissza %s órakor." tag="format"/>
 		<text name="RVB_button_inspection" text="Átvizsgálás"/>
 		<text name="RVB_button_dailyservice" text="Napi Szerviz"/>
@@ -86,7 +83,7 @@
 		<text name="RVB_alertmessage_service_hud" text="%s jármű szervizelése folyamatban van." tag="format"/>
 		<text name="RVB_alertmessage_batteryCh" text="Akkumulátor töltés folyamatban van."/>
 		<text name="RVB_alertmessage_batteryCh_hud" text="%s jármű akkumulátorának töltése folyamatban van." tag="format"/>
-		<!-- xml -->
+
 		<text name="RVB_list_vehicleorimplement" text="Jármű/Munkaeszközök"/>
 		<text name="RVB_list_hporle" text="Hp/LE"/>
 		<text name="RVB_list_currentvalue" text="Jelenlegi Ára"/>
@@ -98,7 +95,6 @@
 		<text name="RVB_list_battery" text="Akkumulátor"/>
 		<text name="RVB_parts_repair" text="Javítandó alkatrészek"/>
 
-		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="%s jármű átvizsgálva, javítás szükséges. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="%s jármű átvizsgálva, nem szükséges a javítás."/>
 		<text name="RVB_inspectionDialogEnd_other" text="%s járművet átvizsgálták és megjavították. Szerelőjének sok munkája volt, ezért egy kezdő szerelő javította meg a járművedet. Ez a kezdő szerelő azonban nem tudja felsorolni, hogy mit javított meg a járműveden."/>
@@ -140,7 +136,6 @@
 
 		<text name="RVB_ErrorNotifi" text="Meghibásodás(ok): "/>
 
-		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="holnap "/>
 		<text name="infoDisplayExtension_currentPower" text="Teljesítmény"/>
 		<text name="infoDisplayExtension_batteryCh" text="Akku töltés"/>
@@ -152,14 +147,10 @@
 
 		<text name="RVB_TotaloperatingHours" text="Összes üzemóra"/>
 
-		<!--
-		<text name="CP_Automatic_Repair_conflict_notice" text="A &quot;Valódi jármű meghibásodások(RVB)&quot; modot használod, ezért a &quot;Courseplay(CP)&quot; móddal összeakadhat.&#13;&#10;A CP menüjében az &quot;Automatikus javítást&quot; mező beállítása nem felel meg az RVB mód hiba nélküli használatához, ezért az RVB a háttérben automatikusan letiltja a CP &quot;Automatikus javítást&quot;.&#13;&#10;Megértésedet köszönöm.&#13;&#10;&#13;&#10;Üdvözlettel MathiasHun"/>
-		-->
 		<text name="Automatic_Repair_conflict_notice" text="Vannak olyan módosítások, amelyek automatikusan megjavítják a járművet, de te a &quot;Valódi jármű meghibásodások(RVB)&quot; módosítást is használod, ezért ütközhet más módosításokkal. Az alábbi listában található módosítás(ok)ban szükséges az automatikus javítást felülírni, ezt a felülírást már meg is tette az RVB módosítás."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Felülírt módosítás(ok): "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Megértésedet köszönöm.&#13;&#10;&#13;&#10;Minden jót,&#13;&#10;MathiasHun"/>
-		
-		<!-- AIMessage -->
+
 		<text name="RVB_aimessage_batterydischarged" text="%s gépi segítő váratlanul abbahagyta a munkát, a jármű akkumulátora lemerült!"/>
 		
 	</texts>

@@ -2,14 +2,10 @@
 <l10n>
 	<translationContributors>nagor</translationContributors>
 	<texts>
-		<!-- inputs -->
 		<text name="input_VEHICLE_BREAKDOWN_MENU" text="Real Vehicle Breakdowns(RVB)"/>
 		<text name="input_ACTIVATE_BATTERY" text="Зарядить аккумулятор"/>
-
-		<!-- settings -->
-		<!-- tabbedMenu -->
 		<text name="ui_RVB_reset_msg" text="Вы уверены?"/>
-		<!-- gameplay settings -->
+
 		<text name="ui_RVB_sectionGamePlaySettings" text="Игровые настройки"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeTitle" text="Ежедневное ТО"/>
 		<text name="ui_RVB_gameplaysetting_dailyOperatingTimeDesc" text="Как часто следует проводить ежедневное техническое обслуживание (ТО). В настоящее время эта функция неактивна."/>
@@ -33,7 +29,7 @@
 		<text name="ui_RVB_gameplaysetting_selfstarterTitle" text="Стартер"/>
 		<text name="ui_RVB_gameplaysetting_batteryTitle" text="Аккумулятор"/>
 		<text name="ui_RVB_gameplaysetting_tireTitle" text="Шины/Гусеницы"/>
-		<!-- general settings -->
+
 		<text name="ui_RVB_sectionGeneralSettings" text="Основные настройки"/>
 		<text name="ui_RVB_generalsetting_alertMessageTitle" text="Предупреждающие сообщения"/>
 		<text name="ui_RVB_generalsetting_alertMessageDesc" text="Если ваше ТС повреждено, прошло техобслуживание или ремонт, в центре экрана появится сообщение, если вы находитесь в ТС."/>
@@ -44,8 +40,9 @@
 		<text name="ui_RVB_difficulty3_subtitle" text="Небольшая"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="Настройки RVB"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Базовая точка автомастерской. Вы можете открыть Настройки Real vehicle breakdowns (RVB)."/>
+		<text name="ui_RVB_generalsetting_debugDisplayTitle" text="RVB Debug"/>
+		<text name="ui_RVB_generalsetting_debugDisplayDesc" text="Показывает время работы деталей автомобиля. Рекомендуется использовать это во время тестирования."/>
 
-		<!-- vehicle list -->	
 		<text name="RVB_WorkShopClose" text="СТО закрыта, приходите в %s." tag="format"/>
 		<text name="RVB_button_inspection" text="Техосмотр"/>
 		<text name="RVB_button_dailyservice" text="Ежедневное ТО"/>
@@ -87,7 +84,7 @@
 		<text name="RVB_alertmessage_service_hud" text="Техобслуживание %s продолжается." tag="format"/>
 		<text name="RVB_alertmessage_batteryCh" text="Идёт зарядка аккумулятора."/>
 		<text name="RVB_alertmessage_batteryCh_hud" text="Зарядка аккумулятора %s продолжается." tag="format"/>
-		<!-- xml -->
+
 		<text name="RVB_list_vehicleorimplement" text="ТС/Оборудование"/>
 		<text name="RVB_list_hporle" text="Мощн. двиг."/>
 		<text name="RVB_list_currentvalue" text="Текущая цена"/>
@@ -99,7 +96,6 @@
 		<text name="RVB_list_battery" text="Аккумулятор"/>
 		<text name="RVB_parts_repair" text="Детали требующие ремонта"/>
 
-		<!-- spec -->
 		<text name="RVB_inspectionDialogFault" text="ТС %s осмотрено, требуется ремонт. %s"/>
 		<text name="RVB_inspectionDialogEnd" text="ТС %s осмотрено, ремонт не требуется."/>
 		<text name="RVB_inspectionDialogEnd_other" text="ТС %s проверено и отремонтировано. У вашего механика было много работы, поэтому начинающий механик починил ваш автомобиль. Однако этот начинающий механик не может перечислить, что он ремонтировал в вашем ТС."/>
@@ -141,7 +137,6 @@
 
 		<text name="RVB_ErrorNotifi" text="Поломки: "/>
 
-		<!-- showInfo -->
 		<text name="infoDisplayExtension_tomorrow" text="завтра "/>
 		<text name="infoDisplayExtension_currentPower" text="Мощность"/>
 		<text name="infoDisplayExtension_batteryCh" text="Заряд аккумулятора"/>
@@ -153,14 +148,10 @@
 
 		<text name="RVB_TotaloperatingHours" text="Общее время работы"/>
 
-		<!--
-		<text name="CP_Automatic_Repair_conflict_notice" text="Вы используете мод &quot;Real Vehicle Breakdowns(RVB)&quot;, поэтому могут возникнуть конфликты с модом &quot;Courseplay(CP)&quot;.&#13;&#10;Настройка поля &quot;Автоматический ремонт&quot; в меню CP не соответствует безошибочному использованию режима RVB. Поэтому RVB автоматически деактивирует в CP &quot;Автоматический ремонт&quot; в фоновом режиме.&#13;&#10;Спасибо за Ваше понимание.&#13;&#10;&#13;&#10;С уважением Матиас Хун" />
-		-->
 		<text name="Automatic_Repair_conflict_notice" text="Существуют моды, которые автоматически ремонтируют транспортное средство, но сейчас активирован &quot;Real Vehicle Breakdowns(RVB)&quot; и он может конфликтовать с другими модами. В модах, в списке ниже, необходимо отменить автоматический ремонт, он уже есть в моде RVB."/>
 		<text name="Automatic_Repair_conflict_list" text="&#13;&#10;Перезаписанные моды: "/>
 		<text name="Automatic_Repair_conflict_signature" text="&#13;&#10;Спасибо за Ваше понимание.&#13;&#10;&#13;&#10;Всего наилучшего,&#13;&#10;MathiasHun"/>
 
-		<!-- AIMessage -->
 		<text name="RVB_aimessage_batterydischarged" text="Работник на %s прекратил работу, аккумулятор ТС разряжен!"/>
 
 	</texts>

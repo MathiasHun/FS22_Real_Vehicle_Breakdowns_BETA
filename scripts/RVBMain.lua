@@ -6,6 +6,7 @@ RVBMain.alertmessage = true
 RVBMain.difficulty = 2
 RVBMain.basicrepairtrigger = true
 RVBMain.repairshop = true
+RVBMain.debugdisplay = false
 
 RVBMain.dailyServiceInterval = 6
 RVBMain.periodicServiceInterval = 40
@@ -28,6 +29,7 @@ RVBMain.DEFAULT_SETTINGS = {
 	alertmessage = RVBMain.alertmessage,
 	difficulty = RVBMain.difficulty,
 	basicrepairtrigger = RVBMain.basicrepairtrigger,
+	debugdisplay = RVBMain.debugdisplay,
 	repairshop = RVBMain.repairshop,
 	dailyServiceInterval = RVBMain.dailyServiceInterval,
 	periodicServiceInterval = RVBMain.periodicServiceInterval,
@@ -45,29 +47,28 @@ RVBMain.DEFAULT_SETTINGS = {
 	tireLifetime = RVBMain.tireLifetime
 }
 RVBMain.actions = {{
-    name = InputAction.VEHICLE_BREAKDOWN_MENU,
-    priority = GS_PRIO_HIGH
+	name = InputAction.VEHICLE_BREAKDOWN_MENU,
+	priority = GS_PRIO_HIGH
 }}
 
 local popupMessage
 
 function RVBMain:new(modDirectory, modName)
-    local self = {}
+	local self = {}
+	setmetatable(self, RVBMain_mt)
 
-    setmetatable(self, RVBMain_mt)
-
-    self.modDirectory = modDirectory
-    self.modName = modName
-    
+	self.modDirectory = modDirectory
+	self.modName = modName
+	
 	self.gameplaySettings = {}
 	self.generalSettings = {}
 	self.actionEvents = {}
 
-    return self
+	return self
 end
 
 function RVBMain:onMissionLoaded(mission)
-	
+		
 	self:registerGamePlaySettingsSchema()
 	self:registerGeneralSettingsSchema()
 
@@ -112,17 +113,17 @@ function RVBMain:onMissionLoaded(mission)
 	g_gui:loadProfiles(self.modDirectory .. "gui/guiProfiles.xml")
 
     -- menu
-    local gameplaySettingFrame = RVBGamePlaySettings_Frame.new(self, self.modName)
-    g_gui:loadGui(self.modDirectory .. "gui/RVBGamePlaySettings_Frame.xml", "RVBGamePlaySettings_Frame", gameplaySettingFrame, true)
+	local gameplaySettingFrame = RVBGamePlaySettings_Frame.new(self, self.modName)
+	g_gui:loadGui(self.modDirectory .. "gui/RVBGamePlaySettings_Frame.xml", "RVBGamePlaySettings_Frame", gameplaySettingFrame, true)
 	
 	local generalSettingFrame = RVBGeneralSettings_Frame.new(self, self.modName)
-    g_gui:loadGui(self.modDirectory .. "gui/RVBGeneralSettings_Frame.xml", "RVBGeneralSettings_Frame", generalSettingFrame, true)
+	g_gui:loadGui(self.modDirectory .. "gui/RVBGeneralSettings_Frame.xml", "RVBGeneralSettings_Frame", generalSettingFrame, true)
 	
 	local vehicleListFrame = RVBVehicleList_Frame.new(self, self.modName)
-    g_gui:loadGui(self.modDirectory .. "gui/RVBVehicleList_Frame.xml", "RVBVehicleList_Frame", vehicleListFrame, true)
+	g_gui:loadGui(self.modDirectory .. "gui/RVBVehicleList_Frame.xml", "RVBVehicleList_Frame", vehicleListFrame, true)
 
-    self.menu = RVBTabbedMenu:new(g_messageCenter, g_i18n, g_inputBinding, self, self.modName)
-    g_gui:loadGui(self.modDirectory .. "gui/RVBTabbedMenu.xml", "RVBTabbedMenu", self.menu)
+	self.menu = RVBTabbedMenu:new(g_messageCenter, g_i18n, g_inputBinding, self.modName)
+	g_gui:loadGui(self.modDirectory .. "gui/RVBTabbedMenu.xml", "RVBTabbedMenu", self.menu)
 
 	self.menu:setMissionInfo(self.mission.missionInfo, self.mission.missionDynamicInfo, self.modDirectory)
 	self.menu:setServer(g_server)
@@ -197,27 +198,27 @@ end
 
 -- Original AD ADTaskModule hasToRepair()
 function RVBMain:hasToRepair()
-    local repairNeeded = false
---    if self.vehicle.ad.onRouteToRepair then
-        -- repair is forced by user or CP, so send vehicle to workshop independent of damage level
---        return true
---    end
---    if AutoDrive.getSetting("autoRepair", self.vehicle) then
---        local attachedObjects = AutoDrive.getAllImplements(self.vehicle, true)
---        for _, attachedObject in pairs(attachedObjects) do
---            repairNeeded = repairNeeded or (attachedObject.spec_wearable ~= nil and attachedObject.spec_wearable.damage > 0.6)
---        end
---    end
-    return repairNeeded
+	local repairNeeded = false
+--	if self.vehicle.ad.onRouteToRepair then
+--		repair is forced by user or CP, so send vehicle to workshop independent of damage level
+--		return true
+--	end
+--	if AutoDrive.getSetting("autoRepair", self.vehicle) then
+--		local attachedObjects = AutoDrive.getAllImplements(self.vehicle, true)
+--		for _, attachedObject in pairs(attachedObjects) do
+--			repairNeeded = repairNeeded or (attachedObject.spec_wearable ~= nil and attachedObject.spec_wearable.damage > 0.6)
+--		end
+--	end
+	return repairNeeded
 end
 	
 function RVBMain.installSpecializations(vehicleTypeManager, specializationManager, modDirectory, modName)
-    specializationManager:addSpecialization("vehicleBreakdowns", "VehicleBreakdowns", Utils.getFilename("scripts/vehicles/specializations/VehicleBreakdowns.lua", modDirectory), nil)
+	specializationManager:addSpecialization("vehicleBreakdowns", "VehicleBreakdowns", Utils.getFilename("scripts/vehicles/specializations/VehicleBreakdowns.lua", modDirectory), nil)
 
-    if specializationManager:getSpecializationByName("vehicleBreakdowns") == nil then
+	if specializationManager:getSpecializationByName("vehicleBreakdowns") == nil then
 		Logging.error("[RVB] getSpecializationByName(\"vehicleBreakdowns\") == nil")
-    else
-        for typeName, typeEntry in pairs(vehicleTypeManager:getTypes()) do
+	else
+		for typeName, typeEntry in pairs(vehicleTypeManager:getTypes()) do
 			
 			if typeEntry ~= nil and typeName ~= "locomotive" and typeName ~= "trainTrailer" and typeName ~= "trainTimberTrailer" and typeName ~= "conveyorBelt" and typeName ~= "pickupConveyorBelt" 
 			and typeName ~= "FS22_lsfmFarmEquipmentPack.wheelBarrow" and typeName ~= "FS22_lsfmFarmEquipmentPack.wheelBarrowHay" 
@@ -231,31 +232,31 @@ function RVBMain.installSpecializations(vehicleTypeManager, specializationManage
 				end
 			else
 				Logging.info("[RVB] Failed to add specialization "..typeName)
-            end
+			end
 			
-        end
-    end
+		end
+	end
 end
 
 function RVBMain:registerGamePlaySettingsSchema()
 
-    self.gameplaySettingSchema = XMLSchema.new("rvbGamePlaySettings")
-    local schemaKey = "rvbGamePlaySettings"
+	self.gameplaySettingSchema = XMLSchema.new("rvbGamePlaySettings")
+	local schemaKey = "rvbGamePlaySettings"
 	
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".dailyServiceInterval#value", "Daily Service Interval")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".periodicServiceInterval#value", "Periodic Service Interval")
 	self.gameplaySettingSchema:register(XMLValueType.BOOL, schemaKey .. ".repairshop#value", "Repair only in vehicle workshop")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".workshopOpen#value", "Workshop opening")
 	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".workshopClose#value", "Workshop closing")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".thermostatLifetime", "Thermostat Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".lightingsLifetime", "Lightings Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".glowplugLifetime", "Glowplug Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".wipersLifetime", "Wipers Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".generatorLifetime", "Generator Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".engineLifetime", "Engine Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".selfstarterLifetime", "Selfstarter Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".batteryLifetime", "Battery Lifetime")
-	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".tireLifetime", "Tire Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".thermostatLifetime#value", "Thermostat Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".lightingsLifetime#value", "Lightings Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".glowplugLifetime#value", "Glowplug Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".wipersLifetime#value", "Wipers Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".generatorLifetime#value", "Generator Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".engineLifetime#value", "Engine Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".selfstarterLifetime#value", "Selfstarter Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".batteryLifetime#value", "Battery Lifetime")
+	self.gameplaySettingSchema:register(XMLValueType.INT, schemaKey .. ".tireLifetime#value", "Tire Lifetime")
 
 end
 	
@@ -267,96 +268,97 @@ function RVBMain:registerGeneralSettingsSchema()
 	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".alertmessage#value", "Alert Message")
 	self.generalSettingSchema:register(XMLValueType.INT, schemaKey .. ".difficulty#value", "RVB difficulty")
 	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".basicrepairtrigger#value", "")
+	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".debugdisplay#value", "debugdisplay")
 	self.generalSettingSchema:register(XMLValueType.BOOL, schemaKey .. ".cp_notice#value", "CP")
 
 end
 
 function RVBMain:loadGamePlaySettingsFromXml(xmlPath)
-    local xmlFile = XMLFile.load("configXml", xmlPath, self.gameplaySettingSchema)
+	local xmlFile = XMLFile.load("configXml", xmlPath, self.gameplaySettingSchema)
 
-    if xmlFile ~= 0 then
+	if xmlFile ~= 0 then
 
-        local key = "rvbGamePlaySettings"
-				
-		self.gameplaySettings.repairshop              = xmlFile:getValue(key .. ".repairshop#value", self.gameplaySettings.repairshop)
-		self.gameplaySettings.dailyServiceInterval    = xmlFile:getValue(key .. ".dailyServiceInterval#value", self.gameplaySettings.dailyServiceInterval)
-		self.gameplaySettings.periodicServiceInterval = xmlFile:getValue(key .. ".periodicServiceInterval#value", self.gameplaySettings.periodicServiceInterval)
-		self.gameplaySettings.workshopOpen            = xmlFile:getValue(key .. ".workshopOpen#value", self.gameplaySettings.workshopOpen)
-		self.gameplaySettings.workshopClose           = xmlFile:getValue(key .. ".workshopClose#value", self.gameplaySettings.workshopClose)
+		local key = "rvbGamePlaySettings"
+		
+		self.gameplaySettings.repairshop              = xmlFile:getValue(key .. ".repairshop#value", RVBMain.repairshop)
+		self.gameplaySettings.dailyServiceInterval    = xmlFile:getValue(key .. ".dailyServiceInterval#value", RVBMain.dailyServiceInterval)
+		self.gameplaySettings.periodicServiceInterval = xmlFile:getValue(key .. ".periodicServiceInterval#value", RVBMain.periodicServiceInterval)
+		self.gameplaySettings.workshopOpen            = xmlFile:getValue(key .. ".workshopOpen#value", RVBMain.workshopOpen)
+		self.gameplaySettings.workshopClose           = xmlFile:getValue(key .. ".workshopClose#value", RVBMain.workshopClose)
+		self.gameplaySettings.thermostatLifetime      = xmlFile:getValue(key .. ".thermostatLifetime#value", RVBMain.thermostatLifetime)
+		self.gameplaySettings.lightingsLifetime       = xmlFile:getValue(key .. ".lightingsLifetime#value", RVBMain.lightingsLifetime)
+		self.gameplaySettings.glowplugLifetime        = xmlFile:getValue(key .. ".glowplugLifetime#value", RVBMain.glowplugLifetime)
+		self.gameplaySettings.wipersLifetime          = xmlFile:getValue(key .. ".wipersLifetime#value", RVBMain.wipersLifetime)
+		self.gameplaySettings.generatorLifetime       = xmlFile:getValue(key .. ".generatorLifetime#value", RVBMain.generatorLifetime)
+		self.gameplaySettings.engineLifetime          = xmlFile:getValue(key .. ".engineLifetime#value", RVBMain.engineLifetime)
+		self.gameplaySettings.selfstarterLifetime     = xmlFile:getValue(key .. ".selfstarterLifetime#value", RVBMain.selfstarterLifetime)
+		self.gameplaySettings.batteryLifetime         = xmlFile:getValue(key .. ".batteryLifetime#value", RVBMain.batteryLifetime)
+		self.gameplaySettings.tireLifetime            = xmlFile:getValue(key .. ".tireLifetime#value", RVBMain.tireLifetime)
 
-		self.gameplaySettings.thermostatLifetime  = Utils.getNoNil(xmlFile:getInt(key .. ".thermostatLifetime"), self.gameplaySettings.thermostatLifetime)
-		self.gameplaySettings.lightingsLifetime   = Utils.getNoNil(xmlFile:getInt(key .. ".lightingsLifetime"), self.gameplaySettings.lightingsLifetime)
-		self.gameplaySettings.glowplugLifetime    = Utils.getNoNil(xmlFile:getInt(key .. ".glowplugLifetime"), self.gameplaySettings.glowplugLifetime)
-		self.gameplaySettings.wipersLifetime      = Utils.getNoNil(xmlFile:getInt(key .. ".wipersLifetime"), self.gameplaySettings.wipersLifetime)
-		self.gameplaySettings.generatorLifetime   = Utils.getNoNil(xmlFile:getInt(key .. ".generatorLifetime"), self.gameplaySettings.generatorLifetime)
-		self.gameplaySettings.engineLifetime      = Utils.getNoNil(xmlFile:getInt(key .. ".engineLifetime"), self.gameplaySettings.engineLifetime)
-		self.gameplaySettings.selfstarterLifetime = Utils.getNoNil(xmlFile:getInt(key .. ".selfstarterLifetime"), self.gameplaySettings.selfstarterLifetime)
-		self.gameplaySettings.batteryLifetime     = Utils.getNoNil(xmlFile:getInt(key .. ".batteryLifetime"), self.gameplaySettings.batteryLifetime)
-		self.gameplaySettings.tireLifetime        = Utils.getNoNil(xmlFile:getInt(key .. ".tireLifetime"), self.gameplaySettings.tireLifetime)
-
-        xmlFile:delete()
-    end
+		xmlFile:delete()
+	end
 end
 
 function RVBMain:loadGeneralSettingsFromXml(xmlPath)
-    local xmlFile = XMLFile.load("configXml", xmlPath, self.generalSettingSchema)
+	local xmlFile = XMLFile.load("configXml", xmlPath, self.generalSettingSchema)
 
-    if xmlFile ~= 0 then
+	if xmlFile ~= 0 then
 
-        local key = "rvbGeneralSettings"
+		local key = "rvbGeneralSettings"
+
+		self.generalSettings.alertmessage       = xmlFile:getValue(key .. ".alertmessage#value", RVBMain.alertmessage)
+		self.generalSettings.difficulty         = xmlFile:getValue(key .. ".difficulty#value", RVBMain.difficulty)
+		self.generalSettings.basicrepairtrigger = xmlFile:getValue(key .. ".basicrepairtrigger#value", RVBMain.basicrepairtrigger)
+		self.generalSettings.debugdisplay       = xmlFile:getValue(key .. ".debugdisplay#value", RVBMain.debugdisplay)
+		self.generalSettings.cp_notice          = xmlFile:getValue(key .. ".cp_notice#value", RVBMain.cp_notice)
 		
-		self.generalSettings.alertmessage       = xmlFile:getValue(key .. ".alertmessage#value", self.generalSettings.alertmessage)
-		self.generalSettings.difficulty         = xmlFile:getValue(key .. ".difficulty#value", self.generalSettings.difficulty)
-		self.generalSettings.basicrepairtrigger = xmlFile:getValue(key .. ".basicrepairtrigger#value", self.generalSettings.basicrepairtrigger)
-		self.generalSettings.cp_notice          = xmlFile:getValue(key .. ".cp_notice#value", self.generalSettings.cp_notice)
-		
-        xmlFile:delete()
-    end
+		xmlFile:delete()
+	end
 end
 
 function RVBMain:registerActionEvents(inputManager)
-    self:unregisterActionEvents()
+	self:unregisterActionEvents()
 
 	for _, action in pairs(RVBMain.actions) do
 
-        local actionName = action.name
-        local triggerUp = action.triggerUp ~= nil and action.triggerUp or false
-        local triggerDown = action.triggerDown ~= nil and action.triggerDown or true
-        local triggerAlways = action.triggerAlways ~= nil and action.triggerAlways or false
-        local startActive = action.startActive ~= nil and action.startActive or true
+		local actionName = action.name
+		local triggerUp = action.triggerUp ~= nil and action.triggerUp or false
+		local triggerDown = action.triggerDown ~= nil and action.triggerDown or true
+		local triggerAlways = action.triggerAlways ~= nil and action.triggerAlways or false
+		local startActive = action.startActive ~= nil and action.startActive or true
 
-        local _, eventId = g_inputBinding:registerActionEvent(actionName, self, RVBMain.onActionCall, triggerUp,
-            triggerDown, triggerAlways, startActive, nil)
+		local _, eventId = g_inputBinding:registerActionEvent(actionName, self, RVBMain.onActionCall, triggerUp,
+			triggerDown, triggerAlways, startActive, nil)
 
-        self.actionEvents[actionName] = eventId
+		self.actionEvents[actionName] = eventId
 
-        if g_inputBinding ~= nil and g_inputBinding.events ~= nil and g_inputBinding.events[eventId] ~= nil then
-            if action.priority ~= nil then
-                g_inputBinding:setActionEventTextPriority(eventId, action.priority)
-            end
+		if g_inputBinding ~= nil and g_inputBinding.events ~= nil and g_inputBinding.events[eventId] ~= nil then
+			if action.priority ~= nil then
+				g_inputBinding:setActionEventTextPriority(eventId, action.priority)
+			end
 
-            if action.text ~= nil then
-                g_inputBinding:setActionEventText(eventId, action.text)
-            end
-        end
-    end
+			if action.text ~= nil then
+				g_inputBinding:setActionEventText(eventId, action.text)
+			end
+		end
+	end
 
-    self:updateMenuInputBinding()
+	self:updateMenuInputBinding()
 	
 end
 
 function RVBMain:unregisterActionEvents()
-    g_inputBinding:removeActionEventsByTarget(self)
+	g_inputBinding:removeActionEventsByTarget(self)
 end
 
 function RVBMain:updateMenuInputBinding()
-    local actionEventId = self.actionEvents[InputAction.VEHICLE_BREAKDOWN_MENU]
+	local actionEventId = self.actionEvents[InputAction.VEHICLE_BREAKDOWN_MENU]
 	local isActive = true
-    g_inputBinding:setActionEventActive(actionEventId, isActive)
+	g_inputBinding:setActionEventActive(actionEventId, isActive)
 end
 
 function RVBMain:resetGamePlaySettings()
-    self.gameplaySettings = {
+	self.gameplaySettings = {
 		repairshop = RVBMain.DEFAULT_SETTINGS.repairshop,
 		dailyServiceInterval = RVBMain.DEFAULT_SETTINGS.dailyServiceInterval,
 		periodicServiceInterval = RVBMain.DEFAULT_SETTINGS.periodicServiceInterval,
@@ -375,19 +377,20 @@ function RVBMain:resetGamePlaySettings()
 end
 
 function RVBMain:resetGeneralSettings()
-    self.generalSettings = {
+	self.generalSettings = {
 		alertmessage = RVBMain.DEFAULT_SETTINGS.alertmessage,
 		difficulty = RVBMain.DEFAULT_SETTINGS.difficulty,
 		basicrepairtrigger = RVBMain.DEFAULT_SETTINGS.basicrepairtrigger,
+		debugdisplay = RVBMain.DEFAULT_SETTINGS.debugdisplay,
 		cp_notice = RVBMain.DEFAULT_SETTINGS.cp_notice
-    }
+	}
 end
 
 function RVBMain:onActionCall(actionName, keyStatus, callbackStatus, isAnalog, arg6)
 
 	if actionName == InputAction.VEHICLE_BREAKDOWN_MENU then
-        g_gui:showDialog("RVBTabbedMenu")
-    end
+		g_gui:showDialog("RVBTabbedMenu")
+	end
 
 end
 
@@ -405,7 +408,7 @@ VehicleSellingPoint.openMenu = Utils.overwrittenFunction(VehicleSellingPoint.ope
 function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, thermostatLifetime, lightingsLifetime,
 	glowplugLifetime, wipersLifetime, generatorLifetime, engineLifetime, selfstarterLifetime, batteryLifetime, tireLifetime)
 
-    if g_server then
+	if g_server then
 
 		g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, thermostatLifetime, lightingsLifetime,
 		glowplugLifetime, wipersLifetime, generatorLifetime, engineLifetime, selfstarterLifetime, batteryLifetime, tireLifetime))
@@ -425,65 +428,66 @@ function RVBMain:setCustomGamePlaySet(dailyServiceInterval, periodicServiceInter
 		self:setIsBatteryLifetime(batteryLifetime)
 		self:setIsTireLifetime(tireLifetime)
 
-    end
+	end
 
 end
 
-function RVBMain:setCustomGeneralSet(alertmessage, difficulty, basicrepairtrigger, cp_notice)
+function RVBMain:setCustomGeneralSet(alertmessage, difficulty, basicrepairtrigger, debugdisplay, cp_notice)
 
-    if g_server then
+	if g_server then
 
-        g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, cp_notice), nil, nil, self)
+		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, debugdisplay, cp_notice), nil, nil, self)
 
 		self:setIsAlertMessage(alertmessage)
 		self:setIsRVBDifficulty(difficulty)
 		self:setIsBasicRepairTrigger(basicrepairtrigger)
+		self:setIsDebugDisplay(debugdisplay)
 		self:setIsCPNotice(cp_notice)
 
-    end
+	end
 
 end
 
 function RVBMain:rvbsaveToXMLFile(RVBXMLFile)
 
-    local schemaKey = "rvbGamePlaySettings"
-    local xmlFile = XMLFile.create("RBVGamePlaySettingsXML", RVBXMLFile, "rvbGamePlaySettings", self.gameplaySettingSchema)
-    if xmlFile ~= 0 then
+	local schemaKey = "rvbGamePlaySettings"
+	local xmlFile = XMLFile.create("RBVGamePlaySettingsXML", RVBXMLFile, "rvbGamePlaySettings", self.gameplaySettingSchema)
+	if xmlFile ~= 0 then
 		xmlFile:setValue(schemaKey .. ".dailyServiceInterval#value", self.gameplaySettings.dailyServiceInterval)
 		xmlFile:setValue(schemaKey .. ".periodicServiceInterval#value", self.gameplaySettings.periodicServiceInterval)
 		xmlFile:setValue(schemaKey .. ".repairshop#value", self.gameplaySettings.repairshop)
 		xmlFile:setValue(schemaKey .. ".workshopOpen#value", self.gameplaySettings.workshopOpen)
 		xmlFile:setValue(schemaKey .. ".workshopClose#value", self.gameplaySettings.workshopClose)
-
-		xmlFile:setValue(schemaKey .. ".thermostatLifetime", self.gameplaySettings.thermostatLifetime)
-		xmlFile:setValue(schemaKey .. ".lightingsLifetime", self.gameplaySettings.lightingsLifetime)
-		xmlFile:setValue(schemaKey .. ".glowplugLifetime", self.gameplaySettings.glowplugLifetime)
-		xmlFile:setValue(schemaKey .. ".wipersLifetime", self.gameplaySettings.wipersLifetime)
-		xmlFile:setValue(schemaKey .. ".generatorLifetime", self.gameplaySettings.generatorLifetime)
-		xmlFile:setValue(schemaKey .. ".engineLifetime", self.gameplaySettings.engineLifetime)
-		xmlFile:setValue(schemaKey .. ".selfstarterLifetime", self.gameplaySettings.selfstarterLifetime)
-		xmlFile:setValue(schemaKey .. ".batteryLifetime", self.gameplaySettings.batteryLifetime)
-		xmlFile:setValue(schemaKey .. ".tireLifetime", self.gameplaySettings.tireLifetime)
-        xmlFile:save()
-        xmlFile:delete()
-    end
+		xmlFile:setValue(schemaKey .. ".thermostatLifetime#value", self.gameplaySettings.thermostatLifetime)
+		xmlFile:setValue(schemaKey .. ".lightingsLifetime#value", self.gameplaySettings.lightingsLifetime)
+		xmlFile:setValue(schemaKey .. ".glowplugLifetime#value", self.gameplaySettings.glowplugLifetime)
+		xmlFile:setValue(schemaKey .. ".wipersLifetime#value", self.gameplaySettings.wipersLifetime)
+		xmlFile:setValue(schemaKey .. ".generatorLifetime#value", self.gameplaySettings.generatorLifetime)
+		xmlFile:setValue(schemaKey .. ".engineLifetime#value", self.gameplaySettings.engineLifetime)
+		xmlFile:setValue(schemaKey .. ".selfstarterLifetime#value", self.gameplaySettings.selfstarterLifetime)
+		xmlFile:setValue(schemaKey .. ".batteryLifetime#value", self.gameplaySettings.batteryLifetime)
+		xmlFile:setValue(schemaKey .. ".tireLifetime#value", self.gameplaySettings.tireLifetime)
+		xmlFile:save()
+		xmlFile:delete()
+	end
 		
 end
 
 function RVBMain:saveGeneralettingsToXML()
 
-    local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
-    local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
-    local schemaKey = "rvbGeneralSettings"
-    local xmlFile = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
-    if xmlFile ~= 0 then
+	local VEHICLE_BREAKDOWN_FOLDER = getUserProfileAppPath() .. "modSettings/FS22_gameplay_Real_Vehicle_Breakdowns/"
+	local GENERAL_SETTINGS_XML = Utils.getFilename("RVBGeneralSettings.xml", VEHICLE_BREAKDOWN_FOLDER)
+	local schemaKey = "rvbGeneralSettings"
+	local xmlFile = XMLFile.create("RBVGeneralSettingsXML", GENERAL_SETTINGS_XML, "rvbGeneralSettings", self.generalSettingSchema)
+	if xmlFile ~= 0 then
 		xmlFile:setValue(schemaKey .. ".alertmessage#value", self.generalSettings.alertmessage)
 		xmlFile:setValue(schemaKey .. ".difficulty#value", self.generalSettings.difficulty)
 		xmlFile:setValue(schemaKey .. ".basicrepairtrigger#value", self.generalSettings.basicrepairtrigger)
+		xmlFile:setValue(schemaKey .. ".debugdisplay#value", self.generalSettings.debugdisplay)
 		xmlFile:setValue(schemaKey .. ".cp_notice#value", self.generalSettings.cp_notice)
-        xmlFile:save()
-        xmlFile:delete()
-    end
+		xmlFile:save()
+		xmlFile:delete()
+	end
 	
 end
 
@@ -497,7 +501,7 @@ function RVBMain:delete()
 end
 
 function RVBMain:getIsAlertMessage()
-    return self.generalSettings.alertmessage
+	return self.generalSettings.alertmessage
 end
 
 function RVBMain:setIsAlertMessage(alertmessage)
@@ -505,7 +509,7 @@ function RVBMain:setIsAlertMessage(alertmessage)
 end
 
 function RVBMain:getIsRVBDifficulty()
-    return self.generalSettings.difficulty
+	return self.generalSettings.difficulty
 end
 
 function RVBMain:setIsRVBDifficulty(difficulty)
@@ -513,11 +517,19 @@ function RVBMain:setIsRVBDifficulty(difficulty)
 end
 
 function RVBMain:getIsBasicRepairTrigger()
-    return self.generalSettings.basicrepairtrigger
+	return self.generalSettings.basicrepairtrigger
 end
 
 function RVBMain:setIsBasicRepairTrigger(basicrepairtrigger)
 	self.generalSettings.basicrepairtrigger = basicrepairtrigger
+end
+
+function RVBMain:getIsDebugDisplay()
+	return self.generalSettings.debugdisplay
+end
+
+function RVBMain:setIsDebugDisplay(debugdisplay)
+	self.generalSettings.debugdisplay = debugdisplay
 end
 
 function RVBMain:setIsCPNotice(cpnotice)
@@ -527,7 +539,7 @@ end
 --[[**************************************************]]
 
 function RVBMain:getIsDailyService()
-    return self.gameplaySettings.dailyServiceInterval
+	return self.gameplaySettings.dailyServiceInterval
 end
 
 function RVBMain:setIsDailyServiceInterval(dailyServiceInterval)
@@ -535,7 +547,7 @@ function RVBMain:setIsDailyServiceInterval(dailyServiceInterval)
 end
 
 function RVBMain:getIsIsPeriodicService()
-    return self.gameplaySettings.periodicServiceInterval
+	return self.gameplaySettings.periodicServiceInterval
 end
 
 function RVBMain:setIsPeriodicServiceInterval(periodicServiceInterval)
@@ -543,7 +555,7 @@ function RVBMain:setIsPeriodicServiceInterval(periodicServiceInterval)
 end
 
 function RVBMain:getIsRepairShop()
-    return self.gameplaySettings.repairshop
+	return self.gameplaySettings.repairshop
 end
 
 function RVBMain:setIsRepairShop(repairshop)
@@ -551,7 +563,7 @@ function RVBMain:setIsRepairShop(repairshop)
 end
 
 function RVBMain:getIsWorkshopOpen()
-    return self.gameplaySettings.workshopOpen
+	return self.gameplaySettings.workshopOpen
 end
 
 function RVBMain:setIsWorkshopOpen(workshopOpen)
@@ -559,7 +571,7 @@ function RVBMain:setIsWorkshopOpen(workshopOpen)
 end
 
 function RVBMain:getIsWorkshopClose()
-    return self.gameplaySettings.workshopClose
+	return self.gameplaySettings.workshopClose
 end
 
 function RVBMain:setIsWorkshopClose(workshopClose)
@@ -567,7 +579,7 @@ function RVBMain:setIsWorkshopClose(workshopClose)
 end
 
 function RVBMain:getIsThermostatLifetime()
-    return self.gameplaySettings.thermostatLifetime
+	return self.gameplaySettings.thermostatLifetime
 end
 
 function RVBMain:setIsThermostatLifetime(thermostatLifetime)
@@ -575,7 +587,7 @@ function RVBMain:setIsThermostatLifetime(thermostatLifetime)
 end
 
 function RVBMain:getIsLightingsLifetime()
-    return self.gameplaySettings.lightingsLifetime
+	return self.gameplaySettings.lightingsLifetime
 end
 
 function RVBMain:setIsLightingsLifetime(lightingsLifetime)
@@ -583,7 +595,7 @@ function RVBMain:setIsLightingsLifetime(lightingsLifetime)
 end
 
 function RVBMain:getIsGlowplugLifetime()
-    return self.gameplaySettings.glowplugLifetime
+	return self.gameplaySettings.glowplugLifetime
 end
 
 function RVBMain:setIsGlowplugLifetime(glowplugLifetime)
@@ -591,7 +603,7 @@ function RVBMain:setIsGlowplugLifetime(glowplugLifetime)
 end
 
 function RVBMain:getIsWipersLifetime()
-    return self.gameplaySettings.wipersLifetime
+	return self.gameplaySettings.wipersLifetime
 end
 
 function RVBMain:setIsWipersLifetime(wipersLifetime)
@@ -599,7 +611,7 @@ function RVBMain:setIsWipersLifetime(wipersLifetime)
 end
 
 function RVBMain:getIsGeneratorLifetime()
-    return self.gameplaySettings.generatorLifetime
+	return self.gameplaySettings.generatorLifetime
 end
 
 function RVBMain:setIsGeneratorLifetime(generatorLifetime)
@@ -607,7 +619,7 @@ function RVBMain:setIsGeneratorLifetime(generatorLifetime)
 end
 
 function RVBMain:getIsEngineLifetime()
-    return self.gameplaySettings.engineLifetime
+	return self.gameplaySettings.engineLifetime
 end
 
 function RVBMain:setIsEngineLifetime(engineLifetime)
@@ -615,7 +627,7 @@ function RVBMain:setIsEngineLifetime(engineLifetime)
 end
 
 function RVBMain:getIsSelfstarterLifetime()
-    return self.gameplaySettings.selfstarterLifetime
+	return self.gameplaySettings.selfstarterLifetime
 end
 
 function RVBMain:setIsSelfstarterLifetime(selfstarterLifetime)
@@ -623,7 +635,7 @@ function RVBMain:setIsSelfstarterLifetime(selfstarterLifetime)
 end
 
 function RVBMain:getIsBatteryLifetime()
-    return self.gameplaySettings.batteryLifetime
+	return self.gameplaySettings.batteryLifetime
 end
 
 function RVBMain:setIsBatteryLifetime(batteryLifetime)
@@ -631,7 +643,7 @@ function RVBMain:setIsBatteryLifetime(batteryLifetime)
 end
 
 function RVBMain:getIsTireLifetime()
-    return self.gameplaySettings.tireLifetime
+	return self.gameplaySettings.tireLifetime
 end
 
 function RVBMain:setIsTireLifetime(tireLifetime)
@@ -639,8 +651,8 @@ function RVBMain:setIsTireLifetime(tireLifetime)
 end
 
 function RVBMain:onReadStream(streamId, connection)
-    if connection:getIsServer() then
-        self.gameplaySettings.dailyServiceInterval = streamReadInt32(streamId)
+	if connection:getIsServer() then
+		self.gameplaySettings.dailyServiceInterval = streamReadInt32(streamId)
 		self.gameplaySettings.periodicServiceInterval = streamReadInt32(streamId)
 		self.gameplaySettings.repairshop = streamReadBool(streamId)
 		self.gameplaySettings.workshopOpen = streamReadInt32(streamId)
@@ -659,12 +671,12 @@ function RVBMain:onReadStream(streamId, connection)
 		--self.generalSettings.difficulty = streamReadInt32(streamId)
 		--self.generalSettings.basicrepairtrigger = streamReadBool(streamId)
 		--self.generalSettings.cp_notice = streamReadBool(streamId)
-    end
+	end
 end
 
 function RVBMain:onWriteStream(streamId, connection)
-    if not connection:getIsServer() then
-        streamWriteInt32(streamId, self.gameplaySettings.dailyServiceInterval)
+	if not connection:getIsServer() then
+		streamWriteInt32(streamId, self.gameplaySettings.dailyServiceInterval)
 		streamWriteInt32(streamId, self.gameplaySettings.periodicServiceInterval)
 		streamWriteBool(streamId, self.gameplaySettings.repairshop)
 		streamWriteInt32(streamId, self.gameplaySettings.workshopOpen)
@@ -683,5 +695,5 @@ function RVBMain:onWriteStream(streamId, connection)
 		--streamWriteInt32(streamId, self.generalSettings.difficulty)
 		--streamWriteBool(streamId, self.generalSettings.basicrepairtrigger)
 		--streamWriteBool(streamId, self.generalSettings.cp_notice)
-    end
+	end
 end

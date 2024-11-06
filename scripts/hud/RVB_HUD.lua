@@ -276,139 +276,139 @@ function RVB_HUD:drawHUD()
 
 	end
 
+	if GSET.debugdisplay then
+		if self.vehicle.spec_motorized ~= nil and self.vehicle.getConsumerFillUnitIndex ~= nil and self.vehicle:getConsumerFillUnitIndex(FillType.DIESEL) then
+			local specf = self.vehicle.spec_faultData
+			local COLOR = {}
+			COLOR.DEFAULT = {1, 1, 1, 1}
+			COLOR.YELLOW = {1.0000, 0.6592, 0.0000, 1}
+		
+			local Partfoot = (self.vehicle:getDamageAmount() * 100) / 1
+			--local batteryFillUnitIndex = self.vehicle:getConsumerFillUnitIndex(FillType.ELECTRICCHARGE)
+			--local Partfoot = (self.vehicle:getFillUnitFillLevel(batteryFillUnitIndex) * 100) / 100
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local damage_Text = rvb_Utils.to_upper(g_i18n:getText("ui_condition"))..": "..string.format("%.4f", self.vehicle:getDamageAmount()).." ("..string.format("%.0f", Partfoot).."%)"
+			--local damage_Text = "DAMAGE: "..string.format("%.4f", self.vehicle:getFillUnitFillLevel(batteryFillUnitIndex)).." ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.DEFAULT))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.damageText.posX, self.damageText.posY, self.damageText.size, damage_Text)
+		
+			local Partfoot = (specf.parts[1].operatingHours * 100) / specf.parts[1].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[1].operatingHours)
+			local minutes = math.floor((specf.parts[1].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local thermostat_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_THERMOSTAT"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[1].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.thermostatText.posX, self.thermostatText.posY, self.thermostatText.size, thermostat_Text)
 
-	if self.vehicle.spec_motorized ~= nil and self.vehicle.getConsumerFillUnitIndex ~= nil and self.vehicle:getConsumerFillUnitIndex(FillType.DIESEL) then
-		local specf = self.vehicle.spec_faultData
-		local COLOR = {}
-		COLOR.DEFAULT = {1, 1, 1, 1}
-		COLOR.YELLOW = {1.0000, 0.6592, 0.0000, 1}
+			local Partfoot = (specf.parts[2].operatingHours * 100) / specf.parts[2].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[2].operatingHours)
+			local minutes = math.floor((specf.parts[2].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local lightings_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_LIGHTINGS"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[2].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.lightingsText.posX, self.lightingsText.posY, self.lightingsText.size, lightings_Text)
 		
-		local Partfoot = (self.vehicle:getDamageAmount() * 100) / 1
-		--local batteryFillUnitIndex = self.vehicle:getConsumerFillUnitIndex(FillType.ELECTRICCHARGE)
-		--local Partfoot = (self.vehicle:getFillUnitFillLevel(batteryFillUnitIndex) * 100) / 100
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local damage_Text = "DAMAGE: "..string.format("%.4f", self.vehicle:getDamageAmount()).." ("..string.format("%.0f", Partfoot).."%)"
-		--local damage_Text = "DAMAGE: "..string.format("%.4f", self.vehicle:getFillUnitFillLevel(batteryFillUnitIndex)).." ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.DEFAULT))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.damageText.posX, self.damageText.posY, self.damageText.size, damage_Text)
+			local Partfoot = (specf.parts[3].operatingHours * 100) / specf.parts[3].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[3].operatingHours)
+			local minutes = math.floor((specf.parts[3].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local glowplug_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_GLOWPLUG"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[3].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.glowplugText.posX, self.glowplugText.posY, self.glowplugText.size, glowplug_Text)
 		
-		local Partfoot = (specf.parts[1].operatingHours * 100) / specf.parts[1].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[1].operatingHours)
-		local minutes = math.floor((specf.parts[1].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local thermostat_Text = "THERMOSTAT: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[1].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.thermostatText.posX, self.thermostatText.posY, self.thermostatText.size, thermostat_Text)
-
-		local Partfoot = (specf.parts[2].operatingHours * 100) / specf.parts[2].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[2].operatingHours)
-		local minutes = math.floor((specf.parts[2].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local lightings_Text = "LIGHTINGS: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[2].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.lightingsText.posX, self.lightingsText.posY, self.lightingsText.size, lightings_Text)
+			local Partfoot = (specf.parts[4].operatingHours * 100) / specf.parts[4].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[4].operatingHours)
+			local minutes = math.floor((specf.parts[4].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local wipers_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_WIPERS"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[4].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.wipersText.posX, self.wipersText.posY, self.wipersText.size, wipers_Text)
 		
-		local Partfoot = (specf.parts[3].operatingHours * 100) / specf.parts[3].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[3].operatingHours)
-		local minutes = math.floor((specf.parts[3].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local glowplug_Text = "GLOWPLUG: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[3].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.glowplugText.posX, self.glowplugText.posY, self.glowplugText.size, glowplug_Text)
+			local Partfoot = (specf.parts[5].operatingHours * 100) / specf.parts[5].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[5].operatingHours)
+			local minutes = math.floor((specf.parts[5].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local generator_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_GENERATOR"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[5].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.generatorText.posX, self.generatorText.posY, self.generatorText.size, generator_Text)
 		
-		local Partfoot = (specf.parts[4].operatingHours * 100) / specf.parts[4].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[4].operatingHours)
-		local minutes = math.floor((specf.parts[4].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local wipers_Text = "WIPERS: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[4].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.wipersText.posX, self.wipersText.posY, self.wipersText.size, wipers_Text)
+			local Partfoot = (specf.parts[6].operatingHours * 100) / specf.parts[6].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[6].operatingHours)
+			local minutes = math.floor((specf.parts[6].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local engine_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_ENGINE"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[6].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.engineText.posX, self.engineText.posY, self.engineText.size, engine_Text)
 		
-		local Partfoot = (specf.parts[5].operatingHours * 100) / specf.parts[5].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[5].operatingHours)
-		local minutes = math.floor((specf.parts[5].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local generator_Text = "GENERATOR: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[5].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.generatorText.posX, self.generatorText.posY, self.generatorText.size, generator_Text)
+			local Partfoot = (specf.parts[7].operatingHours * 100) / specf.parts[7].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[7].operatingHours)
+			local minutes = math.floor((specf.parts[7].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local selfstarter_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_SELFSTARTER"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[7].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.selfstarterText.posX, self.selfstarterText.posY, self.selfstarterText.size, selfstarter_Text)
 		
-		local Partfoot = (specf.parts[6].operatingHours * 100) / specf.parts[6].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[6].operatingHours)
-		local minutes = math.floor((specf.parts[6].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local engine_Text = "ENGINE: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[6].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.engineText.posX, self.engineText.posY, self.engineText.size, engine_Text)
-		
-		local Partfoot = (specf.parts[7].operatingHours * 100) / specf.parts[7].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[7].operatingHours)
-		local minutes = math.floor((specf.parts[7].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local selfstarter_Text = "SELFSTARTER: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[7].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.selfstarterText.posX, self.selfstarterText.posY, self.selfstarterText.size, selfstarter_Text)
-		
-		local Partfoot = (specf.parts[8].operatingHours * 100) / specf.parts[8].tmp_lifetime
-		Partfoot = MathUtil.round(Partfoot)
-		Partfoot = 100 - Partfoot
-		local hours = math.floor(specf.parts[8].operatingHours)
-		local minutes = math.floor((specf.parts[8].operatingHours - hours) * 60)
-		if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
-		if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
-		local battery_Text = "BATTERY: "..string.format("%s:%s", hours, minutes).."/"..specf.parts[8].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
-		setTextColor(unpack(COLOR.YELLOW))
-		setTextAlignment(RenderText.ALIGN_LEFT)
-		setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
-		setTextBold(true)
-		renderText(self.batteryText.posX, self.batteryText.posY, self.batteryText.size, battery_Text)
+			local Partfoot = (specf.parts[8].operatingHours * 100) / specf.parts[8].tmp_lifetime
+			Partfoot = MathUtil.round(Partfoot)
+			Partfoot = 100 - Partfoot
+			local hours = math.floor(specf.parts[8].operatingHours)
+			local minutes = math.floor((specf.parts[8].operatingHours - hours) * 60)
+			if hours < 10 then hours = string.format("0%s", hours) else hours = string.format("%s", hours) end
+			if minutes < 10 then minutes = string.format("0%s", minutes) else minutes = string.format("%s", minutes) end
+			local battery_Text = rvb_Utils.to_upper(g_i18n:getText("RVB_faultText_BATTERY"))..": "..string.format("%s:%s", hours, minutes).."/"..specf.parts[8].tmp_lifetime..":00 ("..string.format("%.0f", Partfoot).."%)"
+			setTextColor(unpack(COLOR.YELLOW))
+			setTextAlignment(RenderText.ALIGN_LEFT)
+			setTextVerticalAlignment(RenderText.VERTICAL_ALIGN_TOP)
+			setTextBold(true)
+			renderText(self.batteryText.posX, self.batteryText.posY, self.batteryText.size, battery_Text)
+		end
 	end
-	
 	
 	
 	setTextColor(1,1,1,1)

@@ -2,7 +2,7 @@
 RVBGeneralSettings_Frame = {}
 local RVBGeneralSettings_Frame_mt = Class(RVBGeneralSettings_Frame, TabbedMenuFrameElement)
 
-RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "difficultySet", "basicrepairtriggerSetting", "settingsContainer", "boxLayout"}
+RVBGeneralSettings_Frame.CONTROLS = {"alertMessageSetting", "difficultySet", "basicrepairtriggerSetting", "settingsContainer", "debugDisplaySetting", "boxLayout"}
 
 function RVBGeneralSettings_Frame.new(rvbMain, modName)
 	local self = TabbedMenuFrameElement.new(nil, RVBGeneralSettings_Frame_mt)
@@ -69,6 +69,8 @@ function RVBGeneralSettings_Frame:assignStaticTexts()
 	self.difficultySet:setTexts(difficultyTable)
 
 	self.basicrepairtriggerSetting:setTexts(textsNoYes)
+	
+	self.debugDisplaySetting:setTexts(textsNoYes)
 
 end
 
@@ -138,6 +140,8 @@ function RVBGeneralSettings_Frame:updateValues()
 	self.difficultySet:setState(generalSettings.difficulty)
 
 	self.basicrepairtriggerSetting:setIsChecked(self.rvbMain:getIsBasicRepairTrigger())
+	
+	self.debugDisplaySetting:setIsChecked(self.rvbMain:getIsDebugDisplay())
 
 end
 
@@ -152,11 +156,12 @@ function RVBGeneralSettings_Frame:onSave()
 	local alertmessage = self.alertMessageSetting:getIsChecked()
 	local difficulty = self.difficultySet:getState()
 	local basicrepairtrigger = self.basicrepairtriggerSetting:getIsChecked()
+	local debugdisplay = self.debugDisplaySetting:getIsChecked()
 
 	if g_server ~= nil then
-		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice), nil, nil, self)
+		g_server:broadcastEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, debugdisplay, self.rvbMain.generalSettings.cp_notice), nil, nil, self)
 	else
-		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, self.rvbMain.generalSettings.cp_notice))
+		g_client:getServerConnection():sendEvent(RVBGeneralSet_Event.new(alertmessage, difficulty, basicrepairtrigger, debugdisplay, self.rvbMain.generalSettings.cp_notice))
 	end
 
 	--self.rvbMain:setIsAlertMessage(alertmessage)
@@ -203,5 +208,14 @@ function RVBGeneralSettings_Frame:onClickBasicRepairTrigger(state)
 		self.rvbMain:setIsBasicRepairTrigger(isEnabled)
 		self:onSave()
 		Logging.info("[RVB] Settings 'basicrepairtrigger': ".. tostring(isEnabled))
+	end
+end
+
+function RVBGeneralSettings_Frame:onClickDebug(state)
+	local isEnabled = state == CheckedOptionElement.STATE_CHECKED
+	if isEnabled ~= self.rvbMain.generalSettings.debugdisplay then
+		self.rvbMain:setIsDebugDisplay(isEnabled)
+		self:onSave()
+		Logging.info("[RVB] Settings 'debugdisplay': ".. tostring(isEnabled))
 	end
 end

@@ -7,9 +7,9 @@ RVBVehicleList_Frame.CONTROLS = {"vehicleList", "vehicleIcon", "vehicleDetail", 
 								"THERMOSTAT", "LIGHTINGS", "GLOWPLUG", "WIPERS", "GENERATOR", "ENGINE", "SELFSTARTER", "BATTERY" }
 
 function RVBVehicleList_Frame.new(rvbMain, modName)
-	local self = TabbedMenuFrameElement.new(nil, RVBVehicleList_Frame_mt)
+    local self = TabbedMenuFrameElement.new(nil, RVBVehicleList_Frame_mt)
 
-	self:registerControls(RVBVehicleList_Frame.CONTROLS)
+    self:registerControls(RVBVehicleList_Frame.CONTROLS)
 
 	self.rvbMain         = rvbMain
 	self.modName         = modName

@@ -6,31 +6,33 @@ RVBGamePlaySettings_Frame.CONTROLS = {"dailyServiceIntervalSet", "periodicServic
  "thermostatLifetimeSet", "lightingsLifetimeSet", "glowplugLifetimeSet", "wipersLifetimeSet", "generatorLifetimeSet", "engineLifetimeSet", "selfstarterLifetimeSet", "batteryLifetimeSet", "tireLifetimeSet"}
 
 function RVBGamePlaySettings_Frame.new(rvbMain, modName)
-    local self = TabbedMenuFrameElement.new(nil, RVBGamePlaySettings_Frame_mt)
-    self:registerControls(RVBGamePlaySettings_Frame.CONTROLS)
+	local self = TabbedMenuFrameElement.new(nil, RVBGamePlaySettings_Frame_mt)
 
-    self.rvbMain = rvbMain
-    self.modName = modName
-    self.selectedItem = nil
-    self.i18n = g_i18n.modEnvironments[modName]
-	
+	self:registerControls(RVBGamePlaySettings_Frame.CONTROLS)
+
+	self.rvbMain = rvbMain
+
+	self.modName = modName
+	self.selectedItem = nil
+	self.i18n = g_i18n.modEnvironments[modName]
+
 	self.hasMasterRights = false
 	self.missionInfo = nil
-	
-    return self
+
+	return self
 end
 
 function RVBGamePlaySettings_Frame:copyAttributes(src)
-    RVBGamePlaySettings_Frame:superClass().copyAttributes(self, src)
+	RVBGamePlaySettings_Frame:superClass().copyAttributes(self, src)
 
-    self.rvbMain = src.rvbMain
-    self.modName = src.modName
-    self.i18n = g_i18n.modEnvironments[self.modName]
+	self.rvbMain = src.rvbMain
+	self.modName = src.modName
+	self.i18n = g_i18n.modEnvironments[self.modName]
 end
 
 function RVBGamePlaySettings_Frame:initialize()
 
-    self:assignStaticTexts()
+	self:assignStaticTexts()
 	
 	self.backButtonInfo = {
 		inputAction = InputAction.MENU_BACK
@@ -98,13 +100,13 @@ function RVBGamePlaySettings_Frame:assignStaticTexts()
 		table.insert(lightingsLifetimeTable, rvb_Utils.getLargeLifetimeString(i))
 	end
 	self.lightingsLifetimeSet:setTexts(lightingsLifetimeTable)
-	
+
 	local glowplugLifetimeTable = {}
 	for i = 1, rvb_Utils.table_count(rvb_Utils.SmallArray) do
 		table.insert(glowplugLifetimeTable, rvb_Utils.getSmallLifetimeString(i))
 	end
 	self.glowplugLifetimeSet:setTexts(glowplugLifetimeTable)
-	
+
 	local wipersLifetimeTable = {}
 	for i = 1, rvb_Utils.table_count(rvb_Utils.LargeArray) do
 		table.insert(wipersLifetimeTable, rvb_Utils.getLargeLifetimeString(i))
@@ -122,13 +124,13 @@ function RVBGamePlaySettings_Frame:assignStaticTexts()
 		table.insert(engineLifetimeTable, rvb_Utils.getLargeLifetimeString(i))
 	end
 	self.engineLifetimeSet:setTexts(engineLifetimeTable)
-	
+
 	local selfstarterLifetimeTable = {}
 	for i = 1, rvb_Utils.table_count(rvb_Utils.SmallArray) do
 		table.insert(selfstarterLifetimeTable, rvb_Utils.getSmallLifetimeString(i))
 	end
 	self.selfstarterLifetimeSet:setTexts(selfstarterLifetimeTable)
-		
+
 	local batteryLifetimeTable = {}
 	for i = 1, rvb_Utils.table_count(rvb_Utils.LargeArray) do
 		table.insert(batteryLifetimeTable, rvb_Utils.getLargeLifetimeString(i))
@@ -163,41 +165,29 @@ function RVBGamePlaySettings_Frame:onFrameOpen()
 end
 
 function RVBGamePlaySettings_Frame:updateValues()
-    local gameplaySettings = self.rvbMain.gameplaySettings
 
-	self.dailyServiceIntervalSet:setState(rvb_Utils.getDailyServiceIndex(gameplaySettings.dailyServiceInterval), 2)
+	local gameplaySettings = self.rvbMain.gameplaySettings
 
-	self.periodicServiceIntervalSet:setState(rvb_Utils.getPeriodicServiceIndex(gameplaySettings.periodicServiceInterval), 1)
-	
+	self.dailyServiceIntervalSet:setState(rvb_Utils.getDailyServiceIndex(gameplaySettings.dailyServiceInterval, 2))
+	self.periodicServiceIntervalSet:setState(rvb_Utils.getPeriodicServiceIndex(gameplaySettings.periodicServiceInterval, 1))
 	self.repairOnlySetting:setIsChecked(gameplaySettings.repairshop)
-	
-	self.workshopOpenSet:setState(rvb_Utils.getWorkshopOpenIndex(gameplaySettings.workshopOpen), 1)
-	
-	self.workshopCloseSet:setState(rvb_Utils.getWorkshopCloseIndex(gameplaySettings.workshopClose), 1)
+	self.workshopOpenSet:setState(rvb_Utils.getWorkshopOpenIndex(gameplaySettings.workshopOpen, 1))
+	self.workshopCloseSet:setState(rvb_Utils.getWorkshopCloseIndex(gameplaySettings.workshopClose, 1))
+	self.thermostatLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.thermostatLifetime, 30))
+	self.lightingsLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.lightingsLifetime, 44))
+	self.glowplugLifetimeSet:setState(rvb_Utils.getSmallLifetimeIndex(gameplaySettings.glowplugLifetime, 2))
+	self.wipersLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.wipersLifetime, 16))
+	self.generatorLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.generatorLifetime, 36))
+	self.engineLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.engineLifetime, 42))
+	self.selfstarterLifetimeSet:setState(rvb_Utils.getSmallLifetimeIndex(gameplaySettings.selfstarterLifetime, 3))
+	self.batteryLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.batteryLifetime, 28))
+	self.tireLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.tireLifetime, 68))
 
-	self.thermostatLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.thermostatLifetime), 30)
-
-	self.lightingsLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.lightingsLifetime), 44)
-	
-	self.glowplugLifetimeSet:setState(rvb_Utils.getSmallLifetimeIndex(gameplaySettings.glowplugLifetime), 2)
-	
-	self.wipersLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.wipersLifetime), 16)
-	
-	self.generatorLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.generatorLifetime), 36)
-	
-	self.engineLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.engineLifetime), 42)
-	
-	self.selfstarterLifetimeSet:setState(rvb_Utils.getSmallLifetimeIndex(gameplaySettings.selfstarterLifetime), 3)
-	
-	self.batteryLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.batteryLifetime), 28)
-	
-	self.tireLifetimeSet:setState(rvb_Utils.getLargeLifetimeIndex(gameplaySettings.tireLifetime), 68)
-	
 end
 
 function RVBGamePlaySettings_Frame:onFrameClose()
 	--self:onSave()
-    RVBGamePlaySettings_Frame:superClass().onFrameClose(self)
+	RVBGamePlaySettings_Frame:superClass().onFrameClose(self)
 end
 
 function RVBGamePlaySettings_Frame:onSave()
@@ -220,10 +210,10 @@ function RVBGamePlaySettings_Frame:onSave()
 	if g_server ~= nil then
 		g_server:broadcastEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, thermostatLifetime, lightingsLifetime,
 		glowplugLifetime, wipersLifetime, generatorLifetime, engineLifetime, selfstarterLifetime, batteryLifetime, tireLifetime), nil, nil, self)
-    else
+	else
 		g_client:getServerConnection():sendEvent(RVBGamePSet_Event.new(dailyServiceInterval, periodicServiceInterval, repairshop, workshopOpen, workshopClose, thermostatLifetime, lightingsLifetime,
 		glowplugLifetime, wipersLifetime, generatorLifetime, engineLifetime, selfstarterLifetime, batteryLifetime, tireLifetime))
-    end
+	end
 
 end
 
@@ -293,7 +283,7 @@ function RVBGamePlaySettings_Frame:onClickLightingsLifetime(state)
 		self.rvbMain:setIsLightingsLifetime(lightings)
 		self:onSave()
 		Logging.info("[RVB] Settings 'lightingsLifetime': %s", lightings)
-		
+
 		--self.rvbMain:rvbVehicleSetLifetime(2, lightings)
 		for _, vehicle in ipairs(g_currentMission.vehicles) do
 			if vehicle.spec_faultData ~= nil then

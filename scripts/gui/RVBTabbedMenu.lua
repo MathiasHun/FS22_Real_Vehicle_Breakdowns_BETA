@@ -36,11 +36,11 @@ function RVBTabbedMenu:onGuiSetupFinished()
 	RVBTabbedMenu:superClass().onGuiSetupFinished(self)
 
 	self.messageCenter:subscribe(MessageType.MASTERUSER_ADDED, self.onMasterUserAdded, self)
-	
+
 	self.clickBackCallback = self:makeSelfCallback(self.onButtonBack)
 
 	self.vehicleListFrame:initialize()
-	
+
 	if not GS_IS_MOBILE_VERSION then
 		self.gameplaySettingFrame:initialize()
 		self.generalSettingFrame:initialize()
@@ -69,14 +69,14 @@ function RVBTabbedMenu:setupMenuPages()
 			self:addPageTab(page, ICONS_PATH, normalizedUVs)
 		end
 	end
-	
+
 end
 
 function RVBTabbedMenu:makeIsGeneralSettingsVisiblePredicate()
 	return function ()
 		local isMultiplayer = self.missionDynamicInfo.isMultiplayer
 		local canChangeSettings = not isMultiplayer or isMultiplayer and self.isServer or self.isMasterUser
-	
+
 		return canChangeSettings
 	end
 end
@@ -109,7 +109,7 @@ function RVBTabbedMenu:setupMenuButtonInfo()
 		text = self.i18n:getText("button_back"),
 		callback = onButtonBackFunction
 	}
-	
+
 	if GS_IS_MOBILE_VERSION then
 		self.defaultMenuButtonInfo = {
 			self.backButtonInfo
@@ -119,11 +119,11 @@ function RVBTabbedMenu:setupMenuButtonInfo()
 			self.backButtonInfo
 		}
 	end
-	
+
 	 self.defaultMenuButtonInfoByActions = {
 		[InputAction.MENU_BACK] = self.defaultMenuButtonInfo[1]
 	}
-	
+
 	self.defaultButtonActionCallbacks = {
 		[InputAction.MENU_BACK] = onButtonBackFunction
 	}

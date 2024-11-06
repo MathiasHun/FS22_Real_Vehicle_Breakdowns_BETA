@@ -1,13 +1,14 @@
+
 rvb_Utils = {}
 
 function rvb_Utils.removeLifetimeText(field)
-    return string.upper(field:gsub("%Lifetime", ""))
+	return string.upper(field:gsub("%Lifetime", ""))
 end
 
 function rvb_Utils.table_count(array)
-  local count = 0
-  for _ in pairs(array) do count = count + 1 end
-  return count
+	local count = 0
+	for _ in pairs(array) do count = count + 1 end
+	return count
 end
 
 function rvb_Utils.getLargeLifetimeString(valueIndex)
@@ -21,6 +22,10 @@ function rvb_Utils.getLargeLifetimeFromIndex(valueIndex)
 end
 
 function rvb_Utils.getLargeLifetimeIndex(value, defaultIndex)
+	if value == nil then
+		--print("Hiba: value értéke nil!")
+		return defaultIndex
+	end
 	for i = #rvb_Utils.LargeArray, 1, -1 do
 		if rvb_Utils.LargeArray[i] <= value then
 			return i
@@ -40,6 +45,10 @@ function rvb_Utils.getSmallLifetimeFromIndex(valueIndex)
 end
 
 function rvb_Utils.getSmallLifetimeIndex(value, defaultIndex)
+	if value == nil then
+		--print("Hiba: value értéke nil!")
+		return defaultIndex
+	end
 	for i = #rvb_Utils.SmallArray, 1, -1 do
 		if rvb_Utils.SmallArray[i] <= value then
 			return i
@@ -59,6 +68,10 @@ function rvb_Utils.getDailyServiceFromIndex(valueIndex)
 end
 
 function rvb_Utils.getDailyServiceIndex(value, defaultIndex)
+	if value == nil then
+		--print("Hiba: value értéke nil!")
+		return defaultIndex
+	end
 	for i = #rvb_Utils.DailyService, 1, -1 do
 		if rvb_Utils.DailyService[i] <= value then
 			return i
@@ -78,6 +91,10 @@ function rvb_Utils.getPeriodicServiceFromIndex(valueIndex)
 end
 
 function rvb_Utils.getPeriodicServiceIndex(value, defaultIndex)
+	if value == nil then
+		--print("Hiba: value értéke nil!")
+		return defaultIndex
+	end
 	for i = #rvb_Utils.PeriodicService, 1, -1 do
 		if rvb_Utils.PeriodicService[i] <= value then
 			return i
@@ -97,6 +114,10 @@ function rvb_Utils.getWorkshopOpenFromIndex(valueIndex)
 end
 
 function rvb_Utils.getWorkshopOpenIndex(value, defaultIndex)
+	if value == nil then
+		--print("Hiba: value értéke nil!")
+		return defaultIndex
+	end
 	for i = #rvb_Utils.WorkshopOpen, 1, -1 do
 		if rvb_Utils.WorkshopOpen[i] <= value then
 			return i
@@ -116,6 +137,10 @@ function rvb_Utils.getWorkshopCloseFromIndex(valueIndex)
 end
 
 function rvb_Utils.getWorkshopCloseIndex(value, defaultIndex)
+	if value == nil then
+        --print("Hiba: value értéke nil!")
+        return defaultIndex
+    end
 	for i = #rvb_Utils.WorkshopClose, 1, -1 do
 		if rvb_Utils.WorkshopClose[i] <= value then
 			return i
@@ -143,4 +168,18 @@ rvb_Utils.SmallArrayMin = 1
 rvb_Utils.SmallArrayMax = 6
 for i = rvb_Utils.SmallArrayMin, rvb_Utils.SmallArrayMax do
 	table.insert(rvb_Utils.SmallArray, i)
+end
+
+function rvb_Utils.to_upper(str)
+    local replacements = {
+        ["á"] = "Á", ["é"] = "É", ["í"] = "Í", ["ó"] = "Ó", ["ö"] = "Ö",
+        ["ő"] = "Ő", ["ú"] = "Ú", ["ü"] = "Ü", ["ű"] = "Ű"
+    }
+    -- Először alkalmazzuk a standard upper függvényt
+    local upper_str = string.upper(str)
+    -- Majd cseréljük ki az ékezetes kisbetűket nagybetűkre
+    for lower, upper in pairs(replacements) do
+        upper_str = upper_str:gsub(lower, upper)
+    end
+    return upper_str
 end

@@ -3,5 +3,6 @@
 	<alertmessage value="true"/>
 	<difficulty value="1"/>
 	<basicrepairtrigger value="true"/>
+	<debugdisplay value="false"/>
 	<cp_notice value="false"/>
 </rvbGeneralSettings>

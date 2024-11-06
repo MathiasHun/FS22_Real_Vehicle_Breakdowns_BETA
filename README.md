@@ -3,11 +3,12 @@
 <p dir="auto"><strong><a href="https://farmsim.bltfm.hu/infusions/bltfmhu_downloads_center/downloads.php?cat_id=2&dlc_id=1">Download the latest developer version</a></strong> (the file FS22_gameplay_Real_Vehicle_Breakdowns.zip).</p>
 
 Changelog 0.9.0.1:
-- github issues#95
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/95">issues#95</a>
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/94">issues#94</a>
 
 Changelog 0.9.0.0:
+- github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/92">issues#92</a>
 - Coming soon
-- I haven't had time for a 100% test yet
 
 Changelog 0.8.8.1:
 - github <a href="https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/issues/27">issues#27</a>

@@ -324,30 +324,57 @@ function VehicleBreakdowns:onLoad(savegame)
 
 		if i == 1 then
 			spec.parts[i].lifetime = GPSET.thermostatLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 2 then
 			spec.parts[i].lifetime = GPSET.lightingsLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 3 then
 			spec.parts[i].lifetime = GPSET.glowplugLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 4 then
 			spec.parts[i].lifetime = GPSET.wipersLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 5 then
 			spec.parts[i].lifetime = GPSET.generatorLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 6 then
 			spec.parts[i].lifetime = GPSET.engineLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 7 then
 			spec.parts[i].lifetime = GPSET.selfstarterLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 8 then
 			spec.parts[i].lifetime = GPSET.batteryLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if i == 9 or i == 10 or i == 11 or i == 12 then
 			spec.parts[i].lifetime = GPSET.tireLifetime
+			if spec.parts[i].lifetime == nil then
+				spec.parts[i].lifetime = lifetime
+			end
 		end
 		if GSET.difficulty == 1 then
 			spec.parts[i].tmp_lifetime = spec.parts[i].lifetime * 2 * g_currentMission.environment.plannedDaysPerPeriod

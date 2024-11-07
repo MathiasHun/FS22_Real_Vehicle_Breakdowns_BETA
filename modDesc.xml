@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="80">
 	<author>MathiasHun</author>
-	<version>0.9.0.1</version>
+	<version>0.9.0.2</version>
 	<title>
 		<en>Real Vehicle Breakdowns</en>
 	</title>
@@ -44,6 +44,10 @@ The repair cost is calculated from the purchase value of the vehicle, later this
 The system does not yet include a hourly repair rates.
 
 Bug report, please visit https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/
+
+Changelog 0.9.0.2:
+- github issues#98
+- github issues#99
 
 Changelog 0.9.0.1:
 - github issues#95

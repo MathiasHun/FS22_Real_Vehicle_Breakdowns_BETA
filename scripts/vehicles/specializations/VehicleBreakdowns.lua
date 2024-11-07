@@ -3043,9 +3043,11 @@ function VehicleBreakdowns:getSpeedLimit(superFunc, onlyIfWorking)
     local limit = math.huge
 	
 	local spec = self.spec_faultData
-	local Pfoot = (spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime
-	if spec ~= nil and spec.parts[6].repairreq and Pfoot > 95 then
-		limit = 7
+	if spec ~= nil then
+		local Pfoot = (spec.parts[6].operatingHours * 100) / spec.parts[6].tmp_lifetime
+		if spec.parts[6].repairreq and Pfoot > 95 then
+			limit = 7
+		end
 	end
 	
     local doCheckSpeedLimit = self:doCheckSpeedLimit()
@@ -3067,7 +3069,7 @@ function VehicleBreakdowns:getSpeedLimit(superFunc, onlyIfWorking)
             if implement.object ~= nil then
                 local speed, implementDoCheckSpeedLimit = implement.object:getSpeedLimit(onlyIfWorking)
                 if onlyIfWorking == nil or (onlyIfWorking and implementDoCheckSpeedLimit) then
-					if spec ~= nil and spec.parts[6].repairreq and Pfoot > 95 then
+					if spec ~= nil and Pfoot ~= nil and spec.parts[6].repairreq and Pfoot > 95 then
 						limit = 3
 					end
                     limit = math.min(limit, speed)

@@ -612,11 +612,11 @@ function VehicleBreakdowns:onLoad(savegame)
 					fillUnit.startFillTypeIndex = consumer.fillType
 
 					local usage = 0.1
-					consumer.permanentConsumption = true
+					consumer.permanentConsumption = false
 					if consumer.permanentConsumption then
-						consumer.usage = usage / (60*60*1000)
+						--consumer.usage = usage / (60*60*1000)
 					else
-						consumer.usage = usage
+						--consumer.usage = usage
 					end
 					consumer.refillLitersPerSecond = 0
 					consumer.refillCapacityPercentage = 0

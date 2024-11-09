@@ -91,7 +91,7 @@ function loadedMission(mission, node)
 end
 
 function rvbgamePlaySetsaveToXMLFile(missionInfo)
-	if isEnabled() then --and missionInfo.isValid then
+	if isEnabled() and missionInfo.isValid then
 		local savegameFolderPath = missionInfo.savegameDirectory
 		if savegameFolderPath == nil then
 			savegameFolderPath = ('%ssavegame%d'):format(getUserProfileAppPath(), missionInfo.savegameIndex)

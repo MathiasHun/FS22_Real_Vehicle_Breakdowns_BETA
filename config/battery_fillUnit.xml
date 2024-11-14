@@ -6,6 +6,7 @@
 			<fillUnitConfiguration>
 				<fillUnits>
 					 <fillUnit unitTextOverride="$l10n_unit_kw" showOnHud="false" showInShop="false" fillTypes="ELECTRICCHARGE" capacity="100" startFillType="ELECTRICCHARGE" startFillLevel="100" synchronizeFillLevel="true"/>
+					 <!--<dashboard displayType="ROT" valueType="fillLevel" node="needleElectric" minRot="0" maxRot="-180" rotAxis="2" doInterpolation="true" interpolationSpeed="0.3" groups="MOTOR_ACTIVE"/>-->
 				</fillUnits>
 			</fillUnitConfiguration>
 		</fillUnitConfigurations>

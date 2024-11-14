@@ -22,13 +22,13 @@ end
 function RVBTotal_Event:readStream(streamId, connection)
 
 	self.vehicle = NetworkUtil.readNodeObject(streamId)
-
+	if self.vehicle ~= nil then
 	self.vehicle.spec_faultData.rvb[1] = streamReadInt16(streamId)
 	self.vehicle.spec_faultData.rvb[2] = streamReadFloat32(streamId)
 	self.vehicle.spec_faultData.rvb[3] = streamReadFloat32(streamId)
 	self.vehicle.spec_faultData.rvb[4] = streamReadFloat32(streamId)
 	self.vehicle.spec_faultData.rvb[5] = streamReadFloat32(streamId)
-
+	end
 	self:run(connection)
 end
 
@@ -47,7 +47,6 @@ end
 function RVBTotal_Event:run(connection)
 	if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
 		VehicleBreakdowns.SyncClientServer_RVB(self.vehicle, unpack(self.vehicle.spec_faultData.rvb))
-		self.vehicle.spec_faultData.rvb = { unpack(self.vehicle.spec_faultData.rvb) }
 	end
 	if not connection:getIsServer() then
 		g_server:broadcastEvent(RVBTotal_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.rvb)), nil, connection, self.vehicle)

@@ -10,13 +10,13 @@ function RVBBattery_Event.emptyNew()
 end
 
 function RVBBattery_Event.new(vehicle, b1, b2, b3, b4, b5, b6, b7 )
-  local battery = { b1, b2, b3, b4, b5, b6, b7 }
-  local self = RVBBattery_Event.emptyNew()
+	local battery = { b1, b2, b3, b4, b5, b6, b7 }
+	local self = RVBBattery_Event.emptyNew()
 
-  self.vehicle = vehicle
+	self.vehicle = vehicle
 	self.vehicle.spec_faultData.battery = { unpack(battery) }
 
-  return self
+	return self
 end
 
 function RVBBattery_Event:readStream(streamId, connection)
@@ -51,7 +51,7 @@ end
 function RVBBattery_Event:run(connection)
     if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
         VehicleBreakdowns.SyncClientServer_RVBBattery(self.vehicle, unpack(self.vehicle.spec_faultData.battery))
-		self.vehicle.spec_faultData.battery = { unpack(self.vehicle.spec_faultData.battery) }
+		--self.vehicle.spec_faultData.battery = { unpack(self.vehicle.spec_faultData.battery) }
 	end
 	if not connection:getIsServer() then
 		g_server:broadcastEvent(RVBBattery_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.battery)), nil, connection, self.vehicle)

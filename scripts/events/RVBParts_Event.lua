@@ -9,8 +9,8 @@ function RVBParts_Event.emptyNew()
   return self
 end
 
-function RVBParts_Event.new(vehicle, p1, p2, p3, p4, p5, p6, p7, p8 )
-	local parts = { p1, p2, p3, p4, p5, p6, p7, p8 }
+function RVBParts_Event.new(vehicle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12 )
+	local parts = { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12 }
 	local self = RVBParts_Event.emptyNew()
 
 	self.vehicle = vehicle
@@ -53,7 +53,7 @@ end
 function RVBParts_Event:run(connection)
     if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
         VehicleBreakdowns.SyncClientServer_RVBParts(self.vehicle, unpack(self.vehicle.spec_faultData.parts))
-		self.vehicle.spec_faultData.parts = { unpack(self.vehicle.spec_faultData.parts) }
+		--self.vehicle.spec_faultData.parts = { unpack(self.vehicle.spec_faultData.parts) }
 	end
 	if not connection:getIsServer() then
 		g_server:broadcastEvent(RVBParts_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.parts)), nil, connection, self.vehicle)
@@ -61,8 +61,8 @@ function RVBParts_Event:run(connection)
 	
 end
 
-function RVBParts_Event.sendEvent( vehicle, p1, p2, p3, p4, p5, p6, p7, p8, noEventSend )
-	local parts = { p1, p2, p3, p4, p5, p6, p7, p8 }
+function RVBParts_Event.sendEvent( vehicle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, noEventSend )
+	local parts = { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12 }
 	if noEventSend == nil or noEventSend == false then
 		if g_server ~= nil then
 			g_server:broadcastEvent(RVBParts_Event.new(vehicle, unpack(parts)), nil, nil, vehicle)

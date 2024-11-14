@@ -53,7 +53,7 @@ end
 function RVBInspection_Event:run(connection)
     if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
         VehicleBreakdowns.SyncClientServer_RVBInspection(self.vehicle, unpack(self.vehicle.spec_faultData.inspection))
-		self.vehicle.spec_faultData.inspection = { unpack(self.vehicle.spec_faultData.inspection) }
+		--self.vehicle.spec_faultData.inspection = { unpack(self.vehicle.spec_faultData.inspection) }
 	end
 	if not connection:getIsServer() then
 		g_server:broadcastEvent(RVBInspection_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.inspection)), nil, connection, self.vehicle)

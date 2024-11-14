@@ -54,7 +54,7 @@ end
 function RVBService_Event:run(connection)
     if self.vehicle ~= nil and self.vehicle:getIsSynchronized() then
         VehicleBreakdowns.SyncClientServer_RVBService(self.vehicle, unpack(self.vehicle.spec_faultData.service))
-		self.vehicle.spec_faultData.service = { unpack(self.vehicle.spec_faultData.service) }
+		--self.vehicle.spec_faultData.service = { unpack(self.vehicle.spec_faultData.service) }
 	end
 	if not connection:getIsServer() then
 		g_server:broadcastEvent(RVBService_Event.new(self.vehicle, unpack(self.vehicle.spec_faultData.service)), nil, connection, self.vehicle)

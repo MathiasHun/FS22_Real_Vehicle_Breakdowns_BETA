@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="80">
-	<author>MathiasHun</author>
-	<version>0.9.0.2</version>
-	<title>
-		<en>Real Vehicle Breakdowns</en>
-	</title>
-	<description>
-		<en><![CDATA[Thanks to this modification the vehicle's components will fail.
-The parts have been set to operating hours, for example, the thermostat breaks down after 150 hours.
-The system monitors the operating temperature of the vehicle, if the engine is still too cold, the vehicle may be damaged.
-After starting the vehicle, if the operating temperature of the engine has not yet reached a temperature above 30 °C, the vehicle will be damaged, this can be tracked on the damage info bar.
-At the moment, it is not yet specified whether in such a case only the motor or the parts belonging to the motor will be damaged.
+    <author>MathiasHun</author>
+    <version>0.9.0.3</version>
+    <title>
+        <en>Real Vehicle Breakdowns</en>
+    </title>
+    <description>
+        <en><![CDATA[Thanks to this modification, the vehicle's components can fail.
+The parts are set based on operating hours, for example, the thermostat will break after 150 hours.
+The system monitors the vehicle's operating temperature, and if the engine is still too cold, the vehicle may be damaged.
+After starting the vehicle, if the engine's operating temperature has not yet exceeded 30°C, the vehicle will be damaged. This can be tracked on the damage info bar.
+Currently, it is not clear whether, in such a case, only the engine or the parts related to the engine will be damaged.
 
-The mod is currently shared in Beta.
+The mod is currently in Beta.
 
-To calculate vehicle service and repair costs, the purchase price and age of the vehicle are taken into account.
-I have to try it out so that I can make any fine adjustments.
+To calculate vehicle service and repair costs, the vehicle's purchase price and age are taken into account.
+I need to test it further to make any necessary fine adjustments.
 
-Opening Real Vehicle Breakdowns (RVB) - key combination "left Alt + w" (default)
+Opening Real Vehicle Breakdowns (RVB) – default key combination "left Alt + W"
 
 List of failures:
-Thermostat error, it can be two types
-1. Thermostat overheating, in this case the operating temperature is too high, the vehicle is damaged and fuel consumption increases.
-2. Thermostat overcooling, in this case the operating temperature fluctuates, fuel consumption increases.
-3. All front and rear lights are malfunctioning, this is how I currently  created the error generation. In the event of this error, the turn signals and hazard warning lights are functional.
-4. Glow plug, in this case, fuel consumption increases and the engine is more difficult to start.
-5. Windscreen wiper motor, in this case the wiper blades do not move. It is possible that it will cause other errors in the future.
-6. Generator, in this case the vehicle's battery is not recharged, so it may discharge and the engine cannot be started.
-7. Engine error, in this case the engine can be started and the max. speed 7 km/h.
-8. Self-starter, in this case the engine is more difficult to start or cannot be started at all.
-9. Battery, in this case the engine is more difficult to start or cannot be started at all.
-10. Service interval, in this case, if there is a value greater than the set service interval in the vehicle, the vehicle will be damaged.
+Thermostat error, two types:
+1. Thermostat overheating: In this case, the operating temperature is too high, the vehicle gets damaged, and fuel consumption increases.
+2.Thermostat overcooling: In this case, the operating temperature fluctuates, leading to increased fuel consumption.
+3. All front and rear lights malfunction: This is how I currently created the error generation. When this error occurs, the turn signals and hazard warning lights remain functional.
+4. Glow plug error: In this case, fuel consumption increases, and the engine is harder to start.
+5. Windscreen wiper motor error: The wipers do not move. This could potentially cause other errors in the future.
+6. Generator error: The vehicle's battery does not recharge, so it may drain, and the engine will not start.
+7. Engine error: The engine can start, but the max. speed is limited to 7 km/h.
+8. Starter motor error: The engine is harder to start or may not start at all.
+9. Battery error: The engine is harder to start or cannot start at all.
+10. Service interval error: If the service interval set for the vehicle exceeds the specified value, the vehicle will be damaged.
 
 Causes of battery discharge: 
-a) you have turned off the vehicle's engine but not turned off the lights, the more lights are on, the faster the battery drains
-b) due to generator failure, the battery does not charge
+a) You have turned off the vehicle's engine but not turned off the lights. The more lights are on, the faster the battery drains.
+b) Due to a generator failure, the battery is not charging.
 
 The battery can be charged in the workshop.
-When the engine is running and the generator is operational, the battery gradually charges.
+When the engine is running, and the generator is operational, the battery gradually recharges.
 
-In the RVB menu, it is possible to select how often the vehicles must be serviced.
-The repair cost is calculated from the purchase value of the vehicle, later this may change to the extent that a minimum repair cost is determined. Because there are vehicles that the developers have priced very cheaply.
-The system does not yet include a hourly repair rates.
+In the RVB menu, you can set how often the vehicles need to be serviced.
+The repair cost is calculated based on the vehicle's purchase price. This may change in the future, with a minimum repair cost being determined, as there are vehicles priced very cheaply by the developers.
+The system currently does not include hourly repair rates
 
 Bug report, please visit https://github.com/MathiasHun/FS22_Real_Vehicle_Breakdowns_BETA/
 
+Changelog 0.9.0.3:
+- github issues#102
+- github issues#100
+
 Changelog 0.9.0.2:
-- github issues#98
 - github issues#99
+- github issues#98
 
 Changelog 0.9.0.1:
 - github issues#95
-- github issues#94
 
 Changelog 0.9.0.0:
-- github issues#92			
 - Coming soon
+- I haven't had time for a 100% test yet
 
 Changelog 0.8.8.1:
 - github issues#27
@@ -136,33 +139,32 @@ Changelog 0.8.1.0:
 - Change in breakdowns generator. The vehicle breakdowns can only if it is at least 8 months old. The chance of vehicle breakdowns has been reduced
 ]]></en>
 
-	</description>
-	<iconFilename>icon_vehicleBreakdown.dds</iconFilename>
-	
-	<l10n filenamePrefix="translations/l10n"/>
-	
-	<fillTypes filename="config/battery_fillUnit.xml"/>
-	<fillTypes filename="config/battery_consumer.xml"/>
-	
-	<multiplayer supported="true"/>
-	
-	<extraSourceFiles>
-		<sourceFile filename="scripts/RVBLoader.lua"/>
-	</extraSourceFiles>
-	
-	
-	<actions>
-		<action name="VEHICLE_BREAKDOWN_MENU" category="VEHICLE" axisType="HALF"/>
-		<action name="ACTIVATE_BATTERY" axisType="HALF"/>
-	</actions>
+    </description>
+    <iconFilename>icon_vehicleBreakdown.dds</iconFilename>
 
-	<inputBinding>
-		<actionBinding action="VEHICLE_BREAKDOWN_MENU">
-			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_w"/>
-		</actionBinding>
-		<actionBinding action="ACTIVATE_BATTERY">
+    <l10n filenamePrefix="translations/l10n"/>
+
+    <fillTypes filename="config/battery_fillUnit.xml"/>
+    <fillTypes filename="config/battery_consumer.xml"/>
+
+    <multiplayer supported="true"/>
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/RVBLoader.lua"/>
+    </extraSourceFiles>
+
+    <actions>
+        <action name="VEHICLE_BREAKDOWN_MENU" category="VEHICLE" axisType="HALF"/>
+        <action name="ACTIVATE_BATTERY" axisType="HALF"/>
+    </actions>
+
+    <inputBinding>
+        <actionBinding action="VEHICLE_BREAKDOWN_MENU">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_w"/>
+        </actionBinding>
+        <actionBinding action="ACTIVATE_BATTERY">
             <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_r"/>
         </actionBinding>
-	</inputBinding>
+    </inputBinding>
 
 </modDesc>

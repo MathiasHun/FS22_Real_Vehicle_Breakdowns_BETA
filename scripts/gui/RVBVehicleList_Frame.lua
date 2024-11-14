@@ -7,9 +7,9 @@ RVBVehicleList_Frame.CONTROLS = {"vehicleList", "vehicleIcon", "vehicleDetail", 
 								"THERMOSTAT", "LIGHTINGS", "GLOWPLUG", "WIPERS", "GENERATOR", "ENGINE", "SELFSTARTER", "BATTERY" }
 
 function RVBVehicleList_Frame.new(rvbMain, modName)
-    local self = TabbedMenuFrameElement.new(nil, RVBVehicleList_Frame_mt)
+	local self = TabbedMenuFrameElement.new(nil, RVBVehicleList_Frame_mt)
 
-    self:registerControls(RVBVehicleList_Frame.CONTROLS)
+	self:registerControls(RVBVehicleList_Frame.CONTROLS)
 
 	self.rvbMain         = rvbMain
 	self.modName         = modName
@@ -49,6 +49,7 @@ function RVBVehicleList_Frame:onFrameOpen()
 	end
 
 	self:rebuildTableList()
+	self:updateMenuButtons()
 
 	if FocusManager:getFocusedElement() == nil then
 		self:setSoundSuppressed(true)
@@ -268,7 +269,11 @@ function RVBVehicleList_Frame:onYesNoSellDialog(yes)
 		local self_vehicle  = self.vehicles[selectedIndex]
 
 		--g_client:getServerConnection():sendEvent(SellVehicleEvent.new(self_vehicle, EconomyManager.DIRECT_SELL_MULTIPLIER, true))
-		g_client:getServerConnection():sendEvent(SellVehicleEvent.new(self_vehicle, 1, true))
+		if self_vehicle ~= nil then
+			g_client:getServerConnection():sendEvent(SellVehicleEvent.new(self_vehicle, 1, true))
+		end
+		
+		self:rebuildTableList()
 
     end
 end
@@ -752,7 +757,8 @@ function RVBVehicleList_Frame:updateMenuButtons()
 		self.hpAscSortButtonInfo.text = hpsort_text
 		--table.insert(self.menuButtonInfo, self.hpAscSortButtonInfo)
 
-		if g_currentMission:getHasPlayerPermission("farmManager") and not isBorrowed then
+		--if g_currentMission:getHasPlayerPermission("farmManager") and not isBorrowed then
+		if not isBorrowed then
 
 			if g_currentMission.environment.currentHour >= tonumber(self.rvbMain:getIsWorkshopOpen()) and g_currentMission.environment.currentHour < tonumber(self.rvbMain:getIsWorkshopClose()) then
 
@@ -920,8 +926,7 @@ function RVBVehicleList_Frame:onButtonvehicleOnly()
 	self:rebuildTableList()
 	
 end
-
-
+	
 function RVBVehicleList_Frame:rebuildTableList()
 
 	self.vehicles = {}
@@ -1002,7 +1007,7 @@ function RVBVehicleList_Frame:rebuildTableList()
 
 					local isSelling        = (vehicle.isDeleted ~= nil and vehicle.isDeleted) or (vehicle.isDeleting ~= nil and vehicle.isDeleting)
 					local hasAccess        = g_currentMission.accessHandler:canPlayerAccess(vehicle)
-					local isProperty       = vehicle.propertyState == Vehicle.PROPERTY_STATE_OWNED or vehicle.propertyState == Vehicle.PROPERTY_STATE_LEASED or vehicle.propertyState == Vehicle.PROPERTY_STATE_MISSION
+					local isProperty       = vehicle.propertyState == Vehicle.PROPERTY_STATE_OWNED or vehicle.propertyState == Vehicle.PROPERTY_STATE_LEASED --or vehicle.propertyState == Vehicle.PROPERTY_STATE_MISSION
 					local isPallet         = vehicle.typeName == "pallet"
 					local isTrain          = vehicle.typeName == "locomotive"
 					local isBelt           = vehicle.typeName == "conveyorBelt" or vehicle.typeName == "pickupConveyorBelt"

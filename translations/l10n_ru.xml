@@ -40,8 +40,8 @@
 		<text name="ui_RVB_difficulty3_subtitle" text="Небольшая"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerTitle" text="Настройки RVB"/>
 		<text name="ui_RVB_generalsetting_basicrepairtriggerDesc" text="Базовая точка автомастерской. Вы можете открыть Настройки Real vehicle breakdowns (RVB)."/>
-		<text name="ui_RVB_generalsetting_debugDisplayTitle" text="RVB Debug"/>
-		<text name="ui_RVB_generalsetting_debugDisplayDesc" text="Показывает время работы деталей автомобиля. Рекомендуется использовать это во время тестирования."/>
+		<text name="ui_RVB_generalsetting_debugDisplayTitle" text="Отладка RVB"/>
+		<text name="ui_RVB_generalsetting_debugDisplayDesc" text="Показывает время работы деталей ТС. Рекомендуется использовать это во время тестирования."/>
 
 		<text name="RVB_WorkShopClose" text="СТО закрыта, приходите в %s." tag="format"/>
 		<text name="RVB_button_inspection" text="Техосмотр"/>
